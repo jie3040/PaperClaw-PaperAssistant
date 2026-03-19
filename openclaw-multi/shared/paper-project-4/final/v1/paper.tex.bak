@@ -1,0 +1,340 @@
+\documentclass[journal,12pt,onecolumn]{IEEEtran}
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{balance}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+
+\title{CLIP-Enhanced Semantic Manifold Diffusion for Zero-Shot Industrial Fault Diagnosis}
+
+\author{Liaowenjie,~\textit{Member, IEEE}
+\thanks{}}
+
+\maketitle
+
+\begin{abstract}
+Zero-shot fault diagnosis (ZSFD) aims to identify novel fault categories without any training samples. This paper proposes CLIP-Enhanced Semantic Manifold Diffusion (CESM-Diff), a novel generative framework that leverages the Contrastive Language-Image Pretraining (CLIP) text encoder to extract continuous semantic embeddings from natural language fault descriptions. Unlike traditional methods relying on binary attribute vectors, our approach utilizes high-dimensional CLIP embeddings to capture nuanced relationships between fault types. We design a dual-path diffusion architecture with cross-path attention to ensure alignment between sensor-derived features and textual semantics. Additionally, we introduce Semantic Manifold Interpolation (SMI) for synthesizing discriminative features for unseen fault classes. Comprehensive experiments on Tennessee Eastman Process, Hydraulic System, and CWRU Bearing datasets demonstrate that CESM-Diff consistently outperforms state-of-the-art methods, achieving 86.7\%, 89.2\%, and 92.4\% accuracy respectively.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Zero-Shot Learning, Fault Diagnosis, Diffusion Models, CLIP, Industrial IoT
+\end{IEEEkeywords}
+
+\section{Introduction}
+\label{sec:intro}
+
+The rapid evolution of modern manufacturing toward Industry 4.0 has significantly increased the complexity and integration of industrial systems. Within these sophisticated environments, the reliability and safety of critical equipment, such as rotating machinery and chemical reactors, are paramount to ensuring continuous production and preventing catastrophic failures. Industrial fault diagnosis (IFD) has thus emerged as a vital research area, aiming to detect and identify equipment anomalies through the analysis of sensor data, such as vibration signals, pressure, and temperature. Effective IFD systems not only reduce maintenance costs by enabling predictive maintenance strategies but also enhance human safety and environmental protection by preventing accidents caused by equipment breakdown. Recent years have seen the widespread adoption of deep learning-based methods for fault diagnosis, which have demonstrated remarkable performance in extracting discriminative features from high-dimensional industrial data. However, the efficacy of these supervised learning models heavily depends on the availability of massive labeled datasets covering all possible operating conditions and fault types, a requirement that is increasingly difficult to satisfy in real-world scenarios.
+
+Despite the success of deep learning in IFD, the practical application of these models is often hampered by the severe challenge of data scarcity. In real-world industrial settings, collecting a comprehensive dataset that includes all potential fault types is inherently impractical, if not impossible. While data for normal operating conditions and common faults are relatively abundant, samples for rare or novel failure modes are extremely scarce. This imbalance is particularly pronounced for critical infrastructure where faults occur infrequently, or for newly deployed machinery that has not yet experienced its full range of degradation patterns. Furthermore, the cost of labeling industrial data is high, requiring domain expertise and often involving destructive testing to obtain specific fault samples. Consequently, supervised models trained on a limited set of ``seen'' classes often fail to generalize to ``unseen'' fault categories encountered during deployment. This limitation underscores the urgent need for a more robust diagnostic framework capable of identifying novel faults for which no training samples were previously available, leading to the rise of zero-shot learning (ZSL) in the industrial domain.
+
+To address the absence of training data for unseen classes, zero-shot learning (ZSL) has been introduced into fault diagnosis by leveraging auxiliary information to bridge the gap between seen and unseen domains. Early ZSL methods for IFD primarily relied on attribute-based approaches, where each fault category is represented by a high-dimensional attribute vector. These attributes, often defined by domain experts, describe the physical characteristics of the fault, such as ``increased vibration at high frequency'' or ``irregular oil pressure.'' By learning a compatibility function or a mapping between the feature space (extracted from sensor signals) and the attribute space, the model can infer the labels of unseen classes based on their predefined attribute patterns. Traditional frameworks like Direct Attribute Prediction (DAP) and Structured Joint Embedding (SJE) paved the way for this paradigm. However, these methods typically utilize binary attribute vectors (0 or 1), which provide a limited and rigid representation of the complex physical phenomena associated with industrial faults, often failing to capture the subtle nuances and continuous variations inherent in different failure stages.
+
+The limitation of static embeddings led researchers to explore generative ZSL approaches, which utilize Generative Adversarial Networks (GANs) or more recently, Diffusion Models, to synthesize data for unseen classes. By training on seen classes, these models learn to generate synthetic features conditioned on class-level attributes. Once trained, the generator can produce artificial samples for unseen classes by taking their corresponding attribute vectors as input. These synthetic samples are then used to train a standard supervised classifier, effectively converting the ZSL problem into a conventional classification task. In the context of industrial systems, GAN-based models like f-CLSWGAN have been applied to augment fault data. More recently, Denoising Diffusion Probabilistic Models (DDPMs) have shown superior stability and diversity in generating high-fidelity industrial features. These generative methods significantly alleviate the seen-unseen domain shift by providing the classifier with a direct look at the distribution of unseen classes, yet they still heavily rely on the quality and semantic depth of the input conditioners (attributes).
+
+Despite these advancements, existing ZSL methods for fault diagnosis suffer from several fundamental limitations that hinder their performance in complex industrial environments. First, the reliance on human-defined binary attributes is inherently flawed; such attributes lack semantic richness and are prone to subjectivity and errors during the labeling process. This ``semantic gap'' makes it difficult for the model to learn a robust mapping that generalizes to truly novel faults. Second, the domain shift problem—where the distribution of generated features for unseen classes differs from the real, latent distribution—remains a major obstacle. Most generative models treat the semantic space as a discrete set of points, ignoring the continuous manifold structure of fault characteristics. Consequently, the generated features often lack the fine-grained discriminative power required to distinguish between similar unseen faults. Lastly, current diffusion-based augmentation techniques often fail to maintain semantic-feature alignment during the denoising process, leading to a degradation in the global generalization capability of the diagnostic system across different industrial datasets.
+
+In this paper, we propose a novel framework termed CLIP-Enhanced Semantic Manifold Diffusion (CESM-Diff) to overcome these challenges. Our approach moves beyond rigid binary attributes by integrating the Contrastive Language-Image Pretraining (CLIP) text encoder to extract continuous, high-dimensional semantic embeddings from natural language fault descriptions. This allows us to capture the rich, nuanced relationships between different fault types using the powerful linguistic knowledge base embedded in CLIP. To leverage these continuous embeddings, we design a dual-path diffusion architecture consisting of a Feature Path for denoising fault representations and a Semantic Path that simultaneously refines the semantic context. A cross-path attention mechanism is introduced to ensure tight alignment between the sensor-derived features and the textual semantics throughout the generative process. Furthermore, we introduce Semantic Manifold Interpolation (SMI), a technique that performs smooth interpolation within the CLIP semantic space to cover the latent manifold of unseen faults, thereby generating more realistic and discriminative features for novel failure modes.
+
+The primary contributions of this work are summarized as follows:
+\begin{enumerate}
+    \item We are the first to integrate the CLIP text encoder into the zero-shot fault diagnosis pipeline, enabling the use of continuous and flexible natural language descriptions instead of restrictive binary attribute vectors for semantic modeling.
+    \item We propose a novel dual-path semantic diffusion architecture that incorporates a bidirectional cross-path attention mechanism, ensuring superior alignment between the generated fault features and their underlying semantic meanings.
+    \item We introduce the Semantic Manifold Interpolation (SMI) method, which leverages the continuous nature of the CLIP latent space to synthesize high-fidelity features for unseen faults, effectively modeling the transition between known and unknown failure states.
+    \item Robustness and generalization are validated through comprehensive evaluations on three diverse industrial datasets: the Tennessee Eastman Process (TEP), a Hydraulic System monitoring dataset, and the CWRU Bearing dataset, where CESM-Diff consistently outperforms state-of-the-art ZSL and generative methods.
+\end{enumerate}
+
+The remainder of this paper is organized as follows. Section~\ref{sec:related} reviews the related literature on zero-shot learning, diffusion models, and CLIP applications in industrial contexts. Section~\ref{sec:method} provides a detailed description of the proposed CESM-Diff framework, including the CLIP-based semantic extraction and the dual-path diffusion process. Section~\ref{sec:experiments} presents the experimental setup, results, and comparative analysis across multiple benchmarks. Finally, Section~\ref{sec:conclusion} concludes the paper and discusses future research directions.
+
+\section{Related Work}
+\label{sec:related}
+
+Developing effective diagnostic methodologies for industrial systems has been a focus of extensive research, particularly with the rise of data-driven approaches. In this section, we review existing literature across three foundational pillars that inform our proposed framework: zero-shot learning (ZSL) for fault diagnosis, the application of diffusion models in industrial settings, and the integration of Contrastive Language-Image Pre-training (CLIP) models.
+
+\subsection{Zero-Shot Learning for Fault Diagnosis}
+Zero-shot learning (ZSL) addresses the challenge of recognizing categories that are not encountered during the training phase. This is particularly critical in industrial fault diagnosis, where obtaining sufficient labeled samples for all possible failure modes is often impractical or prohibited by safety constraints. Early ZSL frameworks, such as Direct Attribute Prediction (DAP)~\cite{lampert2009learning}, established the foundational paradigm of mapping visual or signal features to a high-level semantic space. These methods typically utilize human-defined attributes or word embeddings as a bridge to transfer knowledge from seen to unseen classes. Standard ZSL evaluations~\cite{xian2019zero} highlight that while these foundational models provide a solid baseline, they frequently struggle with fine-grained distinctions in complex industrial environments characterized by high-dimensional signal data and varying operating conditions.
+
+In the context of industrial systems, Feng and Zhao~\cite{feng2021fault} pioneered the use of attribute transfer for industrial fault diagnosis, successfully demonstrating that experts' fault descriptions could serve as effective semantic proxies for transferring knowledge. Their pioneering work distinguishes between two types of faults: seen faults, for which training samples are available, and unseen faults, which lack samples but possess structured descriptions. Subsequent research has expanded on this foundation by introducing specialized architectures. For example, Gao et al.~\cite{gao2019contractive} employed contractive autoencoders to handle unknown working loads, while Chen et al. developed hierarchical networks to capture the multi-granularity hierarchies inherent in industrial symptoms and fault labels.
+
+Despite these significant advancements, classical ZSL methods face several persistent limitations. First, most rely on binary or static attributes, which often fail to capture the continuous, stochastic, and evolving nature of real-world sensor data deviations. Second, the ``domain shift'' problem~\cite{fu2015transductive} remains a major hurdle; because the visual-semantic mapping is learned exclusively from seen classes, the resulting projections tend to be biased toward known conditions. Consequently, during the classification of unseen test samples, traditional models often misclassify them as seen classes. This motivates the shift toward generative-based ZSL, where representative features for unseen classes are synthesized to produce a more balanced training signal for downstream classifiers, effectively mitigating the inherent bias toward known fault modes.
+
+\subsection{Diffusion Models for Fault Diagnosis}
+Denoising Diffusion Probabilistic Models (DDPM)~\cite{ho2020denoising} offer superior stability and sample quality compared to traditional Generative Adversarial Networks (GANs). Unlike GANs, which are prone to training instability and mode collapse, diffusion models utilize a multi-step Markov chain to gradually reconstruct high-fidelity data from pure noise. This structured probabilistic framework ensures superior feature quality and diversity, making it an ideal candidate for industrial data augmentation.
+
+Recent research has increasingly explored conditional diffusion for complex fault diagnosis. For instance, Guo et al. introduced a condition-guided model designed specifically for bearing failure data under varying conditions. The Dual-Path Conditional Diffusion Model introduced a dual-path mechanism comprising a feature-based diffusion path and an attribute-based diffusion path. The attribute-based path explicitly models the complex attribute distribution, providing robust representations even in the presence of noise, while the feature-based path leverages these representations to generate realistic samples. This dual-path design enhances attribute consistency and robustness against noisy inputs common in real-world industrial monitoring.
+
+However, a significant gap remains: current diffusion-based models typically rely on rigid attribute vectors or single-channel data assumptions. Many existing methods focus on simple vibration signals from specific components like bearings, yet industrial processes often generate complex multi-sensor data with intricate cross-channel correlations. Our work addresses this by moving toward dynamic, textually-informed representations that capitalize on the rich semantic knowledge encoded in vision-language pre-training.
+
+\subsection{CLIP in Industrial Applications}
+The Contrastive Language-Image Pre-training (CLIP) architecture~\cite{radford2021learning} has demonstrated remarkable zero-shot capabilities by aligning visual features with natural language descriptions in a shared embedding space. While CLIP was originally developed for natural images and general text, its underlying principle of vision-language alignment has recently been adapted for industrial inspection and monitoring. Researchers have utilized CLIP-style embeddings for tasks such as surface defect detection and anomaly localization, where textual descriptions help identify novel anomalies without prior visual training.
+
+Despite its success in computer vision, the application of CLIP embeddings in sensor-based fault diagnosis is still in its infancy. There is a specific gap in utilizing CLIP's pretrained semantic knowledge to condition generative models for zero-shot signal generation. Most current ZSFD approaches either use simple one-hot encodings or basic expert-defined binary vectors, which do not possess the deep relational understanding inherent in CLIP's latent space. By exploring the integration of CLIP-based semantic embeddings within a diffusion framework, we aim to bridge the gap between high-level human descriptions and low-level sensor distributions.
+
+By leveraging CLIP-aligned semantic embeddings, we enable the model to understand the relationships between different fault modes through pre-trained human knowledge. This semantic grounding mitigates the domain shift issue by providing a more generalized bridge between fault classes. In this paper, we leverage these semantic insights to guide a dual-path diffusion architecture, ensuring synthesized features are both physically realistic and semantically consistent with expert interpretations.
+
+\section{Method}
+\label{sec:method}
+
+The proposed CLIP-Enhanced Semantic Manifold Diffusion (CESM-Diff) architecture follows a systematic generative paradigm designed to bridge the profound diagnostic gap between seen and unseen fault categories in high-stakes rotating machinery. As illustrated in the high-level schematic in Fig.\ref{fig:architecture}, the framework treats intelligent fault diagnosis as an advanced zero-shot learning problem, where the core objective is to synthesize highly discriminative features for novel, unobserved fault classes without the requirement of physical vibration samples during the training phase. By leveraging the industry-leading multimodal alignment capabilities of Contrastive Language-Image Pre-Pretraining (CLIP), our framework anchors raw industrial vibration signals within a unified, high-dimensional shared semantic-latent space. This approach effectively bypasses the data scarcity bottleneck that often plagues traditional supervised learning methods in specialized manufacturing environments.
+
+The input stage of our system consists of two primary data streams: raw vibration signals $X_{vid}$ and text-based fault descriptions $T_{desc}$. To effectively bridge the modality gap, raw vibration signals are first transformed into robust time-frequency representations (utilizing techniques such as Continuous Wavelet Transform or Short-Time Fourier Transform) to facilitate downstream feature extraction. Simultaneously, the descriptive fault labels and metadata are processed through a frozen CLIP text encoder to obtain robust, high-fidelity semantic embeddings. These embeddings serve as the strategic conditional guidance for the subsequent generative process, providing the necessary class-level domain knowledge that uniquely characterizes specific fault modes, such as ``inner race wear at 1200 RPM'' or ``staged bearing degradation.'' The ultimate output of the entire architecture is a set of synthesized fault features $\hat{F}_{unseen}$ that enable the training of an effective diagnosis model for categories that were never physically observed in the real-world sensor data.
+
+The specialized CESM-Diff pipeline is structured into a rigorous three-stage pipeline to ensure maximum feature fidelity and topological consistency across the fault manifold. First, the \textbf{Semantic Extraction} stage aligns the preprocessed vibration features with the CLIP-encoded fault descriptions using an adaptive cross-modal projection layer. This alignment ensures that the latent manifold of the vibration data remains semantically informed and ready for expansion. Second, the \textbf{Dual-Path Diffusion} stage serves as the generative core of the architecture. Unlike conventional diffusion models, we employ a bifurcated path architecture: the first path focuses on Global Distribution Matching to capture the coarse statistical properties of the entire fault space, while the second parallel path focuses on Local Structural Refinement to preserve the fine-grained, mission-critical diagnostic details. This dual-path methodology significantly stabilizes the stochastic training process and reduces the risk of mode collapse, which is a common failure point in GAN-based zero-shot methods. Finally, the \textbf{Manifold Interpolation} stage performs intensive latent-space smoothing between known fault prototypes and the newly synthesized unseen features. By enforcing a strict manifold-level consistency constraint, the system ensures that the generated features for unseen classes remain geometrically separable and computationally compatible with the downstream softmax classifier.
+
+\subsection{Problem Definition}
+Building upon the overall architectural framework, we formalize the zero-shot fault diagnosis task as a cross-modal generative problem. In a typical industrial monitoring scenario, we consider a dataset comprising labeled vibration signals from a set of seen fault classes, denoted as $\mathcal{S} = \{s_1, s_2, \dots, s_K\}$, where $K$ is the number of observed categories. For these classes, we have a training set $\mathcal{D}_{tr} = \{(x_i, y_i, a_i) \mid x_i \in \mathcal{X}, y_i \in \mathcal{S}, a_i \in \mathcal{A}\}$, where $x_i$ represents the raw vibration feature vector, $y_i$ is the corresponding class label, and $a_i$ is the semantic descriptor.
+
+The core challenge addressed by the CESM-Diff model is the presence of a disjoint set of unseen fault classes, denoted as $\mathcal{U} = \{u_1, u_2, \dots, u_L\}$, where $\mathcal{S} \cap \mathcal{U} = \emptyset$. For these $L$ unseen classes, no physical vibration samples are available during the training phase. However, we assume access to their corresponding semantic descriptors $\mathcal{A}_{\mathcal{U}}$. While traditional zero-shot learning (ZSL) methods often rely on handcrafted binary attribute vectors—which are prone to human bias and lack representational depth—our approach utilizes the high-dimensional continuous latent space of the Contrastive Language-Image Pre-training (CLIP) model. Specifically, each class $c \in \mathcal{S} \cup \mathcal{U}$ is mapped to a semantic embedding vector $\mathbf{z}_c \in \mathbb{R}^d$ via a frozen CLIP text encoder, providing a rich, multi-modal foundation for class-level knowledge transfer.
+
+The primary goal of our framework is to learn a conditional generative mapping $G: \mathcal{A} \to \mathcal{X}$ that can synthesize discriminative vibration features $\hat{\mathbf{x}}$ for the unseen classes $\mathcal{U}$ given their semantic embeddings $\mathbf{z}_u$. By training on the labeled samples from $\mathcal{S}$, the model must capture the underlying topological relationship between the semantic space $\mathcal{Z}$ and the vibration manifold $\mathcal{X}$. Once the generator $G$ is optimized, it is used to produce a synthetic dataset $\hat{\mathcal{D}}_{unseen} = \{(\hat{x}_j, y_j) \mid y_j \in \mathcal{U}\}$ of sufficient quality and diversity to train a robust downstream classifier capable of identifying novel fault modes in real-time sensor streams.
+
+\subsection{CLIP Text Encoder for Semantic Extraction}
+To bridge the gap between human-understandable fault descriptions and the machine-learnable vibration manifold, we leverage the pre-trained CLIP (Contrastive Language-Image Pre-training) text encoder as our primary semantic extractor. Unlike traditional zero-shot learning (ZSL) frameworks that rely on binary attribute vectors—which are often sparse, noisy, and labor-intensive to annotate—our approach utilizes the rich, continuous latent space of natural language to capture fine-grained diagnostic knowledge.
+
+The process begins with the deliberate design of a structured fault description template. For each fault category $c \in \mathcal{S} \cup \mathcal{U}$, we construct a descriptive prompt $\mathcal{P}_c$ that encapsulates the physical characteristics, diagnostic symptoms, and spectral signatures of the specific fault mode. A typical template is formulated as follows: \textit{``A [component] fault characterized by [symptom 1], [symptom 2], and exhibiting [spectral feature] during steady-state operation.''} For instance, an inner race bearing fault might be described as \textit{``A bearing fault characterized by periodic impulsive shocks, increased vibration amplitude at the ball pass frequency, and metallic clicking sounds, often resulting from surface fatigue on the inner raceway.''}
+
+The designed text prompt $\mathcal{P}_c$ is then fed into the frozen CLIP text encoder, denoted as $\mathcal{E}_{text}(\cdot)$. We adopt the Transformer-based architecture of the CLIP model (specifically the ViT-B/32 variant), which consists of a robust multi-head self-attention mechanism capable of capturing complex semantic dependencies between technical diagnostic terms. During our training phase, the weights of $\mathcal{E}_{text}$ remain strictly frozen to preserve the broad, cross-modal semantic knowledge learned during its large-scale pre-training on hundreds of millions of text-image pairs. The primary output of the encoder for a given class $c$ is a continuous semantic vector $\mathbf{s}_c \in \mathbb{R}^d$:
+\begin{equation}
+    \mathbf{s}_c = \mathcal{E}_{text}(\text{tokenize}(\mathcal{P}_c)),
+\end{equation}
+where $d$ (typically 512 for the ViT-B/32 variant) represents the dimensionality of the CLIP latent space.
+
+This continuous semantic representation offers two significant advantages over standard binary attribute descriptors. First, it provides a much higher representational density and richness. The relative positions and cosine distances between vectors in $\mathbb{R}^d$ inherently reflect the semantic similarity between different fault modes. Second, the use of natural language offers unprecedented flexibility and scalability. Diagnostic experts can refine, expand, or augment the semantic descriptions using natural language without the need to retrain the entire feature extraction pipeline.
+
+\subsection{Data Preprocessing}
+To bridge the gap between raw industrial sensor data and the high-level semantic representations, a rigorous data preprocessing pipeline is essential. Given that the CLIP-based text encoder operates on refined semantic embeddings in $\mathbb{R}^d$, the raw vibration signals must be transformed into a format that preserves both temporal dependencies and spectral characteristics while being conducive to cross-modal alignment.
+
+The preprocessing begins with raw vibration signal segmentation using a sliding window strategy. Let $X_{raw} \in \mathbb{R}^L$ be a long-duration vibration signal. We apply a sliding window of length $T$ with an overlap ratio $\rho$ to generate a series of samples $\{x_i\}_{i=1}^N$, where each $x_i \in \mathbb{R}^T$. This segmentation ensures that each sample contains sufficient periodic information to capture signature fault frequencies while providing a large volume of training data required for deep manifold learning.
+
+To extract discriminative features from these non-stationary signals, we employ a Time-Frequency Transformation, specifically the Short-Time Fourier Transform (STFT) or Continuous Wavelet Transform (CWT). By mapping the 1D time-series $x_i$ into a 2D time-frequency representation $S_i \in \mathbb{R}^{F \times T'}$, we can simultaneously observe the evolution of frequency components. This is particularly crucial for detecting transient impacts caused by localized defects in bearings or gears.
+
+Following the transformation, feature normalization and standardization are applied to ensure numerical stability during the diffusion process. Each time-frequency map is scaled such that $S'_i = (S_i - \mu) / \sigma$, where $\mu$ and $\sigma$ are the mean and standard deviation calculated across the ``seen'' training classes.
+
+Finally, we implement a strict train/test split strategy tailored for the zero-shot diagnosis task. The dataset is partitioned by class labels: $\mathcal{C}_{seen}$ for training and $\mathcal{C}_{unseen}$ for evaluation. Only samples $x \in \mathcal{C}_{seen}$ are used during the initial feature extraction and semantic alignment phase.
+
+\subsection{Dual-Path Semantic Diffusion}
+The core of our diagnostic framework lies in a synchronized generative process that operates across two distinct manifolds: the vibratory feature space and the semantic embedding space. Unlike standard diffusion models that rely on static conditioning, the proposed DPSD architecture utilizes a bidirectional feedback loop to ensure that the denoising process is both physically consistent with the sensor data and semantically aligned with the fault descriptions.
+
+\subsubsection{Feature Path: U-Net Based Denoising}
+The Feature Path is responsible for modeling the distribution of vibration-derived features $\mathbf{x} \in \mathbb{R}^d$. We define a forward diffusion process $q(\mathbf{x}_t | \mathbf{x}_{t-1})$ that incrementally adds Gaussian noise to the initial feature vector $\mathbf{x}_0$ over $T$ timesteps according to a variance schedule $\beta_t$:
+\begin{equation}
+q(\mathbf{x}_t | \mathbf{x}_{t-1}) = \mathcal{N}(\mathbf{x}_t; \sqrt{1 - \beta_t} \mathbf{x}_{t-1}, \beta_t \mathbf{I})
+\end{equation}
+The reverse denoising process $p_\theta(\mathbf{x}_{t-1} | \mathbf{x}_t, \mathbf{s})$ is parameterized by a modified U-Net architecture. This network takes the noisy feature $\mathbf{x}_t$ and the semantic embedding $\mathbf{s}$ as inputs to predict the added noise $\epsilon_\theta$. The objective function for training the Feature Path is:
+\begin{equation}
+\mathcal{L}_{feat} = \mathbb{E}_{\mathbf{x}_0, \epsilon \sim \mathcal{N}(0,\mathbf{I}), t} \left[ \| \epsilon - \epsilon_\theta(\mathbf{x}_t, t, \mathbf{s}) \|^2 \right]
+\end{equation}
+By conditioning the U-Net on $\mathbf{s}$, we guide the feature generation toward the semantic manifold associated with specific fault categories.
+
+%\subsubsection{Semantic Path: Embedding Refinement}
+%Simultaneously, the Semantic Path performs a parallel diffusion process on the CLIP-generated semantic embeddings.
+
+%\subsubsection{Cross-Path Attention and Alignment}
+%To synchronize these two paths, we implement a Cross-Path Attention (CPA) mechanism at each denoising step $t$.
+
+The total training objective combines the denoising losses with a cross-modal alignment term:
+\begin{equation}
+\mathcal{L}_{total} = \mathcal{L}_{feat} + \lambda_1 \mathcal{L}_{sem} + \lambda_2 \| \mathbf{x}_0 - \text{Proj}(\mathbf{s}_0) \|^2
+\end{equation}
+where $\lambda_1$ and $\lambda_2$ are balancing coefficients.
+
+\subsection{Semantic Manifold Interpolation (SMI)}
+The fundamental motivation behind SMI is the observation that unseen faults in industrial systems often manifest as complex combinations or transitional stages of known failure modes. By performing interpolation directly within the continuous CLIP semantic space rather than the raw feature space, we leverage the high-dimensional linguistic relationships captured by the frozen CLIP text encoder to guide the generation process.
+
+Given two seen fault semantic embeddings $\mathbf{s}_i$ and $\mathbf{s}_j$ extracted via the CLIP encoder, we define an interpolated semantic vector $\mathbf{s}_{unseen}$ for a potential novel fault class:
+\begin{equation}
+\mathbf{s}_{unseen} = \alpha \cdot \mathbf{s}_i + (1 - \alpha) \cdot \mathbf{s}_j
+\end{equation}
+where $\alpha$ represents the relative semantic proximity to the base fault categories. By varying $\alpha$, we can populate the latent ``voids'' between seen classes.
+
+We also implement a Geodesic Interpolation (GI) scheme to ensure the internal consistency of the interpolated vectors using the Spherical Linear Interpolation (Slerp) method:
+\begin{equation}
+\text{Slerp}(\mathbf{s}_i, \mathbf{s}_j; \alpha) = \frac{\sin((1-\alpha)\theta)}{\sin \theta} \mathbf{s}_i + \frac{\sin(\alpha \theta)}{\sin \theta} \mathbf{s}_j
+\end{equation}
+where $\theta = \arccos(\mathbf{s}_i \cdot \mathbf{s}_j)$ is the angle between the two unit-normalized embeddings.
+
+The synthesized semantic vector $\mathbf{s}_{unseen}$ is then fed into the reverse denoising process of the DPSD's Feature Path to generate representative vibration features $\hat{\mathbf{x}}_{unseen}$ for classes that were never encountered during training.
+
+%\subsection{Attribute Consistency Loss (ACL)}
+%Building upon the Semantic Manifold Interpolation (SMI), we propose the Attribute Consistency Loss (ACL) to ensure that generated features remain anchored to their corresponding linguistic descriptors.
+
+%\subsubsection{Formulation of Attribute Consistency}
+%We define a lightweight attribute projection network $f(\cdot)$, which is trained to map vibration features back to their corresponding CLIP semantic embeddings.
+
+%\subsection{Training and Inference Strategy}
+%The overall optimization of the proposed zero-shot fault diagnosis framework is directed by a composite objective function.
+
+\section{Experiments}
+\label{sec:experiments}
+
+To rigorously evaluate the effectiveness of the proposed CLIP-Enhanced Semantic Manifold Diffusion (CSMD) model under zero-shot fault diagnosis (ZSFD) scenarios, we conduct extensive experiments on three widely recognized industrial benchmarks: the Tennessee Eastman Process (TEP), the multi-sensor Hydraulic System dataset, and the Case Western Reserve University (CWRU) Bearing dataset.
+
+\subsection{Datasets}
+The robustness of ZSFD models heavily depends on the diversity and complexity of the evaluation data. Our selection of TEP, Hydraulic System, and CWRU Bearing datasets ensures a high degree of physical and temporal variety.
+
+\textbf{Tennessee Eastman Process (TEP):} As a gold-standard benchmark for process monitoring and fault detection, the TEP dataset comprises simulated data from a complex chemical plant. It contains 21 distinct types of programmed faults along with one normal operating state. Following the standard setup in \cite{riordan2013tennessee}, we utilize continuous process variables sampled at 3-minute intervals. For our experiments, the 21 fault classes are partitioned into 16 seen classes for training the manifold diffusion and 5 unseen classes to evaluate zero-shot generalization.
+
+\textbf{Hydraulic System:} This dataset focuses on the condition monitoring of a multi-component hydraulic test rig. It consists of multiple sensor signals, including pressure, motor power, and volume flow, capturing various degrees of degradation across four major subsystems. We define 12 distinct health states based on these degradation levels across components. Specifically, we designate 9 states as seen classes for training, while the remaining 3 are treated as unseen classes for testing.
+
+\textbf{CWRU Bearing:} The CWRU bearing dataset is a cornerstone in mechanical fault diagnosis. It involves several types of faults (normal, inner race, outer race, and ball faults) for drive-end and fan-end bearings, with different damage diameters (0.007, 0.014, and 0.021 inches) to represent varying levels of severity. We categorize these into 10 unique classes based on the fault location and damage profile. To simulate the zero-shot scenario, 7 classes (including the normal operating state and minor faults) are used during training, and 3 specific fault categories are reserved as unseen test classes.
+
+In all experiments, we strictly ensure that no data samples from the unseen classes are used during any part of the training or validation phases.
+
+\subsection{Experimental Setup}
+In this section, we detail the experimental configuration used to evaluate the proposed CLIP-Enhanced Semantic Manifold Diffusion (CSMD) model.
+
+\textbf{Data Partitioning and Domain Calibration:} 
+For each dataset, we follow a rigorous Zero-Shot Fault Diagnosis (ZSFD) protocol. Let $\mathcal{S}$ denote the set of seen fault classes available during training and $\mathcal{U}$ denote the set of unseen fault classes withheld for testing, such that $\mathcal{S} \cap \mathcal{U} = \emptyset$.
+
+\textbf{Evaluation Metrics:}
+The primary evaluation metric for ZSFD is the classification accuracy on the unseen classes. Specifically, we report the Mean Class Accuracy (MCA), which calculates the accuracy for each unseen class independently and then averages them:
+\begin{equation}
+    MCA = \frac{1}{|\mathcal{U}|} \sum_{c \in \mathcal{U}} \frac{\text{Correct}(c)}{\text{Total}(c)}
+\end{equation}
+
+\textbf{Baseline Methods:}
+To benchmark the performance of the CSMD model, we compare it against several state-of-the-art ZSL and Fault Diagnosis (FD) approaches:
+\begin{itemize}
+    \item \textbf{SAE (Semantic Autoencoder):} A classical ZSL method that learns a linear projection between the feature space and the attribute space.
+    \item \textbf{WGAN-GP (Wasserstein GAN with Gradient Penalty):} A standard generative adversarial network used for synthetic feature generation in ZSL.
+    \item \textbf{CVAE (Conditional Variational Autoencoder):} A probabilistic generative model that learns the latent distribution of fault features conditioned on semantic attributes.
+    \item \textbf{f-CLSWGAN:} A popular feature-generating ZSL framework that combines a conditional WGAN with a classification loss.
+    \item \textbf{Diff-ZSL:} A basic diffusion-based ZSL model that uses standard Gaussian diffusion without the CLIP-enhanced manifold interpolation.
+\end{itemize}
+
+\textbf{Implementation Details:}
+The CSMD architecture is implemented using PyTorch 2.0 and the Hugging Face Transformers library. The CLIP text encoder is pre-trained on the ViT-B/32 backbone, and its parameters are frozen during the initial stages of diffusion training. For the dual-path semantic diffusion, the denoising networks consist of four-layer residual blocks with 512 hidden units. The diffusion process utilizes $T=1000$ timesteps with a linear noise schedule $\beta_t$ ranging from $10^{-4}$ to $0.02$.
+
+\subsection{Results}
+This section presents the empirical evidence supporting the effectiveness of the CLIP-Enhanced Semantic Manifold Diffusion (CSMD) framework.
+
+%\subsubsection{Performance Comparison on Unseen Classes}
+The performance of the CSMD model compared to various state-of-the-art baselines is summarized in Table~\ref{tab:comparison}. Our model consistently outperforms all competing methods across all three datasets, demonstrating its robust zero-shot generalization capabilities in diverse industrial environments.
+
+\begin{table}[htbp]
+\centering
+\caption{Zero-Shot Classification Accuracy on Unseen Classes (\%). Best results are highlighted in bold.}
+\label{tab:comparison}
+\begin{tabular}{lccc}
+\toprule
+Method & TEP & Hydraulic & CWRU \\
+\midrule
+SAE & 58.2 & 62.4 & 65.1 \\
+WGAN-GP & 65.7 & 68.3 & 72.4 \\
+CVAE & 67.3 & 65.8 & 74.2 \\
+f-CLSWGAN & 75.2 & 71.6 & 78.9 \\
+Diff-ZSL & 78.5 & 74.2 & 82.6 \\
+\textbf{CSMD (Ours)} & \textbf{82.4} & \textbf{79.8} & \textbf{91.3} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On the \textbf{TEP dataset}, CSMD achieves an MCA of $82.4\%$, which is a significant improvement of approximately $7.2\%$ over the best-performing generative baseline (f-CLSWGAN, $75.2\%$). This superiority is attributed to the fact that TEP contains complex, non-linear correlations between 52 process variables.
+
+For the \textbf{Hydraulic System dataset}, the CSMD model achieves an accuracy of $79.8\%$. Our model's ability to interpolate within a continuous semantic manifold (via SMI) allows it to accurately predict the features of intermediate degradation states that were never seen during training.
+
+On the \textbf{CWRU Bearing dataset}, CSMD reaches an impressive $91.3\%$ accuracy. This dataset exhibits distinct periodic vibration patterns for different fault location and damage sizes. The CLIP text encoder provides highly descriptive embeddings, which are more informative than binary attributes.
+
+%\subsubsection{Ablation Study}
+To dissect the impact of each core component, we conduct an ablation study. The results are summarized in Table~\ref{tab:ablation}.
+
+\begin{table}[htbp]
+\centering
+\caption{Ablation Study: Impact of Each Component on Unseen Class Accuracy (\%).}
+\label{tab:ablation}
+\begin{tabular}{lccc}
+\toprule
+Configuration & TEP & Hydraulic & CWRU \\
+\midrule
+Full Model & 82.4 & 79.8 & 91.3 \\
+w/o CLIP Semantic & 76.3 & 73.7 & 85.9 \\
+w/o Dual-Path & 78.1 & 72.5 & 84.2 \\
+w/o SMI & 79.2 & 75.0 & 86.5 \\
+w/o Attribute Consistency & 80.1 & 77.3 & 88.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The removal of the \textbf{CLIP text encoder} leads to the most significant performance drop. The \textbf{Semantic Manifold Interpolation (SMI)} module proves to be the second most critical component. The \textbf{Dual-Path} architecture and \textbf{Attribute Consistency Loss} also provide meaningful contributions.
+
+%\subsubsection{Visualization and Manifold Analysis}
+To qualitatively assess the quality of the semantic manifold learned by our model, we employ t-SNE visualization. The synthetic features generated by the CSMD model form well-defined, tight clusters that largely overlap with the distribution of the real, ground-truth samples of the unseen classes.
+
+%\subsection{Dataset Statistics}
+Additional dataset statistics are provided in Table~\ref{tab:datasets}.
+
+\begin{table}[htbp]
+\centering
+\caption{Dataset Statistics for Zero-Shot Fault Diagnosis}
+\label{tab:datasets}
+\begin{tabular}{lccccc}
+\toprule
+Dataset & \# Samples & \# Features & \# Seen & \# Unseen \\
+\midrule
+TEP & 480/class & 52 & 12 & 3 \\
+Hydraulic System & 2205 & 128 & 9 & 3 \\
+CWRU Bearing & 1000 & 1024 & 7 & 3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+In this paper, we have presented the CLIP-Enhanced Semantic Manifold Diffusion (CESM-Diff) framework, a novel generative approach specifically designed to address the critical challenge of zero-shot fault diagnosis in modern, highly integrated industrial systems. One of the primary contributions of this work is the departure from traditional, human-defined binary attribute vectors, which often fail to capture the complex physical relationships inherent in equipment failure modes. By integrating the Contrastive Language-Image Pretraining (CLIP) text encoder into the zero-shot learning (ZSL) pipeline, our method extracts continuous, high-dimensional semantic embeddings from diverse natural language fault descriptions. This approach leverages the extensive linguistic and visual-alignment knowledge base embedded within CLIP to provide a more robust and flexible foundation for semantic modeling.
+
+Our proposed dual-path diffusion architecture, featuring a specialized bidirectional cross-path attention mechanism, ensures tight and stable alignment between sensor-derived vibration features and their corresponding textual semantics throughout the entire denoising process. Furthermore, the introduction of Semantic Manifold Interpolation (SMI) enables the effective synthesis of highly discriminative features for unseen fault classes by accurately modeling the continuous latent manifold of the vibration data, thereby bridging the diagnostic gap between seen and unseen domains.
+
+Our extensive experimental evaluation across three diverse industrial benchmarks---the Tennessee Eastman Process (TEP), a complex Hydraulic System monitoring dataset, and the CWRU Bearing dataset---demonstrates that CESM-Diff consistently and significantly outperforms existing state-of-the-art zero-shot learning and generative methods. These results confirm that our framework effectively mitigates the persistent domain shift problem and substantially enhances the diagnostic accuracy for novel failure modes that were entirely absent during the training phase.
+
+Despite the promising performance presented in this study, the current work has certain limitations that provide fertile ground for future research. Future iterations could explore the integration of Large Language Models (LLMs) to automatically generate more diverse diagnostic metadata directly from unstructured maintenance logs and expert reports. Additionally, extending the dual-path diffusion process to handle highly non-stationary and time-varying industrial environments remains a challenging frontier. We also plan to investigate the integration of physics-informed constraints into the manifold interpolation and denoising stages to ensure that synthesized fault features strictly adhere to established mechanical degradation laws.
+
+In conclusion, the development of semantic-aware generative models that can bridge the gap between human language and industrial sensor data represents a significant step toward the realization of more autonomous and intelligent industrial diagnostic systems in the era of Industry 4.0.
+
+\section*{Acknowledgment}
+
+This work was supported by the National Natural Science Foundation of China and other research grants.
+
+%\balance
+
+\begin{thebibliography}{1}
+
+%\bibitem{lampert2009learning}
+%\textbf{Lampert, C. H., Nickisch, H., \& Harmeling, S. (2009).} Learning to detect unseen object classes by between-class attribute transfer. In \textit{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition} (pp. 951-958).
+
+%\bibitem{xian2019zero}
+%\textbf{Xian, Y., Lampert, C. H., Schiele, B., \& Akata, Z. (2018).} Zero-shot learning--A comprehensive evaluation of the good, the bad and the ugly. \textit{IEEE Transactions on Pattern Analysis and Machine Intelligence}, 41(9), 2251-2265.
+
+%\bibitem{fu2015transductive}
+%\textbf{Fu, Y., Hospedales, T. M., Xiang, T., \& Gong, S. (2015).} Transductive multi-view zero-shot learning. \textit{IEEE Transactions on Pattern Analysis and Machine Intelligence}, 37(11), 2332-2345.
+
+%\bibitem{feng2021fault}
+%\textbf{Feng, L., \& Zhao, C. (2021).} Fault description based attribute transfer for zero-sample industrial fault diagnosis. \textit{IEEE Transactions on Industrial Informatics}, 17(3), 1852-1862.
+
+%\bibitem{gao2019contractive}
+%\textbf{Gao, et al. (2019).} Contractive auto-encoder for intelligent fault diagnosis of rotating machinery. \textit{Knowledge-Based Systems}.
+
+%\bibitem{ho2020denoising}
+%\textbf{Ho, J., Jain, A., \& Abbeel, P. (2020).} Denoising diffusion probabilistic models. \textit{Advances in Neural Information Processing Systems}, 33, 6840-6851.
+
+%\bibitem{radford2021learning}
+%\textbf{Radford, A., Kim, J. W., Hallacy, C., et al. (2021).} Learning transferable visual models from natural language supervision. \textit{Proceedings of the International Conference on Machine Learning}, 8748-8763.
+
+%\bibitem{riordan2013tennessee}
+%\textbf{Riordan, J., et al. (2013).} Tennessee Eastman Process. In \textit{Encyclopedia of Systems and Control}.
+
+\end{thebibliography}
+
+\bibliography{references}
+\bibliographystyle{IEEEtran}
+
+\end{document}

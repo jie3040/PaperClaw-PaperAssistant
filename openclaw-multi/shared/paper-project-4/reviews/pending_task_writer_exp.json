@@ -1,0 +1,9 @@
+{
+  "target": "writer",
+  "port": 18840,
+  "token": "writer-hook-2026",
+  "message": "撰写 Experiments section。\n\n★ 写入路径：SHARED/drafts/v1/\n- section_experiments.tex\n\nOutline：SHARED/outline/v1/paper_outline.md\n\nExperiments 包含 4.1-4.3 三个子节：\n- 4.1 Datasets (~600词)：TEP, Hydraulic System, CWRU Bearing\n- 4.2 Experimental Setup (~500词)：数据划分、评估指标、基线方法\n- 4.3 Results (~2400词)：主实验对比、消融实验、t-SNE可视化\n\n总字数约 3500 词。\n\n完成后回报实际字数。",
+  "sessionKey": "hook:write-experiments",
+  "created_at": "2026-03-18T12:05:00",
+  "status": "pending"
+}

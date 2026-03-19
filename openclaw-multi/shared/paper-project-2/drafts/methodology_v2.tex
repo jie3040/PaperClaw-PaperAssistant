@@ -1,0 +1,226 @@
+\section{Proposed Methodology}
+\label{sec:method}
+
+\subsection{Problem Formulation}
+In Zero-Shot Fault Diagnosis (ZSFD) \cite{zhang2023zero}, the dataset is partitioned into a seen (source) domain $\mathcal{D}_s = \{(x_i^s, y_i^s, a_i^s)\}_{i=1}^{N_s}$ and an unseen (target) domain $\mathcal{D}_u = \{(x_j^u, y_j^u, a_j^u)\}_{j=1}^{N_u}$, where $x \in \mathcal{X} \subset \mathbb{R}^T$ denotes the raw vibration signal of length $T$, $y \in \mathcal{Y}$ represents the fault class label, and $a \in \mathcal{A} \subset \mathbb{R}^D$ defines the semantic attribute vector. The label spaces are strictly disjoint: $\mathcal{Y}_s \cap \mathcal{Y}_u = \emptyset$, meaning no training samples exist for unseen fault categories. The semantic space $\mathcal{A}$ serves as a critical bridge connecting seen and unseen domains, constructed through a dual-tier approach combining manually defined physical attributes (e.g., fault location, severity, rotational speed) and high-dimensional embeddings extracted from Large Language Models (LLMs) processing textual fault descriptions. This dual representation captures both explicit expert knowledge and implicit linguistic patterns, enabling robust knowledge transfer.
+
+The objective of Generalized Zero-Shot Fault Diagnosis (GZSL) is to learn a diagnostic mapping $f: \mathcal{X} \rightarrow \mathcal{Y}_s \cup \mathcal{Y}_u$ that accurately classifies both seen and unseen fault categories during inference, utilizing only $\mathcal{D}_s$ alongside the complete semantic descriptor set $\mathcal{A} = \mathcal{A}_s \cup \mathcal{A}_u$. In the generative ZSFD paradigm, this is achieved by learning a conditional generator $G: \mathcal{Z} \times \mathcal{A} \rightarrow \mathcal{X}$ that synthesizes virtual vibration signals for unseen faults given their semantic descriptions and latent noise $z \sim \mathcal{N}(0, I)$, thereby transforming the zero-shot problem into a standard supervised classification task with augmented training data.
+
+\subsection{Overall Framework}
+The proposed PC-Diffusion framework integrates three synergistic modules operating in a sequential pipeline to achieve physics-grounded zero-shot fault diagnosis with uncertainty quantification. The architecture comprises: (1) a Bayesian Semantic Embedding network that maps fault descriptions into probabilistic latent representations, (2) a Physics-Informed Neural Network (PINN) that extracts physical priors from bearing dynamics, and (3) a Physics-Constrained Diffusion Model that generates synthetic fault signals conditioned on both semantic embeddings and physical constraints.
+
+The data flow proceeds as follows. Initially, textual fault descriptions and manual attributes are processed by the Bayesian Semantic Embedding module, which outputs a probability distribution $q_\phi(z|a) = \mathcal{N}(\mu_\phi(a), \sigma_\phi^2(a))$ over the semantic latent space $\mathcal{Z} \subset \mathbb{R}^{d_z}$, where $d_z=256$ in our implementation. Concurrently, the PINN module learns the underlying bearing vibration dynamics by solving the differential equation $M\ddot{x} + C\dot{x} + Kx = F(t)$, extracting physical parameters $(M, C, K)$ and characteristic fault frequencies $\omega_{fault}$ that constrain the feasible signal space. These physical priors are encoded as a constraint vector $p \in \mathbb{R}^{d_p}$ with $d_p=128$.
+
+During generation, the PC-Diffusion model receives three inputs: (i) pure Gaussian noise $x_T \sim \mathcal{N}(0, I)$ of dimension $\mathbb{R}^T$ where $T=1024$ is the signal length, (ii) a semantic embedding $z$ sampled from $q_\phi(z|a^u)$ for the target unseen fault class, and (iii) the physical constraint vector $p$ from PINN. The diffusion model then performs $T=1000$ iterative denoising steps, progressively transforming noise into a physically plausible vibration signal $\hat{x}_0$ that adheres to both the semantic description and mechanical dynamics. Cross-attention mechanisms within the diffusion UNet architecture enable dynamic fusion of semantic and physical information at multiple resolution scales, ensuring that generated signals satisfy frequency-domain energy conservation and time-domain periodicity constraints derived from bearing kinematics.
+
+The interface between modules is carefully designed for dimensional compatibility. The semantic encoder outputs $\mu, \sigma \in \mathbb{R}^{256}$, which are concatenated and projected to match the diffusion model's conditioning dimension. The PINN constraint vector $p \in \mathbb{R}^{128}$ is injected via cross-attention layers at the UNet bottleneck, where feature maps have spatial dimension $\mathbb{R}^{64 \times 16}$. This architectural design enables seamless information flow while maintaining computational efficiency, with the entire framework trainable end-to-end after PINN pre-training.
+
+
+\subsection{Physics-Informed Prior Learning (PINN)}
+Rolling element bearings operate under well-established mechanical principles that govern their vibration characteristics. A localized defect on the bearing surface generates periodic impulse forces as rolling elements traverse the damaged region, producing characteristic vibration patterns. We model this behavior using a simplified single-degree-of-freedom nonlinear vibration system:
+\begin{equation}
+    M \ddot{x}(t) + C \dot{x}(t) + K x(t) = F_{fault}(t) + \epsilon(t)
+    \label{eq:vibration_dynamics}
+\end{equation}
+where $M$, $C$, and $K$ represent the effective mass, damping coefficient, and stiffness of the bearing system, respectively. The fault-induced excitation force $F_{fault}(t)$ exhibits periodicity determined by bearing geometry and rotational speed, while $\epsilon(t)$ accounts for measurement noise and modeling uncertainties.
+
+For a bearing with pitch diameter $D$, rolling element diameter $d$, number of rolling elements $n$, contact angle $\alpha$, and shaft rotational frequency $f_r$, the characteristic fault frequencies are analytically derived from kinematic relationships. For instance, the Ball Pass Frequency of the Outer race (BPFO) is given by:
+\begin{equation}
+    f_{BPFO} = \frac{n f_r}{2} \left(1 - \frac{d}{D} \cos \alpha \right)
+    \label{eq:bpfo}
+\end{equation}
+Similar expressions exist for inner race faults (BPFI), ball defects (BSF), and cage faults (FTF). These frequencies and their harmonics constitute the physical signature that must be preserved in generated signals.
+
+We formulate a Physics-Informed Neural Network (PINN) \cite{raissi2019physics} to learn the system dynamics while respecting Eq. \ref{eq:vibration_dynamics}. The PINN is implemented as a multi-layer perceptron $\hat{x} = \text{NN}_\theta(t; M, C, K)$ with 5 hidden layers of 256 units each, employing $\tanh$ activation functions to facilitate smooth gradient computation for automatic differentiation. The network takes time $t$ as input and predicts the displacement $\hat{x}(t)$, with physical parameters $(M, C, K)$ treated as learnable weights that adapt to varying operating conditions.
+
+The PINN training objective combines data fidelity and physics consistency through a composite loss function:
+\begin{equation}
+    \mathcal{L}_{PINN} = \lambda_1 \mathcal{L}_{data} + \lambda_2 \mathcal{L}_{PDE}
+    \label{eq:pinn_loss}
+\end{equation}
+The data-driven term $\mathcal{L}_{data} = \frac{1}{N}\sum_{i=1}^N \|\hat{x}(t_i) - x(t_i)\|^2$ ensures the network fits observed vibration signals, while the physics-driven term enforces adherence to the governing differential equation:
+\begin{equation}
+    \mathcal{L}_{PDE} = \frac{1}{N}\sum_{i=1}^N \left\| M\frac{\partial^2 \hat{x}}{\partial t^2}\bigg|_{t_i} + C\frac{\partial \hat{x}}{\partial t}\bigg|_{t_i} + K\hat{x}(t_i) - F_{fault}(t_i) \right\|^2
+    \label{eq:pde_residual}
+\end{equation}
+The derivatives $\frac{\partial \hat{x}}{\partial t}$ and $\frac{\partial^2 \hat{x}}{\partial t^2}$ are computed via automatic differentiation, enabling efficient gradient-based optimization. The weighting factors $\lambda_1=1.0$ and $\lambda_2=0.5$ balance data fitting and physical plausibility.
+
+Through this training process, the PINN learns not only to reconstruct observed signals but also to internalize the underlying physics, extracting system parameters $(M, C, K)$ and characteristic frequencies $\{\omega_k\}$ that define the feasible vibration manifold. These learned priors are subsequently encoded into a constraint vector $p = [M, C, K, \omega_1, \omega_2, ..., \omega_K]$ that guides the diffusion model's generation process, ensuring synthetic signals remain physically realistic.
+
+
+\subsection{Physics-Constrained Diffusion Model (PC-Diffusion)}
+Denoising Diffusion Probabilistic Models (DDPMs) \cite{ho2020denoising} have emerged as powerful generative frameworks capable of synthesizing high-fidelity samples through iterative refinement. We extend the standard DDPM formulation by incorporating physical constraints derived from bearing dynamics, ensuring generated vibration signals adhere to mechanical principles rather than merely replicating statistical patterns.
+
+\subsubsection{Forward Diffusion Process}
+The forward process gradually corrupts a clean vibration signal $x_0 \sim q(x_0)$ by incrementally adding Gaussian noise over $T=1000$ timesteps. At each step $t \in \{1, ..., T\}$, the transition is defined as:
+\begin{equation}
+    q(x_t | x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t}x_{t-1}, \beta_t I)
+    \label{eq:forward_step}
+\end{equation}
+where $\beta_t$ is a variance schedule controlling the noise magnitude, typically following a linear schedule from $\beta_1=10^{-4}$ to $\beta_T=0.02$. This Markovian process ensures that $x_T$ approximates pure Gaussian noise $\mathcal{N}(0, I)$ after sufficient steps.
+
+A key advantage of the diffusion formulation is the ability to sample $x_t$ at arbitrary timesteps directly from $x_0$ using the reparameterization trick. Defining $\alpha_t = 1 - \beta_t$ and $\bar{\alpha}_t = \prod_{s=1}^t \alpha_s$, we obtain:
+\begin{equation}
+    q(x_t | x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t}x_0, (1-\bar{\alpha}_t)I)
+    \label{eq:forward_marginal}
+\end{equation}
+This closed-form expression enables efficient training by sampling arbitrary noise levels without sequential forward passes, significantly accelerating optimization.
+
+\subsubsection{Reverse Denoising Process}
+The generative process reverses the forward diffusion, iteratively denoising $x_T \sim \mathcal{N}(0, I)$ to recover a clean signal $x_0$. The reverse transition is parameterized by a neural network $\epsilon_\theta$ that predicts the noise component at each timestep:
+\begin{equation}
+    p_\theta(x_{t-1} | x_t, c, p) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t, c, p), \Sigma_\theta(x_t, t))
+    \label{eq:reverse_step}
+\end{equation}
+where $c$ denotes the semantic conditioning vector from the Bayesian embedding, and $p$ represents the physical constraint vector from PINN. The mean $\mu_\theta$ is computed as:
+\begin{equation}
+    \mu_\theta(x_t, t, c, p) = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{1-\alpha_t}{\sqrt{1-\bar{\alpha}_t}} \epsilon_\theta(x_t, t, c, p) \right)
+    \label{eq:reverse_mean}
+\end{equation}
+The variance $\Sigma_\theta$ is typically fixed to $\beta_t I$ or learned as a function of $t$.
+
+The noise prediction network $\epsilon_\theta$ is implemented as a 1D U-Net architecture with temporal embeddings. The encoder comprises 4 downsampling blocks with strided convolutions (stride=2, kernel=3), each containing two residual blocks with 128, 256, 512, and 512 channels respectively. The decoder mirrors this structure with transposed convolutions for upsampling, concatenating skip connections from corresponding encoder layers. Timestep $t$ is embedded via sinusoidal positional encoding and injected through adaptive group normalization layers. Crucially, cross-attention mechanisms are inserted at the bottleneck and intermediate resolutions, enabling the model to attend to both semantic embeddings $c$ and physical constraints $p$ when predicting noise.
+
+\subsubsection{Physics Constraint Injection}
+Standard diffusion models optimize a simplified denoising objective:
+\begin{equation}
+    \mathcal{L}_{simple} = \mathbb{E}_{x_0, \epsilon, t} \left[ \|\epsilon - \epsilon_\theta(x_t, t, c, p)\|^2 \right]
+    \label{eq:ddpm_loss}
+\end{equation}
+where $\epsilon \sim \mathcal{N}(0, I)$ is the ground-truth noise and $x_t = \sqrt{\bar{\alpha}_t}x_0 + \sqrt{1-\bar{\alpha}_t}\epsilon$. However, this objective alone does not guarantee physical plausibility. We augment it with two physics-based constraints derived from bearing dynamics.
+
+\textbf{Frequency-Domain Energy Conservation:} Bearing faults manifest as concentrated spectral energy at characteristic frequencies and their harmonics. We enforce this by penalizing deviations between the generated signal's frequency spectrum and the theoretical energy distribution:
+\begin{equation}
+    \mathcal{L}_{freq} = \sum_{k=1}^K \left\| |\text{FFT}(\hat{x}_0)|_{\omega_k} - \mathcal{E}_{theory}(\omega_k) \right\|^2
+    \label{eq:freq_loss}
+\end{equation}
+where $\text{FFT}(\cdot)$ denotes the Fast Fourier Transform, $\omega_k$ are the characteristic fault frequencies from PINN, and $\mathcal{E}_{theory}(\omega_k)$ represents the expected energy magnitude at each frequency based on bearing kinematics. This constraint prevents the model from generating signals with arbitrary spectral content, anchoring it to physically meaningful frequency patterns.
+
+\textbf{Time-Domain Periodicity:} Fault-induced impulses occur periodically with intervals determined by the fault cycle period $T_f = 1/f_{fault}$. We enforce this temporal structure using the autocorrelation function:
+\begin{equation}
+    \mathcal{L}_{period} = \sum_{m=1}^M \left\| \text{arg max}_{\tau \approx m T_f} R_{xx}(\tau) - m T_f \right\|^2
+    \label{eq:period_loss}
+\end{equation}
+where $R_{xx}(\tau) = \mathbb{E}[x(t)x(t+\tau)]$ is the autocorrelation, and $M$ is the number of periods within the signal length. This loss ensures that generated signals exhibit the correct impulse spacing, preventing the synthesis of aperiodic or incorrectly spaced transients.
+
+The complete training objective combines these components:
+\begin{equation}
+    \mathcal{L}_{total} = \mathcal{L}_{simple} + \lambda_{freq} \mathcal{L}_{freq} + \lambda_{period} \mathcal{L}_{period}
+    \label{eq:total_loss}
+\end{equation}
+with weighting factors $\lambda_{freq}=0.1$ and $\lambda_{period}=0.05$ balancing data fidelity and physical constraints. During training, we predict $\hat{x}_0$ from $x_t$ using the denoising formula, then compute physics losses on the predicted clean signal.
+
+\subsubsection{Classifier-Free Guidance}
+To enhance conditional generation quality, we employ classifier-free guidance \cite{ho2022classifier}, which strengthens the influence of conditioning information without requiring a separate classifier. During training, we randomly drop the conditioning vectors $(c, p)$ with probability 0.1, replacing them with null embeddings. At inference, the noise prediction is modified as:
+\begin{equation}
+    \tilde{\epsilon}_\theta(x_t, t, c, p) = \epsilon_\theta(x_t, t, \emptyset, \emptyset) + s \cdot (\epsilon_\theta(x_t, t, c, p) - \epsilon_\theta(x_t, t, \emptyset, \emptyset))
+    \label{eq:cfg}
+\end{equation}
+where $s=7.5$ is the guidance scale. This extrapolation amplifies the conditional signal, producing samples that more faithfully reflect the semantic and physical constraints while maintaining diversity.
+
+
+\subsection{Bayesian Semantic Embedding Network}
+Traditional zero-shot learning approaches map semantic attributes to deterministic feature vectors, providing no mechanism to quantify uncertainty in the semantic-to-signal translation. This limitation is particularly problematic in safety-critical fault diagnosis, where confidence estimates are essential for decision-making. We address this by formulating a Bayesian semantic embedding framework that outputs probability distributions over the latent space, enabling explicit uncertainty quantification.
+
+\subsubsection{Dual-Tier Semantic Construction}
+Our semantic representation integrates two complementary information sources. The first tier comprises manually defined physical attributes $a_{manual} \in \mathbb{R}^{d_m}$ capturing explicit fault characteristics such as defect location (inner race, outer race, ball), severity level (0.007", 0.014", 0.021"), rotational speed, and load conditions. These attributes provide structured, interpretable knowledge but lack the richness of natural language descriptions.
+
+The second tier leverages Large Language Models (LLMs) to encode textual fault descriptions into high-dimensional embeddings $a_{LLM} \in \mathbb{R}^{d_l}$. We employ GPT-4 to generate comprehensive fault narratives (e.g., "A localized spall on the outer race of a deep groove ball bearing operating at 1750 RPM under moderate radial load, producing periodic impulses at the ball pass frequency"), then extract embeddings from the final hidden layer. These embeddings capture implicit semantic relationships and linguistic nuances beyond structured attributes.
+
+The dual-tier semantic vector is formed by concatenation: $a = [a_{manual}; a_{LLM}] \in \mathbb{R}^{d_m + d_l}$, where $d_m=32$ and $d_l=768$ in our implementation. This hybrid representation balances interpretability with expressiveness, enabling robust knowledge transfer to unseen fault categories.
+
+\subsubsection{Variational Inference Framework}
+Rather than learning a deterministic mapping $a \rightarrow z$, we model the semantic embedding as a probability distribution $q_\phi(z|a)$ parameterized by a neural network. Specifically, we employ a variational autoencoder (VAE) architecture where the encoder network outputs the parameters of a Gaussian distribution:
+\begin{equation}
+    q_\phi(z|a) = \mathcal{N}(z; \mu_\phi(a), \text{diag}(\sigma_\phi^2(a)))
+    \label{eq:variational_posterior}
+\end{equation}
+The encoder comprises two parallel multi-layer perceptrons (MLPs) with 3 hidden layers of 512, 256, and 256 units, using ReLU activations. One MLP outputs the mean $\mu_\phi(a) \in \mathbb{R}^{d_z}$, while the other outputs the log-variance $\log \sigma_\phi^2(a) \in \mathbb{R}^{d_z}$ to ensure positivity. The latent dimension is set to $d_z=256$.
+
+The prior distribution over the latent space is defined as a standard Gaussian $p(z) = \mathcal{N}(0, I)$, providing a simple, tractable reference distribution. During training, we optimize the Evidence Lower Bound (ELBO):
+\begin{equation}
+    \mathcal{L}_{ELBO} = \mathbb{E}_{q_\phi(z|a)} [\log p_\theta(x|z)] - D_{KL}(q_\phi(z|a) \| p(z))
+    \label{eq:elbo}
+\end{equation}
+The first term is the reconstruction likelihood, encouraging the decoder (diffusion model) to generate signals matching the input when conditioned on $z$. The second term is the Kullback-Leibler divergence:
+\begin{equation}
+    D_{KL}(q_\phi(z|a) \| p(z)) = \frac{1}{2} \sum_{j=1}^{d_z} \left( \mu_{\phi,j}^2 + \sigma_{\phi,j}^2 - \log \sigma_{\phi,j}^2 - 1 \right)
+    \label{eq:kl_divergence}
+\end{equation}
+which regularizes the posterior to remain close to the prior, preventing overfitting and ensuring smooth interpolation in the latent space.
+
+\subsubsection{Uncertainty Propagation}
+The probabilistic nature of $q_\phi(z|a)$ enables uncertainty quantification throughout the generation pipeline. For a given unseen fault description $a^u$, we sample multiple latent codes $\{z_i\}_{i=1}^N \sim q_\phi(z|a^u)$ and generate corresponding signals $\{\hat{x}_i\}_{i=1}^N$ via the diffusion model. The variance across these samples reflects the model's uncertainty about the unseen fault's vibration characteristics.
+
+This uncertainty can be propagated to downstream classification by computing predictive entropy:
+\begin{equation}
+    H(y|a^u) = -\sum_{c \in \mathcal{Y}} p(y=c|a^u) \log p(y=c|a^u)
+    \label{eq:predictive_entropy}
+\end{equation}
+where $p(y=c|a^u) = \frac{1}{N}\sum_{i=1}^N \mathbb{I}[f(\hat{x}_i) = c]$ is the empirical class probability. High entropy indicates ambiguous predictions, flagging cases requiring manual expert review. This capability is critical for safety-critical applications where false negatives can have severe consequences.
+
+\subsection{Training Strategy and Algorithms}
+The complete PC-Diffusion framework is trained in three sequential stages, each focusing on a specific component while leveraging outputs from previous stages.
+
+\textbf{Stage 1: PINN Pre-training.} The Physics-Informed Neural Network is first trained on simulated bearing vibration data generated from analytical models with known parameters $(M, C, K, \omega_{fault})$. This pre-training phase spans 50 epochs using the Adam optimizer with learning rate $2 \times 10^{-4}$ and weight decay $1 \times 10^{-5}$. The PINN learns to internalize bearing dynamics and extract physical priors that will subsequently constrain the diffusion model. Once trained, the PINN parameters are frozen, and the learned constraint vector $p$ is extracted for use in later stages.
+
+\textbf{Stage 2: Bayesian Semantic Embedding Training.} The VAE-based semantic encoder is trained on the seen fault classes $\mathcal{D}_s$ to learn the mapping from semantic attributes to latent distributions. Training proceeds for 100 epochs with the same optimizer configuration, minimizing the ELBO objective (Eq. \ref{eq:elbo}). The encoder learns to compress semantic information into a compact, probabilistic representation that captures both central tendencies and uncertainties. After training, the encoder is frozen, and only the latent samples $z \sim q_\phi(z|a)$ are passed to the diffusion model.
+
+\textbf{Stage 3: PC-Diffusion Joint Training.} With frozen PINN and semantic encoder, the diffusion model $\epsilon_\theta$ is trained end-to-end on seen fault signals $\mathcal{D}_s$. Training spans 150 epochs with batch size 64, using the AdamW optimizer with learning rate $2 \times 10^{-4}$ and cosine annealing schedule with linear warmup over the first 10 epochs. The total loss (Eq. \ref{eq:total_loss}) combines denoising, frequency, and periodicity objectives, with physics constraint weights $\lambda_{freq}=0.1$ and $\lambda_{period}=0.05$. Gradient clipping with norm 1.0 stabilizes training. Convergence is monitored via validation loss on a held-out subset of $\mathcal{D}_s$, with early stopping triggered if no improvement occurs for 20 consecutive epochs.
+
+The complete training and inference procedures are formalized in Algorithms \ref{alg:train} and \ref{alg:infer}.
+
+
+\subsection{Implementation Details}
+The PC-Diffusion model utilizes a WaveNet-inspired 1D U-Net backbone configured with 12 residual layers, 256 residual channels, and 256 skip channels for efficient temporal modeling. The diffusion process operates over $T = 1000$ steps employing a linear noise schedule from $\beta_1 = 10^{-4}$ to $\beta_T = 0.02$, balancing generation quality and computational efficiency. The PINN is parameterized by a 5-layer MLP with 256 hidden units per layer and $\tanh$ activation functions, chosen for their smooth derivatives essential for automatic differentiation of physics residuals. The Bayesian Semantic Embedding network comprises dual 3-layer MLPs with 512-256-256 hidden units, generating Gaussian distribution parameters $\mu$ and $\log \sigma^2$ with latent dimension 256. Physical constraint weighting factors are set to $\lambda_{freq} = 0.1$ and $\lambda_{period} = 0.05$ based on validation performance. Optimization across all modules uses the AdamW optimizer with learning rate $2 \times 10^{-4}$, weight decay $1 \times 10^{-5}$, and cosine annealing schedule. All experiments are conducted on dual NVIDIA RTX 4090 GPUs with mixed-precision training (FP16) for accelerated computation. Data preprocessing comprises min-max normalization to $[-1, 1]$ and fixed-length windowing to 1024 samples. The entire framework is implemented in PyTorch 2.1 with automatic mixed precision enabled.
+
+\subsection{Algorithms}
+The training algorithm with forward diffusion and physics-constrained optimization, as well as the zero-shot inference algorithm, are shown below.
+
+\begin{algorithm}[h]
+\caption{PC-Diffusion Training}
+\label{alg:train}
+\begin{algorithmic}[1]
+\REQUIRE Seen dataset $\mathcal{D}_s = \{(x_i, a_i)\}$, PINN constraints $p$, semantic encoder $q_\phi$
+\STATE Initialize diffusion model parameters $\theta$, noise steps $T=1000$, $\lambda_{freq}=0.1$, $\lambda_{period}=0.05$
+\REPEAT
+    \STATE Sample batch $(x_0, a) \sim \mathcal{D}_s$
+    \STATE Sample timestep $t \sim \text{Uniform}(\{1, \dots, T\})$
+    \STATE Sample noise $\epsilon \sim \mathcal{N}(0, I)$
+    \STATE Compute noisy signal: $x_t = \sqrt{\bar{\alpha}_t}x_0 + \sqrt{1-\bar{\alpha}_t}\epsilon$
+    \STATE Sample semantic embedding: $z \sim q_\phi(z|a)$
+    \STATE Predict noise: $\hat{\epsilon} = \epsilon_\theta(x_t, t, z, p)$
+    \STATE Compute DDPM loss: $\mathcal{L}_{simple} = \| \epsilon - \hat{\epsilon} \|^2$
+    \STATE Predict clean signal: $\hat{x}_0 = \frac{1}{\sqrt{\bar{\alpha}_t}}(x_t - \sqrt{1-\bar{\alpha}_t}\hat{\epsilon})$
+    \STATE Compute FFT: $\hat{X} = \text{FFT}(\hat{x}_0)$
+    \STATE Compute frequency loss: $\mathcal{L}_{freq} = \sum_k \||\hat{X}|_{\omega_k} - \mathcal{E}_{theory}(\omega_k)\|^2$
+    \STATE Compute autocorrelation: $R_{xx} = \text{AutoCorr}(\hat{x}_0)$
+    \STATE Compute periodicity loss: $\mathcal{L}_{period} = \sum_m \|\text{arg max}_{\tau \approx m T_f} R_{xx}(\tau) - m T_f\|^2$
+    \STATE Total loss: $\mathcal{L} = \mathcal{L}_{simple} + \lambda_{freq} \mathcal{L}_{freq} + \lambda_{period} \mathcal{L}_{period}$
+    \STATE Update parameters: $\theta \leftarrow \theta - \eta \nabla_\theta \mathcal{L}$
+\UNTIL{convergence}
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+\caption{Zero-Shot Inference with PC-Diffusion}
+\label{alg:infer}
+\begin{algorithmic}[1]
+\REQUIRE Unseen semantic attributes $a^u$, PINN constraints $p$, semantic encoder $q_\phi$, trained diffusion model $\epsilon_\theta$
+\STATE Sample semantic embedding: $z \sim q_\phi(z|a^u) = \mathcal{N}(\mu_\phi(a^u), \sigma_\phi^2(a^u))$
+\STATE Initialize with pure noise: $x_T \sim \mathcal{N}(0, I)$
+\FOR{$t = T, T-1, \dots, 1$}
+    \STATE Predict noise with guidance: $\tilde{\epsilon} = \epsilon_\theta(x_t, t, \emptyset, \emptyset) + s \cdot (\epsilon_\theta(x_t, t, z, p) - \epsilon_\theta(x_t, t, \emptyset, \emptyset))$
+    \STATE Compute mean: $\mu = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{1-\alpha_t}{\sqrt{1-\bar{\alpha}_t}} \tilde{\epsilon} \right)$
+    \IF{$t > 1$}
+        \STATE Sample noise: $\epsilon' \sim \mathcal{N}(0, I)$
+        \STATE Compute variance: $\sigma_t^2 = \beta_t$
+        \STATE Update: $x_{t-1} = \mu + \sigma_t \epsilon'$
+    \ELSE
+        \STATE $x_0 = \mu$ (deterministic final step)
+    \ENDIF
+\ENDFOR
+\RETURN Generated zero-shot fault signal $x_0$ with uncertainty bounds from $q_\phi(z|a^u)$
+\end{algorithmic}
+\end{algorithm}
+

@@ -1,0 +1,8 @@
+{
+  "providers": {
+    "github-copilot": {
+      "baseUrl": "https://api.individual.githubcopilot.com",
+      "models": []
+    }
+  }
+}

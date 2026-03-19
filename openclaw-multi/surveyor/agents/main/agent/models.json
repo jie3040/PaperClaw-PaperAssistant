@@ -1,0 +1,76 @@
+{
+  "providers": {
+    "claude-proxy": {
+      "baseUrl": "https://www.fucheers.top",
+      "apiKey": "YOUR_API_KEY_HERE",
+      "api": "anthropic-messages",
+      "models": [
+        {
+          "id": "claude-sonnet-4-6-thinking",
+          "name": "claude-sonnet-4-6-thinking",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 200000,
+          "maxTokens": 16000,
+          "api": "anthropic-messages"
+        },
+        {
+          "id": "claude-sonnet-4-6-thinking",
+          "name": "claude-sonnet-4-6-thinking",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 200000,
+          "maxTokens": 16000,
+          "api": "anthropic-messages"
+        }
+      ]
+    },
+    "github-copilot": {
+      "baseUrl": "https://api.individual.githubcopilot.com",
+      "models": []
+    },
+    "openrouter": {
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "apiKey": "YOUR_API_KEY_HERE",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "minimax/minimax-m2.5",
+          "name": "minimax/minimax-m2.5",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 200000,
+          "maxTokens": 16000,
+          "api": "openai-completions"
+        }
+      ]
+    }
+  }
+}

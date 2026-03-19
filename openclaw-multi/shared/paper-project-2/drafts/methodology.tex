@@ -1,0 +1,83 @@
+\section{Proposed Methodology}
+\label{sec:method}
+
+\subsection{Problem Formulation}
+In Zero-Shot Fault Diagnosis (ZSFD) \cite{zhang2023zero}, the dataset is divided into a seen domain $\mathcal{D}_s = \{(x_i^s, y_i^s, a_i^s)\}_{i=1}^{N_s}$ and an unseen domain $\mathcal{D}_u = \{(x_j^u, y_j^u, a_j^u)\}_{j=1}^{N_u}$, where $x \in \mathcal{X}$ denotes the vibration signals, $y \in \mathcal{Y}$ represents the fault labels, and $a \in \mathcal{A}$ defines the semantic attribute vectors. Critically, the label spaces are disjoint: $\mathcal{Y}_s \cap \mathcal{Y}_u = \emptyset$. The goal of Generalized ZSFD is to learn a diagnostic mapping $f: \mathcal{X} \rightarrow \mathcal{Y}_s \cup \mathcal{Y}_u$ solely using $\mathcal{D}_s$ alongside the semantic descriptor bridging sets $\mathcal{A}_s$ and $\mathcal{A}_u$.
+
+\subsection{Overall Framework}
+The proposed methodology seamlessly integrates physical principles, generative modeling, and semantic alignment. The data flow proceeds as follows: First, a Physics-Informed Neural Network (PINN) pre-training phase learns the underlying physical dynamics of the rolling bearing system. Then, the parameters and learned dynamics from the PINN serve as physical constraints mapped for our Physics-Constrained Diffusion Model (PC-Diffusion). Finally, a Bayesian Embedding network, inspired by CADA-VAE \cite{schonfeld2019cada}, provides semantic conditional guidance to the diffusion process, enabling the accurate synthesis of unseen fault signals.
+
+\subsection{Physics-Informed Prior Learning (PINN)}
+Rolling bearings operate under explicit dynamic principles. A simplified single-degree-of-freedom non-linear vibration differential equation can be expressed as:
+\begin{equation}
+    M \ddot{x}(t) + C \dot{x}(t) + K x(t) = F_{fault}(t) + \epsilon(t)
+    \label{eq:vibration}
+\end{equation}
+where $M$, $C$, and $K$ correspond to the mass, damping, and stiffness matrices respectively. These components ($M$, $C$, $K$) are treated as learnable parameters within our model to adaptively capture the varying working conditions. $F_{fault}(t)$ represents the periodic impulse force triggered by localized defects. We formulate a Physics-Informed Neural Network (PINN) \cite{raissi2019physics} that embeds Eq. \ref{eq:vibration} into its loss function calculation, actively penalizing deviations from the expected physical manifold.
+
+In practical industrial measurements, the theoretical fault characteristic frequencies (e.g., $f_{BPFO}$, $f_{BPFI}$) derived from bearing geometry and shaft speed may deviate from actual measured frequencies due to factors such as variable rotational speed, micro-slip between rolling elements and races, and sensor noise \cite{randall2011rolling}. To ensure robustness against these measurement uncertainties, we introduce a tolerance band $\Delta f$ around the theoretical frequencies. Specifically, when computing $\mathcal{L}_{freq\_energy}$, we allow the spectral energy to concentrate within $[f_{theory} - \Delta f, f_{theory} + \Delta f]$ rather than enforcing strict equality. This tolerance is typically set to $\Delta f = 0.05 \times f_{theory}$ based on empirical observations from the CWRU and XJTU-SY datasets, accommodating typical industrial measurement variations while maintaining physical consistency.
+
+\subsection{Physics-Constrained Diffusion Model (PC-Diffusion)}
+While standard Denoising Diffusion Probabilistic Models (DDPM) \cite{ho2020denoising} capture the data distribution via a Markovian chain, our PC-Diffusion injects physics-based guidance into the reverse denoising process. We introduce two auxiliary constraint functions:
+\begin{equation}
+    \mathcal{L}_{physics} = \lambda_{1} \mathcal{L}_{freq\_energy} + \lambda_{2} \mathcal{L}_{time\_period}
+\end{equation}
+The frequency-domain energy conservation $\mathcal{L}_{freq\_energy}$ compares the generated signal's spectral energy distribution against theoretical fault characteristic frequencies using the Fast Fourier Transform (FFT). This limits the harmonic spread of the generated signal, effectively ensuring it aligns with theoretical constraints:
+\begin{equation}
+    \mathcal{L}_{freq\_energy} = \sum_{k} \left\| \text{FFT}(x_{gen})_k - \mathcal{E}_{theory}(\omega_k) \right\|_2^2
+\end{equation}
+where $\mathcal{E}_{theory}(\omega_k)$ represents the theoretical energy at the $k$-th fault characteristic frequency harmonic.
+Simultaneously, the time-domain periodicity $\mathcal{L}_{time\_period}$ enforces the spacing of impact transients based on the autocorrelation function $R_{xx}(\tau)$, matching the theoretical fault cycle $T_f$:
+\begin{equation}
+    \mathcal{L}_{time\_period} = \sum_{m=1}^{M} \left\| \text{arg max}_{\tau \approx m T_f} R_{xx}(\tau) - m T_f \right\|_2^2
+\end{equation}
+By conditioning the diffusion reverse step on $\nabla_x \mathcal{L}_{physics}$, we guide the synthesized fault signal to fall strictly within the feasible physical space.
+
+\subsection{Bayesian Semantic Embedding Network}
+Standard semantic networks learn a deterministic mapping $\mathcal{A} \rightarrow \mathcal{Z}$, lacking any gauge for metric uncertainty. We instead infer a probability distribution over the feature space \cite{blundell2015weight,jordan1999introduction}:
+\begin{equation}
+    p(z|a) = \mathcal{N}(z; \mu_\theta(a), \Sigma_\theta(a))
+\end{equation}
+where $a$ is the dual-level semantic embedding comprised of manual physics attributes $a_{manual} \in \mathbb{R}^{32}$ and high-dimensional features extracted by Large Language Models (LLMs) $a_{LLM} \in \mathbb{R}^{768}$. To address the significant dimensionality disparity between these two semantic sources, we employ a feature alignment strategy. Specifically, $a_{manual}$ is first projected to a higher-dimensional space via a learnable linear transformation $W_{proj} \in \mathbb{R}^{768 \times 32}$, yielding $\tilde{a}_{manual} = W_{proj} a_{manual}$. The aligned features are then concatenated: $a = [\tilde{a}_{manual}; a_{LLM}] \in \mathbb{R}^{1536}$. This concatenated representation is subsequently fed into the Bayesian embedding network, which optimizes the Evidence Lower Bound (ELBO) via Variational Inference.
+
+\subsection{Implementation Details}
+The PC-Diffusion model utilizes a WaveNet backbone, configured with 12 residual layers, 256 residual channels, and 256 skip channels. The diffusion process occurs over $T = 1000$ steps employing a linear noise schedule from $\beta_1 = 10^{-4}$ to $\beta_T = 0.02$. The PINN is parameterized by a 3-layer MLP with 128 hidden units and $\tanh$ activation functions. The Bayesian Semantic Embedding network comprises a 2-layer MLP generating Gaussian distribution parameters $\mu$ and $\sigma$ with a latent dimension of 256. The physical constraint weighting factors are set to $\lambda_1 = 0.1$ and $\lambda_2 = 0.05$. Optimization across all modules uses the Adam optimizer with a learning rate of $2 \times 10^{-4}$.
+
+\subsection{Algorithms}
+The training algorithm with forward diffusion and physics-constrained optimization, as well as the zero-shot inference algorithm, are shown below.
+
+\begin{algorithm}[h]
+\caption{PC-Diffusion Training}
+\label{alg:train}
+\begin{algorithmic}[1]
+\REQUIRE Sequence $x_0 \sim q(x_0)$, semantic condition $a$, physics constraints $M,C,K$ from PINN
+\STATE Initialize WaveNet parameters $\theta$, noise steps $T=1000$, $\lambda_1=0.1, \lambda_2=0.05$
+\REPEAT
+    \STATE Sample $t \sim \text{Uniform}(\{1, \dots, T\})$
+    \STATE Sample $\epsilon \sim \mathcal{N}(0, \mathbf{I})$
+    \STATE $x_t = \sqrt{\bar{\alpha}_t}x_0 + \sqrt{1-\bar{\alpha}_t}\epsilon$
+    \STATE Compute DDPM loss: $\mathcal{L}_{DDPM} = \| \epsilon - \epsilon_\theta(x_t, t, a) \|^2$
+    \STATE Predict $\hat{x}_0$ from $x_t$ using the denoising model $\epsilon_\theta$
+    \STATE Compute physics losses: $\mathcal{L}_{freq\_energy}$ (FFT based) and $\mathcal{L}_{time\_period}$ (autocorrelation based) on $\hat{x}_0$
+    \STATE $\mathcal{L}_{total} = \mathcal{L}_{DDPM} + \lambda_1 \mathcal{L}_{freq\_energy} + \lambda_2 \mathcal{L}_{time\_period}$
+    \STATE Take gradient descent step on $\nabla_\theta \mathcal{L}_{total}$
+\UNTIL{converged}
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+\caption{Zero-Shot Inference with PC-Diffusion}
+\label{alg:infer}
+\begin{algorithmic}[1]
+\REQUIRE Unseen semantic attributes $a^u$, semantic embedding distribution $\mathcal{N}(\mu, \sigma)$
+\STATE Sample latent variable $z \sim \mathcal{N}(\mu(a^u), \sigma(a^u))$
+\STATE Sample pure noise $x_T \sim \mathcal{N}(0, \mathbf{I})$
+\FOR{$t = T, \dots, 1$}
+    \STATE Sample $z' \sim \mathcal{N}(0, \mathbf{I})$ if $t > 1$, else $z' = 0$
+    \STATE Compute denoising prediction $\epsilon_\theta = \epsilon_\theta(x_t, t, z)$
+    \STATE Compute physics gradient guidance: $\nabla_x \mathcal{L}_{physics} = \lambda_1 \nabla_x \mathcal{L}_{freq\_energy} + \lambda_2 \nabla_x \mathcal{L}_{time\_period}$ 
+    \STATE $x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{1-\alpha_t}{\sqrt{1-\bar{\alpha}_t}} \epsilon_\theta \right) - \eta \nabla_x \mathcal{L}_{physics} + \sigma_t z'$
+\ENDFOR
+\RETURN Generated zero-shot fault signals $x_0$ and associated limits derived from the probability $p(z|a^u)$
+\end{algorithmic}
+\end{algorithm}

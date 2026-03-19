@@ -1,0 +1,9 @@
+{
+  "target": "reviewer",
+  "port": 18850,
+  "token": "reviewer-hook-2026",
+  "message": "请执行【最终对齐审查】。\n\n黄金标准：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/golden_standard.json\n待审论文：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/final/v2/paper.tex\nPDF：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/final/v2/paper.pdf\n\n审查要求：\n1. 对标 golden_standard.json 检查结构（6章节、22子节）\n2. 检查字数是否在范围内\n3. 检查图表数量（6图、3表）\n4. 检查引用数量（45-60条）\n5. 已知遗留问题：\n   - 模型名称不一致（CESM-Diff vs CSMD，需统一）\n   - 43条备用文献未引用（检查是否需要清理）\n   - 部分章节被注释（Semantic Path、ACL等，需确认是否合理）\n\n输出到：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/reviews/final_alignment_report_v2.md\n结论：ACCEPT / REVISE（附具体修改清单）",
+  "sessionKey": "hook:review-final-v2",
+  "created_at": "2026-03-18T14:38:00+08:00",
+  "status": "pending"
+}

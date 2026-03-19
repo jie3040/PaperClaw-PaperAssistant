@@ -1,0 +1,41 @@
+\subsection{Dual-Path Semantic Diffusion}
+\label{sec:dual_path}
+
+The core of our diagnostic framework lies in a synchronized generative process that operates across two distinct manifolds: the vibratory feature space and the semantic embedding space. Unlike standard diffusion models that rely on static conditioning, the proposed Dual-Path Semantic Diffusion (DPSD) architecture utilizes a bidirectional feedback loop to ensure that the denoising process is both physically consistent with the sensor data and semantically aligned with the fault descriptions. This dual-path approach is motivated by the observation that in complex industrial systems, a one-to-one mapping between text and vibration data is often insufficient; instead, both the feature extractor and the semantic encoder must iteratively refine their representations to reach a stable, aligned state. As illustrated in Fig. 3, the dual-path denoising process involves simultaneous trajectories in both spaces.
+
+\subsubsection{Feature Path: U-Net Based Denoising}
+The Feature Path is responsible for modeling the distribution of vibration-derived features $\mathbf{x} \in \mathbb{R}^d$. We define a forward diffusion process $q(\mathbf{x}_t | \mathbf{x}_{t-1})$ that incrementally adds Gaussian noise to the initial feature vector $\mathbf{x}_0$ over $T$ timesteps according to a variance schedule $\beta_t$:
+\begin{equation}
+q(\mathbf{x}_t | \mathbf{x}_{t-1}) = \mathcal{N}(\mathbf{x}_t; \sqrt{1 - \beta_t} \mathbf{x}_{t-1}, \beta_t \mathbf{I})
+\end{equation}
+Using the properties of Gaussian processes, we can sample $\mathbf{x}_t$ at any arbitrary timestep $t$ directly from the ground-truth feature $\mathbf{x}_0$ as:
+\begin{equation}
+\mathbf{x}_t = \sqrt{\bar{\alpha}_t} \mathbf{x}_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon, \quad \epsilon \sim \mathcal{N}(0, \mathbf{I})
+\end{equation}
+where $\alpha_t = 1 - \beta_t$ and $\bar{\alpha}_t = \prod_{i=1}^t \alpha_i$. The reverse denoising process $p_\theta(\mathbf{x}_{t-1} | \mathbf{x}_t, \mathbf{s})$ is parameterized by a modified U-Net architecture. This network takes the noisy feature $\mathbf{x}_t$ and the semantic embedding $\mathbf{s}$ as inputs to predict the added noise $\epsilon_\theta$. The architectural design of the feature path includes 1D-convolutional layers followed by multi-head attention blocks to capture temporal-spectral dependencies. The training objective for the Feature Path is:
+\begin{equation}
+\mathcal{L}_{feat} = \mathbb{E}_{\mathbf{x}_0, \epsilon, t} \left[ \| \epsilon - \epsilon_\theta(\mathbf{x}_t, t, \mathbf{s}) \|^2 \right]
+\end{equation}
+By conditioning the U-Net on $\mathbf{s}$ via adaptive layer normalization (AdaLN), we guide the feature generation toward the semantic manifold associated with specific fault categories.
+
+\subsubsection{Semantic Path: Embedding Refinement and Manifold Adaptation}
+Simultaneously, the Semantic Path performs a parallel diffusion process on the CLIP-generated semantic embeddings. While the initial embeddings $\mathbf{s}$ provide a high-level description, they often lack the granular detail required for hardware-specific fault signatures. A secondary diffusion chain $q(\mathbf{s}_t | \mathbf{s}_{t-1})$ explores the local neighborhood of the semantic vector, refining the embedding $\mathbf{s}_t$ to better match the empirical distribution of the seen classes. This ensures that the global semantic knowledge from the LLM is localized to the specific industrial domain.
+
+In this path, we define the "Semantic Refinement" as a stochastic process where the embedding evolves from a generic linguistic representation towards a "sensor-aware" semantic state. We utilize a lightweight MLP-based denoising network, $\Psi_\phi(\mathbf{s}_t, t, \mathbf{x})$, which is conditioned on the intermediate states of the feature path. Specifically, for each timestep $t$, the semantic state is updated as:
+\begin{equation}
+\mathbf{s}_{t-1} = \mu_\phi(\mathbf{s}_t, t, \mathbf{x}) + \sigma_t \mathbf{z}, \quad \mathbf{z} \sim \mathcal{N}(0, \mathbf{I})
+\end{equation}
+This refinement prevents the generator from being overly reliant on generic language priors, forcing the semantic manifold to adapt to the physical constraints observed in the vibration data. The Semantic Path acts as a dynamic adaptive filter that prunes irrelevant linguistic information and amplifies features relevant to the specific mechanical degradation observed. By modeling the semantic evolution as a diffusion process, we allow the model to capture the uncertainty inherent in the mapping between natural language and physical signals. The loss for the semantic path is defined as $\mathcal{L}_{sem} = \mathbb{E} [\| \mathbf{s}_0 - \text{Refiner}(\mathbf{s}_t, t, \mathbf{x}) \|^2]$, ensuring that the final refined embedding retains the core identity of the fault class while gaining physical grounding.
+
+\subsubsection{Cross-Path Attention Mechanism}
+To synchronize these two paths, we implement a Cross-Path Attention (CPA) mechanism at each denoising step $t$. This mechanism replaces simple concatenation and allows for fine-grained interaction between signal features and semantic descriptors. Let $\mathbf{H}_{feat}^{(t)}$ be the intermediate activations of the U-Net and $\mathbf{H}_{sem}^{(t)}$ be the state of the semantic refiner. The CPA computes bidirectional attention weights to enable mutual information exchange:
+\begin{equation}
+\mathbf{A}_{f \to s} = \text{Softmax}\left(\frac{(\mathbf{Q}_{feat} \mathbf{K}_{sem}^\top)}{\sqrt{d_k}}\right), \quad \mathbf{A}_{s \to f} = \text{Softmax}\left(\frac{(\mathbf{Q}_{sem} \mathbf{K}_{feat}^\top)}{\sqrt{d_k}}\right)
+\end{equation}
+where $\mathbf{Q}$, $\mathbf{K}$, and $\mathbf{V}$ are linear projections of the respective hidden states. This mechanism ensures that the feature field "attends" to critical semantic descriptors (e.g., "high-frequency impact") while the semantic path is "grounded" by the physical constraints of the vibration signals. This bidirectional flow is crucial for zero-shot scenarios where the model must synthesize features for unseen faults—the CPA allows the semantic path to "guide" the feature generation process by highlighting relevant sub-patterns in the latent space.
+
+Furthermore, we apply a consistency penalty $\mathcal{L}_{align}$ to ensure that the inner product of the feature and semantic representations is maximized:
+\begin{equation}
+\mathcal{L}_{align} = 1 - \cos(\mathbf{x}_t, \mathbf{s}_t) = 1 - \frac{\mathbf{x}_t^\top \mathbf{s}_t}{\|\mathbf{x}_t\| \|\mathbf{s}_t\|}
+\end{equation}
+The total training objective for the DPSD module combines the denoising losses with these cross-modal alignment terms to ensure a coherent joint manifold. The inclusion of bidirectional feedback ensures that the synthesized manifold $\mathcal{M}_{unseen}$ remains topologically adjacent to $\mathcal{M}_{seen}$, facilitating efficient knowledge transfer as discussed in Section 3.6.

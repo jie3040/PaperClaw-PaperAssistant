@@ -1,0 +1,18 @@
+# Idea Candidates for Zero-Shot Fault Diagnosis
+
+Based on the literature survey and identified research gaps, here are 3 proposed idea candidates focusing on Dual-Path Diffusion Models for Zero-Shot Diagnosis:
+
+## Idea 1: Generative Dual-Path Diffusion Model with Semantic-Guided Cross-Attention (GDPDM-SCA)
+*   **Core Method:** A dual-path denoising network where Path 1 processes time-domain signals (via 1D CNN/ResNet) and Path 2 processes frequency-domain signals (via Spectral convolutions). The key innovation is a Semantic-Guided Cross-Attention fusion module, where semantic attribute embeddings (encoded via VAE) act as the query to dynamically weight and align time and frequency features during the diffusion reverse process.
+*   **Expected Performance Improvement:** Expected to outperform current SOTA (CycleGAN-SD) by 5-8% in Harmonic mean (H-score) across TEP and Hydraulic benchmarks, yielding significantly lower Fréchet Inception Distance (FID) due to the stable non-adversarial diffusion process.
+*   **Technical Challenges:** Designing a computationally efficient cross-attention mechanism that doesn't dramatically slow down the already iterative diffusion sampling process; balancing the denoising loss ($\mathcal{L}_{denoise}$) with the attribute consistency loss ($\mathcal{L}_{attr}$) to prevent posterior collapse of the semantic latent space.
+
+## Idea 2: Multi-Scale Dual-Path Diffusion with Classifier-Free Semantic Guidance
+*   **Core Method:** Instead of relying on a separate attribute regressor, this approach utilizes Classifier-Free Guidance (CFG) within a multi-scale dual-path architecture. Path 1 uses small-kernel CNNs for local, transient fault features, while Path 2 uses a linear Transformer for global degradation trends. Semantic attributes are injected directly via FiLM layers using condition dropout during training.
+*   **Expected Performance Improvement:** A 4-7% accuracy boost on complex unseen faults with overlapping attributes by eliminating the bottleneck of a pre-trained attribute regressor. Better sample diversity (Stochasticity of DDPM + Multi-scale features).
+*   **Technical Challenges:** Determining the optimal guidance scale ($w$) dynamically for different fault severities; addressing the high memory footprint of processing global Transformer attention across the full time-series sequence during every diffusion timestep. 
+
+## Idea 3: Contrastive Latent Dual-Path Diffusion for Domain-Invariant Zero-Shot Diagnosis
+*   **Core Method:** Integrates a contrastive learning objective into the latent space of a dual-path diffusion model. The paths represent two different views of the data (e.g., raw vibration and wavelet transform). By applying a contrastive loss to align these representations before the diffusion denoising head, the model learns domain-invariant structural features. Semantic distances from seen to unseen classes guide the conditional generation.
+*   **Expected Performance Improvement:** 6-10% improvement in Maximum Mean Discrepancy (MMD) score, indicating vastly superior robustness to domain shifts and noisy real-world conditions (particularly targeting the Hydraulic system dataset).
+*   **Technical Challenges:** Synchronizing the convergence of the contrastive representation learning with the generative denoising objective; handling potential negative transfer if the semantic distance mapping incorrectly pairs structurally distinct unseen and seen fault classes.

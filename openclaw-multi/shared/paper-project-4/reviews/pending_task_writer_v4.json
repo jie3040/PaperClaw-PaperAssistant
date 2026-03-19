@@ -1,0 +1,9 @@
+{
+  "target": "writer",
+  "port": 18840,
+  "token": "writer-hook-2026",
+  "message": "用户审查返修 Round 3（最终审查不通过）。\n\n审查报告：SHARED/reviews/review_content_alignment_v3.md\n\n你需要修改以下 4 项（全部必须完成）：\n\n## 1. Related Work 扩充（当前 530 词 → 要求 900-1100 词）\n- 文件：SHARED/drafts/v3/section_related_work.tex\n- 增加 ZSL 在工业中的应用案例\n- 增加更多 GAN/VAE/Diffusion 在跨模态/图像生成对比\n- 扩充相关工作分类描述\n\n## 2. Experiments 大幅缩减（当前 5877 词 → 要求 3200-3800 词）\n- 文件：\n  - SHARED/drafts/v3/section_experiments.tex（主文件）\n  - SHARED/drafts/v3/section_experiments_4.3.tex（Results）\n  - SHARED/drafts/v3/section_experiments_4.4.tex（Ablation）\n- 缩减策略：\n  - 精简 4.3 Results：移除冗余描述，保留核心数据\n  - 压缩 4.4 Ablation：精简消融实验描述\n  - 移除重复内容\n\n## 3. Conclusion 扩充（当前 388 词 → 要求 450-550 词）\n- 文件：SHARED/drafts/v3/section_conclusion.tex\n- 补充贡献总结（3-4 句话）\n- 补充 1-2 句话未来工作展望\n\n## 4. 添加 1 个 Section（当前 5 个 → 要求 6 个）\n- 建议：将 Experiments 拆分为 \"Experiments\" 和 \"Results\" 两个独立 section\n- 或添加 \"Discussion\" section\n- 需要创建新文件：section_results.tex 或 section_discussion.tex\n\n★ 修改后写入 SHARED/drafts/v4/（已从 v3 复制基础文件）\n\n完成后回报实际字数变化。",
+  "sessionKey": "hook:writer-v4-revise",
+  "created_at": "2026-03-18T15:47:00+08:00",
+  "status": "pending"
+}

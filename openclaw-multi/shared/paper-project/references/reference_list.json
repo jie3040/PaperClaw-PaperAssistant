@@ -1,0 +1,302 @@
+[
+  {
+    "id": 1,
+    "title": "Generative Models for HVAC Fault Detection and Diagnosis in Indoor and Built Environment",
+    "url": "https://sciexplor.com/articles/jbde.2025.0012",
+    "abstract": "Recent advances in generative models offer promising solutions for data augmentation in HVAC FDD scenarios. Common generative techniques include SMOTE, VAE, GAN, diffusion model (DM), and their hybrid approaches.",
+    "publication_date": "2025",
+    "relevance_score": 9.5,
+    "keywords": ["generative models", "VAE", "GAN", "diffusion model", "HVAC", "fault detection"],
+    "sub_direction": "Generative Models for Fault Diagnosis"
+  },
+  {
+    "id": 2,
+    "title": "C-GAN-VAE: Causal Generative Adversarial Variational Autoencoder for few shot fine grained cross domain fault diagnosis for planetary gearbox",
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0952197626005269",
+    "abstract": "Presents C-GAN-VAE framework addressing few-shot fine-grained fault diagnosis through causal disentanglement and generative augmentation. Introduces Causal Q Network (CQN) for disentangling latent variables.",
+    "publication_date": "2026",
+    "relevance_score": 9.8,
+    "keywords": ["C-GAN-VAE", "few-shot learning", "causal disentanglement", "planetary gearbox"],
+    "sub_direction": "Generative Models for Fault Diagnosis"
+  },
+  {
+    "id": 3,
+    "title": "A fault diagnosis data augmentation method integrating multimodal non-Gaussian denoising diffusion generative adversarial network",
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S147403462500669X",
+    "abstract": "Proposes multimodal non-Gaussian denoising diffusion GAN for data augmentation. Uses large-step noise addition in forward process and conditional GAN for parameterized denoising in reverse process.",
+    "publication_date": "2025",
+    "relevance_score": 9.6,
+    "keywords": ["diffusion model", "GAN", "multimodal", "data augmentation", "non-Gaussian"],
+    "sub_direction": "Generative Models for Fault Diagnosis"
+  },
+  {
+    "id": 4,
+    "title": "Mixed-attention variational autoencoding generative adversarial networks for rolling bearing fault diagnosis",
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0263224125027733",
+    "abstract": "Combines VAE with GAN using mixed-attention mechanism for rolling bearing fault diagnosis. Addresses sample imbalance problems through adversarial mechanism.",
+    "publication_date": "2025",
+    "relevance_score": 9.2,
+    "keywords": ["VAE-GAN", "mixed-attention", "rolling bearing", "sample imbalance"],
+    "sub_direction": "Generative Models for Fault Diagnosis"
+  },
+  {
+    "id": 5,
+    "title": "Fault detection of high-speed train wheelset bearings based on improved auxiliary classifier generative adversarial networks and VAE",
+    "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0335368",
+    "abstract": "Fuses Auxiliary Classifier GAN and VAE for wheelset bearing fault detection. VAE encodes real data and uses hidden variables instead of Gaussian noise as generator inputs.",
+    "publication_date": "2024",
+    "relevance_score": 8.9,
+    "keywords": ["AC-GAN", "VAE", "high-speed train", "wheelset bearings"],
+    "sub_direction": "Generative Models for Fault Diagnosis"
+  },
+  {
+    "id": 6,
+    "title": "Deep Generative Models in Condition and Structural Health Monitoring: Opportunities, Limitations and Future Outlook",
+    "url": "https://arxiv.org/html/2507.15026v2",
+    "abstract": "Comprehensive review of deep generative models in condition monitoring. Diffusion models mainly used for signal denoising and data augmentation. LLMs applied to fault diagnosis based on pre-trained models.",
+    "publication_date": "2025",
+    "relevance_score": 9.7,
+    "keywords": ["generative models", "diffusion models", "LLMs", "condition monitoring", "review"],
+    "sub_direction": "Survey/Review"
+  },
+  {
+    "id": 7,
+    "title": "Fault diagnosis of gear under imbalanced sample condition using improved GAN combined with vision transformer",
+    "url": "https://link.springer.com/article/10.1007/s12206-025-0406-z",
+    "abstract": "Applies least squares loss function to enhance GAN's ability to learn distribution characteristics. Vision transformer extracts global fault features.",
+    "publication_date": "2025",
+    "relevance_score": 8.8,
+    "keywords": ["GAN", "vision transformer", "imbalanced samples", "gear fault"],
+    "sub_direction": "Generative Models for Fault Diagnosis"
+  },
+  {
+    "id": 8,
+    "title": "Augmentation framework for HVAC fault diagnosis based on denoising diffusion models",
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S2352710225008836",
+    "abstract": "Novel data augmentation framework based on Denoising Diffusion Probabilistic Models, integrating diffusion models with Gramian Angular Field transformation. Achieves 3.78% improvement over CVAE-GAN.",
+    "publication_date": "2025",
+    "relevance_score": 9.4,
+    "keywords": ["diffusion model", "DDPM", "Gramian Angular Field", "HVAC", "data augmentation"],
+    "sub_direction": "Generative Models for Fault Diagnosis"
+  },
+  {
+    "id": 9,
+    "title": "CWMS-GAN: A small-sample bearing fault diagnosis method based on continuous wavelet transform and multi-size kernel attention mechanism",
+    "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0319202",
+    "abstract": "Proposes continuous wavelet convolution strategy (CWCL) to reconfigure conventional convolutional layers of GAN. Enables model to capture detailed information in both time and frequency domains.",
+    "publication_date": "2024",
+    "relevance_score": 8.7,
+    "keywords": ["GAN", "continuous wavelet transform", "small-sample", "bearing fault"],
+    "sub_direction": "Generative Models for Fault Diagnosis"
+  },
+  {
+    "id": 10,
+    "title": "TFDL-GAN for Fault Diagnosis of Aero-Engine Accessory Gearbox with Imbalanced Data",
+    "url": "https://www.sciencedirect.com/science/article/pii/S2405896325020348",
+    "abstract": "TFDL-GAN significantly enhances fidelity of generated fault data under severely imbalanced conditions. Outperforms standard GAN, VAE, and SMOTE.",
+    "publication_date": "2025",
+    "relevance_score": 9.0,
+    "keywords": ["TFDL-GAN", "imbalanced data", "aero-engine", "gearbox"],
+    "sub_direction": "Generative Models for Fault Diagnosis"
+  },
+  {
+    "id": 11,
+    "title": "Intelligent fault diagnosis of rotating machinery based on improved hybrid dilated convolution network for unbalanced samples",
+    "url": "https://www.nature.com/articles/s41598-025-98553-4",
+    "abstract": "Improved hybrid dilated convolution network for fault diagnosis under unbalanced sample conditions. Deep learning-based approach for rotating machinery.",
+    "publication_date": "2025",
+    "relevance_score": 8.5,
+    "keywords": ["dilated convolution", "unbalanced samples", "rotating machinery"],
+    "sub_direction": "Deep Learning Methods"
+  },
+  {
+    "id": 12,
+    "title": "A hybrid approach combining deep learning and signal processing for bearing fault diagnosis under imbalanced samples and multiple operating conditions",
+    "url": "https://www.nature.com/articles/s41598-025-98138-1",
+    "abstract": "Hybrid approach based on GANs, transfer learning, wavelet transform time-frequency representations, asymmetric convolutional networks, and multi-head attention mechanism (MAC-MHA).",
+    "publication_date": "2025",
+    "relevance_score": 9.1,
+    "keywords": ["GAN", "transfer learning", "wavelet transform", "multi-head attention"],
+    "sub_direction": "Data Augmentation Techniques"
+  },
+  {
+    "id": 13,
+    "title": "Deep Learning Techniques for Fault Diagnosis in Interconnected Systems: A Comprehensive Review and Future Directions",
+    "url": "https://www.mdpi.com/2076-3417/15/11/6263",
+    "abstract": "Comprehensive review of deep learning methods for fault diagnosis. Transfer learning and data augmentation significantly enhance performance even with limited labeled data.",
+    "publication_date": "2025",
+    "relevance_score": 9.3,
+    "keywords": ["deep learning", "transfer learning", "data augmentation", "review"],
+    "sub_direction": "Survey/Review"
+  },
+  {
+    "id": 14,
+    "title": "Power Transformer Winding Fault Diagnosis Method Based on Time–Frequency Diffusion Model and ConvNeXt-1D",
+    "url": "https://www.mdpi.com/2076-3417/16/5/2528",
+    "abstract": "Data augmentation performed on original signals using time–frequency diffusion model. Combined with ConvNeXt-1D for transformer winding fault diagnosis.",
+    "publication_date": "2025",
+    "relevance_score": 8.6,
+    "keywords": ["diffusion model", "time-frequency", "ConvNeXt", "transformer winding"],
+    "sub_direction": "Generative Models for Fault Diagnosis"
+  },
+  {
+    "id": 15,
+    "title": "A New Data Augmentation Model for Fault Diagnosis of Transformer Windings Under Scarce Fault Data",
+    "url": "https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/elp2.70140",
+    "abstract": "CDFF-TW employed to generate FRA fault data, combined with original data to augment dataset and mitigate overfitting. Investigates optimal ratio of original to generated data.",
+    "publication_date": "2026",
+    "relevance_score": 8.4,
+    "keywords": ["data augmentation", "scarce data", "transformer windings", "FRA"],
+    "sub_direction": "Data Augmentation Techniques"
+  },
+  {
+    "id": 16,
+    "title": "From limited data to reliable diagnosis: an interpretable deep learning framework for transformer fault analysis",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0142061525007756",
+    "abstract": "GAN-based data augmentation generates realistic DGA samples, reducing dataset sparsity and imbalance. CNN-BiLSTM-Attention model optimized using GOOSE algorithm.",
+    "publication_date": "2025",
+    "relevance_score": 8.8,
+    "keywords": ["GAN", "DGA", "CNN-BiLSTM", "interpretable", "transformer"],
+    "sub_direction": "Data Augmentation Techniques"
+  },
+  {
+    "id": 17,
+    "title": "A Comprehensive Review of Deep Transfer Learning for Intelligent Fault Diagnosis in Rotating Machines",
+    "url": "https://onlinelibrary.wiley.com/doi/10.1002/eng2.70494",
+    "abstract": "Reviews recent advances in deep transfer learning for intelligent fault diagnosis. Categorizes methods into four key types and evaluates their strengths.",
+    "publication_date": "2025",
+    "relevance_score": 9.5,
+    "keywords": ["transfer learning", "deep learning", "rotating machines", "review"],
+    "sub_direction": "Survey/Review"
+  },
+  {
+    "id": 18,
+    "title": "From theory to industry: A survey of deep learning-enabled bearing fault diagnosis in complex environments",
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0952197625030994",
+    "abstract": "Systematically reviews deep learning-based research via 'data-model-application-challenges-prospects' framework. Focuses on bearing fault diagnosis in complex environments.",
+    "publication_date": "2025",
+    "relevance_score": 9.4,
+    "keywords": ["deep learning", "bearing fault", "complex environments", "survey"],
+    "sub_direction": "Survey/Review"
+  },
+  {
+    "id": 19,
+    "title": "Industrial Anomaly Detection Based on Improved Diffusion Model: A Review",
+    "url": "https://link.springer.com/article/10.1007/s12559-025-10517-y",
+    "abstract": "Diffusion models as highly effective generative models have been extensively applied to industrial anomaly detection tasks. Comprehensive review of improved diffusion models.",
+    "publication_date": "2025",
+    "relevance_score": 9.2,
+    "keywords": ["diffusion model", "anomaly detection", "industrial applications", "review"],
+    "sub_direction": "Survey/Review"
+  },
+  {
+    "id": 20,
+    "title": "Bearing fault diagnosis based on efficient cross space multiscale CNN transformer parallelism",
+    "url": "https://www.nature.com/articles/s41598-025-95895-x",
+    "abstract": "Efficient cross space multiscale CNN transformer parallelism for bearing fault diagnosis. Combines CNN and transformer architectures.",
+    "publication_date": "2025",
+    "relevance_score": 8.9,
+    "keywords": ["CNN", "transformer", "multiscale", "bearing fault"],
+    "sub_direction": "Deep Learning Methods"
+  },
+  {
+    "id": 21,
+    "title": "Efficient fault diagnosis in rolling bearings lightweight hybrid model",
+    "url": "https://www.nature.com/articles/s41598-025-96285-z",
+    "abstract": "Time-Series Lightweight Transformer (TSL-Transformer) model for efficient feature extraction. Introduces multi-head attention mechanism and feedforward neural network.",
+    "publication_date": "2025",
+    "relevance_score": 8.7,
+    "keywords": ["transformer", "lightweight", "multi-head attention", "rolling bearings"],
+    "sub_direction": "Deep Learning Methods"
+  },
+  {
+    "id": 22,
+    "title": "Domain-collaborative multimodal transformer for fault diagnosis of rotating machines under noisy environments",
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S1474034625006561",
+    "abstract": "Dual-branch architecture integrates convolutional encoders, bidirectional LSTM modules, and transformer layers to extract hierarchical features from each domain.",
+    "publication_date": "2025",
+    "relevance_score": 9.0,
+    "keywords": ["multimodal", "transformer", "LSTM", "noisy environments"],
+    "sub_direction": "Deep Learning Methods"
+  },
+  {
+    "id": 23,
+    "title": "Few-shot cross-domain fault diagnosis via adversarial meta-learning",
+    "url": "https://www.nature.com/articles/s41598-025-25854-z",
+    "abstract": "Meta-learning framework applied across source and target domains to address limited samples. Adversarial learning for domain adaptation reduces pseudo-label noise.",
+    "publication_date": "2025",
+    "relevance_score": 9.3,
+    "keywords": ["few-shot learning", "meta-learning", "adversarial learning", "cross-domain"],
+    "sub_direction": "Few-Shot Learning"
+  },
+  {
+    "id": 24,
+    "title": "A bearing fault diagnosis method for hydrodynamic transmissions integrating few-shot learning and transfer learning",
+    "url": "https://www.nature.com/articles/s41598-025-04543-x",
+    "abstract": "FSL + TL method outperforms conventional approaches under cold-start and imbalanced fault sample conditions. Achieves 88.75% accuracy with attention mechanism.",
+    "publication_date": "2025",
+    "relevance_score": 9.1,
+    "keywords": ["few-shot learning", "transfer learning", "attention mechanism", "hydrodynamic transmissions"],
+    "sub_direction": "Few-Shot Learning"
+  },
+  {
+    "id": 25,
+    "title": "UniFault: A Fault Diagnosis Foundation Model from Bearing Data",
+    "url": "https://arxiv.org/html/2504.01373v1",
+    "abstract": "General-purpose foundation model pretrained on over 9 billion points. Strong few-shot learning capability for real-world FD applications with limited labeled data.",
+    "publication_date": "2025",
+    "relevance_score": 9.6,
+    "keywords": ["foundation model", "few-shot learning", "bearing data", "large-scale pretraining"],
+    "sub_direction": "Few-Shot Learning"
+  },
+  {
+    "id": 26,
+    "title": "Fault diagnosis for pump equipment based on transfer learning: the domain generalization method",
+    "url": "https://www.nature.com/articles/s41598-025-25210-1",
+    "abstract": "FOCAL domain alignment function for transfer strategy. TFAM attention module and backbone network for cross-domain fault diagnosis. Demonstrates wide adaptability in complex industrial environments.",
+    "publication_date": "2025",
+    "relevance_score": 8.9,
+    "keywords": ["transfer learning", "domain generalization", "pump equipment", "FOCAL"],
+    "sub_direction": "Transfer Learning"
+  },
+  {
+    "id": 27,
+    "title": "Discriminative fault diagnosis transfer learning network under joint mechanism",
+    "url": "https://www.nature.com/articles/s41598-025-93996-1",
+    "abstract": "Novel network integrating transfer learning in rotating machinery fault diagnosis. Enhances domain adaptation by improving knowledge transfer across domains.",
+    "publication_date": "2025",
+    "relevance_score": 8.8,
+    "keywords": ["transfer learning", "domain adaptation", "joint mechanism", "rotating machinery"],
+    "sub_direction": "Transfer Learning"
+  },
+  {
+    "id": 28,
+    "title": "Attention-Enhanced Conditional Wasserstein GAN with Wavelet–ResNet for Fault Diagnosis Under Imbalanced Data",
+    "url": "https://www.mdpi.com/2227-9717/13/11/3531",
+    "abstract": "ACW-GAN generates high-quality synthetic data for limited fault samples. Wavelet transform employed for fault diagnosis model. FFT applied to evaluate generated sample quality.",
+    "publication_date": "2025",
+    "relevance_score": 9.0,
+    "keywords": ["Wasserstein GAN", "attention mechanism", "wavelet transform", "imbalanced data"],
+    "sub_direction": "Generative Models for Fault Diagnosis"
+  },
+  {
+    "id": 29,
+    "title": "Large Language and Foundation Models for Machinery Health Monitoring: A Systematic Review",
+    "url": "https://www.mdpi.com/2076-3417/16/5/2493",
+    "abstract": "Achieves ~98% fault diagnosis accuracy using merely 1.2% labeled samples. Integrating RAG and knowledge graphs mitigates hallucinations. GenAI tackles data scarcity via synthetic data generation.",
+    "publication_date": "2025",
+    "relevance_score": 9.4,
+    "keywords": ["LLM", "foundation models", "RAG", "GenAI", "synthetic data"],
+    "sub_direction": "Survey/Review"
+  },
+  {
+    "id": 30,
+    "title": "Learning to hear broken motors: Signature-guided data augmentation for induction motor diagnostics",
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0952197626004185",
+    "abstract": "SGDA is first augmentation-based approach capable of learning fault patterns entirely from non-faulty operation without simulation. Fully unsupervised method.",
+    "publication_date": "2026",
+    "relevance_score": 8.9,
+    "keywords": ["signature-guided", "data augmentation", "unsupervised", "induction motor"],
+    "sub_direction": "Data Augmentation Techniques"
+  }
+]

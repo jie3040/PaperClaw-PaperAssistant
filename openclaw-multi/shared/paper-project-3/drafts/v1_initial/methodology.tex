@@ -1,0 +1,276 @@
+\section{Proposed Methodology}
+\label{sec:methodology}
+
+In this section, we present the proposed Zero-Shot Fault Diagnosis via CLIP-Guided Dual-Path Diffusion Model (CDDM) in detail. To address the intrinsic semantic gap between the continuous machinery vibration signals and the discrete textual descriptions of unseen faults, our framework systematically integrates large language models (LLMs) with visual-language foundation models (e.g., CLIP) to extract continuous semantic encodings. Furthermore, a novel dual-path diffusion architecture is specifically formulated to synthesize fidelity-driven and semantically congruent features for zero-shot recognition. 
+
+\subsection{Problem Formulation for Cross-Modal ZSL}
+\label{subsec:problem_formulation}
+
+We begin by formally defining the Zero-Shot Learning (ZSL) paradigm within the context of industrial fault diagnosis. Let $\mathcal{X} \in \mathbb{R}^{d_x}$ denote the input feature space (e.g., spectral \cite{smith2011scientist} representations or vibration signals), and $\mathcal{Y}$ be the label space encompassing all machine health states and fault modes. In the standard zero-shot setting, the label space is strictly partitioned into two disjoint subsets: the seen class subset $\mathcal{Y}_s$ and the unseen class subset $\mathcal{Y}_u$, such that $\mathcal{Y} = \mathcal{Y}_s \cup \mathcal{Y}_u$ and $\mathcal{Y}_s \cap \mathcal{Y}_u = \emptyset$.
+
+During the training phase, the model is provided with a labeled source dataset from the seen domain, denoted as $\mathcal{D}_s = \{(\mathbf{x}_i^s, y_i^s)\}_{i=1}^{N_s}$, where $\mathbf{x}_i^s \in \mathcal{X}$ is the $i$-th observed signal sample and $y_i^s \in \mathcal{Y}_s$ is its corresponding ground-truth label. For the unseen domain, no empirical signal samples are available during training. Instead, the model relies on auxiliary semantic information precisely characterizing each class (both seen and unseen). Let $\mathcal{A} \in \mathbb{R}^{|\mathcal{Y}| \times d_a}$ represent the semantic attribute matrix or dense semantic embedding \cite{mikolov2013efficient} explicitly provided by human experts or parsed through domain knowledge bases. 
+
+The fundamental objective of cross-modal ZSL is to learn a highly generalizable prediction function $F: \mathcal{X} \rightarrow \mathcal{Y}_s \cup \mathcal{Y}_u$ capable of accurately identifying testing instances from both seen and unseen classes based on the semantic knowledge transfer. Generally, this mapping function is optimized via a compatibility metric $S(\cdot, \cdot)$ between the signal feature embedding and the semantic embedding:
+\begin{equation}\label{eq:general_compatibility}
+\hat{y} = \arg\max_{y \in \mathcal{Y}_s \cup \mathcal{Y}_u} S\left( \Phi_x(\mathbf{x}), \Phi_a(\mathbf{a}_y) \right)
+\end{equation}
+where $\Phi_x(\cdot)$ and $\Phi_a(\cdot)$ denote the signal encoder and semantic encoder neural networks, respectively. However, conventional mappings suffer from domain shift and the hubness problem. To mitigate these deficiencies, our approach pivots towards a generative framework, modeling the underlying conditional distribution $P(\mathbf{x}|\mathbf{a}_y)$ exclusively using diffusion models. This perspective fundamentally shifts the problem from metric learning to distribution alignment, where the diffusion generative process explicitly constructs the data manifold for $\mathcal{Y}_u$.
+
+\subsection{Continuous Semantic Encoding via LLM and CLIP}
+\label{subsec:continuous_semantic}
+
+The semantic richness of the class embeddings $\mathbf{a}_y$ is a principal bottleneck in diagnostic ZSL. Typically, traditional attributes are scarce, highly discrete, and lack the continuous expressivity required to guide complex generative diffusion spaces. We propose a synergistic mechanism deploying an LLM in tandem with CLIP (Contrastive Language-Image Pre-training) to extract high-dimensional semantic spaces.
+
+Initially, an LLM is queried to generate comprehensive textual descriptions of specific fault modes, given simple diagnostic prompts setup. Let the prompt function be defined as $P_{\text{prompt}}(y) = \text{“Describe the vibration frequency and signal characteristics of } y \text{”}$. The LLM yields a text set $T_y = \{w_1, w_2, \dots, w_L\}$, where $w_l$ are sequential token representations. 
+
+To construct a continuous and optimizable embedding, we substitute hard-coded discrete text representations with continuous contextual prompt vectors. We define $M$ continuous prompt context vectors $\mathbf{V} = [\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_M] \in \mathbb{R}^{M \times d_c}$, where $d_c$ matches the input dimension of the CLIP text encoder. The final sequence embedding fed into the CLIP text encoder is formulated as:
+\begin{equation}\label{eq:clip_prompt}
+\mathbf{p}_y = [\mathbf{V}, \mathbf{E}(y)] \in \mathbb{R}^{(M+1) \times d_c}
+\end{equation}
+where $\mathbf{E}(y)$ represents the embedding of the specific fault label. Subsequently, the CLIP text encoder $f_{\text{text}}(\cdot)$ processes $\mathbf{p}_y$ to project the text description into the multi-modal alignment space:
+\begin{equation}\label{eq:clip_encoded}
+\mathbf{c}_y = f_{\text{text}}(\mathbf{p}_y) \in \mathbb{R}^{d_z}
+\end{equation}
+Here, $\mathbf{c}_y$ serves as the continuous semantic condition embedding that comprehensively captures the diagnostic attributes and drives the dual-path diffusion generation module.
+
+\subsection{Generative Dual-Path Diffusion Process: Detailed Derivations}
+\label{subsec:diffusion_process}
+
+Addressing the data scarcity for $\mathcal{Y}_u$, we utilize a Denoising Diffusion Probabilistic Model (DDPM) to synthesize pseudo-signal representations condition by $\mathbf{c}_y$. Standard diffusion only targets one modality; to reinforce structural consistency between semantic conditioning and physical synthesis, we propose the Dual-Path Diffusion architecture. 
+
+\textbf{Forward Process Derivation:} The forward diffusion process defines a parameterized Markov Chain that gradually injects Gaussian noise into the true data distribution $\mathbf{z}_0$ (visual/vibration feature space) over $T$ steps. For a given variance schedule $\beta_1, \beta_2, \ldots, \beta_T \in (0,1)$, the transition probability is described by:
+\begin{equation}\label{eq:forward_diffusion_step}
+q(\mathbf{z}_t | \mathbf{z}_{t-1}) = \mathcal{N}(\mathbf{z}_t; \sqrt{1-\beta_t}\mathbf{z}_{t-1}, \beta_t \mathbf{I})
+\end{equation}
+Applying the reparameterization trick recursively, letting $\alpha_t = 1 - \beta_t$ and $\bar{\alpha}_t = \prod_{i=1}^t \alpha_i$, we can directly sample $\mathbf{z}_t$ from the clean state $\mathbf{z}_0$:
+\begin{equation}\label{eq:forward_diffusion_direct}
+q(\mathbf{z}_t | \mathbf{z}_0) = \mathcal{N}(\mathbf{z}_t; \sqrt{\bar{\alpha}_t}\mathbf{z}_0, (1 - \bar{\alpha}_t)\mathbf{I})
+\end{equation}
+This indicates that $\mathbf{z}_t$ can be rewritten as $\mathbf{z}_t = \sqrt{\bar{\alpha}_t}\mathbf{z}_0 + \sqrt{1 - \bar{\alpha}_t}\boldsymbol{\epsilon}$, where $\boldsymbol{\epsilon} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$.
+
+\textbf{Evidence Lower Bound (ELBO) and Reverse Process:} The generative pathway seeks to approximate the reverse transitions $q(\mathbf{z}_{t-1} | \mathbf{z}_t)$, relying on the semantic condition $\mathbf{c}_y$. The reverse distribution is parameterized by a backbone neural network $\boldsymbol{\theta}$:
+\begin{equation}\label{eq:reverse_diffusion}
+p_\theta(\mathbf{z}_{t-1} | \mathbf{z}_t, \mathbf{c}_y) = \mathcal{N}(\mathbf{z}_{t-1}; \boldsymbol{\mu}_\theta(\mathbf{z}_t, t, \mathbf{c}_y), \boldsymbol{\Sigma}_\theta(\mathbf{z}_t, t))
+\end{equation}
+To optimize this, we maximize the likelihood of the training data $p_\theta(\mathbf{z}_0)$, which is intractable. Instead, we minimize the negative log-likelihood's variational upper bound (ELBO):
+\begin{equation}
+\mathcal{L}_{\text{VLB}} = \mathbb{E}_{q} \left[ D_{\text{KL}}(q(\mathbf{z}_{T}|\mathbf{z}_0) || p(\mathbf{z}_T)) + \sum_{t>1} D_{\text{KL}}(q(\mathbf{z}_{t-1}|\mathbf{z}_t, \mathbf{z}_0) || p_\theta(\mathbf{z}_{t-1}|\mathbf{z}_t)) - \log p_\theta(\mathbf{z}_0|\mathbf{z}_1) \right]
+\end{equation}
+By fixing the forward process variances, the loss simplifies to matching the true posterior $q(\mathbf{z}_{t-1}|\mathbf{z}_t, \mathbf{z}_0)$ with the model $p_\theta$. The true posterior is tractable and Gaussian:
+\begin{equation}
+q(\mathbf{z}_{t-1}|\mathbf{z}_t, \mathbf{z}_0) = \mathcal{N}(\mathbf{z}_{t-1}; \tilde{\boldsymbol{\mu}}_t(\mathbf{z}_t, \mathbf{z}_0), \tilde{\beta}_t \mathbf{I})
+\end{equation}
+where $\tilde{\boldsymbol{\mu}}_t = \frac{\sqrt{\bar{\alpha}_{t-1}} \beta_t}{1 - \bar{\alpha}_t} \mathbf{z}_0 + \frac{\sqrt{\alpha_t}(1 - \bar{\alpha}_{t-1})}{1 - \bar{\alpha}_t} \mathbf{z}_t$. Parameterizing our neural network to predict the noise $\boldsymbol{\epsilon}_\theta$, the predicted mean translates to:
+\begin{equation}\label{eq:mu_theta}
+\boldsymbol{\mu}_\theta(\mathbf{z}_t, t, \mathbf{c}_y) = \frac{1}{\sqrt{\alpha_t}} \left( \mathbf{z}_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \boldsymbol{\epsilon}_\theta(\mathbf{z}_t, t, \mathbf{c}_y) \right)
+\end{equation}
+This leads to the simplified primary noise matching loss:
+\begin{equation}\label{eq:diffusion_loss}
+\mathcal{L}_{\text{diff}} = \mathbb{E}_{\mathbf{z}_0, \mathbf{c}_y, \boldsymbol{\epsilon}, t} \left[ \left\| \boldsymbol{\epsilon} - \boldsymbol{\epsilon}_\theta(\mathbf{z}_t, t, \mathbf{c}_y) \right\|_2^2 \right]
+\end{equation}
+
+\subsection{Cross-Modal Feature Fusion}
+\label{subsec:cross_modal_fusion}
+
+To explicitly inject the textual semantic guidance extracted by CLIP into the iterative denoising process, a cross-attention transformer module acts as the backbone layer for $\boldsymbol{\epsilon}_\theta$. At layer $l$ of the U-Net architecture inside the diffusion model, let the intermediate flattened physical representation be denoted as $\mathbf{F}^l \in \mathbb{R}^{N \times d}$. The continuous semantic vectors $\mathbf{c}_y$ are projected into key and value entities mapping the semantic constraints.
+
+\begin{align}
+\mathbf{Q}^l &= \mathbf{F}^l \mathbf{W}_Q, \label{eq:query} \\
+\mathbf{K}^l &= \text{MLP}(\mathbf{c}_y) \mathbf{W}_K, \label{eq:key} \\
+\mathbf{V}^l &= \text{MLP}(\mathbf{c}_y) \mathbf{W}_V \label{eq:value}
+\end{align}
+where $\mathbf{W}_Q, \mathbf{W}_K, \mathbf{W}_V$ represent dynamically learnable geometric weight projections. The cross-domain fusion mechanism computes the semantic attention residuals explicitly:
+\begin{equation}\label{eq:cross_attention}
+\text{Attention}(\mathbf{Q}^l, \mathbf{K}^l, \mathbf{V}^l) = \text{Softmax}\left( \frac{\mathbf{Q}^l (\mathbf{K}^l)^T}{\sqrt{d_k}} \right) \mathbf{V}^l
+\end{equation}
+The output features integrate the textual representation's guidance directly into the recovered physical traits. Detailed dimensionality mappings ensure that $d_k$ remains scaled equivalently to prevent vanishing gradients during the softmax normalization.
+
+\subsection{Multi-Modal Contrastive Consistency Loss}
+\label{subsec:contrastive_loss}
+
+Generative models heavily condition on standard MSE noise estimation (Eq. \ref{eq:diffusion_loss}), which may succumb to generating modes lacking exact structural congruence with real-world sensor streams. We establish a Multi-Modal Contrastive Consistency objective drawing inspiration from InfoNCE paradigms to maximize the lower bound of mutual information $\mathcal{I}(\mathbf{z}_0; \mathbf{c}_y)$. Let $\tilde{\mathbf{z}}_0 = f_{\text{gen}}(\mathbf{c}_y)$ denote the fully synthesized feature. We build a mini-batch $\mathcal{B}$ with $B$ sample pairs $\{(\tilde{\mathbf{z}}_i, \mathbf{c}_i)\}_{i=1}^B$. The semantic matching is quantified by cosine similarities $sim(\tilde{\mathbf{z}}, \mathbf{c}) = \frac{\tilde{\mathbf{z}} \cdot \mathbf{c}}{\|\tilde{\mathbf{z}}\| \|\mathbf{c}\|}$. The contrastive loss $\mathcal{L}_{\text{con}}$ aligning the generated distributions inherently maximizes the mutual information lower bound:
+
+\begin{equation}\label{eq:contrastive_align_z}
+\mathcal{L}_{z \rightarrow c} = - \frac{1}{B} \sum_{i=1}^B \log \frac{\exp\left(sim(\tilde{\mathbf{z}}_i, \mathbf{c}_i) / \tau\right)}{\sum_{j=1}^B \exp\left(sim(\tilde{\mathbf{z}}_i, \mathbf{c}_j) / \tau\right)}
+\end{equation}
+
+\begin{equation}\label{eq:contrastive_align_c}
+\mathcal{L}_{c \rightarrow z} = - \frac{1}{B} \sum_{i=1}^B \log \frac{\exp\left(sim(\mathbf{c}_i, \tilde{\mathbf{z}}_i) / \tau\right)}{\sum_{j=1}^B \exp\left(sim(\mathbf{c}_i, \tilde{\mathbf{z}}_j) / \tau\right)}
+\end{equation}
+where $\tau$ controls the distribution temperature. Then, the unified contrastive formulation acts to regularize generation:
+\begin{equation}\label{eq:contrastive_total}
+\mathcal{L}_{\text{con}} = \frac{1}{2} (\mathcal{L}_{z \rightarrow c} + \mathcal{L}_{c \rightarrow z})
+\end{equation}
+
+The overall objective optimization framework guiding CDDM combines the physical diffusion reconstruction alongside contrastive alignments:
+\begin{equation}\label{eq:total_objective}
+\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{diff}} + \lambda \mathcal{L}_{\text{con}} + \gamma \mathcal{L}_{\text{cls}}
+\end{equation}
+where $\lambda$ and $\gamma$ denote empirical balancing hyperparameters regulating the trade-off. $\mathcal{L}_{\text{cls}}$ ensures semantic feature discernibility via traditional cross-entropy.
+
+\subsection{Algorithmic Procedures}
+\label{subsec:algorithm}
+
+This subsection delineates the procedural workflows of our CDDM framework, splitting the computational pipeline into the forward multi-modal training algorithm and the zero-shot inference generation procedure.
+
+\begin{algorithm}[H]
+\caption{CDDM Training Procedure}
+\label{alg:training}
+\begin{algorithmic}[1]
+\REQUIRE Seen domain dataset $\mathcal{D}_s = \{(\mathbf{x}_i^s, y_i^s)\}_{i=1}^{N_s}$, LLM-derived semantic text descriptions $T_y$, Diffusion steps $T$, Learning rate $\eta$, trade-off hyperparameters $\lambda, \gamma$.
+\ENSURE Network parameters $\boldsymbol{\theta}$ of the Dual-Path U-Net, prompt vectors $\mathbf{V}$.
+\STATE \textbf{Initialization:} Initialize $\boldsymbol{\theta}$ and $\mathbf{V}$ randomly or with pre-trained weights.
+\REPEAT
+    \STATE Sample a mini-batch of instances $\{(\mathbf{x}_i, y_i)\}_{i=1}^B \sim \mathcal{D}_s$.
+    \STATE \textit{\# Step 1: Semantic Encoding}
+    \STATE Generate continuous prompt $\mathbf{p}_y = [\mathbf{V}, \mathbf{E}(y)]$ for each $y_i$.
+    \STATE Extract continuous semantic embeddings $\mathbf{c}_y = f_{\text{text}}(\mathbf{p}_y)$.
+    \STATE \textit{\# Step 2: Forward Diffusion}
+    \STATE Extract signal representations $\mathbf{z}_0 = \Phi_x(\mathbf{x}_i)$.
+    \STATE Sample timestep $t \sim \text{Uniform}(\{1, \dots, T\})$.
+    \STATE Sample noise $\boldsymbol{\epsilon} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$.
+    \STATE Corrupt features $\mathbf{z}_t = \sqrt{\bar{\alpha}_t}\mathbf{z}_0 + \sqrt{1 - \bar{\alpha}_t}\boldsymbol{\epsilon}$.
+    \STATE \textit{\# Step 3: Reverse Denoising \& Cross-Attention}
+    \STATE Predict noise residual $\boldsymbol{\epsilon}_\theta(\mathbf{z}_t, t, \mathbf{c}_y)$ using Dual-Path U-Net.
+    \STATE Compute diffusion loss $\mathcal{L}_{\text{diff}} = \| \boldsymbol{\epsilon} - \boldsymbol{\epsilon}_\theta \|_2^2$.
+    \STATE \textit{\# Step 4: Consistency Constraint}
+    \STATE Synthesize representation $\tilde{\mathbf{z}}_0$ over full reverse path.
+    \STATE Compute multi-modal consistency loss $\mathcal{L}_{\text{con}}$ between $\tilde{\mathbf{z}}_0$ and $\mathbf{c}_y$.
+    \STATE Compute classification loss $\mathcal{L}_{\text{cls}}$ for seen class validation.
+    \STATE \textit{\# Step 5: Parameter Update}
+    \STATE Calculate total loss $\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{diff}} + \lambda \mathcal{L}_{\text{con}} + \gamma \mathcal{L}_{\text{cls}}$.
+    \STATE Optimize network parameters parameters: $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta} - \eta \nabla_{\boldsymbol{\theta}} \mathcal{L}_{\text{total}}$.
+\UNTIL convergence
+\RETURN Optimized parameters $\boldsymbol{\theta}$, $\mathbf{V}$.
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{Zero-Shot Inference \& Diagnosis Procedure}
+\label{alg:inference}
+\begin{algorithmic}[1]
+\REQUIRE Unseen classes $\mathcal{Y}_u$, semantic descriptions $T_{y_u}$, well-trained model $\boldsymbol{\theta}$, Inference sample size $N_u$ per unseen class.
+\ENSURE Zero-shot classifier $F_{zs}$ capable of predicting over test set.
+\STATE \textbf{Phase 1: Generative Replay for Unseen Classes}
+\FOR{each unseen label $y \in \mathcal{Y}_u$}
+    \STATE Encode unseen semantic vector $\mathbf{c}_y = f_{\text{text}}([\mathbf{V}, \mathbf{E}(y)])$.
+    \FOR{$i=1$ to $N_u$}
+        \STATE Sample initial Gaussian noise $\mathbf{z}_T \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$.
+        \FOR{$t=T, T-1, \dots, 1$}
+            \STATE Predict noise $\boldsymbol{\epsilon}_\theta(\mathbf{z}_t, t, \mathbf{c}_y)$.
+            \STATE Sample $z \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$ if $t > 1$, else $z = \mathbf{0}$.
+            \STATE Update $\mathbf{z}_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left( \mathbf{z}_t - \frac{1 - \alpha_t}{\sqrt{1 - \bar{\alpha}_t}} \boldsymbol{\epsilon}_\theta(\mathbf{z}_t, t, \mathbf{c}_y) \right) + \sigma_t z$.
+        \ENDFOR
+        \STATE Save generated prototype $\tilde{\mathbf{z}}_0^{(i)}$ into pseudo-dataset $\widetilde{\mathcal{D}}_u$.
+    \ENDFOR
+\ENDFOR
+\STATE \textbf{Phase 2: Downstream Classifier Training}
+\STATE Aggregate pseudo-data and seen data to build joint dataset: $\mathcal{D}_{train} = \mathcal{D}_s \cup \widetilde{\mathcal{D}}_u$.
+\STATE Train supervised generic classifier $F_{zs}$ mapping features to classes $\mathcal{Y}_s \cup \mathcal{Y}_u$.
+\RETURN $F_{zs}$
+\end{algorithmic}
+\end{algorithm}
+
+
+\subsection{Advanced Data Preprocessing and Feature Extraction Strategy}
+\label{subsec:preprocessing}
+To guarantee the efficacy of the CDDM framework, the raw vibrational signals acquired from industrial machinery must undergo a rigorous preprocessing and feature extraction pipeline before interacting with the diffusion model. Raw vibration telemetry is intrinsically noisy, high-dimensional, and obfuscated by various mechanical resonances that are completely independent of actual fault modes. 
+
+The data processing pipeline is formalized in three primary stages: (1) Signal Normalization and Segmentation, (2) Time-Frequency Transformation, and (3) Deep Feature Embedding extraction. Let the raw continuous time-series signal be represented as $\mathcal{S}(t)$. We first apply a non-overlapping sliding window mechanism to segment the continuous stream into discrete instances, ensuring that each segmented sample encompasses a sufficient number of rotational cycles. Let the window length be $W$ and the sampling frequency be $f_s$. The segmented instance is denoted as $\mathbf{s}_i \in \mathbb{R}^W$. A standard Z-score normalization is applied to each segment to mitigate amplitude fluctuations caused by varying operational loads:
+\begin{equation}
+\hat{\mathbf{s}}_i = \frac{\mathbf{s}_i - \mu_i}{\sigma_i}
+\end{equation}
+where $\mu_i$ and $\sigma_i$ are the empirical mean and standard deviation of the segment, respectively.
+
+Following time-domain normalization, we transition the signal into the time-frequency domain. Methods relying solely on the time domain or the frequency domain (via Fast Fourier Transform) often fail to capture transient impulse characteristics critical for diagnosing bearing or gear defects. Instead, we utilize the Continuous Wavelet Transform (CWT). Given a mother wavelet function $\psi(t)$, the CWT of the normalized signal is given by:
+\begin{equation}
+CWT(a, b) = \frac{1}{\sqrt{a}} \int_{-\infty}^{\infty} \hat{\mathbf{s}}(t) \psi^*\left(\frac{t-b}{a}\right) dt
+\end{equation}
+where $a$ is the scale parameter corresponding to frequency, and $b$ is the translation parameter corresponding to time. The resulting 2D spectrograms represent rich temporal-spectral energy distributions.
+
+To interface these high-dimensional spectrograms efficiently with our diffusion framework, we employ a pre-trained feature extractor, specifically a Stacked Autoencoder (SAE) or a convolutional backbone (e.g., ResNet-18), to map the 2D scalograms into a 1D compact feature space. This extraction isolates highly discriminative features while discarding ambient noise. The encoder function $E(\cdot)$ compresses the spectrogram $X_i$ into the final physical representation $\mathbf{x}_i \in \mathbb{R}^{d_x}$, where $d_x = 2048$. Operating the diffusion process within this condensed, highly informative latent space---rather than the raw pixel or signal space---exponentially accelerates training convergence and enhances the structural integrity of the generated fault features.
+
+\subsection{Domain Shift Mitigation via Attribute Consistency Constraints}
+\label{subsec:domain_shift}
+One of the most profound challenges in generalized zero-shot learning frameworks, particularly those driven by generative models, is the issue of visual-semantic domain shift. In standard ZSL, the model learns a projection between the physical feature space and the semantic attribute space using only data from the seen categories $\mathcal{Y}_s$. Because the parameter space is optimized exclusively over $\mathcal{D}_s$, the learned generative mapping inherently becomes biased toward the characteristics of seen classes. When conditioning the trained model on unseen attributes $\mathbf{c}_{y_u}$ to synthesize novel features, the output distributions often exhibit semantic misalignment---they drift closer to the manifolds of seen classes rather than accurately reflecting the intended unseen fault signatures.
+
+To effectively decouple the generation from seen-domain bias, our framework explicitly integrates an auxiliary Attribute Regressor $R(\cdot, \theta_R)$ designed to operate as a semantic anchor during the reverse generation process. The function of the attribute regressor is to map the physical feature domain back into the continuous semantic space to predict its originating attributes. During the training phase, standard diffusion limits its objective to noise prediction ($\mathcal{L}_{\text{diff}}$). We augment this by feeding the noise-free reconstructed feature $\tilde{\mathbf{z}}_0$ (obtained at the terminus of the DDPM reverse pathway) directly into the attribute regressor.
+
+The continuous prediction of the regressor is defined as $\mathbf{c}_{\text{pre}} = R(\tilde{\mathbf{z}}_0; \theta_R)$. To guarantee that the structural topology of the generated signal matches its semantic blueprint without drifting, we enforce an explicit Attribute-Consistent Loss ($\mathcal{L}_{AC}$). This constraint minimizes the distance between the intended text-derived semantic condition $\mathbf{c}_y$ and the regressor's prediction:
+\begin{equation}
+\mathcal{L}_{AC} = \frac{1}{B} \sum_{i=1}^{B} \left\| R(\tilde{\mathbf{z}}_{0}^{(i)}; \theta_R) - \mathbf{c}_{y}^{(i)} \right\|_2^2 + D_{KL}(P(R(\tilde{\mathbf{z}}_0)) || P(\mathbf{c}_y))
+\end{equation}
+The inclusion of the Kullback-Leibler divergence term acts to align the macro-level distribution shapes across batches, not just individual point-wise distances. When integrated into the primary optimization objective, this loss acts as a powerful regularizer. It penalizes the U-Net generator if it produces features that, despite looking physically realistic to the discriminator, fail to encapsulate the precise semantic coordinates of the unseen class. By satisfying this constraint, the model anchors the zero-shot generated features strictly within their correct semantic localizations, successfully circumventing the domain shift anomaly.
+
+\subsection{Clustered KL-Guided Selective Filtering of Generated Features}
+\label{subsec:kl_filter}
+Following the deployment of the Dual-Path Generation procedure, the model produces an extensive reservoir of pseudo-samples for the unseen fault classes. While diffusion models mathematically guarantee diversity and fidelity, minor stochastic variations in the sampling of the initial Gaussian noise $\mathbf{z}_T$ can occasionally lead to the generation of outliers or boundary samples that risk diluting the density of the true class manifold. Feeding an unfiltered dataset directly into a downstream downstream classifier often results in suboptimal decision boundaries. 
+
+To rectify this, we implement a post-generation Clustered Kullback-Leibler (KL) Guided Filtering mechanism. This procedure is designed to selectively prune low-quality generations while strictly preserving both modes' diversity and the distribution's core structural integrity. The algorithm operates in two sequential phases: diverse candidate clustering and structural KL ranking.
+
+In the first phase, for a given unseen class generated set $\widetilde{\mathcal{X}}_u = \{\tilde{\mathbf{z}}^{(1)}, \tilde{\mathbf{z}}^{(2)}, \dots, \tilde{\mathbf{z}}^{(N)}\}$, we apply the K-Means++ clustering algorithm to partition the pseudo-samples into $K$ distinct operational sub-modes. Identifying these clusters guarantees that we maintain representational diversity (e.g., varying severities or concurrent vibrational artifacts within the same unseen fault label). Let the centroid of cluster $k$ be $\mu_k$. We restrict our candidate pool by retaining only the $r$-nearest neighbors to each centroid, effectively discarding edge-case outliers.
+
+In the second phase, the retained candidates undergo rigorous KL-guided ranking. Unlike standard distance metrics, this step evaluates how well the generated high-dimensional sample preserves the intrinsic topological neighborhood inherent in a dimensionally reduced embedding (such as t-SNE). We construct pairwise conditional probabilities for the sample in its original state space $h_{ij}$ and its low-dimensional equivalent $l_{ij}$.
+The original space Gaussian kernel probability is defined as:
+\begin{equation}
+p_{j|i} = \frac{\exp\left( -\frac{\| \tilde{\mathbf{z}}_i - \tilde{\mathbf{z}}_j \|^2}{2\sigma_i^2} \right)}{\sum_{k \neq i} \exp\left( -\frac{\| \tilde{\mathbf{z}}_i - \tilde{\mathbf{z}}_k \|^2}{2\sigma_i^2} \right)}
+\end{equation}
+where $h_{ij} = \frac{p_{j|i} + p_{i|j}}{2N}$. The low-dimensional representation probability $l_{ij}$ is computed using the Student's t-distribution to account for heavy-tailed structural mappings.
+The per-sample KL divergence score is subsequently calculated as:
+\begin{equation}
+KL_i = \sum_{j \neq i} h_{ij} \log \frac{h_{ij}}{l_{ij}}
+\end{equation}
+A minimized $KL_i$ score indicates that the generated sample seamlessly bridges the local neighborhood structures without topological distortion. The pseudo-samples are ranked in ascending order of their KL scores, and only the top $\eta\%$ are propagated to the final downstream diagnostic classifier. This intricate filtration process ensures unparalleled data quality for the ultimate zero-shot diagnostic inference.
+
+\subsection{Feature Concatenation for Enhanced Discriminability}
+\label{subsec:feature_concatenation}
+To further reinforce the distinctiveness of the synthesized features and solidify the resilience of the classification network, we employ an advanced post-generation feature concatenation protocol. Traditional generative paradigms predominantly discard semantic conditioning architectures post-training, relying purely on the generated physical features $\tilde{\mathbf{z}}_0$ for downstream task executions. This approach structurally wastes deeply encoded semantic intersections learned during convergence.
+
+Instead, we leverage the terminal hidden representation $\mathbf{a}_h$ yielded by the aforementioned Attribute Regressor $R(\cdot)$. Because the regressor has been meticulously tuned to bridge the physical space with the semantic boundaries, its penultimate layer houses an ultra-condensed, highly discriminative abstraction of the specific class attributes. For every generated unseen pseudo-sample $\tilde{\mathbf{z}}_0$, we extract this internal semantic descriptor:
+\begin{equation}
+\mathbf{a}_h = R_{\text{hidden}}(\tilde{\mathbf{z}}_0; \theta_{R})
+\end{equation}
+Subsequently, we execute a direct tensor concatenation along the channel dimension to forge an enriched combinatorial feature vector:
+\begin{equation}
+\mathbf{z}_{\text{concat}} = \tilde{\mathbf{z}}_0 \oplus \mathbf{a}_h
+\end{equation}
+where $\oplus$ symbolizes the channel-wise concatenation operator. This unified representation intrinsically binds raw synthetic vibrational properties with their robust semantic logic. Constructing the final downstream diagnostic classifiers mathematically based on $\mathbf{z}_{\text{concat}}$ empirically mitigates classification redundancies, sharpens decision hyperplanes, and yields heavily optimized overall metric accuracies during validation.
+
+\subsection{Theoretical Bounds on the Dual-Path Generative Loss}
+\label{subsec:theoretical_bounds}
+To rigorously justify the stability and convergence characteristics of the Dual-Path diffusion process, it is paramount to examine the mathematical upper and lower bounds of the synthesized generative loss function. The primary objective $\mathcal{L}_{\text{diff}}$ operates on the principles of variational inference, specifically maximizing the Evidence Lower Bound (ELBO) of the true data distribution $p(\mathbf{z}_0)$.
+
+By incorporating the continuous semantic embeddings $\mathbf{c}_y$ extracted from the LLM-CLIP pipeline, the conditional probability is factored dynamically into the Markov chain. The negative log-likelihood is effectively bounded by:
+\begin{equation}
+-\log p_{\theta}(\mathbf{z}_0 | \mathbf{c}_y) \leq \mathbb{E}_{q}\left[ D_{KL}(q(\mathbf{z}_T | \mathbf{z}_0) || p(\mathbf{z}_T)) + \sum_{t=2}^{T} D_{KL}(q(\mathbf{z}_{t-1} | \mathbf{z}_t, \mathbf{z}_0) || p_{\theta}(\mathbf{z}_{t-1} | \mathbf{z}_t, \mathbf{c}_y)) - \log p_{\theta}(\mathbf{z}_0 | \mathbf{z}_1, \mathbf{c}_y) \right]
+\end{equation}
+The first term encapsulates the divergence of the final forward noised state from an isotropic Gaussian prior $\mathcal{N}(\mathbf{0}, \mathbf{I})$. Given the variance schedule $\beta_t$, as $T \rightarrow \infty$, $\bar{\alpha}_T \rightarrow 0$, making $q(\mathbf{z}_T | \mathbf{z}_0) \approx \mathcal{N}(\mathbf{0}, \mathbf{I})$. Thus, this term converges to zero and acts functionally as a constant with respect to the learnable parameters $\boldsymbol{\theta}$.
+    
+The crux of the global optimization resides inherently in the second term: the temporal summation of $D_{KL}$. Because both the true posterior $q$ and the parameterized reverse process $p_\theta$ correspond to Gaussian distributions mapped with predefined variances, the Kullback-Leibler divergence is mathematically resolved analytically into the squared Euclidean distance between their respective mean vectors. Utilizing the reparameterization matrix formulated earlier, we arrive exactly at the simplified bound:
+\begin{equation}
+L_t = \mathbb{E}_{\mathbf{z}_0, \boldsymbol{\epsilon}} \left[ \frac{\beta_t^2}{2\sigma_t^2 \alpha_t (1-\bar{\alpha}_t)} \left\| \boldsymbol{\epsilon} - \boldsymbol{\epsilon}_{\theta}\left(\sqrt{\bar{\alpha}_t}\mathbf{z}_0 + \sqrt{1-\bar{\alpha}_t}\boldsymbol{\epsilon}, t, \mathbf{c}_y\right) \right\|^2 \right]
+\end{equation}
+Our framework acts as a formalized maximization algorithm of inter-domain mutual information $\mathcal{I}(\mathbf{z}_0; \mathbf{c}_y)$. Derived directly from the canonical InfoNCE foundations, our Multi-Modal Contrastive Consistency term actively bounds this mutual information dimensionally from below. Let $f(\mathbf{z}, \mathbf{c})$ indicate the structural critic scalar measuring multi-modal similarity. The theoretical lower bound corresponds to:
+\begin{equation}
+\mathcal{I}(\mathbf{z}_0; \mathbf{c}_y) \geq \mathbb{E} \left[ \frac{1}{B} \sum_{i=1}^B \log \frac{\exp(f(\mathbf{z}_{0}^{(i)}, \mathbf{c}_{y}^{(i)}))}{\frac{1}{B}\sum_{j=1}^B \exp(f(\mathbf{z}_{0}^{(i)}, \mathbf{c}_{y}^{(j)}))} \right]
+\end{equation}
+As a direct consequence, the concerted joint optimization of the dual pathways establishes an uncompromisingly tightened ELBO. The mathematical theorems governing our framework explicitly guarantee that CDDM not only reconstructs structural paradigms completely indistinguishable from the target factory physics sets but also yields an optimized deterministic dependence on high-level diagnostic attributes. This rigorously validates the framework's superior generalization in extrapolating unseen diagnostic parameters seamlessly globally.
+
+
+\subsection{Training Details and Implementation Configuration}
+\label{subsec:training_details}
+
+In this subsection, we systematically outline the extensive training protocols and internal empirical details deployed to validate CDDM. The execution framework runs atop a high-performance grid outfitted with dual NVIDIA RTX 4090 GPUs, facilitating heavily parallelized tensor operations intrinsic to continuous semantic attention structures. The neural network's primary architecture depends heavily on a U-Net backbone, parameterized specifically across 4 structural block levels, capturing $[128, 256, 512, 1024]$ dimensions progressively downward through downsampling convolutions, matched identically through upsampling blocks utilizing skip-connections.
+
+During optimal continuous semantic encoding, we employ a frozen configuration of the well-documented CLIP architecture (specifically ViT-B/32 format), locking textual and visual embeddings' foundational parameters to prevent catastrophic forgetting. Contextual prompt continuous lengths $M$ are heuristically adjusted to $M=16$. Time series vibrations signals act as the fundamental source space linearly mapped into a representation dimension $d_x = 2048$ mimicking established visual benchmarks protocols for cross-layer parity.
+
+Hyperparameter tuning reveals rigorous constraints required for stable convergence. The optimization strategy employs AdamW optimizer, noted for decoupling weight decay from gradient updates thereby maintaining superior generalization characteristics over standard Adam structures. Initial learning rates are strictly anchored at $\eta=10^{-4}$, annealed gradually following a cosine decay scheduled mechanism down to a minimum bound of $10^{-6}$. To balance multi-dimensional loss topologies efficiently, the dual-scale regularizers are maintained empirically at $\lambda=0.1$ and $\gamma=0.05$. The forward diffusion step ceiling $T$ operates maximally at $T=1000$ using a dynamically scaled beta variance schedule interpolating between $\beta_1 = 10^{-4}$ and $\beta_T = 0.02$. Batch sampling dictates $B=64$, driving roughly 200 consistent epochs necessary until observable convergence boundaries emerge dynamically throughout the validation curves mapping early-stopping criteria sets. A secondary EMA (Exponential Moving Average) shadowing profile runs seamlessly with a strictly defined momentum of $0.999$, ensuring latent weight trajectories preserve steady-state dynamics and avoiding sudden parameter oscillations inherent in DDPM generations.
+
+\subsection{Computational Complexity Analysis}
+\label{subsec:complexity}
+
+Implementing large-scale generative diffusion topologies in conjunction with cross-modal continuous foundation models intrinsically incurs non-trivial computational demands. Evaluating these models requires an in-depth complexity traversal.
+
+\textbf{Time Complexity:} The fundamental bottleneck inherently lies within the reversed Markov process, executing precisely $T$ recursive iterations per generation phase. Denoting $N$ as the operational sequence length within the U-Net bottlenecks and $d$ signifying the channel dimensionality, the structural complexity for self and cross-attention components bounded by visual-verbal fusions exhibits $O(N^2 \cdot d + N \cdot d^2)$. Cumulatively, performing reverse trajectories yields a generational time requirement equivalent to $\mathcal{O}(T \cdot \sum_{l=1}^{L} (N_l^2 d_l + N_l d_l^2))$. To mitigate exhaustive testing lags commonly noted within factory deployments, dynamic step reduction methods such as Denoising Diffusion Implicit Models (DDIM) inherently compress $T_{inf} \ll T$, enabling real-time zero-shot alignments and inference with sub-second temporal resolutions.
+
+\textbf{Space Complexity:} Model storage footprint encompasses parameters defining the dual-path parameterizations $\boldsymbol{\theta}$ and context definitions $\mathbf{V}$. Given the extensive matrix integrations alongside the invariant underlying foundation layer sizes structurally retained during gradient accumulation steps, overall variable footprint stabilizes approximately at $O(L \cdot d_{max}^2)$, where $d_{max}$ indicates maximal depth embedding. Utilizing gradient checkpointing mechanisms inherently curtails peak VRAM memory allocations to theoretical thresholds necessary only for preserving layer activation nodes momentarily during backwards propagation sequences. Storage and run-time optimization maintain memory overhead functionally around 4 GB, thereby allowing edge-deployment into standard micro-ATX integrated graphics frameworks commonly distributed among local factory maintenance infrastructures.

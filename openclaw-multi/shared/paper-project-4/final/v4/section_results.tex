@@ -1,0 +1,40 @@
+\section{Results and Performance Analysis}
+\label{sec:results}
+
+This section presents the empirical evidence supporting the effectiveness of the CESM-Diff framework. We provide performance comparisons on three datasets, an ablation study, and qualitative manifold insights.
+
+\subsection{Performance Comparison on Unseen Classes}
+The performance of CESM-Diff compared to state-of-the-art baselines is summarized in Table~\ref{tab:comparison}. Our model consistently outperforms competing methods across all benchmarks, reflecting its stable zero-shot generalization capabilities.
+
+On the \textbf{TEP dataset}, CESM-Diff achieves an MCA of $82.4\%$, a $7.2\%$ improvement over the f-CLSWGAN baseline ($75.2\%$). TEP involves complex non-linear correlations between 52 process variables. While GANs often struggle with mode collapse in high-dimensional spaces, our dual-path diffusion process effectively captures the underlying distribution. Specifically, the model excels in detecting unseen faults that involve subtle sensor coupling, such as Faults 19 and 20. The diffusion framework's ability to model fine-grained distributional details allows it to distinguish between process-related faults that show overlapping marginal distributions.
+
+For the \textbf{Hydraulic System dataset}, CESM-Diff reaches $79.8\%$ accuracy. This dataset is challenging due to varying degradation levels across multiple components. Our model's ability to interpolate within a continuous semantic manifold (via SMI) allows it to accurately predict features of intermediate degradation states unseen during training. In contrast, SAE and CVAE, which rely on static binary attributes, fail to capture smooth transitions, resulting in accuracies below $68\%$. For categories like "Valve switching lag," our model achieves $84\%$, demonstrating the utility of CLIP-driven continuous semantics.
+
+On the \textbf{CWRU Bearing dataset}, CESM-Diff reaches $91.3\%$ accuracy. The CLIP encoder provides highly descriptive embeddings for specific fault sizes (e.g., "0.007 inch ball fault"), which are more informative than binary attributes. By aligning these rich embeddings with the vibration manifold, CESM-Diff synthesizes realistic features for unseen bearing faults, nearly matching supervised performance. Even for small 0.007-inch faults, which are difficult to generalize, CESM-Diff maintains an accuracy of $88\%$, suggesting a globally consistent semantic structure for mechanical failures.
+
+Statistical testing (Paired t-test) comparing CESM-Diff with f-CLSWGAN across 10 independent runs confirms significant gains. For CWRU, $p=0.0014 < 0.01$; for TEP and Hydraulic, $p=0.0035$ and $p=0.0082$, respectively, confirming the robustness of the dual-path architecture.
+
+\subsection{Ablation Study}
+To dissect the impact of each core component, we conduct an ablation study by systematically removing elements of the CESM-Diff model (Table~\ref{tab:ablation}).
+
+\textbf{Impact of CLIP Text Encoder:} 
+Replacing the CLIP encoder with traditional Word2Vec or FastText embeddings results in a performance drop of $5.4\%$ on CWRU and $6.1\%$ on TEP. The pre-trained knowledge in CLIP provides a superior "semantic prior" for cross-modal alignment. In comparison with BERT-based models, CLIP provides more geometrically coherent clusters in the feature space, benefiting the subsequent diffusion process.
+
+\textbf{Importance of Dual-Path Diffusion:} 
+Removing the semantic diffusion path (using only feature-based diffusion) causes accuracy on the Hydraulic dataset to drop from $79.8\%$ to $72.5\%$. This confirms that simultaneous diffusion of both features and semantics provides synergistic alignment, where the semantic path acts as a dynamic anchor. Removing the cross-path attention alone leads to a $3.2\%$ reduction in MCA.
+
+\textbf{Effectiveness of Semantic Manifold Interpolation (SMI):} 
+Removing SMI and using only discrete class embeddings leads to a $4.8\%$ decrease in performance. SMI is crucial for ZSL as it allows the model to interpolate between related seen faults in a continuous latent space. This is particularly effective for degradation-based datasets where faults exist on a spectrum.
+
+\textbf{Role of Attribute Consistency Loss:} 
+The removal of $\mathcal{L}_{acl}$ results in a higher domain shift. Including this loss ensures that generated features remain grounded in the physical sensor space. Without this loss, the generator may produce physically implausible features, leading to poor classification on real-world test data.
+
+\subsection{Visualization and Manifold Analysis}
+We employ t-SNE to assess the quality of the learned manifold, visualizing real vs. CESM-Diff-generated features for unseen classes (Fig.~\ref{fig:tsne}). 
+
+In both TEP and CWRU, synthetic features form tight clusters that largely overlap with ground-truth distributions. This confirms that our model captures the intra-class variance of unseen faults. Compared to f-CLSWGAN, CESM-Diff produces clusters with clearer boundaries and significantly less overlap. In the TEP plot, unseen faults (Fault 19 and 20) are clearly separated from training faults, indicating correct identification of the unique "semantic signature."
+
+Furthermore, we visualize the "manifold walk" enabled by SMI. By interpolating the text embedding from "Normal" to "Severe Outer Race Fault," generated features smoothly transition in a continuous arc. This capability allows for a nuanced understanding of fault progression, which is critical for prognosis and RUL estimation tasks.
+
+\subsection{Computational Efficiency}
+The CESM-Diff framework remains feasible for industrial deployment. Each generation step (with $T=200$) takes approximately 85ms on a single RTX 3090 GPU, well within sensor sampling intervals. For high-frequency data, the model can operate in an offline augmentation mode to pre-generate unseen fault features, which then train a lightweight classifier for real-time edge deployment.

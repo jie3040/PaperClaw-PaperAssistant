@@ -1,0 +1,9 @@
+{
+  "target": "writer",
+  "port": 18840,
+  "token": "writer-hook-2026",
+  "message": "撰写 Experiments 第4.3节 Results。\n\n★ 字数要求：约1200词\n- 4.3.1 Main Results（与 baselines 对比，500词）\n- 4.3.2 Ablation Study（消融实验，400词）\n- 4.3.3 Visualization（t-SNE可视化分析，300词）\n\n★ 写入路径：SHARED/drafts/v1/section_experiments_4.3.tex\n\n完整 outline：SHARED/outline/v1/paper_outline.md（已读取）\n已完成的 4.1 & 4.2：\n- SHARED/drafts/v1/section_experiments_4.1.tex\n- SHARED/drafts/v1/section_experiments_4.2.tex\n\n参考文献：SHARED/drafts/v1/references.bib\n\n要求：\n1. 定量结果必须有具体数值（如 Accuracy: 85.3%）\n2. 消融实验说明各模块贡献\n3. t-SNE 分析描述特征分布效果\n4. 使用 LaTeX 表格（\\begin{table}）展示对比结果\n\n完成后回报实际字数。",
+  "sessionKey": "hook:write-exp-4.3",
+  "created_at": "2026-03-18T12:16:00",
+  "status": "pending"
+}

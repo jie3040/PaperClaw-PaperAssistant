@@ -1,0 +1,14 @@
+\subsection{Datasets and Experimental Conditions}
+\label{sec:datasets}
+
+To evaluate CESM-Diff under zero-shot scenarios, we conduct experiments on three industrial benchmarks: TEP, Hydraulic System, and CWRU Bearing datasets. These cover failure modes from chemical processes to mechanical degradations.
+
+\subsubsection{Benchmark Datasets}
+\textbf{Tennessee Eastman Process (TEP):} A standard for process monitoring, TEP contains 21 programmed faults and one normal state. We use 52 variables sampled at 3-minute intervals. The faults are partitioned into 16 seen and 5 unseen classes. TEP is characterized by non-linear correlations and significant noise, posing challenges for generative models which CESM-Diff addresses through semantic anchoring.
+
+\textbf{Hydraulic System:} This dataset monitors a multi-component test rig with sensors for pressure, power, and flow across four subsystems (cooler, valve, pump, accumulator). We define 12 health states, with 9 as seen and 3 as unseen. The multi-scale nature of signals (1 Hz to 100 Hz) requires CESM-Diff to align diverse physical sensors with a unified CLIP-derived manifold.
+
+\textbf{CWRU Bearing:} A cornerstone in mechanical diagnosis, CWRU involves faults at three locations with diameters from 0.007 to 0.021 inches. We use 10 unique classes: 7 seen (including normal) and 3 unseen. This tests the model's ability to distinguish fine-grained mechanical failures using only textual embeddings.
+
+\subsubsection{Experimental Strategy}
+Training is conducted in PyTorch. All signals are min-max normalized to $[-1, 1]$ based on seen classes. We use sliding windows of 1024 points for CWRU and Hydraulic datasets. For diffusion, $T=1000$ with a linear schedule is used for training. The U-Net backbone employs a 4-layer 1D residual architecture. The CLIP encoder (ViT-B/32) is frozen. Optimization uses AdamW with a learning rate of $5 \times 10^{-4}$ and batch size 256. We ensure no unseen samples are used during training. Each experiment is repeated 10 times, reporting Mean Class Accuracy (MCA).

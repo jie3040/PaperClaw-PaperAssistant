@@ -1,0 +1,17 @@
+{
+  gateway: {
+    mode: "local",
+    port: 18830
+  },
+  hooks: {
+    "/hooks/agent": {
+      token: "architect-hook-2026"
+    }
+  },
+  model: {
+    default: "gemini-3.1-pro-high"
+  },
+  thinking: {
+    mode: "off"
+  }
+}

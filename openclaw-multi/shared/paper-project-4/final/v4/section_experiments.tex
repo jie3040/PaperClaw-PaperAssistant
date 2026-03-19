@@ -1,0 +1,20 @@
+\section{Experiments}
+\label{sec:experiments}
+
+We evaluate the CESM-Diff framework on three industrial datasets. This section details the experimental setup, datasets, and measurement metrics.
+
+\subsection{Experimental Setup}
+\subsubsection{Datasets}
+We utilize three diverse datasets covering chemical processes, hydraulic systems, and rotating machinery.
+
+\textbf{Tennessee Eastman Process (TEP):} A widely used benchmark for process monitoring. We use the revised version by Rieth et al., containing 52 variables. We select 15 faults as seen and 5 as unseen (Faults 1, 5, 10, 19, 20).
+
+\textbf{Hydraulic System Monitoring:} This dataset from ZeMA contains data from sensors (pressure, temperature, flow) sampled at various rates. It documents the degradation of components including the cooler and valve. We treat early degradation as seen and severe as unseen.
+
+\textbf{CWRU Bearing Dataset:} A standard for vibration-based diagnosis. It includes faults at different locations (inner, ball, outer) with damage diameters from 0.007 to 0.021 inches. We follow the zero-shot split where specific diameters and locations are withheld during training.
+
+\subsubsection{Baselines and Metrics}
+We compare CESM-Diff against: (1) Standard ZSL: SAE, ALE; (2) Generative ZSL: f-CLSWGAN, CADA-VAE; (3) Diffusion variants: Diff-ZSL. Metrics include Mean Class Accuracy (MCA) and overall Accuracy (ACC) for unseen classes.
+
+\subsubsection{Implementation Details}
+The feature extractor uses a 1D-CNN for vibration and an MLP for process data. The diffusion model uses $T=1000$ steps with a cosine schedule for training and $T=200$ for inference via DDIM. The semantic manifold employs a pre-trained CLIP text encoder (ViT-B/32). Training is conducted for 500 epochs with the Adam optimizer ($\text{lr}=10^{-4}$).

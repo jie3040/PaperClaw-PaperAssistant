@@ -1,0 +1,9 @@
+{
+  "target": "reviewer",
+  "port": 18850,
+  "token": "reviewer-hook-2026",
+  "message": "执行【最终对齐审查】。\n\n黄金标准：SHARED/golden_standard.json\n待审论文：SHARED/final/v3/paper.tex\n参考文献：SHARED/final/v3/thebibliography（手写）\n图表：SHARED/figures/\n\n★ 审查要点：\n1. 对标 golden_standard.json 检查完整性（结构、字数、引用数）\n2. Checker 报告的 6 项内容问题需在审查中确认：\n   - 模型名称不一致（CESM-Diff vs CSMD）\n   - Pre-Pretraining 拼写错误\n   - 性能数值不一致（92.4% vs 91.3%）\n   - 图 2/3 无正文引用\n   - 大量注释参考文献\n   - 单列模式\n3. 输出到 SHARED/reviews/final_alignment_report_v3.md\n\n结论：ACCEPT | REVISE（需说明具体问题）",
+  "sessionKey": "hook:review-final-v3",
+  "created_at": "2026-03-18T16:40:00",
+  "status": "pending"
+}

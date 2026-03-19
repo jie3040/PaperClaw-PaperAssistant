@@ -1,0 +1,237 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{lei2020applications}
+\citation{lecun2015deep,zhao2019deep}
+\citation{jing2017hierarchical}
+\citation{xian2019zero}
+\citation{zhang2017deep}
+\citation{lampert2009learning}
+\citation{goodfellow2014generative}
+\citation{ho2020denoising}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{I}{1}{Introduction}{section.1}{}}
+\citation{radford2021learning}
+\citation{li2020deep,zhao2022deep}
+\citation{fu2015transductive}
+\citation{pan2009survey,weiss2016survey,zhuang2020comprehensive}
+\citation{long2015learning,ganin2016domain,tzeng2017adversarial,wilson2020survey}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related_work}{{II}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Zero-Shot Fault Diagnosis (ZSFD) in Industry}{2}{subsection.2.1}\protected@file@percent }
+\citation{wang2018deep,han2020deep,liu2018deep,wu2021deep}
+\citation{sohl2015deep,dhariwal2021diffusion}
+\citation{rombach2022high}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Generative Models: GANs and VAEs}{3}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-C}}Diffusion Models for Industrial Synthesis}{3}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-C}1}High-Fidelity Signal Generation}{3}{subsubsection.2.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-C}2}Conditioning and Guidance Mechanisms}{3}{subsubsection.2.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-D}}Cross-Modal Alignment and CLIP}{3}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-D}1}Semantic Representation in CLIP}{3}{subsubsection.2.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-D}2}Zero-Shot Applications}{3}{subsubsection.2.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-E}}Overall Framework}{3}{subsection.2.5}\protected@file@percent }
+\newlabel{sec:framework}{{\mbox  {II-E}}{3}{Overall Framework}{subsection.2.5}{}}
+\citation{bardes2021vicreg,caron2021dino,chen2021mocov3}
+\citation{he2016deep}
+\citation{vaswani2017attention}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Overall architecture of the proposed CESM-Diff framework. The model consists of a CLIP text encoder for semantic embedding, a dual-path diffusion module for simultaneous feature and semantic refinement, and a Semantic Manifold Interpolation (SMI) module for zero-shot generalization.}}{4}{figure.1}\protected@file@percent }
+\newlabel{fig:architecture}{{1}{4}{Overall architecture of the proposed CESM-Diff framework. The model consists of a CLIP text encoder for semantic embedding, a dual-path diffusion module for simultaneous feature and semantic refinement, and a Semantic Manifold Interpolation (SMI) module for zero-shot generalization}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-E}1}Workflow Overview}{4}{subsubsection.2.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-E}2}Multi-Sensor Feature Extractor}{4}{subsubsection.2.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-E}3}CLIP-Driven Semantic Alignment}{4}{subsubsection.2.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-E}4}Synergy and Information Exchange}{4}{subsubsection.2.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-F}}Problem Definition}{5}{subsection.2.6}\protected@file@percent }
+\newlabel{sec:method_problem_definition}{{\mbox  {II-F}}{5}{Problem Definition}{subsection.2.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-G}}CLIP Text Encoder for Semantic Extraction}{5}{subsection.2.7}\protected@file@percent }
+\newlabel{sec:method_clip_text_encoder}{{\mbox  {II-G}}{5}{CLIP Text Encoder for Semantic Extraction}{subsection.2.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-H}}Data Preprocessing}{5}{subsection.2.8}\protected@file@percent }
+\citation{song2020score,dhariwal2021diffusion}
+\citation{fan2023frido}
+\citation{dhariwal2021diffusion,rombach2022high}
+\citation{rombach2022high}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-H}1}Signal Segmentation and Windowing}{6}{subsubsection.2.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-H}2}Time-Frequency Transformation}{6}{subsubsection.2.8.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-H}3}Normalization and Mapping}{6}{subsubsection.2.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-I}}Dual-Path Semantic Diffusion}{6}{subsection.2.9}\protected@file@percent }
+\newlabel{sec:dual_path}{{\mbox  {II-I}}{6}{Dual-Path Semantic Diffusion}{subsection.2.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-I}1}Feature Path: U-Net Based Denoising}{6}{subsubsection.2.9.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Dual-path denoising process. The feature path and semantic path are refined simultaneously through cross-path attention, ensuring semantic-geometric consistency throughout the diffusion process.}}{6}{figure.2}\protected@file@percent }
+\newlabel{fig:denoising}{{2}{6}{Dual-path denoising process. The feature path and semantic path are refined simultaneously through cross-path attention, ensuring semantic-geometric consistency throughout the diffusion process}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-I}2}Semantic Path: Embedding Refinement and Manifold Adaptation}{6}{subsubsection.2.9.2}\protected@file@percent }
+\citation{song2020score,wang2025visual}
+\citation{zbontar2021barlow}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-I}3}Cross-Path Attention Mechanism}{7}{subsubsection.2.9.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Semantic Manifold Interpolation (SMI). The SMI module constructs continuous fault representations by interpolating between seen class embeddings in the CLIP semantic space, enabling zero-shot generalization to unseen fault types.}}{7}{figure.3}\protected@file@percent }
+\newlabel{fig:manifold}{{3}{7}{Semantic Manifold Interpolation (SMI). The SMI module constructs continuous fault representations by interpolating between seen class embeddings in the CLIP semantic space, enabling zero-shot generalization to unseen fault types}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-J}}Semantic Manifold Interpolation (SMI)}{7}{subsection.2.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-J}1}Continuous Semantic Interpolation}{7}{subsubsection.2.10.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-J}2}Manifold-Aware Geodesic vs. Linear Interpolation}{8}{subsubsection.2.10.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-J}3}Unseen Feature Synthesis via SMI}{8}{subsubsection.2.10.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-K}}Attribute Consistency Loss (ACL)}{8}{subsection.2.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-K}1}Addressing Semantic-to-Feature Domain Shift}{8}{subsubsection.2.11.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-K}2}Formulation of Attribute Consistency}{8}{subsubsection.2.11.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-K}3}Integration with Reconstruction Objectives}{8}{subsubsection.2.11.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-K}4}Gradient Analysis and Convergence}{8}{subsubsection.2.11.4}\protected@file@percent }
+\citation{lei2020applications,zhao2019deep}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-L}}Training and Inference Strategy}{9}{subsection.2.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-L}1}Optimization and Hyperparameters}{9}{subsubsection.2.12.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-L}2}Two-Phase Training Procedure}{9}{subsubsection.2.12.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-L}3}Inference for Unseen Fault Diagnosis}{9}{subsubsection.2.12.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {III}Experiments}{9}{section.3}\protected@file@percent }
+\newlabel{sec:experiments}{{III}{9}{Experiments}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Experimental Setup}{9}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-A}1}Datasets}{9}{subsubsection.3.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-A}2}Baselines and Metrics}{9}{subsubsection.3.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-A}3}Implementation Details}{9}{subsubsection.3.1.3}\protected@file@percent }
+\citation{downs1993plant}
+\citation{feng2021fault}
+\citation{cwru_dataset}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Datasets and Experimental Conditions}{10}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:datasets}{{\mbox  {III-B}}{10}{Datasets and Experimental Conditions}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}1}Benchmark Datasets}{10}{subsubsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}2}Experimental Strategy}{10}{subsubsection.3.2.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Dataset Statistics for Zero-Shot Fault Diagnosis}}{10}{table.1}\protected@file@percent }
+\newlabel{tab:dataset_stats}{{I}{10}{Dataset Statistics for Zero-Shot Fault Diagnosis}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Baselines and Experimental Setup}{10}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:baselines}{{\mbox  {III-C}}{10}{Baselines and Experimental Setup}{subsection.3.3}{}}
+\citation{lecun2015deep}
+\citation{chen2021mocov3}
+\citation{caron2021dino}
+\citation{zbontar2021barlow}
+\citation{bardes2021vicreg}
+\citation{ho2020denoising}
+\citation{radford2021learning}
+\citation{li2023diffusionssl}
+\citation{kingma2013auto}
+\citation{he2016deep}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}1}Self-Supervised Contrastive Learning Paradigm}{11}{subsubsection.3.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}2}Generative and Zero-Shot Fault Diagnosis Models}{11}{subsubsection.3.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}3}Evaluation Metrics}{11}{subsubsection.3.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}4}Cross-Validation and Statistical Robustness}{11}{subsubsection.3.3.4}\protected@file@percent }
+\citation{xian2019zero}
+\citation{lampert2009learning}
+\citation{goodfellow2014generative}
+\citation{sohl2015deep}
+\citation{song2020score}
+\citation{chen2024diffusion}
+\citation{song2025generalized}
+\citation{gao2019contractive}
+\citation{goodfellow2014generative}
+\citation{sohl2015deep}
+\citation{gao2019contractive}
+\citation{lampert2009learning}
+\citation{song2020score}
+\citation{song2025generalized}
+\citation{xian2019zero}
+\citation{chen2024diffusion}
+\citation{sohl2015deep}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}5}Detailed Training Configurations and Fairness}{12}{subsubsection.3.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}Results}{12}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:results}{{\mbox  {III-D}}{12}{Results}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-D}1}Performance Comparison on Unseen Classes}{12}{subsubsection.3.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-D}2}Ablation Study}{12}{subsubsection.3.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-D}3}Hyperparameter and Manifold Analysis}{12}{subsubsection.3.4.3}\protected@file@percent }
+\citation{lampert2009learning}
+\citation{feng2021fault}
+\citation{song2025generalized}
+\citation{li2022wavelet}
+\citation{xian2019zero}
+\citation{liu2024hierarchical}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-D}4}Complexity}{13}{subsubsection.3.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-E}}Visual Analysis and Manifold Insights}{13}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:visualization}{{\mbox  {III-E}}{13}{Visual Analysis and Manifold Insights}{subsection.3.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-E}1}t-SNE Visualization and Clustering Quality}{13}{subsubsection.3.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-E}2}Dataset-Specific Distributional Analysis}{13}{subsubsection.3.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-E}3}Manifold Interpolation and ``Manifold Walk''}{13}{subsubsection.3.5.3}\protected@file@percent }
+\citation{xian2019zero}
+\citation{chen2024diffusion}
+\citation{cen2025generalized}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-E}4}Statistical Significance and Robustness}{14}{subsubsection.3.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-E}5}Computational Complexity and Inference Speed}{14}{subsubsection.3.5.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Zero-Shot Classification Accuracy on Unseen Classes (\%). Best results are highlighted in bold.}}{14}{table.2}\protected@file@percent }
+\newlabel{tab:comparison}{{II}{14}{Zero-Shot Classification Accuracy on Unseen Classes (\%). Best results are highlighted in bold}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Ablation Study: Impact of Each Component on Unseen Class Accuracy (\%).}}{14}{table.3}\protected@file@percent }
+\newlabel{tab:ablation}{{III}{14}{Ablation Study: Impact of Each Component on Unseen Class Accuracy (\%)}{table.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Results and Performance Analysis}{14}{section.4}\protected@file@percent }
+\newlabel{sec:results}{{IV}{14}{Results and Performance Analysis}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Performance Comparison on Unseen Classes}{14}{subsection.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces t-SNE visualization of real features (circles) versus CESM-Diff generated features (triangles) for unseen fault classes on the CWRU Bearing dataset.}}{15}{figure.4}\protected@file@percent }
+\newlabel{fig:tsne}{{4}{15}{t-SNE visualization of real features (circles) versus CESM-Diff generated features (triangles) for unseen fault classes on the CWRU Bearing dataset}{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Sensitivity analysis of the interpolation coefficient $\alpha $ on zero-shot classification accuracy across three datasets.}}{15}{figure.5}\protected@file@percent }
+\newlabel{fig:sensitivity}{{5}{15}{Sensitivity analysis of the interpolation coefficient $\alpha $ on zero-shot classification accuracy across three datasets}{figure.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Maximum Mean Discrepancy (MMD) between generated and real features across diffusion timesteps.}}{15}{figure.6}\protected@file@percent }
+\newlabel{fig:mmd}{{6}{15}{Maximum Mean Discrepancy (MMD) between generated and real features across diffusion timesteps}{figure.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Ablation study results showing the contribution of each component across three datasets.}}{15}{figure.7}\protected@file@percent }
+\newlabel{fig:ablation}{{7}{15}{Ablation study results showing the contribution of each component across three datasets}{figure.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Ablation Study}{15}{subsection.4.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Training convergence curves of CESM-Diff on the three benchmark datasets.}}{16}{figure.8}\protected@file@percent }
+\newlabel{fig:convergence}{{8}{16}{Training convergence curves of CESM-Diff on the three benchmark datasets}{figure.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Visualization and Manifold Analysis}{16}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Computational Efficiency}{16}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {V}Conclusion}{16}{section.5}\protected@file@percent }
+\newlabel{sec:conclusion}{{V}{16}{Conclusion}{section.5}{}}
+\bibstyle{IEEEtran}
+\bibdata{references}
+\bibcite{lei2020applications}{1}
+\bibcite{lecun2015deep}{2}
+\bibcite{zhao2019deep}{3}
+\bibcite{jing2017hierarchical}{4}
+\bibcite{xian2019zero}{5}
+\bibcite{zhang2017deep}{6}
+\bibcite{lampert2009learning}{7}
+\bibcite{goodfellow2014generative}{8}
+\bibcite{ho2020denoising}{9}
+\bibcite{radford2021learning}{10}
+\bibcite{li2020deep}{11}
+\bibcite{zhao2022deep}{12}
+\bibcite{fu2015transductive}{13}
+\bibcite{pan2009survey}{14}
+\bibcite{weiss2016survey}{15}
+\bibcite{zhuang2020comprehensive}{16}
+\bibcite{long2015learning}{17}
+\bibcite{ganin2016domain}{18}
+\bibcite{tzeng2017adversarial}{19}
+\bibcite{wilson2020survey}{20}
+\bibcite{wang2018deep}{21}
+\bibcite{han2020deep}{22}
+\bibcite{liu2018deep}{23}
+\bibcite{wu2021deep}{24}
+\bibcite{sohl2015deep}{25}
+\bibcite{dhariwal2021diffusion}{26}
+\bibcite{rombach2022high}{27}
+\bibcite{bardes2021vicreg}{28}
+\bibcite{caron2021dino}{29}
+\bibcite{chen2021mocov3}{30}
+\bibcite{he2016deep}{31}
+\bibcite{vaswani2017attention}{32}
+\bibcite{song2020score}{33}
+\bibcite{fan2023frido}{34}
+\bibcite{wang2025visual}{35}
+\bibcite{zbontar2021barlow}{36}
+\bibcite{downs1993plant}{37}
+\bibcite{feng2021fault}{38}
+\bibcite{cwru_dataset}{39}
+\bibcite{kingma2013auto}{40}
+\bibcite{chen2024diffusion}{41}
+\@writefile{toc}{\contentsline {section}{References}{17}{section*.1}\protected@file@percent }
+\bibcite{song2025generalized}{42}
+\bibcite{gao2019contractive}{43}
+\bibcite{li2022wavelet}{44}
+\bibcite{liu2024hierarchical}{45}
+\bibcite{cen2025generalized}{46}
+\gdef \@abspage@last{18}

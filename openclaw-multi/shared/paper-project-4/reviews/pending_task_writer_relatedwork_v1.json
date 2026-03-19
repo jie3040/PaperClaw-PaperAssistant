@@ -1,0 +1,9 @@
+{
+  "target": "writer",
+  "port": 18840,
+  "token": "writer-hook-2026",
+  "message": "撰写 Related Work section。\n\n★ 字数要求：1000词\n★ 写入路径：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/drafts/v1/section_related_work.tex\n\nOutline：\n### 2. Related Work (~1000 words)\n#### 2.1 Zero-Shot Learning for Fault Diagnosis\n- Classical ZSL frameworks (DAP, ESZSL, SAE)\n- Attribute-based fault diagnosis approaches\n- Limitations: binary attributes, domain shift\n\n#### 2.2 Diffusion Models for Fault Diagnosis\n- DDPM fundamentals and recent industrial applications\n- Conditional diffusion for data augmentation\n- DP-CDDPM-AC and related works\n- Gap: no semantic-aware diffusion for zero-shot scenarios\n\n#### 2.3 CLIP in Industrial Applications\n- CLIP architecture and vision-language alignment\n- Recent CLIP applications in industrial inspection/diagnosis\n- Gap: CLIP semantic embeddings unexplored in zero-shot fault generation\n\n相关文件：\n- 黄金标准：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/golden_standard.json\n- 调研报告：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/references/survey_report.md\n\n完成后回报实际字数。",
+  "sessionKey": "hook:write-relatedwork-v1",
+  "created_at": "2026-03-18T11:20:00+08:00",
+  "status": "pending"
+}

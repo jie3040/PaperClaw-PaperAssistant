@@ -1,0 +1,15 @@
+\begin{table*}[t]
+\centering
+\caption{Comparison of Zero-Shot Classification Performance (Accuracy \% and Harmonic Mean)}
+\label{tab:performance}
+\begin{tabular}{lcccccc}
+\toprule
+Method & TPTS Seen & TPTS Unseen & TPTS H-Mean & TEP Seen & TEP Unseen & TEP H-Mean \\
+\midrule
+CVAE-GAN & 92.3 & 68.5 & 78.5 & 88.7 & 62.4 & 73.2 \\
+CycleGAN-SD & 94.1 & 74.2 & 83.0 & 91.2 & 71.8 & 80.3 \\
+Standard DDPM & 93.8 & 76.8 & 84.5 & 90.5 & 74.5 & 81.7 \\
+Proposed CDDM & \textbf{95.7} & \textbf{82.3} & \textbf{88.5} & \textbf{93.4} & \textbf{79.6} & \textbf{85.9} \\
+\bottomrule
+\end{tabular}
+\end{table*}

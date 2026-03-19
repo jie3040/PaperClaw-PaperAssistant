@@ -1,0 +1,9 @@
+{
+  "target": "writer",
+  "port": 18840,
+  "token": "writer-hook-2026",
+  "message": "用户审查返修（Round 4）。\n\n审查意见：SHARED/reviews/review_content_alignment_v4.md\n\n你负责的任务：\n1. Related Work 缩减：1253词 → 900-1100词（需删除约150-350词）\n2. Experiments 缩减：5877词 → 3150-3850词（需删除约2000-2700词）\n\n具体要求：\n- Related Work：精简各子主题背景描述，减少冗长解释，合并相似段落\n- Experiments：section_experiments.tex(2009词)和4.3节(1774词)是主要超载来源，压缩这两部分\n\n上一版文件（参考）：SHARED/drafts/v4/\n★ 修改后写入 SHARED/drafts/v5/（已从上版复制，在此基础上修改）\n\n完成后回报实际修改后的各section字数。",
+  "sessionKey": "hook:writer-v5-revise",
+  "created_at": "2026-03-18T16:22:00+08:00",
+  "status": "pending"
+}

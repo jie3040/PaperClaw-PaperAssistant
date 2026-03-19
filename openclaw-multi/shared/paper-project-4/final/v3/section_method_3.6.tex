@@ -1,0 +1,22 @@
+While the Dual-Path Semantic Diffusion (DPSD) framework established in Section 3.5 provides a robust mechanism for generating features conditioned on known semantics, the discrete nature of fault categories in the training set can limit the model's ability to generalize to entirely novel, out-of-distribution fault modes. To address this, we propose the Semantic Manifold Interpolation (SMI) module. SMI acts as a continuous bridge between the learned manifolds of seen faults, enabling the synthesis of "intermediate" fault signatures that characterize the transition from known anomalies to unseen failure states.
+
+\subsection{Semantic Manifold Interpolation (SMI)}
+
+The fundamental motivation behind SMI is the observation that unseen faults in industrial systems often manifest as complex combinations or transitional stages of known failure modes. By performing interpolation directly within the continuous CLIP semantic space rather than the raw feature space, we leverage the high-dimensional linguistic relationships captured by the frozen CLIP text encoder to guide the generation process.
+
+\subsubsection{Continuous Semantic Interpolation}
+Given two seen fault semantic embeddings $\mathbf{s}_i$ and $\mathbf{s}_j$ extracted via the CLIP encoder, we define an interpolated semantic vector $\mathbf{s}_{unseen}$ for a potential novel fault class. Unlike linear interpolation in the Euclidean sense, which may drift off the valid semantic manifold, we consider the manifold structure of the CLIP latent space. For a given interpolation coefficient $\alpha \in [0, 1]$, the unseen semantic representation is formulated as:
+\begin{equation}
+\mathbf{s}_{unseen} = \alpha \cdot \mathbf{s}_i + (1 - \alpha) \cdot \mathbf{s}_j
+\end{equation}
+where $\alpha$ represents the relative semantic proximity to the base fault categories. By varying $\alpha$, we can populate the latent "voids" between seen classes, effectively mapping a continuous spectrum of fault possibilities that includes the targeted unseen categories.
+
+\subsubsection{Manifold-Aware Geodesic vs. Linear Interpolation}
+While Equation (7) defines a linear path, the high-dimensional geometry of the CLIP manifold often benefits from a manifold-aware approach. We implement a Geodesic Interpolation (GI) scheme to ensure the internal consistency of the interpolated vectors. In this scheme, we assume the semantic embeddings lie on a hypersphere (consistent with CLIP's cosine similarity training). The interpolation is thus performed using the Spherical Linear Interpolation (Slerp) method:
+\begin{equation}
+\text{Slerp}(\mathbf{s}_i, \mathbf{s}_j; \alpha) = \frac{\sin((1-\alpha)\theta)}{\sin \theta} \mathbf{s}_i + \frac{\sin(\alpha \theta)}{\sin \theta} \mathbf{s}_j
+\end{equation}
+where $\theta = \arccos(\mathbf{s}_i \cdot \mathbf{s}_j)$ is the angle between the two unit-normalized embeddings. This ensures that the generated $\mathbf{s}_{unseen}$ remains on the semantic manifold, preserving the structural integrity of the linguistic descriptors.
+
+\subsubsection{Unseen Feature Synthesis via SMI}
+The synthesized semantic vector $\mathbf{s}_{unseen}$ is then fed into the reverse denoising process of the DPSD's Feature Path. By treating $\mathbf{s}_{unseen}$ as the conditional input for the U-Net, the model generates representative vibration features $\hat{\mathbf{x}}_{unseen}$ for classes that were never encountered during training. This interpolation-driven generation allows the CESM-Diff framework to "hallucinate" discriminative features for novel faults by blending the physical characteristics of related seen faults through their shared semantic manifold, thereby significantly enhancing zero-shot diagnostic performance.

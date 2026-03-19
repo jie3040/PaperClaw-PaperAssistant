@@ -1,0 +1,154 @@
+{
+  "outline_version": 4,
+  "drafts_version": 7,
+  "final_version": 4,
+  "history": [
+    {
+      "stage": "3",
+      "dir": "outline",
+      "version": 1,
+      "status": "created",
+      "timestamp": "2026-03-16T19:49:00+08:00"
+    },
+    {
+      "stage": "3.5",
+      "dir": "outline",
+      "version": 1,
+      "status": "review_revise",
+      "reason": "\u5b50\u8282\u4e0d\u8db3\u3001\u7f3a\u56fe\u3001\u7ed3\u6784\u7c97\u7cd9",
+      "timestamp": "2026-03-17T20:53:00+08:00"
+    },
+    {
+      "stage": "3.5",
+      "dir": "outline",
+      "version": 2,
+      "status": "accepted",
+      "reason": "Leader\u63a5\u7ba1\u77ed\u77ed\u89c6\u9891\u6210\uff0c9\u9879\u4fee\u6539\u5168\u90e8\u843d\u5730",
+      "timestamp": "2026-03-17T21:10:00+08:00"
+    },
+    {
+      "stage": "3.5",
+      "dir": "outline",
+      "version": 3,
+      "status": "review_revise",
+      "reason": "Experiments\u5b57\u6570\u4e0d\u8db3\u3001\u56fe\u8868\u8fc7\u91cf",
+      "timestamp": "2026-03-18T11:37:00+08:00"
+    },
+    {
+      "stage": "3.5",
+      "dir": "outline",
+      "version": 4,
+      "status": "created",
+      "reason": "Leader\u76f4\u63a5\u4fee\u6b63\uff1aExperiments 3000\u21923500\u8bcd\uff0c\u56fe\u88688\u21926\u5f20",
+      "timestamp": "2026-03-18T11:48:00+08:00"
+    },
+    {
+      "stage": "3.5",
+      "dir": "outline",
+      "version": 4,
+      "status": "accepted",
+      "reason": "\u6846\u67b6\u5bf9\u9f50\u5ba1\u67e5\u901a\u8fc7",
+      "timestamp": "2026-03-18T11:53:00+08:00"
+    },
+    {
+      "stage": "4",
+      "dir": "drafts",
+      "version": 1,
+      "status": "created",
+      "timestamp": "2026-03-18T11:53:00+08:00"
+    },
+    {
+      "stage": "5",
+      "dir": "final",
+      "version": 1,
+      "status": "created",
+      "timestamp": "2026-03-18T14:31:00+08:00"
+    },
+    {
+      "stage": "6",
+      "dir": "final",
+      "version": 2,
+      "status": "accepted",
+      "reason": "Checker\u4fee\u590d5\u4e2a\u95ee\u9898\uff0c0 Error\uff0c0 Warning",
+      "timestamp": "2026-03-18T14:38:00+08:00"
+    },
+    {
+      "stage": "7",
+      "dir": "drafts",
+      "version": 3,
+      "status": "revised",
+      "reason": "\u6700\u7ec8\u5ba1\u67e5 REVISE\uff1a\u5b57\u6570/\u56fe\u8868/\u5f15\u7528/\u5185\u5bb9\u7f3a\u5931",
+      "timestamp": "2026-03-18T14:50:00+08:00"
+    },
+    {
+      "stage": "10",
+      "dir": "drafts",
+      "version": 4,
+      "status": "revising",
+      "reason": "v3\u5ba1\u67e5\u8fd4\u4fee\uff1aRelated Work\u6269\u5145\u3001Experiments\u7f29\u51cf\u3001Conclusion\u6269\u5145\u3001\u6dfb\u52a0Section",
+      "timestamp": "2026-03-18T15:47:00+08:00"
+    },
+    {
+      "stage": "4.5a",
+      "dir": "drafts",
+      "version": 4,
+      "status": "revised",
+      "reason": "\u5b57\u6570\u4fee\u6b63\uff1aRelated Work+ / Experiments- / Conclusion+",
+      "timestamp": "2026-03-18T15:49:00+08:00"
+    },
+    {
+      "stage": "10",
+      "dir": "drafts",
+      "version": 5,
+      "status": "revising",
+      "reason": "v4\u5ba1\u67e5REVISE\uff1aRelated Work(1253\u2192900-1100) + Experiments(5877\u21923150-3850)",
+      "timestamp": "2026-03-18T16:22:00+08:00"
+    },
+    {
+      "stage": "4.5a",
+      "dir": "drafts",
+      "version": 5,
+      "status": "Leader\u624b\u52a8\u4fee\u6b63",
+      "reason": "Experiments \u5b57\u6570\u7cbe\u7b80\u7ea62000\u8bcd",
+      "timestamp": "2026-03-18T16:30:00+08:00"
+    },
+    {
+      "stage": "5",
+      "dir": "final",
+      "version": 3,
+      "status": "in_progress",
+      "timestamp": "2026-03-18T16:30:00+08:00"
+    },
+    {
+      "stage": "10",
+      "dir": "drafts",
+      "version": 6,
+      "status": "revised",
+      "reason": "\u7528\u6237Major Revision: Experiments\u6269\u5145 + References\u5f15\u7528\u8865\u5145",
+      "timestamp": "2026-03-18T17:50:00+08:00"
+    },
+    {
+      "stage": "5",
+      "dir": "final",
+      "version": 4,
+      "status": "created",
+      "reason": "Round 1 \u4fee\u6539\u6574\u5408",
+      "timestamp": "2026-03-18T18:32:00+08:00"
+    },
+    {
+      "stage": "5",
+      "dir": "final",
+      "version": 4,
+      "status": "created",
+      "timestamp": "2026-03-18T18:32:00+08:00"
+    },
+    {
+      "stage": "10",
+      "dir": "drafts",
+      "version": 7,
+      "status": "revised",
+      "reason": "Round 2 Minor Revision: Intro\u5f15\u7528+Abstract\u6269\u5145+Conclusion\u7f29\u51cf",
+      "timestamp": "2026-03-18T19:07:00+08:00"
+    }
+  ]
+}

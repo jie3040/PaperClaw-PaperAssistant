@@ -1,0 +1,7 @@
+{
+  "target": "writer",
+  "port": 18840,
+  "token": "writer-hook-2026",
+  "message": "撰写 Experiments 子节 4.2 Baselines。\n\n★ 字数要求：350词\n★ 写入路径：SHARED/drafts/v1/section_experiments_4.2.tex\n\n完整 outline：SHARED/outline/v3/paper_outline.md（读取 Experiments section 了解全貌）\n已完成的上一节：SHARED/drafts/v1/section_experiments_4.1.tex（必须先读，确保内容衔接）\n\n开头要自然承接 4.1 Datasets 的结尾。\n\n完成后回报实际字数。",
+  "sessionKey": "hook:write-exp-4.2"
+}

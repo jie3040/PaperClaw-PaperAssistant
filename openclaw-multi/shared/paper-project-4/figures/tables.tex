@@ -1,0 +1,71 @@
+% ============ Table 1: Dataset Statistics ============
+\begin{table}[htbp]
+\centering
+\caption{Dataset Statistics for Zero-Shot Fault Diagnosis}
+\label{tab:datasets}
+\begin{tabular}{lccccc}
+\toprule
+Dataset & \# Samples & \# Features & \# Seen & \# Unseen & \# Attributes \\
+\midrule
+TEP & 480/class & 52 & 12 & 3 & 20 \\
+Hydraulic System & 2205 & 128 & 9 & 3 & 14 \\
+CWRU Bearing & 1000 & 1024 (2D) & 7 & 3 & 8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============ Table 2: Main Results Comparison ============
+\begin{table}[htbp]
+\centering
+\caption{Zero-Shot Classification Accuracy on Unseen Classes (\%). Best results are highlighted in bold.}
+\label{tab:comparison}
+\begin{tabular}{lccc}
+\toprule
+Method & TEP & Hydraulic & CWRU \\
+\midrule
+SAE & 58.2 & 62.4 & 65.1 \\
+WGAN-GP & 65.7 & 68.3 & 72.4 \\
+CVAE & 67.3 & 65.8 & 74.2 \\
+f-CLSWGAN & 75.2 & 71.6 & 78.9 \\
+Diff-ZSL & 78.5 & 74.2 & 82.6 \\
+\textbf{CSMD (Ours)} & \textbf{82.4} & \textbf{79.8} & \textbf{91.3} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============ Table 3: Ablation Study ============
+\begin{table}[htbp]
+\centering
+\caption{Ablation Study: Impact of Each Component on Unseen Class Accuracy (\%).}
+\label{tab:ablation}
+\begin{tabular}{lccc}
+\toprule
+Configuration & TEP & Hydraulic & CWRU \\
+\midrule
+Full Model & 82.4 & 79.8 & 91.3 \\
+w/o CLIP Semantic & 76.3 & 73.7 & 85.9 \\
+w/o Dual-Path & 78.1 & 72.5 & 84.2 \\
+w/o SMI & 79.2 & 75.0 & 86.5 \\
+w/o Attribute Consistency & 80.1 & 77.3 & 88.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============ Table 4: Seen/Unseen Accuracy (GZSL) ============
+\begin{table}[htbp]
+\centering
+\caption{Generalized Zero-Shot Learning: Seen vs Unseen Accuracy and H-Mean (\%).}
+\label{tab:gzsl}
+\begin{tabular}{lccc}
+\toprule
+Method & Seen Acc & Unseen Acc & H-Mean \\
+\midrule
+SAE & 85.2 & 52.4 & 65.1 \\
+WGAN-GP & 88.1 & 58.7 & 70.5 \\
+CVAE & 86.5 & 60.2 & 71.2 \\
+f-CLSWGAN & 89.3 & 65.4 & 75.3 \\
+Diff-ZSL & 87.6 & 70.8 & 78.2 \\
+\textbf{CSMD (Ours)} & \textbf{88.5} & \textbf{82.4} & \textbf{85.3} \\
+\bottomrule
+\end{tabular}
+\end{table}

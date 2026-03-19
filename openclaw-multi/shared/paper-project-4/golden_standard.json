@@ -1,0 +1,84 @@
+{
+  "source_papers": [
+    {
+      "title": "Dual-Path Conditional Diffusion Model with Attribute Consistency for Zero-Shot Fault Diagnosis",
+      "file": "example_1_parsed/example_1/auto/example_1.md"
+    },
+    {
+      "title": "Example Paper 2",
+      "file": "example_2_parsed/example_2/auto/example_2.md"
+    }
+  ],
+  "structure": {
+    "total_sections": 6,
+    "total_subsections": 22,
+    "sections": [
+      {
+        "name": "Introduction",
+        "subsections": [],
+        "approx_words": 1200,
+        "approx_paragraphs": 8,
+        "figures_in_section": 2,
+        "tables_in_section": 0
+      },
+      {
+        "name": "Related Work / Preliminary Knowledge",
+        "subsections": ["Zero-Shot Learning", "Problem Definition", "Domain Shift"],
+        "approx_words": 1000,
+        "approx_paragraphs": 6,
+        "figures_in_section": 1,
+        "tables_in_section": 0
+      },
+      {
+        "name": "Methodology",
+        "subsections": ["Overall Framework", "Data Preprocessing", "Model Training", "Attribute-based Diffusion Path", "Feature-based Diffusion Path", "Attribute Consistency Loss"],
+        "approx_words": 4000,
+        "approx_paragraphs": 15,
+        "figures_in_section": 2,
+        "tables_in_section": 1
+      },
+      {
+        "name": "Experiments",
+        "subsections": ["Datasets", "Experimental Setup", "Comparison Methods", "Results"],
+        "approx_words": 3500,
+        "approx_paragraphs": 12,
+        "figures_in_section": 4,
+        "tables_in_section": 3
+      },
+      {
+        "name": "Conclusion",
+        "subsections": [],
+        "approx_words": 500,
+        "approx_paragraphs": 3,
+        "figures_in_section": 0,
+        "tables_in_section": 0
+      }
+    ]
+  },
+  "figures": {
+    "total_count": 6,
+    "types": [
+      {"id": "fig1", "type": "架构图", "section": "Introduction", "description": "传统 vs 零样本故障诊断对比"},
+      {"id": "fig2", "type": "流程图", "section": "Methodology", "description": "Domain shift 问题示意图"},
+      {"id": "fig3", "type": "架构图", "section": "Methodology", "description": "CDDM 整体框架"},
+      {"id": "fig4", "type": "流程图", "section": "Methodology", "description": "数据预处理流程"},
+      {"id": "fig5", "type": "实验结果图", "section": "Experiments", "description": "主实验对比柱状图"},
+      {"id": "fig6", "type": "消融图", "section": "Experiments", "description": "消融实验折线图"}
+    ]
+  },
+  "tables": {
+    "total_count": 3,
+    "types": [
+      {"id": "tab1", "section": "Methodology", "description": "符号定义表", "approx_rows": 8},
+      {"id": "tab2", "section": "Experiments", "description": "数据集描述", "approx_rows": 3},
+      {"id": "tab3", "section": "Experiments", "description": "主实验对比表", "approx_rows": 10}
+    ]
+  },
+  "references": {
+    "total_count": 54,
+    "approx_range": [45, 60]
+  },
+  "total_pages": 14,
+  "abstract_words": 200,
+  "formatting_notes": "双栏, IEEE TIM 格式"
+}

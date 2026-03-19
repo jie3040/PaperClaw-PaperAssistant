@@ -1,0 +1,558 @@
+{
+  "survey_metadata": {
+    "topic": "Zero-shot fault diagnosis based on generative models",
+    "target_journal": "IEEE Transactions on Instrumentation and Measurement",
+    "survey_date": "2026-03-11",
+    "total_references": 40,
+    "coverage_period": "2022-2026"
+  },
+  "references": [
+    {
+      "id": 1,
+      "title": "Zero-shot compound fault diagnosis with semantic graph embedding and multi-stage fusion",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Neurocomputing",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0925231225030619",
+      "category": "Zero-Shot Learning",
+      "subcategory": "Semantic Embedding",
+      "key_contribution": "Proposes semantic graph embedding for compound fault diagnosis with multi-stage feature fusion",
+      "relevance": "High - Core zero-shot methodology"
+    },
+    {
+      "id": 2,
+      "title": "A Hybrid Semantic-Based Embedded Zero-Shot Learning Method for Compound Fault Diagnosis of Bearings",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Measurement Science and Technology (IOP)",
+      "url": "https://iopscience.iop.org/article/10.1088/1361-6501/ae1a02",
+      "category": "Zero-Shot Learning",
+      "subcategory": "Semantic Embedding",
+      "key_contribution": "Uses Symmetrized Dot Patterns (SDP) with semantic embedding module for compound fault diagnosis",
+      "relevance": "High - Bearing-specific zero-shot method"
+    },
+    {
+      "id": 3,
+      "title": "Zero-shot fault diagnosis using soft semantic embedding of diffusion-encoded probability",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Advanced Engineering Informatics",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S1474034625002125",
+      "category": "Zero-Shot Learning",
+      "subcategory": "Semantic Embedding",
+      "key_contribution": "Introduces soft semantic embedding with diffusion-encoded probability for zero-shot diagnosis",
+      "relevance": "High - Novel semantic embedding approach"
+    },
+    {
+      "id": 4,
+      "title": "Simulation-data Driven Generalized Zero-Shot Learning for Multi-agent Bearing Compound Fault Diagnosis",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Knowledge-Based Systems",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0950705125006410",
+      "category": "Zero-Shot Learning",
+      "subcategory": "Simulation-Driven",
+      "key_contribution": "Leverages simulation data to train generative models for compound fault diagnosis without real samples",
+      "relevance": "Very High - Simulation-driven GZSL approach"
+    },
+    {
+      "id": 5,
+      "title": "A zero-shot across tasks fault diagnosis method of bearings combined simulation model with experimental data",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Chinese Journal of Aeronautics",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1000934525001646",
+      "category": "Zero-Shot Learning",
+      "subcategory": "Simulation-Driven",
+      "key_contribution": "Combines simulation models with limited experimental data for zero-shot diagnosis across working conditions",
+      "relevance": "High - Addresses domain shift"
+    },
+    {
+      "id": 6,
+      "title": "Digital Twin-Driven Zero-Shot Fault Diagnosis of Axial Piston Pumps Using Fluid-Borne Noise Signals",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "arXiv",
+      "url": "https://arxiv.org/abs/2512.19280",
+      "category": "Zero-Shot Learning",
+      "subcategory": "Digital Twin",
+      "key_contribution": "Calibrates high-fidelity digital twin using only healthy-state data with PINN as virtual sensor",
+      "relevance": "High - Digital twin approach"
+    },
+    {
+      "id": 7,
+      "title": "Cross-domain zero-shot fault diagnosis method for high-voltage circuit breakers driven by multidomain spatial projection and dual embedded structure",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Digital Chemical Engineering",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S2452414X25001992",
+      "category": "Zero-Shot Learning",
+      "subcategory": "Cross-Domain",
+      "key_contribution": "Uses multidomain spatial projection with dual embedded structure for cross-domain zero-shot diagnosis",
+      "relevance": "Medium - Cross-domain methodology"
+    },
+    {
+      "id": 8,
+      "title": "A Zero-Shot Framework for Compound Fault Diagnosis in Rotating Machinery Using Orthogonal High-order Semantics and Cross-hierarchical Discriminative Learning",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "IEEE Transactions on Quantum Engineering",
+      "url": "https://tqe.ieee.org/2025/08/11/a-zero-shot-framework-for-compound-fault-diagnosis-in-rotating-machinery-using-orthogonal-high-order-semantics-and-cross-hierarchical-discriminative-learning/",
+      "category": "Zero-Shot Learning",
+      "subcategory": "Compound Fault",
+      "key_contribution": "Orthogonal constraint mechanism with multi-level optimization for compound fault diagnosis",
+      "relevance": "Very High - Advanced compound fault method"
+    },
+    {
+      "id": 9,
+      "title": "Knowledge-data synergy enabling zero-shot composite fault diagnosis in sucker-rod pumping systems",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Engineering Applications of Artificial Intelligence",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0952197625024741",
+      "category": "Zero-Shot Learning",
+      "subcategory": "Knowledge-Data Fusion",
+      "key_contribution": "Constructs unified semantic space by jointly embedding text-based descriptions and capsule-encoded features",
+      "relevance": "High - Knowledge-data synergy"
+    },
+    {
+      "id": 10,
+      "title": "Domain Knowledge-Driven Zero-Shot Learning for Induced Draft Fans Fault Diagnosis",
+      "authors": "Xie et al.",
+      "year": 2025,
+      "venue": "Quality and Reliability Engineering International (Wiley)",
+      "url": "https://onlinelibrary.wiley.com/doi/abs/10.1002/qre.70115",
+      "category": "Zero-Shot Learning",
+      "subcategory": "Domain Knowledge",
+      "key_contribution": "Leverages domain-specific knowledge with CGAN to synthesize realistic fault data",
+      "relevance": "High - Domain knowledge integration"
+    },
+    {
+      "id": 11,
+      "title": "Fault Diagnosis for Imbalanced Datasets Based on Deep Convolution Fuzzy System",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Machines (MDPI)",
+      "url": "https://www.mdpi.com/2075-1702/13/4/326",
+      "category": "Generative Models",
+      "subcategory": "VAE",
+      "key_contribution": "Proposes Bidirectional Autoregressive VAE (BAVAE) with Deep Convolutional Interval Type-2 Fuzzy System",
+      "relevance": "High - VAE for imbalanced data"
+    },
+    {
+      "id": 12,
+      "title": "Fault detection of high-speed train wheelset bearings based on improved auxiliary classifier generative adversarial networks and VAE",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "PLOS ONE",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0335368",
+      "category": "Generative Models",
+      "subcategory": "VAE-GAN Hybrid",
+      "key_contribution": "Combines VAE with Improved Auxiliary Classifier GAN achieving 88.04% accuracy on XJTU dataset",
+      "relevance": "High - VAE-GAN hybrid approach"
+    },
+    {
+      "id": 13,
+      "title": "Variational Autoencoder Based on Distributional Semantic Embedding and Cross-Modal Reconstruction for Generalized Zero-Shot Fault Diagnosis",
+      "authors": "Mou et al.",
+      "year": 2023,
+      "venue": "Process Safety and Environmental Protection",
+      "url": "Referenced in literature",
+      "category": "Generative Models",
+      "subcategory": "VAE",
+      "key_contribution": "Uses distributional semantic embedding in VAE latent space with cross-modal reconstruction",
+      "relevance": "Very High - VAE for GZSL"
+    },
+    {
+      "id": 14,
+      "title": "C-GAN-VAE: Causal Generative Adversarial Variational Autoencoder for few shot fine grained cross domain fault diagnosis for planetary gearbox",
+      "authors": "Not specified",
+      "year": 2026,
+      "venue": "Engineering Applications of Artificial Intelligence",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0952197626005269",
+      "category": "Generative Models",
+      "subcategory": "VAE-GAN Hybrid",
+      "key_contribution": "Integrates CGAN into Gaussian Mixture VAE for few-shot cross-domain diagnosis",
+      "relevance": "Very High - Recent causal approach"
+    },
+    {
+      "id": 15,
+      "title": "Mixed-attention variational autoencoding generative adversarial networks for rolling bearing fault diagnosis",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Measurement",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0263224125027733",
+      "category": "Generative Models",
+      "subcategory": "VAE-GAN Hybrid",
+      "key_contribution": "Proposes mixed-attention mechanism in VAE-GAN framework for imbalanced data",
+      "relevance": "High - Attention-based VAE-GAN"
+    },
+    {
+      "id": 16,
+      "title": "CWMS-GAN: A small-sample bearing fault diagnosis method based on continuous wavelet transform and multi-size kernel attention mechanism",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "PLOS ONE",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0319202",
+      "category": "Generative Models",
+      "subcategory": "GAN",
+      "key_contribution": "Combines CWT with GAN and multi-size kernel attention for small-sample diagnosis",
+      "relevance": "High - Small-sample GAN method"
+    },
+    {
+      "id": 17,
+      "title": "Application of an improved GAN with a filter mechanism in small-sample bearing fault diagnosis",
+      "authors": "Zhang YH et al.",
+      "year": 2025,
+      "venue": "Measurement",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0263224125019426",
+      "category": "Generative Models",
+      "subcategory": "GAN",
+      "key_contribution": "Introduces filter mechanism to improve GAN quality for bearing fault diagnosis",
+      "relevance": "High - Improved GAN architecture"
+    },
+    {
+      "id": 18,
+      "title": "A hybrid approach combining deep learning and signal processing for bearing fault diagnosis under imbalanced samples and multiple operating conditions",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Scientific Reports (Nature)",
+      "url": "https://www.nature.com/articles/s41598-025-98138-1",
+      "category": "Generative Models",
+      "subcategory": "GAN",
+      "key_contribution": "Combines GAN with transfer learning, wavelet transform, and MAC-MHA for multi-condition diagnosis",
+      "relevance": "High - Hybrid GAN approach"
+    },
+    {
+      "id": 19,
+      "title": "An adaptive fused domain-cycling variational generative adversarial network for machine fault diagnosis under data scarcity",
+      "authors": "Wang et al.",
+      "year": 2025,
+      "venue": "Information Fusion",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S1566253525006888",
+      "category": "Generative Models",
+      "subcategory": "GAN",
+      "key_contribution": "Proposes AFDVGAN to synthesize highly realistic data under data scarcity",
+      "relevance": "Very High - Advanced VGAN"
+    },
+    {
+      "id": 20,
+      "title": "Fault diagnosis methods for imbalanced samples of hydraulic pumps based on DA-DCGAN",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Scientific Reports (Nature)",
+      "url": "https://www.nature.com/articles/s41598-025-04909-1",
+      "category": "Generative Models",
+      "subcategory": "GAN",
+      "key_contribution": "Dual Attention-Deep Convolutional GAN for hydraulic pump fault diagnosis",
+      "relevance": "Medium - Hydraulic systems application"
+    },
+    {
+      "id": 21,
+      "title": "Enhancing multimodal fault diagnosis in mechanical systems via mixture of experts",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Complex & Intelligent Systems (Springer)",
+      "url": "https://link.springer.com/article/10.1007/s40747-025-02061-x",
+      "category": "Generative Models",
+      "subcategory": "GAN",
+      "key_contribution": "Employs WGAN-GP with Mixture of Experts architecture for multimodal diagnosis",
+      "relevance": "High - Multimodal approach"
+    },
+    {
+      "id": 22,
+      "title": "A fault diagnosis data augmentation method integrating multimodal non-Gaussian denoising diffusion generative adversarial network",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Advanced Engineering Informatics",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S147403462500669X",
+      "category": "Generative Models",
+      "subcategory": "Diffusion Model",
+      "key_contribution": "Integrates diffusion model with GAN for multimodal non-Gaussian fault data",
+      "relevance": "Very High - Diffusion-GAN hybrid"
+    },
+    {
+      "id": 23,
+      "title": "DiffViT-IBFD: A rolling bearing fault diagnosis approach based on diffusion model and vision transformer under data imbalance conditions",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Journal of Energy Storage",
+      "url": "https://www.sciencedirect.com/science/article/pii/S2590005625001109",
+      "category": "Generative Models",
+      "subcategory": "Diffusion Model",
+      "key_contribution": "Combines diffusion model with Vision Transformer for imbalanced bearing diagnosis",
+      "relevance": "Very High - Diffusion + Transformer"
+    },
+    {
+      "id": 24,
+      "title": "Diffusion-assisted framework for fault diagnosis of rotating machinery under highly imbalanced data conditions",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "ResearchGate",
+      "url": "https://www.researchgate.net/publication/394490888",
+      "category": "Generative Models",
+      "subcategory": "Diffusion Model",
+      "key_contribution": "Non-autoregressive network (Idfwave) for denoising in diffusion model",
+      "relevance": "High - Diffusion for imbalanced data"
+    },
+    {
+      "id": 25,
+      "title": "Diffusion model-assisted cross-domain fault diagnosis for rotating machinery under limited data",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Reliability Engineering & System Safety",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0951832025005733",
+      "category": "Generative Models",
+      "subcategory": "Diffusion Model",
+      "key_contribution": "Novel diffusion model-assisted cross-domain diagnosis method for data scarcity",
+      "relevance": "Very High - Cross-domain diffusion"
+    },
+    {
+      "id": 26,
+      "title": "A novel lightweight DDPM-based data augmentation method for rotating machinery fault diagnosis with small sample",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Mechanical Systems and Signal Processing",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S088832702500442X",
+      "category": "Generative Models",
+      "subcategory": "Diffusion Model",
+      "key_contribution": "Lightweight Denoising Diffusion Probabilistic Model for small-sample diagnosis",
+      "relevance": "High - Lightweight DDPM"
+    },
+    {
+      "id": 27,
+      "title": "Intelligent fault diagnosis method based on data generation and long-patch vision transformer under small samples",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Applied Intelligence (Springer)",
+      "url": "https://link.springer.com/article/10.1007/s10489-025-06535-w",
+      "category": "Generative Models",
+      "subcategory": "Diffusion Model",
+      "key_contribution": "Combines diffusion modeling with improved Vision Transformer and long-patch mechanism",
+      "relevance": "High - Diffusion + ViT"
+    },
+    {
+      "id": 28,
+      "title": "BearGen: LLM-guided signal generation framework for bearing fault diagnosis",
+      "authors": "Not specified",
+      "year": 2026,
+      "venue": "Advanced Engineering Informatics",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S1474034626000923",
+      "category": "Generative Models",
+      "subcategory": "LLM-Guided Diffusion",
+      "key_contribution": "LLM generates signal descriptions to guide diffusion model for bearing fault diagnosis",
+      "relevance": "Very High - LLM + Diffusion"
+    },
+    {
+      "id": 29,
+      "title": "Virtual sample diffusion generation method guided by large language model-generated knowledge for enhancing information completeness and zero-shot fault diagnosis in building thermal systems",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Journal of Zhejiang University-SCIENCE A",
+      "url": "https://link.springer.com/article/10.1631/jzus.A2400560",
+      "category": "Generative Models",
+      "subcategory": "LLM-Guided Diffusion",
+      "key_contribution": "Knowledge-guided virtual sample generation for zero-shot diagnosis in building systems",
+      "relevance": "High - LLM knowledge guidance"
+    },
+    {
+      "id": 30,
+      "title": "Large language models for explainable fault diagnosis of machines",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Engineering Applications of Artificial Intelligence",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0952197625031628",
+      "category": "Large Language Models",
+      "subcategory": "Zero-Shot LLM",
+      "key_contribution": "LLaMA models achieve robust zero-shot adaptability across operating conditions",
+      "relevance": "Very High - LLM zero-shot"
+    },
+    {
+      "id": 31,
+      "title": "Fd-Llm: Large Language Model for Fault Diagnosis of Machines",
+      "authors": "QAID et al.",
+      "year": 2025,
+      "venue": "SSRN",
+      "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5231028",
+      "category": "Large Language Models",
+      "subcategory": "Zero-Shot LLM",
+      "key_contribution": "Llama3-8B demonstrates robust zero-shot adaptability and cross-dataset generalization",
+      "relevance": "Very High - Recent LLM work"
+    },
+    {
+      "id": 32,
+      "title": "SYN-DIAG: An LLM-based Synergistic Framework for Generalizable Few-shot Fault Diagnosis on the Edge",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "arXiv",
+      "url": "https://arxiv.org/html/2510.05733v1",
+      "category": "Large Language Models",
+      "subcategory": "Cloud-Edge LLM",
+      "key_contribution": "Cloud-edge synergistic framework with visual-semantic synergy and knowledge distillation",
+      "relevance": "Very High - Edge deployment"
+    },
+    {
+      "id": 33,
+      "title": "Adjust to reality: LLM-driven test-time semantic adjustment for zero-shot fault diagnosis",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Control Engineering Practice",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0967066125001698",
+      "category": "Large Language Models",
+      "subcategory": "Test-Time Adaptation",
+      "key_contribution": "LLM-driven test-time semantic adjustment to overcome domain shift problem",
+      "relevance": "Very High - Test-time adaptation"
+    },
+    {
+      "id": 34,
+      "title": "KG-SR-LLM: Knowledge-Guided Semantic Representation and Large Language Model Framework for Cross-Domain Bearing Fault Diagnosis",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Sensors (MDPI)",
+      "url": "https://www.mdpi.com/1424-8220/25/18/5758",
+      "category": "Large Language Models",
+      "subcategory": "Knowledge Graph + LLM",
+      "key_contribution": "Knowledge graph-guided semantic representation with LLM for cross-domain diagnosis",
+      "relevance": "Very High - KG + LLM"
+    },
+    {
+      "id": 35,
+      "title": "Multimodal data-enabled large model for machine fault diagnosis towards intelligent operation and maintenance",
+      "authors": "Not specified",
+      "year": 2026,
+      "venue": "Digital Chemical Engineering",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S2452414X26000026",
+      "category": "Large Language Models",
+      "subcategory": "Multimodal LLM",
+      "key_contribution": "Encodes fault-related semantic relationships in triplet format for interpretable diagnosis",
+      "relevance": "High - Multimodal LLM"
+    },
+    {
+      "id": 36,
+      "title": "Large language models for prognostic analysis in mechanical fault diagnosis",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "PLOS ONE",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0337203",
+      "category": "Large Language Models",
+      "subcategory": "Prognostic Analysis",
+      "key_contribution": "Combines deep semantic understanding of LLMs with failure mechanisms for prognostics",
+      "relevance": "High - Prognostic LLM"
+    },
+    {
+      "id": 37,
+      "title": "A novel temporal classification prototype network for few-shot bearing fault detection",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Scientific Reports (Nature)",
+      "url": "https://www.nature.com/articles/s41598-025-98963-4",
+      "category": "Few-Shot Learning",
+      "subcategory": "Prototype Network",
+      "key_contribution": "Temporal classification prototype network for few-shot bearing fault detection",
+      "relevance": "Medium - Few-shot related"
+    },
+    {
+      "id": 38,
+      "title": "Few-shot cross-domain fault diagnosis via adversarial meta-learning",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Scientific Reports (Nature)",
+      "url": "https://www.nature.com/articles/s41598-025-25854-z",
+      "category": "Few-Shot Learning",
+      "subcategory": "Meta-Learning",
+      "key_contribution": "Adversarial meta-learning for few-shot cross-domain fault diagnosis",
+      "relevance": "Medium - Meta-learning approach"
+    },
+    {
+      "id": 39,
+      "title": "Zero/few-shot fault diagnosis of rotary mechanism in rotational inertial navigation system based on digital twin and transfer learning",
+      "authors": "Not specified",
+      "year": 2025,
+      "venue": "Measurement",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0263224125026120",
+      "category": "Zero-Shot Learning",
+      "subcategory": "Digital Twin",
+      "key_contribution": "High-fidelity digital twin with few-shot transfer learning for rotary mechanism diagnosis",
+      "relevance": "High - Digital twin + transfer"
+    },
+    {
+      "id": 40,
+      "title": "A Comprehensive Review of Deep Transfer Learning for Intelligent Fault Diagnosis in Rotating Machines",
+      "authors": "Feisa et al.",
+      "year": 2025,
+      "venue": "Engineering Reports (Wiley)",
+      "url": "https://onlinelibrary.wiley.com/doi/10.1002/eng2.70494",
+      "category": "Survey",
+      "subcategory": "Transfer Learning",
+      "key_contribution": "Comprehensive review categorizing DTL methods into instance, feature, parameter, and adversarial-based transfer",
+      "relevance": "High - Comprehensive survey"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "CWRU (Case Western Reserve University)",
+      "description": "Most widely used bearing fault diagnosis benchmark",
+      "characteristics": {
+        "sampling_frequency": "12 kHz",
+        "load_conditions": "0-3 HP",
+        "fault_sizes": ["0.118 mm", "0.356 mm", "0.533 mm"],
+        "fault_types": ["Inner race", "Outer race", "Rolling element"]
+      },
+      "typical_performance": "99-100% accuracy (clean), 85-95% at 5dB SNR"
+    },
+    {
+      "name": "XJTU-SY (Xi'an Jiaotong University)",
+      "description": "Life-cycle bearing data with multiple operating conditions",
+      "characteristics": {
+        "sampling_frequency": "25.6 kHz",
+        "complexity": "Higher than CWRU, more realistic"
+      },
+      "typical_performance": "96-100% accuracy"
+    },
+    {
+      "name": "SEU (Southeast University)",
+      "description": "Variable speed conditions with multiple bearing types",
+      "characteristics": {
+        "features": ["Variable speed", "Multiple bearing types", "Cross-machine scenarios"]
+      }
+    },
+    {
+      "name": "PU (Padua University)",
+      "description": "European bearing standards with different sensor configurations",
+      "characteristics": {
+        "features": ["European standards", "Different sensors", "Cross-dataset validation"]
+      }
+    },
+    {
+      "name": "JNU (Jiangnan University)",
+      "description": "Multiple rotational velocities",
+      "characteristics": {
+        "sampling_frequency": "50 kHz",
+        "rotational_velocities": ["600 r/min", "800 r/min", "1000 r/min"],
+        "fault_types": ["Outer race", "Inner race", "Rolling element"]
+      }
+    }
+  ],
+  "evaluation_metrics": [
+    {
+      "metric": "Accuracy",
+      "formula": "(TP + TN) / (TP + FP + FN + TN)",
+      "typical_range": "99-100% (CWRU), 96-100% (XJTU)"
+    },
+    {
+      "metric": "F1-Score",
+      "formula": "2 × (Precision × Recall) / (Precision + Recall)",
+      "typical_range": "0.96-0.998"
+    },
+    {
+      "metric": "Harmonic Mean (H)",
+      "formula": "2 × (S × U) / (S + U)",
+      "description": "Balances seen (S) and unseen (U) class accuracy for GZSL"
+    },
+    {
+      "metric": "SNR Robustness",
+      "test_conditions": ["-4dB", "0dB", "4dB", "6dB"],
+      "robust_threshold": ">90% at 0dB, >85% at -4dB"
+    }
+  ]
+}

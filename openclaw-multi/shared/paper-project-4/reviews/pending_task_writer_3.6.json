@@ -1,0 +1,7 @@
+{
+  "target": "writer",
+  "port": 18840,
+  "token": "writer-hook-2026",
+  "message": "撰写 Method 子节 3.6 Semantic Manifold Interpolation (SMI)。\n\n★ 字数要求：350词\n★ 写入：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/drafts/v2/section_method_3.6.tex\n★ 完整 outline：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/outline/v2/paper_outline.md（读取整个 Method section 了解全貌）\n★ 已完成前序子节：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/drafts/v2/section_method_3.5.tex（必须先读，确保内容衔接）\n\n具体内容要求：\n- 动机：平滑过渡seen fault semantics以覆盖unseen fault space\n- CLIP语义空间插值：s_unseen = α·s_i + (1-α)·s_j\n- 流形感知插值（geodesic vs linear）\n- 通过插值语义生成unseen faults特征\n\n开头要自然承接 3.5 结尾。术语符号与 3.5 保持一致。",
+  "sessionKey": "hook:write-method-3.6"
+}

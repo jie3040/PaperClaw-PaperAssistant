@@ -1,0 +1,154 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-01-21> (./IEEEtran.cls
+Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
+-- See the "IEEEtran_HOWTO" manual for usage information.
+-- http://www.michaelshell.org/tex/ieeetran/
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd)
+** ATTENTION: Single column mode is not typically used with IEEE publications.
+-- Using 8.5in x 11in (letter) paper.
+-- Using PDF output.
+-- This is a 12 point document.
+) (/usr/share/texlive/texmf-dist/tex/latex/cite/cite.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithmic.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/preprint/balance.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+No file paper.aux.
+-- Lines per column: 50 (exact).
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+
+LaTeX Warning: Reference `sec:related' on page 3 undefined on input line 56.
+
+
+LaTeX Warning: Reference `sec:method' on page 3 undefined on input line 56.
+
+
+LaTeX Warning: Reference `sec:experiments' on page 3 undefined on input line 56
+.
+
+
+LaTeX Warning: Reference `sec:conclusion' on page 3 undefined on input line 56.
+
+
+
+LaTeX Warning: Citation `lampert2009learning' on page 3 undefined on input line
+ 64.
+
+
+LaTeX Warning: Citation `xian2019zero' on page 3 undefined on input line 64.
+
+
+LaTeX Warning: Citation `feng2021fault' on page 3 undefined on input line 66.
+
+
+LaTeX Warning: Citation `gao2019contractive' on page 3 undefined on input line 
+66.
+
+
+LaTeX Warning: Citation `fu2015transductive' on page 3 undefined on input line 
+68.
+
+[3]
+
+LaTeX Warning: Citation `ho2020denoising' on page 4 undefined on input line 71.
+
+
+
+LaTeX Warning: Citation `radford2021learning' on page 4 undefined on input line
+ 78.
+
+
+LaTeX Warning: File `../figures/fig1_architecture.png' not found on input line 
+89.
+
+
+! Package pdftex.def Error: File `../figures/fig1_architecture.png' not found: 
+using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.89 ...mnwidth]{../figures/fig1_architecture.png}
+                                                  
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd)
+
+LaTeX Warning: Reference `fig:architecture' on page 4 undefined on input line 9
+4.
+
+[4] [5] (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [6] [7] [8]
+
+LaTeX Warning: Citation `riordan2013tennessee' on page 9 undefined on input lin
+e 191.
+
+[9]
+
+LaTeX Warning: Reference `tab:comparison' on page 10 undefined on input line 22
+8.
+
+
+LaTeX Warning: Reference `tab:ablation' on page 10 undefined on input line 255.
+
+
+[10]
+
+LaTeX Warning: Reference `tab:datasets' on page 11 undefined on input line 280.
+
+
+[11]
+No file paper.bbl.
+[12] (./paper.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information){/usr/share/texlive/texmf-d
+ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
+rw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb
+8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (12 pages, 218830 bytes).
+Transcript written on paper.log.

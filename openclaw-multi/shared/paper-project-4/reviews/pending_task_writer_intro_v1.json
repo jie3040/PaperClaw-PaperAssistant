@@ -1,0 +1,9 @@
+{
+  "target": "writer",
+  "port": 18840,
+  "token": "writer-hook-2026",
+  "message": "撰写 Introduction section。\n\n★ 字数要求：1200词\n★ 写入路径：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/drafts/v1/section_introduction.tex\n\nOutline 段落规划：\n- P1: Industrial fault diagnosis background — importance of reliable equipment monitoring in modern manufacturing\n- P2: Data scarcity challenge — collecting fault samples for all fault types is impractical, especially for rare/novel faults\n- P3: Existing ZSL methods — attribute-based zero-shot learning approaches for fault diagnosis (binary attribute vectors, compatibility functions)\n- P4: GAN/Diffusion-based generation methods — recent generative approaches for augmenting unseen fault data\n- P5: Limitations of existing methods — static binary attributes lose semantic richness; domain shift between seen and unseen; poor generalization\n- P6: Our solution — CLIP-Enhanced Semantic Manifold Diffusion (CESM-Diff): leveraging CLIP for continuous semantic embeddings + dual-path diffusion + semantic manifold interpolation\n- P7: Contributions (4 points):\n  1. First to integrate CLIP text encoder for continuous semantic fault descriptions in zero-shot fault diagnosis\n  2. Novel dual-path semantic diffusion architecture with cross-path attention\n  3. Semantic Manifold Interpolation (SMI) for smooth unseen fault generation\n  4. Comprehensive evaluation on TEP, Hydraulic System, and CWRU datasets\n- P8: Paper organization — brief roadmap of remaining sections\n\n相关文件：\n- 黄金标准：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/golden_standard.json\n- 调研报告：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/references/survey_report.md\n- 范例论文：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/examples/\n\n完成后回报实际字数。",
+  "sessionKey": "hook:write-intro-v1",
+  "created_at": "2026-03-18T11:17:00+08:00",
+  "status": "pending"
+}

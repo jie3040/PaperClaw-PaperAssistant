@@ -1,0 +1,96 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-01-21> (./IEEEtran.cls
+Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
+-- See the "IEEEtran_HOWTO" manual for usage information.
+-- http://www.michaelshell.org/tex/ieeetran/
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd)
+-- Using 8.5in x 11in (letter) paper.
+-- Using PDF output.
+-- This is a 10 point document.
+) (/usr/share/texlive/texmf-dist/tex/latex/cite/cite.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithmic.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./paper.aux)
+-- Lines per column: 58 (exact).
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+Underfull \hbox (badness 2080) in paragraph at lines 110--111
+\OT1/ptm/m/n/10 CLIP text en-coder, de-noted as $\OMS/cmsy/m/n/10 E[]\OT1/cmr/m
+/n/10 (\OMS/cmsy/m/n/10 ^^A\OT1/cmr/m/n/10 )$\OT1/ptm/m/n/10 . We adopt the
+[4 <../../figures/fig1_architecture.png>] [5 <../../figures/fig3_denoising.png>
+]
+Overfull \hbox (62.35915pt too wide) detected at line 166
+[]\OT1/cmr/bx/n/10 A[] \OT1/cmr/m/n/10 = [] [] \OML/cmm/m/it/10 ;  \OT1/cmr/bx/
+n/10 A[] \OT1/cmr/m/n/10 = [] []
+
+Underfull \hbox (badness 2111) in paragraph at lines 186--187
+[]\OT1/ptm/m/n/10 While Equa-tion (7) de-fines a lin-ear path, the high-
+[6] [7 <../../figures/fig2_manifold.png>]
+Underfull \hbox (badness 4752) in paragraph at lines 242--243
+[]\OT1/ptm/b/n/10 Hydraulic Sys-tem: \OT1/ptm/m/n/10 This dataset mon-i-tors a 
+multi-
+
+LaTeX Warning: Citation `zbontar2021barlow' on page 8 undefined on input line 2
+54.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 257--258
+[]\OT1/ptm/b/n/10 CADA-VAE\OT1/ptm/m/n/10 : Cross-Alignment Dis-en-tan-gled Aut
+o-
+[8] [9 <../../figures/plot_1_tsne.png> <../../figures/plot_4_ablation.png> <../
+../figures/plot_5_convergence.png>]
+Underfull \hbox (badness 1783) in paragraph at lines 362--363
+[]\OT1/ptm/m/n/10 Comprehensive ex-per-i-men-tal re-sults on the TEP, Hy-
+[10] (./paper.aux)
+
+LaTeX Warning: There were undefined references.
+
+ )
+(see the transcript file for additional information){/usr/share/texlive/texmf-d
+ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
+rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8
+a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (10 pages, 11537460 bytes).
+Transcript written on paper.log.

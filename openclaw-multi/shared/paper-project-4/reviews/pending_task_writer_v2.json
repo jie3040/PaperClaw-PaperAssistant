@@ -1,0 +1,9 @@
+{
+  "target": "writer",
+  "port": 18840,
+  "token": "writer-hook-2026",
+  "message": "用户审查返修（内容对齐审查v1）。\n\n审查报告：SHARED/reviews/review_content_alignment_v1.md\n\n★ 修改后写入 SHARED/drafts/v2/（已从上版复制）\n\n【必须修改项】\n\n1. **Experiments 章节大幅缩减**（当前 5525 词 → 目标 2800-4200 词）\n   - 建议删除 1300-2700 词\n   - 聚焦核心实验内容，删除冗余描述\n   - 涉及文件：section_experiments.tex, section_experiments_4.1.tex, section_experiments_4.2.tex, section_experiments_4.3.tex\n\n2. **6 个未定义 citation 修复**\n   - chen2023pyramid → 搜索添加真实文献\n   - guo2025bearing → 搜索添加（不能用 guo2025motor 替换）\n   - li2023diffusionssl → 搜索添加\n   - natsumeda2024feature → 搜索添加\n   - example_paper_1 → 替换为实际论文引用\n   - riordan2013tennessee → 添加 TEP 原始论文\n   - 更新 references.bib\n\n3. **图表引用修复**\n   - Fig.1：在 Introduction 添加引用（如 \"As illustrated in Figure 1, ...\"）\n   - Fig.2：在 Methodology Section 3.2 添加引用\n   - Fig.3：将 \\ref{1} 改为正确 label（如 \\ref{fig:framework}）\n   - Fig.4：在 Methodology Section 3.4 添加引用\n   - Fig.5：将 fig:tsne 改为正确的 label\n   - Table 1：在 Methodology 符号定义处添加引用\n\n完成后回报实际修改内容。",
+  "sessionKey": "hook:writer-v2-revise",
+  "created_at": "2026-03-18T12:42:00+08:00",
+  "status": "pending"
+}

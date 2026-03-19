@@ -1,0 +1,9 @@
+{
+  "target": "checker",
+  "port": 18880,
+  "token": "checker-hook-2026",
+  "message": "LaTeX 审查修复\n\n待审文件：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/final/v1/paper.tex\n参考文献：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/final/v1/references.bib\n\n审查要求：\n1. 编译检查：pdflatex + bibtex 能否通过\n2. 格式检查：IEEEtran 模板规范（标题、作者、摘要、章节标题格式）\n3. 图表检查：所有 figure/table 引用是否正确\n4. 引用检查：references.bib 格式规范（作者、年份、期刊）\n\n输出报告到：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/reviews/latex_check_report_v1.md\n\n如需修复，先 cp v1/* → v2/，再在 v2/ 中修改。",
+  "sessionKey": "hook:checker-v1",
+  "created_at": "2026-03-18T14:31:00+08:00",
+  "status": "pending"
+}

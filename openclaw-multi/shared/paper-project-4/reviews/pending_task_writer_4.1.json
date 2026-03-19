@@ -1,0 +1,9 @@
+{
+  "target": "writer",
+  "port": 18840,
+  "token": "writer-hook-2026",
+  "message": "撰写 Experiments 子节 4.1 Datasets。\n\n★ 字数要求：400词\n★ 写入路径：SHARED/drafts/v1/section_experiments_4.1.tex\n★ 完整 outline：SHARED/outline/v1/paper_outline.md（读取了解 Experiments 全部内容）\n\n内容要求：\n- 介绍三个数据集：TEP (Tennessee Eastman Process), Hydraulic System, CWRU Bearing\n- 每个数据集说明数据规模、故障类别数、特点\n- 说明 seen/unseen classes 划分\n\n严格按字数要求撰写。完成后回报实际字数。",
+  "sessionKey": "hook:write-exp-4.1",
+  "created_at": "2026-03-18T12:02:00",
+  "status": "pending"
+}

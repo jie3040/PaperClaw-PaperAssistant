@@ -1,0 +1,9 @@
+{
+  "target": "reviewer",
+  "port": 18850,
+  "token": "reviewer-hook-2026",
+  "message": "请执行【框架对齐审查 v3】。\n\n黄金标准：SHARED/golden_standard.json\n待审框架：SHARED/outline/v3/paper_outline.md\n图表规划：SHARED/outline/v3/ 下所有规划文件\n范例论文：SHARED/examples/\n\n输出到 SHARED/reviews/review_outline_alignment_v3.md",
+  "sessionKey": "hook:review-outline-v3",
+  "created_at": "2026-03-18T11:39:30+08:00",
+  "status": "pending"
+}

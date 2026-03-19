@@ -1,0 +1,29 @@
+Brave Search Test Results
+Query: "machine learning transformers"
+Count: 3
+Date: Tuesday, March 10th, 2026 — 10:12 AM
+Provider: Brave
+Search Time: 1032ms
+
+=== RESULT 1 ===
+Title: Transformer (deep learning) - Wikipedia
+URL: https://en.wikipedia.org/wiki/Transformer_(deep_learning)
+Published: 2 days ago
+Description: The predecessors of transformers were developed as an improvement over previous architectures for machine translation, but have found many applications since. They are used in large-scale natural language processing, computer vision (vision transformers), reinforcement learning, audio, multimodal ...
+
+=== RESULT 2 ===
+Title: Let's talk Transformers in Machine Learning! | by Locus.Focus | Medium
+URL: https://medium.com/@locus.focus/lets-talk-transformers-in-machine-learning-14ea5ad8b8cb
+Published: December 29, 2023
+Description: Transformers, however, have ushered in a new paradigm. By leveraging their ability to discern patterns mathematically, they access a previously untapped wealth of information — the trillions of images and petabytes of text that reside untouched on the web and within corporate databases. This unprecedented access to raw, unlabeled data fuels a new era of machine learning possibilities.
+
+=== RESULT 3 ===
+Title: 7.3. Preprocessing data — scikit-learn 1.8.0 documentation
+URL: https://scikit-learn.org/stable/modules/preprocessing.html
+Description: The sklearn.preprocessing package provides several common utility functions and transformer classes to change raw feature vectors into a representation that is more suitable for the downstream estimators.
+
+=== TEST STATUS ===
+✓ Brave search executed successfully
+✓ Retrieved 3 results as requested
+✓ Results include Wikipedia, Medium article, and scikit-learn documentation
+✓ Search completed in ~1 second

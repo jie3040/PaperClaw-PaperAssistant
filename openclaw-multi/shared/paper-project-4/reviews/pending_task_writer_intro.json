@@ -1,0 +1,9 @@
+{
+  "target": "writer",
+  "port": 18840,
+  "token": "writer-hook-2026",
+  "message": "撰写 Introduction section。\n\n★ 字数要求：1200词\n★ 写入路径：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/drafts/v1/section_introduction.tex\n\nOutline：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/outline/v4/paper_outline.md\n\nIntroduction 段落规划：\n- P1 (~150词)：工业故障诊断背景 — 现代制造中可靠设备监控的重要性\n- P2 (~150词)：数据稀缺挑战 — 收集所有故障类型的故障样本不切实际，尤其是罕见/新型故障\n- P3 (~150词)：现有 ZSL 方法 — 基于属性的零样本学习方法（二值属性向量、兼容性函数）\n- P4 (~150词)：GAN/基于扩散的生成方法 — 用于增强未见故障数据的最新生成方法\n- P5 (~150词)：现有方法的局限 — 静态二值属性丢失语义丰富性；所见与未见类之间的域迁移；泛化能力差\n- P6 (~150词)：我们的方案 — CLIP-Enhanced Semantic Manifold Diffusion (CESM-Diff)：利用 CLIP 连续语义嵌入 + 双路径扩散 + 语义流形插值\n- P7 (~150词)：贡献（4点）：1. 首次将 CLIP 文本编码器集成到零样本故障诊断的连续语义故障描述中；2. 具有跨路径注意力的新型双路径语义扩散架构；3. 用于生成平滑未见故障的语义流形插值 (SMI)；4. 在 TEP、液压系统和 CWRU 数据集上的综合评估\n- P8 (~100词)：论文组织 — 剩余部分的简要路线图\n\n要求：\n1. 严格按照上述段落字数分配撰写\n2. 使用 LaTeX 格式，标准学术写作风格\n3. 术语保持一致（CLIP, CESM-Diff, ZSL, seen/unseen classes）\n4. 回报时注明实际字数",
+  "sessionKey": "hook:write-intro-v1",
+  "created_at": "2026-03-18T11:53:00+08:00",
+  "status": "pending"
+}

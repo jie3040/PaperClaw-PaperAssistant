@@ -1,0 +1,112 @@
+{
+  "figures": [
+    {
+      "id": "fig_test",
+      "filename": "fig_test_simple.png",
+      "description": "simple",
+      "type": "concept",
+      "created_at": "2026-03-09T22:46:02.598932",
+      "path": "/home/liaowenjie/.openclaw-multi/shared/paper-project/figures/fig_test_simple.png",
+      "size_bytes": 932332
+    },
+    {
+      "id": "fig6a",
+      "filename": "fig6a_causal_subspace_clustering.png",
+      "description": "causal_subspace_clustering",
+      "type": "data_plot",
+      "created_at": "2026-03-10T15:25:11.304788",
+      "path": "/home/liaowenjie/.openclaw-multi/shared/paper-project/figures/fig6a_causal_subspace_clustering.png",
+      "size_bytes": 335038
+    },
+    {
+      "id": "fig6b",
+      "filename": "fig6b_spurious_subspace_clustering.png",
+      "description": "spurious_subspace_clustering",
+      "type": "data_plot",
+      "created_at": "2026-03-10T15:25:11.459290",
+      "path": "/home/liaowenjie/.openclaw-multi/shared/paper-project/figures/fig6b_spurious_subspace_clustering.png",
+      "size_bytes": 224103
+    },
+    {
+      "id": "fig11",
+      "filename": "fig11_kshot_accuracy_curves.png",
+      "description": "kshot_accuracy_curves",
+      "type": "data_plot",
+      "created_at": "2026-03-10T15:25:11.622042",
+      "path": "/home/liaowenjie/.openclaw-multi/shared/paper-project/figures/fig11_kshot_accuracy_curves.png",
+      "size_bytes": 227886
+    },
+    {
+      "id": "fig12",
+      "filename": "fig12_confusion_matrix.png",
+      "description": "confusion_matrix",
+      "type": "data_plot",
+      "created_at": "2026-03-10T15:25:11.913245",
+      "path": "/home/liaowenjie/.openclaw-multi/shared/paper-project/figures/fig12_confusion_matrix.png",
+      "size_bytes": 154537
+    },
+    {
+      "id": "fig13",
+      "filename": "fig13_tsne_latent_space.png",
+      "description": "tsne_latent_space",
+      "type": "data_plot",
+      "created_at": "2026-03-10T15:25:12.237385",
+      "path": "/home/liaowenjie/.openclaw-multi/shared/paper-project/figures/fig13_tsne_latent_space.png",
+      "size_bytes": 433123
+    },
+    {
+      "id": "fig14",
+      "filename": "fig14_cross_domain_tsne.png",
+      "description": "cross_domain_tsne",
+      "type": "data_plot",
+      "created_at": "2026-03-10T15:25:12.563523",
+      "path": "/home/liaowenjie/.openclaw-multi/shared/paper-project/figures/fig14_cross_domain_tsne.png",
+      "size_bytes": 429513
+    },
+    {
+      "id": "fig15",
+      "filename": "fig15_spectrogram_comparison.png",
+      "description": "spectrogram_comparison",
+      "type": "data_plot",
+      "created_at": "2026-03-10T15:25:12.976432",
+      "path": "/home/liaowenjie/.openclaw-multi/shared/paper-project/figures/fig15_spectrogram_comparison.png",
+      "size_bytes": 241946
+    },
+    {
+      "id": "fig16",
+      "filename": "fig16_kshot_learning_curve_detailed.png",
+      "description": "kshot_learning_curve_detailed",
+      "type": "data_plot",
+      "created_at": "2026-03-10T15:25:13.189619",
+      "path": "/home/liaowenjie/.openclaw-multi/shared/paper-project/figures/fig16_kshot_learning_curve_detailed.png",
+      "size_bytes": 268377
+    },
+    {
+      "id": "fig1",
+      "filename": "fig1_architecture.png",
+      "description": "architecture",
+      "type": "concept",
+      "created_at": "2026-03-10T15:28:15.439271",
+      "path": "/home/liaowenjie/.openclaw-multi/shared/paper-project/figures/fig1_architecture.png",
+      "size_bytes": 1485402
+    },
+    {
+      "id": "fig3",
+      "filename": "fig3_workflow.png",
+      "description": "workflow",
+      "type": "concept",
+      "created_at": "2026-03-10T15:28:30.948269",
+      "path": "/home/liaowenjie/.openclaw-multi/shared/paper-project/figures/fig3_workflow.png",
+      "size_bytes": 1485402
+    },
+    {
+      "id": "fig4",
+      "filename": "fig4_comparison.png",
+      "description": "comparison",
+      "type": "concept",
+      "created_at": "2026-03-10T15:28:35.104134",
+      "path": "/home/liaowenjie/.openclaw-multi/shared/paper-project/figures/fig4_comparison.png",
+      "size_bytes": 1485402
+    }
+  ]
+}

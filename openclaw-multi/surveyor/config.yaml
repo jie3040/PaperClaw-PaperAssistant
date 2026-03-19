@@ -1,0 +1,18 @@
+{
+  gateway: {
+    mode: "local",
+    port: 18810
+  },
+  hooks: [
+    {
+      path: "/hooks/agent",
+      token: "surveyor-hook-2026"
+    }
+  ],
+  model: {
+    default: "gemini-3.1-pro-high"
+  },
+  thinking: {
+    mode: "off"
+  }
+}

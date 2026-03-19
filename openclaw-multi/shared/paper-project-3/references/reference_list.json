@@ -1,0 +1,751 @@
+{
+  "survey_metadata": {
+    "topic": "Zero-Shot Fault Diagnosis Based on Generative Dual-Path Diffusion Model with Data Augmentation",
+    "target_journal": "IEEE Transactions on Instrumentation and Measurement",
+    "survey_date": "2026-03-13",
+    "total_papers_reviewed": 52,
+    "date_range": "2024-2026",
+    "primary_focus": ["zero-shot learning", "diffusion models", "fault diagnosis", "data augmentation", "dual-path architecture"]
+  },
+  
+  "key_references": [
+    {
+      "id": 1,
+      "title": "Cycle-Consistent Generating Network Based on Semantic Distance for Zero-Shot Fault Diagnosis",
+      "authors": "Wenjie Liao, Like Wu, Shihui Xu, Shigeru Fujimura",
+      "journal": "IEEE Transactions on Instrumentation and Measurement",
+      "year": 2025,
+      "volume": 74,
+      "category": "zero-shot_fault_diagnosis",
+      "key_contributions": [
+        "Semantic distance-based transformation",
+        "Cycle-consistent generation",
+        "Attribute regressor for consistency",
+        "Feature concatenation strategy"
+      ],
+      "datasets": ["TPTS", "TEP", "Hydraulic System"],
+      "accuracy": {
+        "TPTS": "96.50%",
+        "TEP": "84.06%",
+        "Hydraulic_15": "76.41%"
+      },
+      "methodology": "CycleGAN with semantic distance guidance and attribute consistency",
+      "relevance": "high",
+      "notes": "State-of-the-art zero-shot fault diagnosis, example paper for methodology"
+    },
+    {
+      "id": 2,
+      "title": "Power Transformer Winding Fault Diagnosis Method Based on Time-Frequency Diffusion Model and ConvNeXt-1D",
+      "authors": "Wang et al.",
+      "journal": "MDPI Applied Sciences",
+      "year": 2026,
+      "volume": 16,
+      "issue": 5,
+      "category": "diffusion_model_fault_diagnosis",
+      "key_contributions": [
+        "Time-frequency diffusion model for data augmentation",
+        "Integration with ConvNeXt-1D",
+        "Power transformer fault diagnosis"
+      ],
+      "methodology": "DDPM for time-frequency signal augmentation",
+      "relevance": "high",
+      "notes": "Recent diffusion model application in fault diagnosis"
+    },
+    {
+      "id": 3,
+      "title": "A New Data Augmentation Model for Fault Diagnosis of Transformer Windings Under Scarce Fault Data",
+      "authors": "Wang et al.",
+      "journal": "IET Electric Power Applications",
+      "year": 2026,
+      "category": "diffusion_model_fault_diagnosis",
+      "key_contributions": [
+        "CDFF-TW (Conditional Diffusion for Fault Features)",
+        "Addresses scarce fault data problem",
+        "Superior performance vs. existing methods"
+      ],
+      "methodology": "Conditional diffusion model",
+      "relevance": "high",
+      "notes": "Demonstrates diffusion model superiority for scarce data"
+    },
+    {
+      "id": 4,
+      "title": "Limited-Data Augmentation for Fault Diagnosis in Lithium-Ion Battery Energy Storage Systems via Transferable Conditional Diffusion",
+      "authors": "Authors TBD",
+      "journal": "MDPI",
+      "year": 2025,
+      "volume": 11,
+      "issue": 7,
+      "category": "diffusion_model_fault_diagnosis",
+      "key_contributions": [
+        "Transfer learning with conditional diffusion",
+        "Attention-enhanced fine-tuning",
+        "High-quality synthetic fault data for rare conditions"
+      ],
+      "methodology": "Transferable conditional diffusion model",
+      "relevance": "high",
+      "notes": "Transfer learning approach for diffusion models"
+    },
+    {
+      "id": 5,
+      "title": "Augmentation Framework for HVAC Fault Diagnosis Based on Denoising Diffusion Models",
+      "authors": "Authors TBD",
+      "journal": "ScienceDirect",
+      "year": 2025,
+      "category": "diffusion_model_fault_diagnosis",
+      "key_contributions": [
+        "GRA-Diff framework",
+        "GAF image transformation",
+        "ResCUA-Net within diffusion model",
+        "3.78% improvement over CVAE-GAN"
+      ],
+      "datasets": ["ASHRAE"],
+      "methodology": "DDPM with GAF transformation and ResCUA-Net",
+      "relevance": "high",
+      "notes": "Demonstrates diffusion superiority over GAN-VAE hybrid"
+    },
+    {
+      "id": 6,
+      "title": "Diffusion Model-Assisted Cross-Domain Fault Diagnosis for Rotating Machinery Under Limited Data",
+      "authors": "Authors TBD",
+      "journal": "ScienceDirect",
+      "year": 2025,
+      "category": "diffusion_model_fault_diagnosis",
+      "key_contributions": [
+        "Cross-domain fault diagnosis",
+        "Diffusion model for target domain augmentation",
+        "Joint training with source domain"
+      ],
+      "methodology": "Diffusion-assisted cross-domain learning",
+      "relevance": "high",
+      "notes": "Addresses domain shift with diffusion models"
+    },
+    {
+      "id": 7,
+      "title": "A Fault Diagnosis Data Augmentation Method Integrating Multimodal Non-Gaussian Denoising Diffusion Generative Adversarial Network",
+      "authors": "Authors TBD",
+      "journal": "ScienceDirect",
+      "year": 2025,
+      "category": "hybrid_generative_models",
+      "key_contributions": [
+        "Multimodal non-Gaussian DDGAN",
+        "Replaces adversarial training with physical diffusion",
+        "Improved stability and diversity"
+      ],
+      "methodology": "Hybrid diffusion-GAN approach",
+      "relevance": "medium",
+      "notes": "Interesting hybrid approach combining diffusion and GAN"
+    },
+    {
+      "id": 8,
+      "title": "Fault Direct Attributes Prediction for Zero-Shot Fault Diagnosis",
+      "authors": "Feng & Zhao",
+      "journal": "IEEE Transactions on Industrial Informatics",
+      "year": 2021,
+      "volume": 17,
+      "issue": 3,
+      "pages": "1852-1862",
+      "category": "zero-shot_fault_diagnosis",
+      "key_contributions": [
+        "First zero-shot fault diagnosis framework",
+        "Fault attribute description",
+        "Direct attribute prediction (DAP)"
+      ],
+      "methodology": "Attribute-based zero-shot learning",
+      "relevance": "high",
+      "notes": "Foundational work in zero-shot fault diagnosis"
+    },
+    {
+      "id": 9,
+      "title": "Semantic-Consistent Embedding for Zero-Shot Fault Diagnosis",
+      "authors": "Hu, Zhao, Yao, Peng",
+      "journal": "IEEE Transactions on Industrial Informatics",
+      "year": 2023,
+      "volume": 19,
+      "issue": 5,
+      "pages": "7022-7031",
+      "category": "zero-shot_fault_diagnosis",
+      "key_contributions": [
+        "Barlow matrix for consistency loss",
+        "Semantic-consistent embedding",
+        "Alignment between feature and attribute distributions"
+      ],
+      "datasets": ["TPTS"],
+      "accuracy": {
+        "TPTS": "95.30%"
+      },
+      "methodology": "Semantic embedding with consistency constraints",
+      "relevance": "high",
+      "notes": "Important baseline for attribute consistency"
+    },
+    {
+      "id": 10,
+      "title": "Auxiliary Information-Guided Industrial Data Augmentation for Any-Shot Fault Learning and Diagnosis",
+      "authors": "Zhuo & Ge",
+      "journal": "IEEE Transactions on Industrial Informatics",
+      "year": 2021,
+      "volume": 17,
+      "issue": 11,
+      "pages": "7535-7545",
+      "category": "zero-shot_fault_diagnosis",
+      "key_contributions": [
+        "FAGAN (Fault Auxiliary GAN)",
+        "Triplet loss for discriminative samples",
+        "Auxiliary information guidance"
+      ],
+      "methodology": "GAN with triplet loss",
+      "relevance": "high",
+      "notes": "Important GAN-based baseline"
+    },
+    {
+      "id": 11,
+      "title": "Bias-Eliminated Semantic Refinement for Any-Shot Learning",
+      "authors": "Feng, Zhao, Li",
+      "journal": "IEEE Transactions on Image Processing",
+      "year": 2022,
+      "volume": 31,
+      "pages": "2229-2244",
+      "category": "zero-shot_fault_diagnosis",
+      "key_contributions": [
+        "SRWGAN (Semantic Refinement WGAN)",
+        "Bias elimination strategy",
+        "Wasserstein distance with gradient penalty"
+      ],
+      "methodology": "WGAN-GP with semantic refinement",
+      "relevance": "high",
+      "notes": "Advanced GAN-based approach"
+    },
+    {
+      "id": 12,
+      "title": "Feature Generating Network with Attribute-Consistency for Zero-Shot Fault Diagnosis",
+      "authors": "Shao, Lu, Jiang, Simani",
+      "journal": "IEEE Transactions on Industrial Informatics",
+      "year": 2024,
+      "category": "zero-shot_fault_diagnosis",
+      "key_contributions": [
+        "VAEGAN-AR (VAE-GAN with Attribute Regressor)",
+        "End-to-end feature extraction and generation",
+        "Attribute consistency mechanism"
+      ],
+      "methodology": "Hybrid VAE-GAN with attribute regressor",
+      "relevance": "high",
+      "notes": "Important hybrid baseline combining VAE and GAN"
+    },
+    {
+      "id": 13,
+      "title": "Research on Propeller Defect Diagnosis of Rotor UAVs Based on MDI-STFFNet",
+      "authors": "Authors TBD",
+      "journal": "MDPI Symmetry",
+      "year": 2025,
+      "volume": 18,
+      "issue": 1,
+      "category": "dual_path_architecture",
+      "key_contributions": [
+        "Single-input dual-path architecture",
+        "Multi-scale spatio-temporal feature fusion",
+        "Comprehensive defect-related feature capture"
+      ],
+      "methodology": "Dual-path CNN for multi-scale features",
+      "relevance": "high",
+      "notes": "Demonstrates dual-path architecture effectiveness"
+    },
+    {
+      "id": 14,
+      "title": "Optimization of Deep Learning Architecture Based on Multi-Path Convolutional Neural Network Algorithm",
+      "authors": "Dong et al.",
+      "journal": "Scientific Reports",
+      "year": 2025,
+      "category": "dual_path_architecture",
+      "key_contributions": [
+        "Multi-path CNN (MSCNN)",
+        "Time-domain, frequency-domain, time-frequency fusion",
+        "Improved robustness to noise"
+      ],
+      "methodology": "Multi-path CNN with domain fusion",
+      "relevance": "high",
+      "notes": "Multi-path fusion for robustness"
+    },
+    {
+      "id": 15,
+      "title": "A Hybrid Deep Learning Framework for Enhanced Fault Diagnosis in Industrial Robots",
+      "authors": "Authors TBD",
+      "journal": "MDPI Algorithms",
+      "year": 2025,
+      "volume": 18,
+      "issue": 12,
+      "category": "dual_path_architecture",
+      "key_contributions": [
+        "Dual-path EBM framework",
+        "Temporal-spectral + spatio-graph relationships",
+        "Energy-based model integration"
+      ],
+      "methodology": "Dual-path with EBM",
+      "relevance": "medium",
+      "notes": "Novel dual-path design with graph relationships"
+    },
+    {
+      "id": 16,
+      "title": "Fault Diagnosis of Rolling Bearings Based on VMD-NR Modal Decomposition and Multi-Feature Fusion",
+      "authors": "Authors TBD",
+      "journal": "MDPI Electronics",
+      "year": 2026,
+      "volume": 15,
+      "issue": 5,
+      "category": "dual_path_architecture",
+      "key_contributions": [
+        "WDCNN-Informer dual-branch fusion",
+        "Local and global long-sequence features",
+        "Feature-level concatenation"
+      ],
+      "methodology": "Dual-branch CNN-Transformer",
+      "relevance": "high",
+      "notes": "Recent dual-path architecture with Transformer"
+    },
+    {
+      "id": 17,
+      "title": "Cross-Domain Zero-Shot Fault Diagnosis Method for High-Voltage Circuit Breakers Driven by Multidomain Spatial Projection and Dual Embedded Structure",
+      "authors": "Authors TBD",
+      "journal": "ScienceDirect",
+      "year": 2025,
+      "category": "domain_shift_mitigation",
+      "key_contributions": [
+        "Multidomain spatial projection",
+        "Dual embedded structure",
+        "Cross-domain zero-shot diagnosis"
+      ],
+      "methodology": "Multi-domain projection for domain shift",
+      "relevance": "high",
+      "notes": "Addresses domain shift in zero-shot context"
+    },
+    {
+      "id": 18,
+      "title": "Adjust to Reality: LLM-Driven Test-Time Semantic Adjustment for Zero-Shot Fault Diagnosis",
+      "authors": "Authors TBD",
+      "journal": "ScienceDirect",
+      "year": 2025,
+      "category": "domain_shift_mitigation",
+      "key_contributions": [
+        "LLM-driven semantic adjustment",
+        "Test-time adaptation",
+        "Addresses domain shift problem"
+      ],
+      "methodology": "Large language model for semantic refinement",
+      "relevance": "medium",
+      "notes": "Novel LLM application for domain shift"
+    },
+    {
+      "id": 19,
+      "title": "Simulation-Data Driven Generalized Zero-Shot Learning for Multi-Agent Bearing Compound Fault Diagnosis",
+      "authors": "Authors TBD",
+      "journal": "ScienceDirect",
+      "year": 2025,
+      "category": "zero-shot_fault_diagnosis",
+      "key_contributions": [
+        "Simulation-driven semantic construction",
+        "Multi-agent deep reinforcement learning",
+        "Compound fault diagnosis"
+      ],
+      "methodology": "MADRL with simulation-driven semantics",
+      "relevance": "medium",
+      "notes": "Addresses semantic construction challenge"
+    },
+    {
+      "id": 20,
+      "title": "Digital Twin-Driven Zero-Shot Fault Diagnosis of Axial Piston Pumps Using Fluid-Borne Noise Signals",
+      "authors": "Authors TBD",
+      "journal": "arXiv",
+      "year": 2025,
+      "arxiv_id": "2512.19280",
+      "category": "zero-shot_fault_diagnosis",
+      "key_contributions": [
+        "Digital twin-driven framework",
+        "Fluid-borne noise signals",
+        "Synthetic fault signal generation"
+      ],
+      "methodology": "Digital twin for zero-shot diagnosis",
+      "relevance": "medium",
+      "notes": "Novel digital twin application"
+    },
+    {
+      "id": 21,
+      "title": "C-GAN-VAE: Causal Generative Adversarial Variational Autoencoder for Few-Shot Fine-Grained Cross-Domain Fault Diagnosis for Planetary Gearbox",
+      "authors": "Authors TBD",
+      "journal": "ScienceDirect",
+      "year": 2026,
+      "category": "hybrid_generative_models",
+      "key_contributions": [
+        "Causal GAN integrated with Gaussian Mixture VAE",
+        "Few-shot fine-grained diagnosis",
+        "Cross-domain capability"
+      ],
+      "datasets": ["SQI", "CWRU"],
+      "methodology": "Hybrid C-GAN-VAE",
+      "relevance": "high",
+      "notes": "Recent hybrid approach for few-shot learning"
+    },
+    {
+      "id": 22,
+      "title": "A Digital Twin-Assisted Fault Diagnosis Framework Based on Denoising Diffusion Probabilistic Model",
+      "authors": "Authors TBD",
+      "journal": "ScienceDirect",
+      "year": 2025,
+      "category": "diffusion_model_fault_diagnosis",
+      "key_contributions": [
+        "DT-DDPM (Digital Twin-DDPM)",
+        "Addresses imbalanced scenarios",
+        "High-fidelity simulation fault data"
+      ],
+      "methodology": "Digital twin with DDPM",
+      "relevance": "high",
+      "notes": "Combines digital twin with diffusion model"
+    },
+    {
+      "id": 23,
+      "title": "BearGen: LLM-Guided Signal Generation Framework for Bearing Fault Diagnosis",
+      "authors": "Authors TBD",
+      "journal": "ScienceDirect",
+      "year": 2026,
+      "category": "diffusion_model_fault_diagnosis",
+      "key_contributions": [
+        "LLM-guided diffusion model",
+        "Description-guided signal generation",
+        "Superior performance on 8 datasets"
+      ],
+      "methodology": "LLM + conditional diffusion",
+      "relevance": "high",
+      "notes": "Novel LLM-diffusion integration"
+    },
+    {
+      "id": 24,
+      "title": "Few-Shot Cross-Domain Fault Diagnosis via Adversarial Meta-Learning",
+      "authors": "Authors TBD",
+      "journal": "Scientific Reports",
+      "year": 2025,
+      "category": "few_shot_learning",
+      "key_contributions": [
+        "MLAML (Meta-Learning + Adversarial Learning)",
+        "Data reconstruction + meta-learning",
+        "Cross-domain few-shot diagnosis"
+      ],
+      "methodology": "Adversarial meta-learning",
+      "relevance": "medium",
+      "notes": "Meta-learning approach for few-shot"
+    },
+    {
+      "id": 25,
+      "title": "Zero-Shot Learning Augmented Slow Feature Analysis for Semantic-Aware Industrial Process Fault Detection",
+      "authors": "Authors TBD",
+      "journal": "ScienceDirect",
+      "year": 2025,
+      "category": "zero-shot_fault_diagnosis",
+      "key_contributions": [
+        "ZSL-augmented SFA",
+        "Semantic information incorporation",
+        "Primary-auxiliary framework"
+      ],
+      "methodology": "Zero-shot learning with SFA",
+      "relevance": "medium",
+      "notes": "Process monitoring application"
+    }
+  ],
+  
+  "benchmark_datasets": [
+    {
+      "name": "Tennessee Eastman Process (TEP)",
+      "type": "Process System",
+      "description": "Chemical process simulation with 21 fault modes and 52 variables",
+      "fault_classes": 21,
+      "variables": 52,
+      "samples_per_class": 480,
+      "typical_split": "12 seen classes, 3 unseen classes (5 groups)",
+      "applications": ["CycleGAN-SD", "FDAT", "SCE", "FAGAN", "SRWGAN", "VAEGAN-AR"],
+      "reference": "Downs & Vogel, 1993",
+      "relevance": "high"
+    },
+    {
+      "name": "Case Western Reserve University (CWRU) Bearing Dataset",
+      "type": "Rotating Machinery",
+      "description": "Bearing fault diagnosis with multiple fault types and severities",
+      "fault_types": ["Normal", "Inner Race", "Outer Race", "Ball"],
+      "severities": ["0.007 inch", "0.014 inch", "0.021 inch"],
+      "operating_conditions": "Variable speeds and loads",
+      "applications": ["C-GAN-VAE", "ECMCTP", "Numerous studies"],
+      "relevance": "high"
+    },
+    {
+      "name": "Three-Phase Transmission System (TPTS)",
+      "type": "Electrical System",
+      "description": "Electrical fault diagnosis with 6 fault classes",
+      "fault_classes": 6,
+      "samples_per_class": 1000,
+      "attributes": 4,
+      "typical_accuracy": "88-96%",
+      "applications": ["CycleGAN-SD", "SCE", "FAGAN"],
+      "relevance": "high"
+    },
+    {
+      "name": "Hydraulic System Dataset",
+      "type": "Hydraulic System",
+      "description": "Real-world hydraulic system with 144 fault categories",
+      "total_samples": 2205,
+      "dimensions": 43680,
+      "fault_categories": 144,
+      "fault_combinations": "3×4×3×4 (cooler, valve, pump, accumulator)",
+      "typical_unseen_classes": [15, 25, 30],
+      "applications": ["CycleGAN-SD"],
+      "reference": "Helwig et al., 2015",
+      "relevance": "high"
+    },
+    {
+      "name": "ASHRAE Dataset",
+      "type": "HVAC System",
+      "description": "Chiller unit faults with imbalanced data",
+      "system": "Chiller unit",
+      "characteristics": "Imbalanced fault data",
+      "applications": ["GRA-Diff framework"],
+      "relevance": "medium"
+    },
+    {
+      "name": "SQI Planetary Gearbox Dataset",
+      "type": "Rotating Machinery",
+      "description": "Fine-grained fault diagnosis for planetary gearbox",
+      "characteristics": "Cross-machine scenarios",
+      "applications": ["C-GAN-VAE"],
+      "relevance": "medium"
+    },
+    {
+      "name": "Paderborn University Bearing Dataset",
+      "type": "Rotating Machinery",
+      "description": "Real-world bearing faults with multiple sensors",
+      "characteristics": "Diverse operating conditions, multiple sensors",
+      "relevance": "medium"
+    }
+  ],
+  
+  "evaluation_metrics": [
+    {
+      "category": "Classification Performance",
+      "metrics": [
+        {
+          "name": "Accuracy",
+          "description": "Primary metric for fault diagnosis",
+          "typical_reporting": "Per classifier (LSVM, NRF, PNB, MLP, CNN)",
+          "importance": "high"
+        },
+        {
+          "name": "Precision",
+          "description": "True positives / (True positives + False positives)",
+          "importance": "medium"
+        },
+        {
+          "name": "Recall",
+          "description": "True positives / (True positives + False negatives)",
+          "importance": "medium"
+        },
+        {
+          "name": "F1-Score",
+          "description": "Harmonic mean of precision and recall",
+          "importance": "medium"
+        },
+        {
+          "name": "Confusion Matrix",
+          "description": "Class-wise performance visualization",
+          "importance": "high"
+        }
+      ]
+    },
+    {
+      "category": "Sample Quality",
+      "metrics": [
+        {
+          "name": "Pearson Correlation Coefficient (PCC)",
+          "description": "Correlation between generated and real features",
+          "threshold": ">0.5 (significant), >0.75 (excellent)",
+          "importance": "high"
+        },
+        {
+          "name": "Cosine Similarity (CS)",
+          "description": "Distribution similarity assessment",
+          "range": "0-1 (higher = better)",
+          "threshold": ">0.8 (excellent)",
+          "importance": "high"
+        },
+        {
+          "name": "Fréchet Inception Distance (FID)",
+          "description": "Distance between generated and real distributions",
+          "note": "Lower is better",
+          "importance": "medium"
+        },
+        {
+          "name": "Inception Score (IS)",
+          "description": "Quality and diversity of generated samples",
+          "note": "Higher is better",
+          "importance": "medium"
+        }
+      ]
+    },
+    {
+      "category": "Computational Efficiency",
+      "metrics": [
+        {
+          "name": "Training Time",
+          "description": "Time to train the model",
+          "typical_units": "minutes or hours",
+          "importance": "high"
+        },
+        {
+          "name": "Inference Time",
+          "description": "Time to make predictions",
+          "typical_units": "milliseconds or seconds",
+          "importance": "high"
+        },
+        {
+          "name": "Model Parameters",
+          "description": "Number of trainable parameters",
+          "importance": "medium"
+        },
+        {
+          "name": "FLOPs",
+          "description": "Floating point operations",
+          "importance": "medium"
+        }
+      ]
+    },
+    {
+      "category": "Visualization",
+      "metrics": [
+        {
+          "name": "t-SNE Plots",
+          "description": "Feature separability visualization",
+          "importance": "high"
+        },
+        {
+          "name": "Generated Sample Visualization",
+          "description": "Visual inspection of generated samples",
+          "importance": "medium"
+        },
+        {
+          "name": "Attention Maps",
+          "description": "Visualization of attention mechanisms",
+          "importance": "low"
+        }
+      ]
+    }
+  ],
+  
+  "research_gaps": [
+    {
+      "gap": "Limited diffusion models for zero-shot fault diagnosis",
+      "description": "Most diffusion work focuses on data augmentation, not zero-shot scenarios",
+      "opportunity": "Develop diffusion-based zero-shot fault diagnosis framework",
+      "priority": "high"
+    },
+    {
+      "gap": "Lack of dual-path diffusion architectures",
+      "description": "Dual-path architectures proven effective but not integrated with diffusion",
+      "opportunity": "Design dual-path diffusion model for fault diagnosis",
+      "priority": "high"
+    },
+    {
+      "gap": "Insufficient domain shift mitigation in diffusion models",
+      "description": "Existing diffusion methods don't explicitly address domain shift",
+      "opportunity": "Incorporate attribute consistency in diffusion framework",
+      "priority": "high"
+    },
+    {
+      "gap": "Limited semantic distance utilization",
+      "description": "Semantic distance not explored in diffusion model context",
+      "opportunity": "Semantic distance-guided conditional diffusion",
+      "priority": "medium"
+    },
+    {
+      "gap": "Computational efficiency challenges",
+      "description": "Diffusion models computationally expensive",
+      "opportunity": "Efficient dual-path diffusion design",
+      "priority": "medium"
+    }
+  ],
+  
+  "technical_challenges": [
+    {
+      "challenge": "Training Stability",
+      "problem": "GANs suffer from mode collapse and vanishing gradients",
+      "solutions": ["Wasserstein distance (WGAN-GP)", "Spectral normalization", "Diffusion models (inherently stable)"]
+    },
+    {
+      "challenge": "Domain Shift",
+      "problem": "Generated unseen samples deviate from real distribution",
+      "solutions": ["Attribute consistency constraints", "Semantic distance guidance", "Feature concatenation", "Cross-domain alignment"]
+    },
+    {
+      "challenge": "Computational Cost",
+      "problem": "Diffusion models require iterative denoising (expensive)",
+      "solutions": ["Lightweight U-Net architectures", "Efficient attention mechanisms", "Knowledge distillation", "Accelerated sampling (DDIM)"]
+    },
+    {
+      "challenge": "Semantic Knowledge Construction",
+      "problem": "Manual attribute annotation is labor-intensive",
+      "solutions": ["LLM-driven semantic generation", "Simulation-driven construction", "Domain knowledge integration", "Automated attribute extraction"]
+    },
+    {
+      "challenge": "Limited Fault Data",
+      "problem": "Insufficient samples for training",
+      "solutions": ["Data augmentation (diffusion/GAN)", "Transfer learning", "Few-shot learning", "Digital twin-driven generation"]
+    }
+  ],
+  
+  "recommended_baselines": [
+    {
+      "category": "Attribute-Based",
+      "methods": ["FDAT (Feng & Zhao, 2021)", "SCE (Hu et al., 2023)"]
+    },
+    {
+      "category": "GAN-Based",
+      "methods": ["FAGAN (Zhuo & Ge, 2021)", "SRWGAN (Feng et al., 2022)", "VAEGAN-AR (Shao et al., 2024)", "CycleGAN-SD (Liao et al., 2025)"]
+    },
+    {
+      "category": "Diffusion-Based",
+      "methods": ["DDPM baseline", "Conditional DDPM", "GRA-Diff (2025)"]
+    },
+    {
+      "category": "Recent Methods",
+      "methods": ["FREE (Chen et al., 2021)", "LLM-driven methods (2025)"]
+    }
+  ],
+  
+  "proposed_method_recommendations": {
+    "architecture": {
+      "backbone": "Dual-path U-Net",
+      "path_1": "Temporal feature extraction (1D convolutions)",
+      "path_2": "Frequency feature extraction (2D convolutions on spectrograms)",
+      "fusion": "Multi-scale fusion with attention mechanisms"
+    },
+    "conditioning_strategy": {
+      "primary": "Semantic distance as conditioning signal",
+      "secondary": "Attribute vectors as conditioning",
+      "embedding": "Learnable embedding for semantic features"
+    },
+    "domain_shift_mitigation": {
+      "mechanism_1": "Integrate attribute regressor in diffusion process",
+      "mechanism_2": "Attribute-consistent loss at each denoising step",
+      "mechanism_3": "Feature concatenation post-generation"
+    },
+    "training_strategy": {
+      "step_1": "Pre-train on seen classes",
+      "step_2": "Semantic distance-guided transformation",
+      "step_3": "Progressive training with increasing difficulty"
+    },
+    "evaluation": {
+      "datasets": ["TEP", "CWRU", "Hydraulic"],
+      "baselines": ["CycleGAN-SD", "VAEGAN-AR", "FAGAN", "DDPM"],
+      "studies": "Comprehensive ablation studies"
+    }
+  },
+  
+  "expected_contributions": [
+    "First diffusion-based zero-shot fault diagnosis framework",
+    "Novel dual-path architecture for fault feature extraction",
+    "Semantic distance-guided conditional diffusion",
+    "Attribute consistency mechanism in diffusion process",
+    "Superior performance on benchmark datasets"
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "models": {
+    "providers": {
+      "claude-proxy": {
+        "baseUrl": "https://www.fucheers.top",
+        "apiKey": "YOUR_API_KEY_HERE",
+        "api": "anthropic-messages",
+        "models": [
+          {
+            "id": "claude-sonnet-4-6-thinking",
+            "name": "claude-sonnet-4-6-thinking",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 16000
+          },
+          {
+            "id": "claude-sonnet-4-6-thinking",
+            "name": "claude-sonnet-4-6-thinking",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 16000
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "list": [
+      {
+        "id": "main",
+        "default": true,
+        "identity": {
+          "name": "Surveyor",
+          "emoji": "🔍"
+        },
+        "model": {
+          "primary": "claude-proxy/claude-sonnet-4-6-thinking"
+        },
+        "workspace": "/home/liaowenjie/.openclaw-multi/surveyor/workspace"
+      }
+    ],
+    "defaults": {
+      "model": {
+        "primary": "claude-proxy/claude-sonnet-4-6-thinking"
+      },
+      "workspace": "/home/liaowenjie/.openclaw-multi/surveyor/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "heartbeat": {
+        "every": "0m"
+      }
+    }
+  },
+  "tools": {
+    "profile": "full",
+    "web": {
+      "search": {
+        "enabled": true,
+        "apiKey": "YOUR_API_KEY_HERE"
+      },
+      "fetch": {
+        "enabled": true
+      }
+    }
+  },
+  "hooks": {
+    "enabled": true,
+    "token": "surveyor-hook-2026",
+    "path": "/hooks",
+    "allowRequestSessionKey": true,
+    "allowedSessionKeyPrefixes": [
+      "hook:"
+    ]
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto"
+  },
+  "gateway": {
+    "port": 18810,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "surveyor-gw-2026"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    }
+  },
+  "plugins": {
+    "entries": {},
+    "installs": {}
+  }
+}

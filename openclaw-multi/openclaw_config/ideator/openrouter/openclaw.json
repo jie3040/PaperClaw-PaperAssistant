@@ -1,0 +1,105 @@
+{
+  "models": {
+    "providers": {
+      "openrouter": {
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "apiKey": "YOUR_API_KEY_HERE",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "google/gemini-3-flash-preview",
+            "name": "Gemini 3 Flash",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 16000
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "list": [
+      {
+        "id": "main",
+        "default": true,
+        "identity": {
+          "name": "Ideator",
+          "emoji": "💡"
+        },
+        "model": {
+          "primary": "openrouter/google/gemini-3-flash-preview"
+        },
+        "workspace": "/home/liaowenjie/.openclaw-multi/ideator/workspace"
+      }
+    ],
+    "defaults": {
+      "model": {
+        "primary": "openrouter/google/gemini-3-flash-preview"
+      },
+      "workspace": "/home/liaowenjie/.openclaw-multi/ideator/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "heartbeat": {
+        "every": "0m"
+      }
+    }
+  },
+  "tools": {
+    "profile": "full",
+    "web": {
+      "search": {
+        "enabled": true,
+        "apiKey": "YOUR_API_KEY_HERE"
+      },
+      "fetch": {
+        "enabled": true
+      }
+    }
+  },
+  "hooks": {
+    "enabled": true,
+    "token": "ideator-hook-2026",
+    "path": "/hooks",
+    "allowRequestSessionKey": true,
+    "allowedSessionKeyPrefixes": [
+      "hook:"
+    ]
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto"
+  },
+  "gateway": {
+    "port": 18820,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "ideator-gw-2026"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    }
+  },
+  "plugins": {
+    "entries": {},
+    "installs": {}
+  }
+}

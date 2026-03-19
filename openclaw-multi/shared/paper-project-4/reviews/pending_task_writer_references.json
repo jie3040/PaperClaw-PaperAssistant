@@ -1,0 +1,9 @@
+{
+  "target": "writer",
+  "port": 18840,
+  "token": "writer-hook-2026",
+  "message": "请【生成文献引用】。\n\n扫描 /home/liaowenjie/.openclaw-multi/shared/paper-project-4/drafts/v1/ 下所有 .tex 文件中的 \\cite{} 键。\n为每个 citation key 用 web_search 查找真实文献信息。\n生成 /home/liaowenjie/.openclaw-multi/shared/paper-project-4/drafts/v1/references.bib。\n\n要求：\n- 每条引用必须 web_search 验证真实性（标题、作者、年份、期刊）\n- 禁止编造文献\n- 去重：确保无重复条目\n- 数量对标：golden_standard.json 中 references 范围为 [40,50]\n- 如果引用不足，在相关 section 合适位置补充 \\cite{}\n\n完成后回报。",
+  "sessionKey": "hook:write-references",
+  "created_at": "2026-03-18T12:20:00",
+  "status": "pending"
+}

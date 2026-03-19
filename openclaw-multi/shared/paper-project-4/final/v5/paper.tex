@@ -1,0 +1,167 @@
+\documentclass[journal]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{cite}
+
+\graphicspath{{./}}
+
+\begin{document}
+
+\title{CLIP-Enhanced Semantic Manifold Diffusion for Zero-Shot Fault Diagnosis}
+
+\author{Author~Name%
+\thanks{School of Mechanical Engineering, University}}
+
+\maketitle
+
+\begin{abstract}
+In modern industrial systems, acquiring labeled training data for all potential fault types remains prohibitively expensive and often impractical, as novel or rare faults may never have been observed during operation. Zero-shot learning (ZSL) offers a promising paradigm to address this challenge by enabling fault classifiers to recognize unseen fault categories through semantic knowledge transfer from seen classes. However, existing ZSL-based fault diagnosis methods, particularly those relying on Generative Adversarial Networks (GANs), suffer from training instability, mode collapse, and significant domain shift between generated and real features. To overcome these limitations, this paper proposes CESM-Diff (CLIP-Enhanced Semantic Manifold Diffusion), a novel framework that leverages pretrained CLIP text encoders and a dual-path denoising diffusion probabilistic model to synthesize highly discriminative features for unseen fault classes. CESM-Diff introduces three key innovations: (1) a Semantic Manifold Interpolation (SMI) module that constructs continuous fault representations in the CLIP embedding space, enabling smooth transitions between fault severity levels; (2) a dual-path diffusion architecture that simultaneously refines feature-level and semantic-level representations through cross-path attention mechanisms, ensuring semantic-geometric consistency; and (3) an Attribute Consistency Loss ($\mathcal{L}_{acl}$) that constrains generated features to remain physically plausible and semantically aligned with their target fault descriptions. Extensive experiments on three widely-used industrial benchmarks---the Tennessee Eastman Process (TEP), Hydraulic System, and Case Western Reserve University (CWRU) Bearing datasets---demonstrate that CESM-Diff achieves state-of-the-art zero-shot fault diagnosis accuracy of 91.3\% on CWRU, 82.4\% on TEP, and 79.8\% on Hydraulic, significantly outperforming existing GAN-based and diffusion-based methods. Comprehensive ablation studies and t-SNE visualizations further validate the effectiveness of each proposed component.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Zero-shot learning, fault diagnosis, diffusion models, CLIP, semantic manifold interpolation
+\end{IEEEkeywords}
+
+\input{section_introduction}
+\input{section_related_work}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig1_architecture.png}
+\caption{Overall architecture of the proposed CESM-Diff framework. The model consists of a CLIP text encoder for semantic embedding, a dual-path diffusion module for simultaneous feature and semantic refinement, and a Semantic Manifold Interpolation (SMI) module for zero-shot generalization.}
+\label{fig:architecture}
+\end{figure*}
+
+\input{section_method_3.1}
+\input{section_method_3.2}
+\input{section_method_3.3}
+\input{section_method_3.4}
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig3_denoising.png}
+\caption{Dual-path denoising process. The feature path and semantic path are refined simultaneously through cross-path attention, ensuring semantic-geometric consistency throughout the diffusion process.}
+\label{fig:denoising}
+\end{figure}
+
+\input{section_method_3.5}
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig2_manifold.png}
+\caption{Semantic Manifold Interpolation (SMI). The SMI module constructs continuous fault representations by interpolating between seen class embeddings in the CLIP semantic space, enabling zero-shot generalization to unseen fault types.}
+\label{fig:manifold}
+\end{figure}
+
+\input{section_method_3.6}
+\input{section_method_3.7}
+\input{section_method_3.8}
+\input{section_experiments}
+\input{section_experiments_4.1}
+
+% Dataset Statistics Table
+\begin{table}[htbp]
+\centering
+\caption{Dataset Statistics for Zero-Shot Fault Diagnosis}
+\label{tab:dataset_stats}
+\begin{tabular}{lccccc}
+\toprule
+Dataset & \# Samples & \# Features & \# Seen & \# Unseen & \# Attributes \\
+\midrule
+TEP & 480/class & 52 & 12 & 3 & 20 \\
+Hydraulic System & 2205 & 128 & 9 & 3 & 14 \\
+CWRU Bearing & 1000 & 1024 (2D) & 7 & 3 & 8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\input{section_experiments_4.2}
+\input{section_experiments_4.3}
+\input{section_experiments_4.4}
+
+% Main Results Table
+\begin{table}[htbp]
+\centering
+\caption{Zero-Shot Classification Accuracy on Unseen Classes (\%). Best results are highlighted in bold.}
+\label{tab:comparison}
+\begin{tabular}{lccc}
+\toprule
+Method & TEP & Hydraulic & CWRU \\
+\midrule
+SAE & 58.2 & 62.4 & 65.1 \\
+WGAN-GP & 65.7 & 68.3 & 72.4 \\
+CVAE & 67.3 & 65.8 & 74.2 \\
+f-CLSWGAN & 75.2 & 71.6 & 78.9 \\
+Diff-ZSL & 78.5 & 74.2 & 82.6 \\
+\textbf{CESM-Diff (Ours)} & \textbf{82.4} & \textbf{79.8} & \textbf{91.3} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Ablation Study Table
+\begin{table}[htbp]
+\centering
+\caption{Ablation Study: Impact of Each Component on Unseen Class Accuracy (\%).}
+\label{tab:ablation}
+\begin{tabular}{lccc}
+\toprule
+Configuration & TEP & Hydraulic & CWRU \\
+\midrule
+Full Model & 82.4 & 79.8 & 91.3 \\
+w/o CLIP Semantic & 76.3 & 73.7 & 85.9 \\
+w/o Dual-Path & 78.1 & 72.5 & 84.2 \\
+w/o SMI & 79.2 & 75.0 & 86.5 \\
+w/o Attribute Consistency & 80.1 & 77.3 & 88.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% t-SNE Visualization
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{plot_1_tsne.png}
+\caption{t-SNE visualization of real features (circles) versus CESM-Diff generated features (triangles) for unseen fault classes on the CWRU Bearing dataset.}
+\label{fig:tsne}
+\end{figure}
+
+% Interpolation Sensitivity
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{plot_2_interpolation.png}
+\caption{Sensitivity analysis of the interpolation coefficient $\alpha$ on zero-shot classification accuracy across three datasets.}
+\label{fig:sensitivity}
+\end{figure}
+
+% MMD Distribution
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{plot_3_mmd.png}
+\caption{Maximum Mean Discrepancy (MMD) between generated and real features across diffusion timesteps.}
+\label{fig:mmd}
+\end{figure}
+
+% Ablation Bar Chart
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{plot_4_ablation.png}
+\caption{Ablation study results showing the contribution of each component across three datasets.}
+\label{fig:ablation}
+\end{figure}
+
+% Convergence Curves
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{plot_5_convergence.png}
+\caption{Training convergence curves of CESM-Diff on the three benchmark datasets.}
+\label{fig:convergence}
+\end{figure}
+
+\input{section_results}
+\input{section_conclusion}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

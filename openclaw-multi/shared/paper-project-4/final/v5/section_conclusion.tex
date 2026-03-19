@@ -1,0 +1,8 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper proposed the CLIP-Enhanced Semantic Manifold Diffusion (CESM-Diff) framework for zero-shot fault diagnosis in industrial systems. By leveraging the pretrained CLIP text encoder, CESM-Diff bridges the semantic gap between natural language fault descriptions and high-dimensional sensor signals through a dual-path diffusion architecture. The framework introduces three key innovations: (1) the integration of dual-path diffusion with the CLIP semantic manifold for cross-modal feature synthesis, (2) a Semantic Manifold Interpolation (SMI) module that models continuous fault degradation spectra for zero-shot transfer, and (3) an Attribute Consistency Loss that prevents semantic drift during denoising.
+
+Extensive experiments on the TEP, Hydraulic System, and CWRU Bearing datasets demonstrate that CESM-Diff significantly outperforms state-of-the-art methods, achieving 91.3\% accuracy on CWRU for unseen fault classes. Ablation studies confirm the essential contributions of each component, and t-SNE visualizations validate the quality of the learned semantic manifold.
+
+Future work will extend semantic manifolds to multi-fault scenarios, integrate prognostic capabilities for remaining useful life estimation, and explore efficient diffusion backbones for edge deployment.

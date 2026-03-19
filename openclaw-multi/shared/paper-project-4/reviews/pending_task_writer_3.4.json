@@ -1,0 +1,9 @@
+{
+  "target": "writer",
+  "port": 18840,
+  "token": "writer-hook-2026",
+  "message": "撰写 Method 子节 3.4 Data Preprocessing。\n\n★ 字数要求：400词\n★ 写入路径：SHARED/drafts/v1/section_method_3.4.tex\n\n【前序子节 3.3 结尾内容】（必须衔接）：\n---\nThis continuous semantic representation offers two significant advantages over standard binary attribute descriptors. First, it provides a much higher representational density and richness. The relative positions and cosine distances between vectors in \\mathbb{R}^d inherently reflect the semantic similarity between different fault modes; for example, different types of rolling element bearing faults will naturally cluster closer to each other in the latent space than they would to a rotor misalignment or a gear pitting fault. Second, the use of natural language offers unprecedented flexibility and scalability. Diagnostic experts can refine, expand, or augment the semantic descriptions using natural language without the need to retrain the entire feature extraction pipeline. This allows for a more intuitive and modular knowledge transfer mechanism that is essential for complex, evolving industrial systems, effectively transforming the zero-shot problem into a cross-modal alignment task.\n---\n\n【Outline 完整上下文】\n完整 Methodology section 包含：3.1 Overall Framework, 3.2 Problem Definition, 3.3 CLIP Text Encoder, 3.4 Data Preprocessing, 3.5 Dual-Path Semantic Diffusion, 3.6 Semantic Manifold Interpolation, 3.7 Attribute Consistency Loss, 3.8 Training Strategy。\n\n3.4 内容要求：\n- Raw vibration signal segmentation (sliding window)\n- Time-frequency transformation (STFT / CWT)\n- Feature normalization and standardization  \n- Train/test split strategy for seen/unseen classes\n\n开头要自然承接 3.3 结尾。术语符号与 3.3 保持一致（如 s_c, d, CLIP）。\n\n完成后回报实际字数。",
+  "sessionKey": "hook:write-method-3.4",
+  "created_at": "2026-03-18T11:51:00+08:00",
+  "status": "pending"
+}

@@ -1,0 +1,71 @@
+\section{Related Work}
+
+\subsection{Zero-Shot Learning in Fault Diagnosis}
+
+The paradigm of Zero-Shot Learning (ZSL) has emerged as a promising solution to address the critical paucity of annotated fault data in complex industrial environments, where acquiring samples of catastrophic or rare faults is either excessively costly or strictly prohibited. The core objective of ZSL in condition monitoring is to establish a transferable knowledge bridge between seen fault categories, which have abundant training set data, and unseen fault categories, which possess no available signal data during the training phase. This knowledge transfer is conventionally facilitated through an intermediate semantic \cite{mikolov2013efficient} space \cite{mikolov2013efficient}, often comprising human-defined attributes or linguistic descriptors that encapsulate the physical characteristics of the faults.
+
+Early explorations into zero-shot fault diagnosis predominantly relied on direct nearest-neighbor searches within the semantic \cite{mikolov2013efficient} embedding space \cite{mikolov2013efficient}. These methods typically map both the high-dimensional sensory signals and the fault classes into a shared continuous vector space, subsequently performing diagnosis by associating the query signal with the closest unseen class prototype based on metrics such as cosine similarity or Euclidean distance \cite{tzeng2017adversarial}. However, these projection-based techniques frequently suffer from the notorious hubness problem \cite{xian2019zero} and severe domain shift \cite{tzeng2017adversarial}, particularly when the sensory data exhibits highly non-stationary and non-linear behaviors inherent to rotating machinery.
+
+To alleviate these issues, generative ZSL models \cite{xian2018feature} have gained substantial traction. By synthesizing pseudo-samples for unseen classes conditioned on their semantic \cite{mikolov2013efficient} attributes, generative models effectively convert the zero-shot problem into a conventional supervised classification task \cite{liao2024cyclegan}. Variational Autoencoders (VAEs) \cite{lv2020hybrid} and Generative Adversarial Networks (GANs) have been extensively investigated in this context. For instance, attribute-based VAEs optimize a variational lower bound to learn a latent distribution conditioned on fault attributes, enabling the generation of unseen fault features \cite{wang2020deep}. More recently, frameworks such as CycleGAN-SD \cite{liao2024cyclegan,zhu2017unpaired} have been proposed to enforce cycle-consistency between the visual/signal space and the semantic \cite{radford2021learning} space \cite{mikolov2013efficient}, aiming to preserve the structural integrity of the generated time-series \cite{wang2020deep}. 
+
+Despite their success, existing GAN-based and VAE-based ZSL methodologies are plagued by two fundamental bottlenecks. Firstly, the reliance on manually engineered, discrete binary or ternary attribute matrices (e.g., configurations comprising arrays of 0s and 1s) severely restricts the expressiveness of the semantic \cite{mikolov2013efficient} space \cite{mikolov2013efficient}. Constructing these matrices requires extensive domain expertise, introduces subjective human bias, and invariably leads to a substantial loss of fine-grained, continuous semantic \cite{radford2021learning} information necessary for distinguishing subtle fault variations. Secondly, GANs are notoriously difficult to train, often exhibiting mode collapse and optimization instability \cite{arjovsky2017wasserstein}, which are exacerbated when synthesizing high-frequency, complex industrial time-series signals. Specifically, the adversarial min-max game fails to guarantee sufficient sample diversity, causing the generated unseen fault distributions to be tightly clustered and lacking physical plausibility \cite{goodfellow2014generative}. Therefore, a more stable generative paradigm coupled with a continuous, expressive semantic space \cite{mikolov2013efficient} is urgently required to advance zero-shot fault diagnosis.
+
+\subsection{Diffusion Models for Condition Monitoring}
+
+Denoising Diffusion Probabilistic Models (DDPMs) have fundamentally revolutionized the landscape of deep generative modeling, surpassing GANs in terms of synthesis quality, distributional coverage, and training stability \cite{ho2020denoising}. Initially popularized in computer vision \cite{ho2020denoising}, diffusion models learn to progressively inject Gaussian noise into the data and subsequently learn a parameterized reverse denoising process to reconstruct the original data distribution from pure noise. 
+
+In the context of condition monitoring and time-series analysis, the transition from adversarial training to diffusion processes presents a significant leap forward. Formally, given a real fault signal $\mathbf{x}_0$ drawn from the data distribution $q(\mathbf{x}_0)$, the forward diffusion process is defined as a Markov chain that adds noise over $T$ distinct steps according to a variance schedule $\beta_1, \dots, \beta_T$:
+\begin{equation}
+\label{eq:forward_diffusion}
+q(\mathbf{x}_{1:T} | \mathbf{x}_0) = \prod_{t=1}^{T} q(\mathbf{x}_t | \mathbf{x}_{t-1})
+\end{equation}
+where the transition probability at each step $t$ is formulated as a Gaussian distribution:
+\begin{equation}
+\label{eq:forward_transition}
+q(\mathbf{x}_t | \mathbf{x}_{t-1}) = \mathcal{N}\left(\mathbf{x}_t; \sqrt{1 - \beta_t} \mathbf{x}_{t-1}, \beta_t \mathbf{I}\right)
+\end{equation}
+Through the reparameterization trick, the noised signal at an arbitrary time step $t$ can be directly sampled via:
+\begin{equation}
+\label{eq:reparameterization}
+\mathbf{x}_t = \sqrt{\bar{\alpha}_t}\mathbf{x}_0 + \sqrt{1 - \bar{\alpha}_t}\bm{\epsilon}
+\end{equation}
+where $\alpha_t = 1 - \beta_t$, $\bar{\alpha}_t = \prod_{i=1}^t \alpha_i$, and $\bm{\epsilon} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$ represents the standard Gaussian noise.
+
+The reverse process, which is the generative phase of the model, is defined as a Markov chain with learned Gaussian transitions starting from an isotropic Gaussian noise state $p(\mathbf{x}_T) = \mathcal{N}(\mathbf{x}_T; \mathbf{0}, \mathbf{I})$:
+\begin{equation}
+\label{eq:reverse_process}
+p_\theta(\mathbf{x}_{0:T}) = p(\mathbf{x}_T) \prod_{t=1}^{T} p_\theta(\mathbf{x}_{t-1} | \mathbf{x}_t)
+\end{equation}
+\begin{equation}
+\label{eq:reverse_transition}
+p_\theta(\mathbf{x}_{t-1} | \mathbf{x}_t) = \mathcal{N}\left(\mathbf{x}_{t-1}; \bm{\mu}_\theta(\mathbf{x}_t, t), \mathbf{\Sigma}_\theta(\mathbf{x}_t, t)\right)
+\end{equation}
+where $\theta$ denotes the learnable parameters of the neural network \cite{he2016deep} (often a U-Net architecture adapted for 1D sequences) that is trained to predict the noise $\bm{\epsilon}$ to be subtracted at each step.
+
+Recent literature has begun exploring DDPMs for fault data augmentation and condition monitoring. Researchers have demonstrated that diffusion models can generate high-fidelity, physically consistent vibration and current signals that respect the underlying mechanical kinematics better than their GAN counterparts \cite{fan2025lightweight,yang2024novel}. However, the direct application of standard DDPMs to zero-shot learning remains largely unaddressed. Unconditional diffusion models cannot synthesize specific fault categories on demand. While conditional diffusion models have been introduced in prognostics, they predominantly utilize discrete class labels as conditions. When attempting to perform text-to-signal generation for unseen faults, bridging the semantic \cite{mikolov2013efficient} gap between continuous linguistic descriptions and the reverse denoising path is highly non-trivial. Moreover, existing time-series diffusion architectures primarily focus exclusively on the time domain, often neglecting the rich, discriminative frequency signatures and spectral harmonics crucial for diagnosing rotating machinery faults \cite{guo2025bearing}. Consequently, there is a pressing need for a conditional diffusion framework tailored for cross-modal zero-shot synthesis that simultaneously captures time and time-frequency dynamics through a dual-path architecture.
+
+\subsection{Vision-Language Models in Time-Series Analysis}
+
+The unprecedented success of large-scale Vision-Language Models (VLMs), such as Contrastive Language-Image Pre-training (CLIP), has demonstrated the profound potential of aligning distinct modalities within a shared, unified semantic \cite{mikolov2013efficient} embedding space \cite{mikolov2013efficient}. By leveraging massive corpora of paired text and image data, architectures like CLIP learn continuous, highly expressive semantic \cite{radford2021learning} representations that inherently facilitate zero-shot classification and instance retrieval without requiring explicit fine-tuning on downstream tasks \cite{radford2021learning}.
+
+Recently, the core principles underlying VLMs have catalyzed a compelling paradigm shift in time-series analysis, natural language processing, and industrial signal processing. Researchers have recognized that Large Language Models (LLMs) \cite{brown2020language,devlin2019bert} possess extensive innate knowledge regarding physical systems, fault mechanisms, and sensor behaviors, acquired during pre-training on vast volumes of technical documentation, manuals, and academic literature. By carefully querying an LLM with structured prompts detailing the physical characteristics, root causes, and phenomenological sensory effects of specific machinery faults, it is possible to extract dense, continuous textual embeddings that are vastly more informative and nuanced than traditionally utilized discrete binary attribute matrices \cite{brown2020language}.
+
+In the context of multi-modal time-series analysis and diagnostics, the primary challenge objective is to seamlessly align these continuous textual embeddings with the abstract representations derived from raw sensor signals. This formulation fundamentally alters the zero-shot learning landscape, transitioning the methodology away from rigid attribute regression towards flexible cross-modal contrastive learning \cite{chen2020simple} \cite{oord2018representation,chen2020simple}. Formally, given a batch of $N$ signal-text pairs $\{(\mathbf{x}^{(i)}, \mathbf{t}^{(i)})\}_{i=1}^N$, where $\mathbf{x}^{(i)}$ represents the continuous time-series fault signal and $\mathbf{t}^{(i)}$ represents the corresponding LLM-generated textual description, the cross-modal alignment is typically optimized via a symmetric InfoNCE contrastive loss function. The signal-to-text contrastive loss is formulated as:
+\begin{equation}
+\label{eq:contrastive_s2t}
+\mathcal{L}_{s \rightarrow t} = - \frac{1}{N} \sum_{i=1}^{N} \log \frac{\exp\left(\text{sim}(f_S(\mathbf{x}^{(i)}), f_T(\mathbf{t}^{(i)})) / \tau\right)}{\sum_{j=1}^{N} \exp\left(\text{sim}(f_S(\mathbf{x}^{(i)}), f_T(\mathbf{t}^{(j)})) / \tau\right)}
+\end{equation}
+where $f_S(\cdot)$ and $f_T(\cdot)$ denote the sensory signal encoder and textual encoder, respectively, $\text{sim}(\cdot, \cdot)$ computes the normalized cosine similarity between the projected embeddings in the latent space, and $\tau$ represents a learnable temperature parameter scaling the logits to control the penalty for hard negative samples.
+
+Symmetrically, the text-to-signal contrastive loss ensures bidirectional feature alignment:
+\begin{equation}
+\label{eq:contrastive_t2s}
+\mathcal{L}_{t \rightarrow s} = - \frac{1}{N} \sum_{i=1}^{N} \log \frac{\exp\left(\text{sim}(f_T(\mathbf{t}^{(i)}), f_S(\mathbf{x}^{(i)})) / \tau\right)}{\sum_{j=1}^{N} \exp\left(\text{sim}(f_T(\mathbf{t}^{(i)}), f_S(\mathbf{x}^{(j)})) / \tau\right)}
+\end{equation}
+The overall cross-modal representation learning objective incorporates the average of both directions:
+\begin{equation}
+\label{eq:contrastive_total}
+\mathcal{L}_{contrastive} = \frac{1}{2} (\mathcal{L}_{s \rightarrow t} + \mathcal{L}_{t \rightarrow s})
+\end{equation}
+
+While these contrastive embedding techniques have shown tremendous efficacy in discriminative tasks such as anomaly detection and few-shot classification, their integration into generative Zero-Shot Learning for signal synthesis remains largely unexplored. Specifically, injecting these continuous, contrastively-aligned semantic \cite{mikolov2013efficient} embeddings as conditioning vectors into the reverse path of a robust diffusion model presents a highly novel mechanism to guide the synthesis of unseen fault signals. This state-of-the-art approach decisively bypasses the limitations of discrete attributes and directly forces the diffusion generator network to unconditionally respect the high-level textual semantic \cite{radford2021learning}s parsed by the LLM. Furthermore, employing a contrastive consistency constraint on the newly generated unseen signals guarantees that the synthesized outputs strictly preserve their targeted semantic anchors without drifting, effectively resolving the severe domain shift and semantic loss issues prevalent in conventional generative ZSL models. The proposed CDDM framework intricately weaves these distinct concepts together, establishing an innovative text-to-signal generative pathway designed specifically for complex industrial monitoring scenarios.

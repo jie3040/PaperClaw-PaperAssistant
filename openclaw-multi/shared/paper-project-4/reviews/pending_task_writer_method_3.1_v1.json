@@ -1,0 +1,9 @@
+{
+  "target": "writer",
+  "port": 18840,
+  "token": "writer-hook-2026",
+  "message": "撰写 Methodology 子节 3.1 Overall Framework。\n\n★ 字数要求：400词\n★ 写入路径：/home/liaowenjie/.openclaw-multi/shared/paper-project-4/drafts/v1/section_method_3.1.tex\n\n内容要求：\n- High-level overview of CESM-Diff architecture (refer to Fig.1)\n- Input: vibration signals + CLIP-encoded fault descriptions\n- Output: generated fault features for unseen classes\n- Three-stage pipeline: semantic extraction → dual-path diffusion → manifold interpolation\n\n这是第一个 Method 子节，无前序依赖。\n\n完成后回报实际字数。",
+  "sessionKey": "hook:write-method-3.1-v1",
+  "created_at": "2026-03-18T11:23:00+08:00",
+  "status": "pending"
+}

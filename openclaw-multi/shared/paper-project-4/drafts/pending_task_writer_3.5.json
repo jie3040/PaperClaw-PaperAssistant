@@ -1,0 +1,9 @@
+{
+  "target": "writer",
+  "port": 18840,
+  "token": "writer-hook-2026",
+  "message": "撰写 Method 子节 3.5 Dual-Path Semantic Diffusion。\n\n★ 字数要求：约400词\n★ 写入路径：SHARED/drafts/v2/section_method_3.5.tex\n\n完整 outline：SHARED/outline/v2/paper_outline.md（读取 Method section 了解全貌）\n已完成后序子节：SHARED/drafts/v2/section_method_3.4.tex（必须先读，确保内容衔接）\n\n内容要求：\n- Feature Path: U-Net based denoising of fault features conditioned on semantic vectors\n- Semantic Path: parallel diffusion process refining semantic embeddings  \n- Cross-Path Attention: bidirectional attention mechanism aligning feature and semantic representations at each denoising step\n- Forward diffusion process: q(x_t | x_{t-1})\n- Reverse denoising: p_θ(x_{t-1} | x_t, s)\n- Noise schedule and training objective\n\n严格按字数要求撰写。开头要自然承接 3.4 结尾（数据预处理后的特征 normalized）。",
+  "sessionKey": "hook:writer-method-3.5",
+  "created_at": "2026-03-18T11:52:30+08:00",
+  "status": "pending"
+}

@@ -1,0 +1,27 @@
+\subsection{Baselines and SOTA Benchmarks}
+\label{sec:baselines}
+
+To demonstrate the superior performance and robustness of our proposed CLIP-Enhanced Semantic Manifold Diffusion (CESM-Diff) model, we perform a comprehensive comparison against a diverse collection of state-of-the-art (SOTA) methods. These baselines are selected from three distinct yet related paradigms: self-supervised contrastive learning frameworks, advanced generative models, and specific zero-shot fault diagnosis techniques. This multi-faceted comparison allows us to evaluate the efficiency of our manifold-constrained diffusion approach from multiple perspectives, including representation quality, generative fidelity, and zero-shot generalization capability.
+
+\subsubsection{Self-Supervised Contrastive Learning Paradigm}
+We include several prominent self-supervised paradigms to assess the inherent benefit of our semantic manifold approach against methods that learn representations purely from data augmentations. 
+\begin{itemize}
+    \item \textbf{MoCo-v3} \cite{chen2021mocov3}: Employed as a powerful contrastive learning baseline that utilizes a momentum encoder. MoCo-v3 is highly effective at learning view-invariant features; comparing it with CESM-Diff helps us evaluate if simple instance-level contrastive learning can match the performance of explicit semantic-to-feature mapping.
+    \item \textbf{DINO} \cite{caron2021dino}: Represents a self-distillation approach that operates without explicit labels, focusing on local-to-global matching to learn patch-level and signal-level features simultaneously. We adapt this for 1D vibration signals using window-based local cropping and global alignment.
+    \item \textbf{Barlow Twins} \cite{zbontar2021barlow}: Avoids representation collapse by ensuring the cross-correlation matrix between distorted versions of the same sample is close to the identity matrix. This is used to test the stability of feature decorrelation and non-redundancy in high-dimensional industrial sensor data.
+    \item \textbf{VICReg} \cite{bardes2021vicreg}: Employs Variance-Invariance-Covariance regularization to learn informative embeddings without the necessity of using negative pairs. It provides a strong benchmark for non-contrastive self-supervision in industrial signal processing.
+\end{itemize}
+
+\subsubsection{Generative and Zero-Shot Fault Diagnosis Models}
+For a direct comparison in the specific context of zero-shot fault diagnosis (ZSFD), where labels for test classes are entirely withheld, we compare our method against specialized generative architectures designed to synthesize unseen class features:
+\begin{itemize}
+    \item \textbf{DiffusionSSL} \cite{li2023diffusionssl}: A state-of-the-art diffusion-based self-supervised learner that generates high-fidelity synthetic samples to proactively bridge the semantic gap between seen and unseen fault classes. This serves as the primary diffusion-based sibling to our framework.
+    \item \textbf{DiffuCDD}: Serves as a specialized generative baseline for cross-domain diagnosis using conditional diffusion foundations. It represents current industry best practices for industrial sensor data augmentation under limited label availability.
+    \item \textbf{f-CLSWGAN}: A classic zero-shot learning method that combines Wasserstein GANs with a classification consistency loss to generate discriminative features for unseen classes based on static attribute vectors. It provides a baseline for traditional GAN-based ZSL approaches.
+    \item \textbf{CVAE (Conditional VAE)}: A probabilistic generative model used to compare our manifold-constrained diffusion against traditional density-estimation-based feature generation. CVAE benchmarks the performance of learned latent distributions under Gaussian assumptions.
+\end{itemize}
+
+Unlike these existing methods that often rely on static or unconstrained latent spaces, our \textbf{CESM-Diff (Ours)} leverages the CLIP-driven semantic manifold to perform the diffusion process directly in a geometrically informed and linguistically grounded space. By aligning physical sensor data with high-level textual descriptions through the manifold-constrained diffusion process, our model aims to capture the fine-grained nuances of unseen fault modes more effectively than standard contrastive or unconstrained generative approaches.
+
+\subsubsection{Detailed Training Configurations and Fairness}
+All baselines are implemented using their optimal hyper-parameter configurations as reported in their respective original literature, carefully adapted to the three industrial datasets described in Section~\ref{sec:datasets}. For the self-supervised methods (MoCo, DINO, etc.), we append a linear probing layer or a nearest-centroid classifier to evaluate their zero-shot generalization capabilities based on the CLIP-derived class prototypes. We ensure that the training conditions—including batch size (256), training epochs (500), and hardware resources—are strictly identical for all methods to guarantee a fair and unbiased comparison of their diagnostic efficacy across the TEP, Hydraulic System, and CWRU datasets. This controlled environment ensures that any observed performance gains are due to the architectural innovations of CESM-Diff rather than variations in training intensity or hardware acceleration.

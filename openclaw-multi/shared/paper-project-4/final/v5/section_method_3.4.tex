@@ -1,0 +1,11 @@
+\subsection{Data Preprocessing}
+To bridge the gap between raw industrial sensor data and the high-level semantic representations discussed in Section 3.3, a rigorous data preprocessing pipeline is essential.
+
+\subsubsection{Signal Segmentation and Windowing}
+The preprocessing begins with raw vibration signal segmentation using a sliding window strategy. Let $X_{raw} \in \mathbb{R}^L$ be a long-duration vibration signal. We apply a sliding window of length $T$ with an overlap ratio $\rho$ to generate a series of samples $\{x_i\}_{i=1}^N$, where each $x_i \in \mathbb{R}^T$. This segmentation ensures that each sample contains sufficient periodic information to capture signature fault frequencies while providing a large volume of training data required for deep manifold learning.
+
+\subsubsection{Time-Frequency Transformation}
+To extract discriminative features from these non-stationary signals, we employ a Time-Frequency Transformation, specifically the Short-Time Fourier Transform (STFT) or Continuous Wavelet Transform (CWT). By mapping the 1D time-series $x_i$ into a 2D time-frequency representation $S_i \in \mathbb{R}^{F \times T'}$, we can simultaneously observe the evolution of frequency components. This is particularly crucial for detecting transient impacts caused by localized defects in bearings or gears.
+
+\subsubsection{Normalization and Mapping}
+Following the transformation, feature normalization and standardization are applied to ensure numerical stability during the diffusion process. Each time-frequency map is scaled such that $S'_i = (S_i - \mu) / \sigma$, where $\mu$ and $\sigma$ are the mean and standard deviation calculated across the "seen" training classes. Finally, we implement a strict train/test split strategy tailored for the zero-shot diagnosis task. Only samples $x \in \mathcal{C}_{seen}$ are used during the initial feature extraction and semantic alignment phase. The model's ability to generalize is then tested on $\mathcal{C}_{unseen}$, where the network must map the preprocessed signals to the latent semantic vectors $s_c$ of previously unencountered fault modes.

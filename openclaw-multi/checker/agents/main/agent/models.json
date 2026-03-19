@@ -1,0 +1,76 @@
+{
+  "providers": {
+    "openrouter": {
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "apiKey": "YOUR_API_KEY_HERE",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "anthropic/claude-sonnet-4.6",
+          "name": "anthropic/claude-sonnet-4.6",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 200000,
+          "maxTokens": 16000,
+          "api": "openai-completions"
+        }
+      ]
+    },
+    "github-copilot": {
+      "baseUrl": "https://api.individual.githubcopilot.com",
+      "models": []
+    },
+    "claude-proxy": {
+      "baseUrl": "https://www.fucheers.top/v1",
+      "apiKey": "YOUR_API_KEY_HERE",
+      "api": "anthropic-messages",
+      "models": [
+        {
+          "id": "claude-opus-4-6",
+          "name": "claude-opus-4-6",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 2000000,
+          "maxTokens": 1600000,
+          "api": "anthropic-messages"
+        },
+        {
+          "id": "claude-opus-4-6",
+          "name": "claude-opus-4-6",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 200000,
+          "maxTokens": 16000,
+          "api": "anthropic-messages"
+        }
+      ]
+    }
+  }
+}

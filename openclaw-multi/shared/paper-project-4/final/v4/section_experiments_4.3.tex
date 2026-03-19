@@ -1,0 +1,37 @@
+\subsection{Results}
+\label{sec:results}
+
+This section presents empirical evidence supporting the CESM-Diff framework. We provide results on three datasets, an ablation study, and qualitative insights through t-SNE visualizations.
+
+\subsubsection{Performance Comparison on Unseen Classes}
+CESM-Diff results compared to state-of-the-art baselines are in Table~\ref{tab:comparison}. Our model consistently outperforms all competing methods across all datasets, demonstrating robust zero-shot generalization.
+
+\textbf{Rationale for Baseline Selection.}
+The baselines span three complementary paradigms. First, classical zero-shot learning (ZSL) methods rooted in attribute-based transfer: as established by Xian et al.~\cite{xian2019zero}, attribute approaches such as DAP~\cite{lampert2009learning}---which maps visual features to a predefined attribute space via Bayesian reasoning---remain foundational ZSL benchmarks, while f-CLSWGAN introduces generative feature synthesis using Wasserstein GANs~\cite{goodfellow2014generative}. Second, diffusion-based generative models, first formalized through non-equilibrium thermodynamics~\cite{sohl2015deep} and extended to score-based formulations~\cite{song2020score}, including DiffusionSSL, DiffuCDD, and the augmentation approach of Chen et al.~\cite{chen2024diffusion}. We also compare against Song et al.~\cite{song2025generalized}, who use physical information semantics for generalized zero-shot bearing diagnosis, and the contractive autoencoder of Gao et al.~\cite{gao2019contractive}, which enforces locally invariant representations via Jacobian penalization. Third, self-supervised contrastive methods (MoCo-v3, DINO, Barlow Twins, VICReg) test whether label-free representations match semantically grounded generation.
+
+On the \textbf{TEP dataset}, CESM-Diff achieves an MCA of $82.4\%$, improving by $7.2\%$ over f-CLSWGAN ($75.2\%$), which suffers from mode collapse in the 52-dimensional process variable space when conditioned on static attribute vectors~\cite{goodfellow2014generative}. DiffusionSSL, leveraging the iterative denoising framework~\cite{sohl2015deep}, achieves $77.8\%$ but lacks semantic anchoring. Our diffusion process captures the underlying distribution via multi-step denoising guided by the CLIP manifold, excelling on subtle coupling faults like Fault 19 and 20, where the contractive autoencoder~\cite{gao2019contractive} fails to generalize beyond its locally invariant training manifold.
+
+For the \textbf{Hydraulic System}, CESM-Diff achieves $79.8\%$ accuracy. This dataset requires interpolation along degradation continua. DAP~\cite{lampert2009learning} relies on binary attributes that cannot capture continuous degradation severity; SAE and CVAE similarly assume static embeddings, resulting in accuracies below $68\%$. The score-based formulation~\cite{song2020score} underpinning our approach provides natural continuous interpolation through the learned score function. For ``Valve switching lag,'' our model achieves $84\%$ accuracy, surpassing the generalized zero-shot framework of Song et al.~\cite{song2025generalized} ($71.3\%$).
+
+On the \textbf{CWRU Bearing dataset}, CESM-Diff reaches $91.3\%$ accuracy. CLIP text embeddings for ``0.007 inch ball fault'' are more informative than the binary attributes used in standard ZSL evaluation~\cite{xian2019zero}. The diffusion-based augmentation of Chen et al.~\cite{chen2024diffusion} achieves $85.6\%$ but operates without semantic conditioning. By aligning rich CLIP embeddings with the vibration manifold, CESM-Diff synthesizes discriminative features for unseen faults. Even for small 0.007-inch faults, it maintains $88\%$ accuracy, benefiting from the thermodynamic foundations of the diffusion framework~\cite{sohl2015deep}. Statistical significance tests (Paired t-test) confirm these gains across 10 runs ($p < 0.01$ for all datasets).
+
+\subsubsection{Ablation Study}
+We systematically remove elements of CESM-Diff to highlight their contributions (Table~\ref{tab:ablation}).
+
+\textbf{Impact of CLIP Text Encoder:} Replacing CLIP with Word2Vec or FastText results in drops of $5.4\%$ on CWRU and $6.1\%$ on TEP. This confirms that CLIP's pre-trained knowledge provides a superior ``semantic prior'' for cross-modal alignment. CLIP recognizes fine-grained engineering concepts like ``pitting'' and ``spalling'' better than shallow word-level embeddings.
+
+\textbf{Importance of Dual-Path Diffusion:} Removing the semantic diffusion path (using only feature diffusion) drops Hydraulic accuracy from $79.8\%$ to $72.5\%$. This confirms that simultaneous diffusion synchronizes the dual paths, where the semantic path acts as a dynamic ``anchor.'' Removing cross-path attention leads to a $3.2\%$ reduction in MCA.
+
+\textbf{Effectiveness of SMI:} Removing SMI and using discrete class embeddings leads to a $4.8\%$ decrease. SMI is crucial as it allows the model to ``imagine'' unseen faults by interpolating between related seen faults, which is especially effective for degradation datasets where faults exist on a continuous spectrum.
+
+\textbf{Role of Consistency Loss:} Removing $\mathcal{L}_{acl}$ results in higher domain shift. This loss ensures generated features remain grounded in physical sensor space and obey CLIP constraints. Sensitivity analysis suggests $\lambda_{acl} \in [0.1, 1.0]$ is optimal.
+
+\subsubsection{Hyperparameter and Manifold Analysis}
+\textbf{Diffusion Timestep $T$:} Accuracy saturates after $T=500$. For real-time applications, $T=200$ maintains $95\%$ of peak accuracy.
+
+\textbf{Noise Schedules:} Cosine schedules provided the most stable training on the Bearing dataset. Linear schedules worked best for TEP.
+
+\textbf{Visualization:} t-SNE plots (Fig.~\ref{fig:tsne}) show CESM-Diff-generated features for unseen classes form tight clusters overlapping with ground-truth samples. ``Manifold walks'' via SMI show smooth transitions across latent space, simulating gradual degradation.
+
+\subsubsection{Complexity}
+CESM-Diff remains feasible for deployment. Each feature generation step ($T=200$) takes $\sim$85ms on an RTX 3090. For high-frequency data, offline augmentation can pre-generate features to train lightweight edge classifiers.

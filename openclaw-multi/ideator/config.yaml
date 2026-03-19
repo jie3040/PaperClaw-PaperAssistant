@@ -1,0 +1,18 @@
+{
+  gateway: {
+    mode: "local",
+    port: 18820
+  },
+  hooks: [
+    {
+      path: "/hooks/agent",
+      token: "ideator-hook-2026"
+    }
+  ],
+  model: {
+    default: "gemini-3.1-pro-high"
+  },
+  thinking: {
+    mode: "off"
+  }
+}

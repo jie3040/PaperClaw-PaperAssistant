@@ -1,0 +1,7 @@
+{
+  "target": "editor",
+  "port": 18870,
+  "token": "editor-hook-2026",
+  "message": "整合 v4 草稿到 final/v3/LaTeX。\n\n整合来源：SHARED/drafts/v4/ 下所有 section 文件\n图表目录：SHARED/figures/\n模板：SHARED/template/\n\n★ 输出到 SHARED/final/v3/paper.tex 和 references.bib\n\n顺序：\n1. Introduction\n2. Related Work\n3. Method (3.1-3.8)\n4. Experiments (4.1-4.4)\n5. Results and Performance Analysis\n6. Conclusion\n\n确保：\n- 使用模板格式\n- 图表引用正确\n- 引用格式统一\n\n完成后回报。",
+  "sessionKey": "hook:editor-v3"
+}

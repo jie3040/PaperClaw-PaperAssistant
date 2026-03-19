@@ -1,0 +1,27 @@
+\subsection{Attribute Consistency Loss (ACL)}
+
+Building upon the Semantic Manifold Interpolation (SMI) introduced in Section 3.6, which facilitates the generation of features for novel fault classes by navigating the continuous latent space of CLIP, a critical challenge remains: the potential for "domain shift" between the synthesized features and the true, albeit unseen, underlying data distributions. While SMI provides a mechanism to "hallucinate" vibration signatures $\hat{\mathbf{x}}_{unseen}$ from interpolated semantics $\mathbf{s}_{unseen}$, there is no inherent guarantee that the generator $G$ (the reverse diffusion process) preserves the semantic integrity of the input throughout the high-dimensional feature synthesis. To bridge this gap and ensure that generated features remain anchored to their corresponding linguistic descriptors, we propose the Attribute Consistency Loss (ACL).
+
+\subsubsection{Addressing Semantic-to-Feature Domain Shift}
+The primary motivation for ACL stems from the observation that in zero-shot fault diagnosis, the model must rely entirely on semantic descriptions to characterize unseen faults. If the generative process introduces stochastic noise or structural distortions that decouple the output features from the input semantics, the resulting classifier will fail to generalize. Specifically, we identify a risk where the generator might map distinct semantic vectors to overlapping or ambiguous regions in the vibration feature space. ACL mitigates this by enforcing a cycle-consistent relationship: a robust generative model should be able to "re-project" its synthesized features back into the original semantic space. This regularizer prevents the model from generating "physically plausible but semantically incorrect" features.
+
+\subsubsection{Formulation of Attribute Consistency}
+We define a lightweight attribute projection network $f(\cdot)$, which is trained to map vibration features back to their corresponding CLIP semantic embeddings. This projection network is composed of three fully connected layers with ReLU activation and dropout for regularization. For a synthesized feature vector $\hat{\mathbf{x}} = G(\mathbf{s})$ generated from a semantic embedding $\mathbf{s}$, the Attribute Consistency Loss is formulated as the squared Euclidean distance between the projection of the generated feature and the original semantic anchor:
+\begin{equation}
+\mathcal{L}_{AC} = \| f(G(\mathbf{s}, t)) - \mathbf{s} \|^2
+\end{equation}
+By minimizing $\mathcal{L}_{AC}$ during training on seen classes, we force the generator $G$ to produce features that are not only statistically plausible but also semantically discriminative. This loss function acts as a regularizer that penalizes "semantic drift," ensuring that the generated manifold for an unseen fault class stays aligned with its linguistic definition. For unseen classes, this grounding ensures that the "hallucinated" features reside within the correct semantic neighborhood.
+
+\subsubsection{Integration with Reconstruction Objectives}
+To maintain stable training dynamics, the ACL is combined with the standard diffusion reconstruction loss $\mathcal{L}_{diff}$. The total objective function for the feature generation path becomes:
+\begin{equation}
+\mathcal{L}_{total} = \mathcal{L}_{diff} + \lambda \mathcal{L}_{AC}
+\end{equation}
+where $\lambda$ is a hyperparameter balancing the generative quality and semantic alignment. This joint optimization ensures that while the model learns to reconstruct the complex temporal patterns of vibration signals, it simultaneously respects the categorical boundaries defined by the CLIP space. During our experiments, we found that $\lambda=0.1$ provides the best performance for the CWRU dataset, while $\lambda=0.25$ is more effective for the TEP dataset due to its higher process noise.
+
+\subsubsection{Gradient Analysis and Convergence}
+From an optimization perspective, the gradient of $\mathcal{L}_{AC}$ with respect to the generator parameters $\theta_G$ provides a direct signal for semantic refinement:
+\begin{equation}
+\nabla_{\theta_G} \mathcal{L}_{AC} = 2 [f(G(\mathbf{s})) - \mathbf{s}] \cdot \mathbf{J}_f \cdot \nabla_{\theta_G} G(\mathbf{s})
+\end{equation}
+where $\mathbf{J}_f$ is the Jacobian of the projection network. This gradient flow encourages the generator to adjust its internal representations such that the resulting features $\hat{\mathbf{x}}$ reside in a region of the feature space that $f(\cdot)$ can unambiguously map back to $\mathbf{s}$. Empirical analysis shows that the inclusion of ACL leads to faster convergence and a more structured latent space, effectively reducing the intraclass variance of the synthesized unseen features while maximizing interclass separability, which is vital for high-accuracy zero-shot diagnosis. Furthermore, the ACL facilitates the detection of out-of-distribution (OOD) samples by monitoring the reconstruction error $f(\mathbf{x}) - \mathbf{s}$ during inference.
