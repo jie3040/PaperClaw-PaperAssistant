@@ -1,0 +1,9 @@
+{
+  "target": "reviewer",
+  "port": 18850,
+  "token": "reviewer-hook-2026",
+  "message": "Stage 3.5 outline alignment review",
+  "sessionKey": "hook:p5-stage3.5-outline-review",
+  "created_at": "2026-03-23T11:59",
+  "status": "pending"
+}

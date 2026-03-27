@@ -118,8 +118,8 @@
   "channels": {
     "feishu": {
       "enabled": true,
-      "appId": "cli_a93a790051b99bc6",
-      "appSecret": "tNAJi6VtQT4yuc9lIcHyFzPkF12uNCVK",
+      "appId": "YOUR_FEISHU_APP_ID",
+      "appSecret": "YOUR_FEISHU_APP_SECRET",
       "domain": "feishu",
       "connectionMode": "websocket",
       "dmPolicy": "open",

@@ -1,0 +1,9 @@
+{
+  "target": "surveyor",
+  "port": 18810,
+  "token": "surveyor-hook-2026",
+  "sessionKey": "hook:p5-stage1-survey",
+  "created_at": "2026-03-23T10:01:00+08:00",
+  "status": "pending",
+  "message": "文献检索任务"
+}

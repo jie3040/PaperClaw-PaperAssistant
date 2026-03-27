@@ -1,0 +1,27 @@
+{
+  "id": "6bc5a93e-067f-4b5b-b70f-13d19cd1e645",
+  "enqueuedAt": 1774530417688,
+  "channel": "feishu",
+  "to": "user:ou_6eab9fc7f84debbe25305e3113cb609b",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "11 张表格，覆盖了用户的全部 7 张原始表格 + 4 张论文新增表格。现在增加引用到 40 条。",
+      "replyToTag": false,
+      "replyToCurrent": false,
+      "audioAsVoice": false
+    }
+  ],
+  "threadId": null,
+  "replyToId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "11 张表格，覆盖了用户的全部 7 张原始表格 + 4 张论文新增表格。现在增加引用到 40 条。",
+    "mediaUrls": [],
+    "isGroup": false
+  },
+  "retryCount": 1,
+  "lastAttemptAt": 1774530418265,
+  "lastError": "Request failed with status code 400"
+}

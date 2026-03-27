@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\caption{EVALUATION SCORE OF GENERATED SAMPLES}
+\label{tab:similarity}
+\begin{tabular}{cccccccccccc}
+\toprule
+\multirow{2}{*}{Case} & \multirow{2}{*}{Selection} & \multicolumn{9}{c}{Class label} \\
+ & & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+\cline{3-11}
+ & & \multicolumn{9}{c}{PCC / Cosine Similarity} \\
+\midrule
+I & Sliding Window & 0.9277 & 0.9215 & 0.9707 & 0.9456 & 0.9239 & 0.9409 & 0.9295 & 0.9289 & 0.9249 \\
+ & Frequency based & 0.9028 & 0.8803 & 0.9141 & 0.8734 & 0.9168 & 0.9147 & 0.9139 & 0.9067 & 0.8980 \\
+II & Sliding Window & 0.9134 & 0.9106 & 0.9445 & 0.9109 & 0.9249 & 0.9340 & --- & --- & --- \\
+ & Frequency based & 0.8627 & 0.8784 & 0.8641 & 0.8956 & 0.9012 & 0.8725 & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}

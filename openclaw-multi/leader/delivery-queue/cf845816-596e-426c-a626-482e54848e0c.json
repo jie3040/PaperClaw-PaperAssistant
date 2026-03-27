@@ -1,0 +1,29 @@
+{
+  "id": "cf845816-596e-426c-a626-482e54848e0c",
+  "enqueuedAt": 1774531660452,
+  "channel": "feishu",
+  "to": "user:ou_6eab9fc7f84debbe25305e3113cb609b",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "⚠️ 📝 Edit: `in ~/.openclaw-multi/leader/workspace/MEMORY.md (40 chars)` failed",
+      "isError": true,
+      "replyToId": "052c12d0-02f7-4590-a5ff-685cf289612d",
+      "replyToTag": false,
+      "replyToCurrent": false,
+      "audioAsVoice": false
+    }
+  ],
+  "threadId": null,
+  "replyToId": "052c12d0-02f7-4590-a5ff-685cf289612d",
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "⚠️ 📝 Edit: `in ~/.openclaw-multi/leader/workspace/MEMORY.md (40 chars)` failed",
+    "mediaUrls": [],
+    "isGroup": false
+  },
+  "retryCount": 1,
+  "lastAttemptAt": 1774531661331,
+  "lastError": "Request failed with status code 400"
+}

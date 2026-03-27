@@ -1,0 +1,24 @@
+{
+  "id": "1d6a9fb4-3377-47ca-9b98-af43ce420285",
+  "enqueuedAt": 1774420551732,
+  "channel": "feishu",
+  "to": "oU_6wkBK5x",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "**论文已完成！** ✅\n\n**Project 6 - Diff-LM-GZSL（IEEE TIM）**\n\n✅ 最终审查通过（ACCEPT）\n- 14 页，35 引用，10 公式，10 图，9 表\n- v5 最终版本：final/v5/paper.pdf\n\n上轮 4 个问题已全部修复：\n1. Conclusion 扩充至 ~292 词\n2. 7 个 figure* 双栏图  \n3. 9 个 booktabs 格式表格\n4. 浮动体位置正确\n\n论文满足黄金标准，可提交。",
+      "replyToTag": false,
+      "replyToCurrent": false,
+      "audioAsVoice": false
+    }
+  ],
+  "gifPlayback": false,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "**论文已完成！** ✅\n\n**Project 6 - Diff-LM-GZSL（IEEE TIM）**\n\n✅ 最终审查通过（ACCEPT）\n- 14 页，35 引用，10 公式，10 图，9 表\n- v5 最终版本：final/v5/paper.pdf\n\n上轮 4 个问题已全部修复：\n1. Conclusion 扩充至 ~292 词\n2. 7 个 figure* 双栏图  \n3. 9 个 booktabs 格式表格\n4. 浮动体位置正确\n\n论文满足黄金标准，可提交。"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1774523218939,
+  "lastError": "Request failed with status code 400"
+}

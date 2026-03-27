@@ -1,0 +1,27 @@
+{
+  "id": "072ddea9-1e72-4322-9977-1ccfa36dfa6e",
+  "enqueuedAt": 1774531981131,
+  "channel": "feishu",
+  "to": "user:ou_6eab9fc7f84debbe25305e3113cb609b",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "已补上 `memory/2026-03-26.md` 日志，记录了今天从上午到晚上的完整工作流程。",
+      "replyToTag": false,
+      "replyToCurrent": false,
+      "audioAsVoice": false
+    }
+  ],
+  "threadId": null,
+  "replyToId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "已补上 `memory/2026-03-26.md` 日志，记录了今天从上午到晚上的完整工作流程。",
+    "mediaUrls": [],
+    "isGroup": false
+  },
+  "retryCount": 1,
+  "lastAttemptAt": 1774531981565,
+  "lastError": "Request failed with status code 400"
+}

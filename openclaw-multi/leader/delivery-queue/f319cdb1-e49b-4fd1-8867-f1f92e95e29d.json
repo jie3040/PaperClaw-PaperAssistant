@@ -1,0 +1,29 @@
+{
+  "id": "f319cdb1-e49b-4fd1-8867-f1f92e95e29d",
+  "enqueuedAt": 1774526796085,
+  "channel": "feishu",
+  "to": "user:ou_6eab9fc7f84debbe25305e3113cb609b",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "404 No endpoints found that support image input",
+      "isError": true,
+      "replyToId": "7ce79460-2f40-4532-9d76-9abac0af169c",
+      "replyToTag": false,
+      "replyToCurrent": false,
+      "audioAsVoice": false
+    }
+  ],
+  "threadId": null,
+  "replyToId": "7ce79460-2f40-4532-9d76-9abac0af169c",
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "404 No endpoints found that support image input",
+    "mediaUrls": [],
+    "isGroup": false
+  },
+  "retryCount": 2,
+  "lastAttemptAt": 1774526999474,
+  "lastError": "Request failed with status code 400"
+}

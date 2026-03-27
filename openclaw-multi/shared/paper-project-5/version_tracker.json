@@ -1,0 +1,24 @@
+{
+  "project": "paper-project-5",
+  "mode": "A",
+  "outline_version": 2,
+  "drafts_version": 2,
+  "final_version": 2,
+  "history": [
+    {"stage": "0", "action": "init + MinerU parse", "time": "2026-03-23T09:42"},
+    {"stage": "0.5", "action": "golden_standard.json created", "time": "2026-03-23T09:59"},
+    {"stage": "1", "action": "Surveyor literature survey (58 papers)", "time": "2026-03-23T11:39"},
+    {"stage": "1.5", "action": "survey_summary.md created (<2KB)", "time": "2026-03-23T11:42"},
+    {"stage": "2", "action": "Ideator generated 3 ideas, user selected Idea 1 (Diff-LM-GZSL)", "time": "2026-03-23T11:46"},
+    {"stage": "3", "action": "Architect outline v1→v2, Reviewer ACCEPT", "time": "2026-03-23T11:59"},
+    {"stage": "4", "action": "Writer 6 batches → drafts/v1", "time": "2026-03-23T12:21"},
+    {"stage": "4.5a", "action": "Reviewer content review R1 REVISE → Writer fix → R2 ACCEPT, drafts/v2", "time": "2026-03-23T12:35"},
+    {"stage": "4.5b", "action": "Artist concept prompts + Gemini fig1-4 + Leader fig5-11", "time": "2026-03-23T13:57"},
+    {"stage": "5", "action": "Leader takeover: assembled paper.tex → final/v1", "time": "2026-03-23T14:26"},
+    {"stage": "6", "action": "Checker LaTeX audit + Leader fix (graphicspath, tab:datasets)", "time": "2026-03-23T14:43"},
+    {"stage": "7", "action": "Reviewer final review R1 REVISE (fig count, eq count) → Leader fix → R2 ACCEPT", "time": "2026-03-23T14:55"},
+    {"stage": "8", "action": "PDF compiled: final/v1/paper.pdf (16p, 13MB)", "time": "2026-03-23T14:58"},
+    {"stage": "9", "action": "User review: REVISE (abstract段落, intro过长, fig1-4双栏)", "time": "2026-03-23T15:04"},
+    {"stage": "10", "action": "Leader fix 3 items → final/v2 (ERROR: v1 overwritten, v2 created post-hoc)", "time": "2026-03-23T15:42"}
+  ]
+}

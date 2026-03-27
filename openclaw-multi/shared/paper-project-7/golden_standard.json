@@ -1,0 +1,53 @@
+{
+  "source_paper": {
+    "title": "A Novel Approach for Intelligent Fault Diagnosis in Bearing With Imbalanced Data Based on Cycle-Consistent GAN",
+    "authors": "W. Liao, L. Wu, S. Xu and S. Fujimura",
+    "journal": "IEEE Transactions on Instrumentation and Measurement",
+    "volume": 73,
+    "year": 2024,
+    "article_id": "3525416",
+    "doi": "10.1109/TIM.2024.3427866"
+  },
+  "structure": {
+    "format": "IEEE TIM two-column",
+    "sections": [
+      "Abstract (single paragraph)",
+      "Index Terms",
+      "I. Introduction",
+      "II. Theoretical Background",
+      "III. Proposed Method",
+      "IV. Experimental Results and Analysis",
+      "V. Conclusion"
+    ],
+    "total_pages_target": "12-17",
+    "references_target": "35-50",
+    "intro_word_count_target": "~1000",
+    "abstract_format": "single paragraph, no bullets"
+  },
+  "content_requirements": {
+    "method": "CAC-CycleGAN-WGP",
+    "components": ["CycleGAN", "Conditional Auxiliary Classifier", "Wasserstein Distance", "Gradient Penalty"],
+    "datasets": ["Case I (CWRU bearing dataset)", "Case II (another bearing dataset)"],
+    "classifier": "SVM",
+    "evaluation": "Stacked Autoencoders",
+    "figures": 10,
+    "tables": 7,
+    "equations": "multiple (loss functions, framework)",
+    "experiments": ["Multiclass imbalanced fault diagnosis", "Single-class imbalanced fault diagnosis"],
+    "balance_ratios": [0.005, 0.01, 0.05, 0.1, 0.5, 1.0]
+  },
+  "example_papers_structure": {
+    "example1": {
+      "title": "A Novel Method for Imbalanced Fault Diagnosis of Rotating Machinery Based on Generative Adversarial Networks",
+      "sections": "I-V with subsections",
+      "has_nomenclature": false,
+      "has_conclusion": true
+    },
+    "example2": {
+      "title": "Intelligent Fault Diagnosis of Rotary Machines: Conditional Auxiliary Classifier GAN Coupled With Meta Learning Using Limited Data",
+      "sections": "I-V with subsections",
+      "has_nomenclature": true,
+      "has_conclusion": true
+    }
+  }
+}

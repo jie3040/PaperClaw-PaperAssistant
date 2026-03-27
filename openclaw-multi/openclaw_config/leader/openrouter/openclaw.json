@@ -7,8 +7,8 @@
         "api": "openai-completions",
         "models": [
           {
-            "id": "minimax/minimax-m2.5",
-            "name": "minimax/minimax-m2.5",
+            "id": "xiaomi/mimo-v2-pro",
+            "name": "xiaomi/mimo-v2-pro",
             "reasoning": true,
             "input": [
               "text",
@@ -37,14 +37,14 @@
           "emoji": "👑"
         },
         "model": {
-          "primary": "openrouter/minimax/minimax-m2.5"
+          "primary": "openrouter/xiaomi/mimo-v2-pro"
         },
         "workspace": "/home/liaowenjie/.openclaw-multi/leader/workspace"
       }
     ],
     "defaults": {
       "model": {
-        "primary": "openrouter/minimax/minimax-m2.5"
+        "primary": "openrouter/xiaomi/mimo-v2-pro"
       },
       "workspace": "/home/liaowenjie/.openclaw-multi/leader/workspace",
       "compaction": {
@@ -101,8 +101,8 @@
   "channels": {
     "feishu": {
       "enabled": true,
-      "appId": "cli_a93a790051b99bc6",
-      "appSecret": "tNAJi6VtQT4yuc9lIcHyFzPkF12uNCVK",
+      "appId": "YOUR_FEISHU_APP_ID",
+      "appSecret": "YOUR_FEISHU_APP_SECRET",
       "domain": "feishu",
       "connectionMode": "websocket",
       "dmPolicy": "open",

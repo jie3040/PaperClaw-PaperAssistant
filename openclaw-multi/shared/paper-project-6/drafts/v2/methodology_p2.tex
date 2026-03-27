@@ -1,0 +1,47 @@
+\subsection{Conditional Auxiliary Classifier (CAC)}
+\label{sec:cac}
+
+To enhance the class-conditional generation capability and ensure the preservation of domain-specific features during the translation process, we incorporate a Conditional Auxiliary Classifier (CAC) into the discriminator architecture. Unlike standard GANs that only distinguish between real and fake samples, the CAC forces the generator to produce samples that are not only photorealistic but also carry distinct categorical information. This is particularly crucial in fault diagnosis applications where the structural integrity of signal features must be maintained across domains. In many real-world scenarios, the source domain (e.g., simulation data) and target domain (e.g., experimental data) exhibit significant distribution shifts, making class-agnostic generation prone to label flipping. By integrating the CAC, the network is explicitly regularized to honor the class identity of the input signal.
+
+The CAC provides a probabilistic interpretation of the class labels for both real and synthesized data. Let $c \in \{1, \dots, C\}$ denote the fault category label. The discriminator $D_Y$ is extended to output two distributions: $D_{adv}(y)$, representing the probability that sample $y$ is real, and $P(c|y)$, representing the probability distribution over classes given sample $y$. For a real sample $y$ with label $c$, the classification loss is defined as the log-likelihood of the correct class:
+\begin{equation}
+\mathcal{L}_{cls}^{real} = \mathbb{E}_{y,c \sim P_{data}(y,c)} [-\log P(c|y)]
+\label{eq:cac_real}
+\tag{7}
+\end{equation}
+Conversely, for the generated sample $\tilde{y} = G(x)$ with the target label $c$, the generator $G$ aims to minimize the classification loss to ensure the generated signal is correctly classified by the auxiliary classifier:
+\begin{equation}
+\mathcal{L}_{cls}^{fake} = \mathbb{E}_{x \sim P_{data}(x), c \sim P_{label}(c)} [-\log P(c|G(x))]
+\label{eq:cac_fake}
+\tag{8}
+\end{equation}
+The total classification objective $\mathcal{L}_{cls} = \mathcal{L}_{cls}^{real} + \mathcal{L}_{cls}^{fake}$ ensures that the mapping $G: X \to Y$ is not merely a style transfer but a class-consistent transformation. By optimizing these loss functions, the generator learns to embed category-specific discriminative features into the generated domain, effectively reducing the intra-class variance in the target domain $Y$. This mechanism significantly stabilizes the training process of the CAC-CycleGAN-WGP framework by providing a stationary gradient signal related to class semantics, preventing mode collapse where the generator might otherwise ignore the input label. Furthermore, the CAC acts as a semantic bridge, aligning the generator's objective with the ultimate goal of fault classification, thereby ensuring that the synthetic samples are not just visually plausible but also diagnostically valuable for downstream tasks.
+
+\subsection{Stacked Autoencoder (SAE) for Quality Evaluation}
+\label{sec:sae}
+
+In the proposed framework, ensuring the physical consistency and diagnostic utility of the generated data is paramount. Traditional GAN evaluation metrics like the Inception Score (IS) or Frechet Inception Distance (FID) often fail to capture the subtle temporal and spectral nuances of industrial sensor signals, as they were originally designed for natural image datasets. Therefore, we employ a Stacked Autoencoder (SAE) as a dedicated quality evaluator to quantify the fidelity of the synthetic signals relative to the source domain distribution. Sparse Autoencoders, initially popularized by Ng \cite{Ng2011}, are uniquely suited for this role due to their ability to reconstruct complex signal manifolds through a hierarchical feature extraction process, frequently analyzed using t-SNE \cite{Maaten2008} for distribution verification.
+
+The SAE architecture, illustrated in Fig. \ref{fig:sae}, consists of multiple layers of sparse autoencoders stacked to form a deep representation learner. Each layer is pre-trained to minimize the reconstruction error of its input, progressively extracting high-level abstract features from the raw time-series or frequency-domain data. The encoding stage compresses the input into a latent bottleneck, while the decoding stage attempts to recreate the original signal from this reduced representation. During the evaluation phase, the SAE is trained exclusively on the real data from the target domain $Y$. The fundamental assumption is that if the generator $G$ successfully captures the underlying distribution of domain $Y$, the generated samples $\tilde{y}$ should yield a reconstruction error comparable to that of real samples.
+
+The quality of a generated sample $\tilde{y}$ is assessed using the Reconstruction Error Index (REI), defined as:
+\begin{equation}
+\text{REI}(\tilde{y}) = \| \tilde{y} - \text{SAE}(\tilde{y}) \|_2^2
+\label{eq:rei}
+\tag{9}
+\end{equation}
+A low REI indicates that the generated sample resides within the learned manifold of the real data as captured by the SAE's internal weights. Furthermore, we analyze the divergence between the distribution of REIs for real data and generated data. By monitoring the SAE reconstruction performance throughout the training process, we can dynamically adjust the balancing weights of the adversarial loss. This feedback loop ensures that the generator does not sacrifice signal integrity for visual similarity. The SAE layers utilize sigmoid activation functions and are regularized with a sparsity constraint to prevent the learning of an trivial identity mapping, forcing the network to capture the most representative "shape" and frequency components of the fault signatures. This objective evaluation metric provides a more reliable assessment of the generator's performance in the context of rotating machinery fault diagnosis.
+
+\subsection{Implementation and Training Strategy}
+\label{sec:implementation}
+
+The implementation of the CAC-CycleGAN-WGP architecture is optimized for high-dimensional sensor data processing and computational efficiency. Both generators $G$ and $F$ adopt a ResNet-based backbone with 9 residual blocks to facilitate gradient flow and prevent signal degradation in deep layers. The discriminators $D_X$ and $D_Y$ utilize a PatchGAN architecture, which penalizes local structure inconsistencies through a localized receptive field, combined with the auxiliary classification head described in Section \ref{sec:cac}.
+
+The training process is governed by the Adam optimizer \cite{Kingma2015} with a momentum of $\beta_1 = 0.5$ and $\beta_2 = 0.999$. To maintain the stability of the WGAN-GP component and satisfy the Lipschitz condition, the discriminators are updated five times for every single update of the generators. The initial learning rate is set to $2 \times 10^{-4}$ for the first 100 epochs and linearly decayed to zero over the subsequent 100 epochs to ensure smooth convergence. Batch normalization is applied to all layers of the generator to reduce internal covariate shift, while Instance Normalization is preferred in the discriminator to ensure that the gradient penalty remains valid across different samples and avoids unwanted dependencies between batch elements.
+
+The hyperparameters controlling the weighting of the various loss terms are summarized in Table \ref{tab:hyperparams}. Specifically, the cycle consistency weight $\lambda_{cyc}$ is set to 10 to emphasize reconstruction accuracy, the gradient penalty coefficient $\lambda_{gp}$ to 10 to enforce the 1-Lipschitz constraint, and the auxiliary classification weight $\lambda_{cls}$ to 2. The total optimization objective is defined by the following composite loss function:
+\begin{equation}
+\mathcal{L}_{total} = \lambda_{cyc}\mathcal{L}_{cyc} + \lambda_{adv}\mathcal{L}_{adv} + \lambda_{cls}\mathcal{L}_{cls}
+\label{eq:total_loss}
+\end{equation}
+where $\lambda_{cyc}$, $\lambda_{adv}$, and $\lambda_{cls}$ serve as hyperparameter weights to balance the cycle consistency, adversarial, and classification components. This configuration was determined through an empirical grid search conducted on a validation set to balance the trade-off between domain alignment and class preservation. All experiments were conducted using an NVIDIA RTX 4090 GPU with 24GB VRAM, implemented in the PyTorch 2.0 framework with CUDA acceleration. To prevent overfitting and preserve model generalization, early stopping is employed based on the stability of the REI metric provided by the SAE evaluator. This comprehensive strategy ensures that the proposed method is both robust to initialization and capable of producing high-quality synthetic signals for diverse industrial applications.

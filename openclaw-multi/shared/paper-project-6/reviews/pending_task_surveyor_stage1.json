@@ -1,0 +1,9 @@
+{
+  "target": "surveyor",
+  "port": 18810,
+  "token": "surveyor-hook-2026",
+  "message": "请为论文项目做文献检索。\n\n**研究主题**：CAC-CycleGAN-WGP — 基于 CycleGAN 的轴承故障诊断不平衡数据增强方法\n\n**核心方法**：\n- CycleGAN + Conditional Auxiliary Classifier + Wasserstein Distance + Gradient Penalty\n- 将正常样本转换为不同类别的故障样本\n- 使用堆叠自编码器评估生成质量\n- 两个轴承数据集（Case I + Case II），SVM 分类器\n\n**检索要求**：\n1. 检索 40-60 篇相关文献（2018-2024 为主）\n2. 覆盖方向：故障诊断、数据增强、GAN（CycleGAN/WGAN/ACGAN）、不平衡学习、零样本/少样本故障诊断\n3. 重点包含以下 baselines 的原始论文：SMOTE, GAN, WGAN, ACGAN, ACWGAN-GP\n4. 输出格式：每篇文献包含 title, authors, year, venue, brief_relevance\n\n**输出文件**：`/home/liaowenjie/.openclaw-multi/shared/paper-project-6/references/survey_raw.md`\n\n完成后回复：SURVEYOR_DONE",
+  "sessionKey": "hook:p6-surveyor-stage1",
+  "created_at": "2026-03-24T10:18",
+  "status": "pending"
+}

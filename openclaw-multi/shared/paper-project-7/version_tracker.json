@@ -1,0 +1,129 @@
+{
+  "mode": "B",
+  "project_num": 7,
+  "outline_version": 2,
+  "drafts_version": 4,
+  "final_version": 2,
+  "history": [
+    {
+      "stage": "0",
+      "action": "init project directory, mode B confirmed",
+      "time": "2026-03-25T17:00"
+    },
+    {
+      "stage": "1",
+      "action": "Surveyor: 40篇文献, 4个子方向, survey_report.md 8KB",
+      "time": "2026-03-25T19:24"
+    },
+    {
+      "stage": "1.5",
+      "action": "Leader精简: survey_summary.md 1.5KB",
+      "time": "2026-03-25T19:25"
+    },
+    {
+      "stage": "3",
+      "action": "Architect: outline/v1/paper_outline.md",
+      "time": "2026-03-25T20:00"
+    },
+    {
+      "stage": "3.5-R1",
+      "action": "Reviewer 框架对齐审查: REVISE - 6项不通过",
+      "time": "2026-03-25T20:28"
+    },
+    {
+      "stage": "4",
+      "action": "Writer: drafts/v1/ 全部section完成",
+      "time": "2026-03-25T21:00"
+    },
+    {
+      "stage": "4.5a-R1",
+      "action": "Reviewer 内容对齐审查: REVISE - Method节字数不足（1156/2100）",
+      "time": "2026-03-25T21:39"
+    },
+    {
+      "stage": "4-R2",
+      "action": "Writer返工: 扩充 method.tex 至 ~2000词 → drafts/v2/",
+      "time": "2026-03-25T21:39",
+      "status": "pending"
+    },
+    {
+      "action": "drafts v1 REVISE -> v2",
+      "time": "2026-03-25T21:41:00+08:00"
+    },
+    {
+      "stage": "4-R3",
+      "action": "创建 drafts/v3: 恢复 experiments.tex(v1), 发 Writer 扩充 method 3.2/3.4/3.5",
+      "time": "2026-03-26T10:26"
+    },
+    {
+      "stage": "4.5a-R2",
+      "action": "发 Reviewer 审查 drafts/v3（全部section词数达标）",
+      "time": "2026-03-26T12:22"
+    },
+    {
+      "stage": "4-R3",
+      "action": "Leader重构 drafts/v4: experiments精简为6节(5057w), CRC→CAC修复",
+      "time": "2026-03-26T12:30"
+    },
+    {
+      "stage": "4-R3-fix",
+      "action": "Leader重构 experiments.tex: 14+子节→6子节, 去重合并, 5057词; CRC→CAC修复",
+      "time": "2026-03-26T13:55"
+    },
+    {
+      "stage": "4.5a-R3",
+      "action": "Reviewer v4 内容对齐审查: ✅ ACCEPT（字数/结构/引用/公式全部通过）",
+      "time": "2026-03-26T14:00"
+    },
+    {
+      "stage": "5+8",
+      "action": "Leader整合paper.tex: 12图+7表+34引用, PDF编译成功 15页 5.0MB",
+      "time": "2026-03-26T20:00"
+    },
+    {
+      "stage": "7-R1",
+      "action": "Reviewer最终审查REVISE: CRC拼写/表格超标/引用不足",
+      "time": "2026-03-26T20:05"
+    },
+    {
+      "stage": "10-v1fix",
+      "action": "Leader修复: CRC→CAC, 表格12→8, 引用34→35, PDF重编译",
+      "time": "2026-03-26T20:12"
+    },
+    {
+      "stage": "7-R2",
+      "action": "Reviewer最终审查R2: ✅ ACCEPT（全部22项通过）",
+      "time": "2026-03-26T20:22"
+    },
+    {
+      "stage": "8",
+      "action": "PDF编译完成: final/v1/paper.pdf, 15页, 5.0MB, 11图+8表+35引用",
+      "time": "2026-03-26T20:22"
+    },
+    {
+      "stage": "9",
+      "action": "用户审查REVISE: 表格数据不完整+引用增至40",
+      "time": "2026-03-26T21:01"
+    },
+    {
+      "stage": "10-v2",
+      "action": "Leader修复final/v2: 用户原始7张表格数据全部替换, 总11表+40引用, PDF编译成功",
+      "time": "2026-03-26T21:05"
+    },
+    {
+      "stage": "7-v2",
+      "action": "Reviewer v2 最终审查: ✅ ACCEPT（全部通过）",
+      "time": "2026-03-26T21:07"
+    },
+    {
+      "stage": "8-v2",
+      "action": "PDF编译完成: final/v2/paper.pdf, 15页, 5.0MB, 11图+11表+40引用",
+      "time": "2026-03-26T21:07"
+    },
+    {
+      "stage": "complete",
+      "action": "Project 7 完成. 用户 ACCEPT. 最终文件: final/v2/paper.pdf",
+      "time": "2026-03-26T21:24"
+    }
+  ]
+}

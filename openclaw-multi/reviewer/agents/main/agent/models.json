@@ -53,8 +53,8 @@
       "api": "openai-completions",
       "models": [
         {
-          "id": "minimax/minimax-m2.5",
-          "name": "minimax/minimax-m2.5",
+          "id": "z-ai/glm-5-turbo",
+          "name": "z-ai/glm-5-turbo",
           "reasoning": true,
           "input": [
             "text",

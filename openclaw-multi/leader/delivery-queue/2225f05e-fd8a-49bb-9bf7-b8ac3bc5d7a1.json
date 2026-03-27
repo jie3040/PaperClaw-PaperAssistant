@@ -1,0 +1,27 @@
+{
+  "id": "2225f05e-fd8a-49bb-9bf7-b8ac3bc5d7a1",
+  "enqueuedAt": 1774527823844,
+  "channel": "feishu",
+  "to": "user:ou_6eab9fc7f84debbe25305e3113cb609b",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "Reviewer 在线但日志显示 `isError=true error=The operation was aborted`。可能是 API 超时或模型问题。Reviewer 用的是 `openrouter/z-ai/glm-5-turbo`，可能不够稳定。重试一次。",
+      "replyToTag": false,
+      "replyToCurrent": false,
+      "audioAsVoice": false
+    }
+  ],
+  "threadId": null,
+  "replyToId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Reviewer 在线但日志显示 `isError=true error=The operation was aborted`。可能是 API 超时或模型问题。Reviewer 用的是 `openrouter/z-ai/glm-5-turbo`，可能不够稳定。重试一次。",
+    "mediaUrls": [],
+    "isGroup": false
+  },
+  "retryCount": 1,
+  "lastAttemptAt": 1774527824254,
+  "lastError": "Request failed with status code 400"
+}

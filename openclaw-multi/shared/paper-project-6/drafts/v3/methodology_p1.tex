@@ -1,0 +1,61 @@
+\section{Methodology}
+\label{sec:methodology}
+
+The proposed methodology focuses on addressing the severe data imbalance in rolling bearing fault diagnosis. Traditional generative models often struggle with training instability and mode collapse when dealing with high-dimensional, noisy sensor data. To overcome these limitations, we introduce a novel framework based on Cycle-Consistent Adversarial Networks integrated with Wasserstein Distance and Gradient Penalty (CAC-CycleGAN-WGP). The approach fundamentally treats fault diagnosis as a domain adaptation and data augmentation problem, where the underlying physical characteristics of the mechanical system are preserved during the synthetic generation process, as inspired by architectures like ResNet \cite{He2016} and PatchGAN \cite{Isola2017}.
+
+\subsection{Overall Framework Architecture}
+\label{subsec:framework}
+
+The overall architecture of the CAC-CycleGAN-WGP framework is meticulously designed to transform imbalanced raw vibration signals into a balanced dataset by generating high-fidelity synthetic fault samples. As illustrated in Fig. \ref{fig:architecture}, the system consists of five primary components: two generators ($G$ and $F$), two discriminators ($D_X$ and $D_Y$), an Auxiliary Classifier (AC), the Wasserstein Gradient Penalty (WGP) module, and a Sparse Autoencoder (SAE) based evaluator. This multi-component assembly ensures that the model can handle the complexities of different fault types, such as inner race, outer race, and ball defects, which often exhibit overlapping signal features in the time-frequency domain. In this context, we leverage the CycleGAN \cite{4} framework for domain-to-domain mapping, combined with the stable training advantages of WGAN-GP \cite{3} and the categorical guidance of ACGAN \cite{5}.
+
+The workflow begins with the input of raw vibration signals from both the majority class (normally functioning bearings) and the minority class (faulty bearings). Unlike standard GANs that map from a latent noise space to the data distribution—often resulting in a lack of structural coherence—our framework utilizes the CycleGAN structure to perform domain-to-domain translation. Generator $G$ is tasked with mapping samples from the normal domain $X$ to the fault domain $Y$, while generator $F$ performs the inverse mapping. This approach leverages the underlying structural similarities between normal and faulty signals to ensure that the generated samples maintain physical consistency. The integration of the Auxiliary Classifier into the discriminator architecture provides class-conditional information, ensuring that the generated faults belong to specific categories. This is particularly important in mechanical systems where the distinction between various fault signatures can be subtle.
+
+To ensure the high quality of the generated samples, we incorporate several advanced mechanisms. The discriminators $D_X$ and $D_Y$ are responsible for distinguishing between real and synthetic samples in their respective domains, acting as the primary feedback mechanism for the generators. The WGP module replaces the standard binary cross-entropy loss with the Wasserstein distance to stabilize training and provide meaningful gradients even when the distributions are disjoint. This modification is critical for processing vibration signals, which are often sparse and high-dimensional. Finally, an SAE evaluator is employed to pre-process the signals and extract representative features, aiding in the assessment of the generated data's authenticity. The SAE specifically focuses on identifying the most salient features of the vibration signals, such as periodic impulses and frequency modulation, which are indicative of bearing health. The entire system operates in an end-to-end fashion, iteratively refining the generators until the synthetic samples are indistinguishable from real fault signals while preserving the characteristic signatures of the specific bearing conditions. This architecture not only increases the volume of the training data but also improves the diversity of the fault samples, which is essential for building robust diagnostic models and ensuring that the final classifier generalizes well to unseen real-world scenarios.
+
+\subsection{Generator and Discriminator with Cycle-Consistency}
+\label{subsec:cyclegan}
+
+The core of our generative process relies on the bidirectional mapping between the normal domain $X$ and the fault domain $Y$. Let $x \in X$ represent real normal samples and $y \in Y$ represent real fault samples. We define two mapping functions: $G: X \to Y$ and $F: Y \to X$. The adversarial training process involves two discriminators, where $D_Y$ encourages $G$ to generate samples $G(x)$ that are statistically similar to $Y$, and $D_X$ encourages $F$ to generate samples $F(y)$ that are statistically similar to $X$. The dual-generator structure allows the model to learn the intrinsic relationship between different operating states of the bearing, effectively capturing the transformation from a healthy state to a degraded one.
+
+However, adversarial loss alone does not guarantee that the learned mapping can preserve the specific temporal and spectral features of the vibration signals. Without additional constraints, the generator might map a normal signal to a completely unrelated fault signal, losing the structural and temporal correspondence between specific sensor readings. To constrain the space of permitable mappings and ensure the logical connection between $x$ and $G(x)$, we enforce cycle-consistency. This principle dictates that if we translate a sample from one domain to another and then back again, we should arrive at the original sample. Specifically, for each sample $x$ from domain $X$, the image translation cycle should bring $x$ back to the original; i.e., $x \to G(x) \to F(G(x)) \approx x$. Similarly, for each sample $y$ from domain $Y$, $G$ and $F$ should satisfy forward-backward cycle consistency: $y \to F(y) \to G(F(y)) \approx y$. This cyclic dependency acts as a powerful regularizer, ensuring that the fundamental physics of the signal—such as the sampling rate, phase information, and fundamental frequency—are maintained across the domains.
+
+The forward mapping loss, which ensures the generator $G$ produces realistic fault samples from healthy baseline signals, is defined as:
+\begin{equation}
+\mathcal{L}_{GAN}(G, D_Y, X, Y) = \mathbb{E}_{y \sim P_{data}(Y)}[\log D_Y(y)] + \mathbb{E}_{x \sim P_{data}(X)}[\log(1 - D_Y(G(x)))]
+\end{equation}
+
+Similarly, the backward mapping loss for generator $F$, which reconstructs normal signals from fault samples, is:
+\begin{equation}
+\mathcal{L}_{GAN}(F, D_X, Y, X) = \mathbb{E}_{x \sim P_{data}(X)}[\log D_X(x)] + \mathbb{E}_{y \sim P_{data}(Y)}[\log(1 - D_X(F(y)))]
+\end{equation}
+
+The cycle-consistency loss $\mathcal{L}_{cyc}$ is then introduced to regularize the training by minimizing the $L1$ norm between the original and reconstructed samples. The $L1$ norm is chosen over the $L2$ norm because it is less sensitive to outliers and preserves the sharp peak features often found in impulsive vibration signals, which are vital for diagnostic precision:
+\begin{equation}
+\mathcal{L}_{cyc}(G, F) = \mathbb{E}_{x \sim P_{data}(X)}[\|F(G(x)) - x\|_1] + \mathbb{E}_{y \sim P_{data}(Y)}[\|G(F(y)) - y\|_1]
+\end{equation}
+
+This cycle-consistency ensures that the mapping $G$ does not merely produce random fault-like signals but instead transforms the specific characteristics of individual normal signals into their corresponding faulty counterparts. This is crucial for bearing signals, as it maintains the phase and frequency relationships inherent in the mechanical system. By enforcing this constraint, the model ensures that the generated fault sample is truly a "faulty version" of the specific input normal signal, preserving the underlying noise floor and operating conditions of the original data segment.
+
+\subsection{WGAN-GP for Training Stability}
+\label{subsec:wgan-gp}
+
+Standard GANs typically minimize the Jensen-Shannon (JS) divergence between the real and generated data distributions. However, when the support of these distributions is disjoint—a common occurrence in the high-frequency vibration signal space where fault features are highly localized and non-overlapping—the JS divergence becomes constant, leading to vanishing gradients and mode collapse. In such cases, the discriminator becomes "too good" too quickly relative to the generator, and the generator stops receiving useful updates to improve its outputs. To address this, we adopt the Wasserstein-1 distance (Earth Mover's distance) as the optimization target, as successfully demonstrated in WGAN \cite{2} and WGAN-GP \cite{3}. The Wasserstein distance has the unique property of being continuous and differentiable everywhere, even when the data distributions do not overlap, providing a more stable signal for gradient descent.
+
+The Wasserstein distance $W(P_r, P_g)$ is informally defined as the minimum cost of transporting mass from the generated distribution $P_g$ to the real distribution $P_r$:
+\begin{equation}
+W(P_r, P_g) = \inf_{\gamma \sim \Pi(P_r, P_g)} \mathbb{E}_{(x, y) \sim \gamma}[\|x - y\|]
+\end{equation}
+Applying the Kantorovich-Rubinstein duality, we can compute this using a $K$-Lipschitz continuous function, which is implemented by our discriminators (referred to as critics in the context of WGAN). The critics in our model are designed to estimate the Wasserstein distance between the real and synthetic fault signal distributions, providing a smoother and more informative loss landscape for the generators to navigate.
+
+To enforce the essential Lipschitz constraint without compromising the network's capacity, we avoid weight clipping, which can lead to optimization difficulties such as capacity underutilization or weight exploding. Instead, we utilize the Gradient Penalty (GP) method. The GP penalizes the norm of the gradient of the discriminator with respect to its input, forcing it to be close to 1 across the data manifold. This ensures that the discriminator's gradients remain stable and informative regardless of the signal's complexity. To further improve the internal representation, we incorporate Batch Normalization \cite{Ioffe2015} in the generative layers. The resulting discriminator loss function $\mathcal{L}_D$ for each domain is defined as:
+\begin{equation}
+\mathcal{L}_D = \mathbb{E}_{\tilde{x} \sim P_g}[D(\tilde{x})] - \mathbb{E}_{x \sim P_r}[D(x)] + \lambda \mathbb{E}_{\hat{x} \sim P_{\hat{x}}}[(\|\nabla_{\hat{x}} D(\hat{x})\|_2 - 1)^2]
+\end{equation}
+where $\hat{x}$ is sampled uniformly along straight lines between pairs of points sampled from the real data distribution $P_r$ and the generator distribution $P_g$, and $\lambda$ is the penalty coefficient (typically set to 10 for bearing signal processing).
+
+The corresponding generator loss $\mathcal{L}_G$ is simplified to the negative expectation of the critic's output over the generated samples, focusing purely on shifting the generated distribution towards the real distribution by maximizing the critic's score:
+\begin{equation}
+\mathcal{L}_G = -\mathbb{E}_{x \sim P_{data}(X)}[D_Y(G(x))]
+\end{equation}
+
+By integrating WGAN-GP into the CycleGAN framework, we significantly improve the training stability and the diversity of the generated outputs. The gradients provided by the Wasserstein distance are informative even when the generator is far from optimal, preventing the common "vanishing gradient" problem during the early stages of training. Furthermore, the gradient penalty ensures that the critic function remains smooth, which effectively prevents mode collapse—a frequent failure mode where the generator would otherwise produce only a limited variety of fault samples regardless of the input's diversity. This combination allows the model to capture the complex, non-linear dependencies in bearing vibration signals more reliably than standard adversarial approaches, ultimately leading to a more effective and high-fidelity data augmentation strategy for sophisticated diagnostic tasks.

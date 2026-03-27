@@ -1,0 +1,9 @@
+{
+  "target": "ideator",
+  "port": 18820,
+  "token": "ideator-hook-2026",
+  "message": "当前项目：/home/liaowenjie/.openclaw-multi/shared/paper-project-7\n以下 SHARED = 上述路径\n\n请阅读以下材料，生成 3 个候选论文创意：\n\n1. 精简调研摘要：/home/liaowenjie/.openclaw-multi/shared/paper-project-7/references/survey_summary.md\n2. Method 描述：/home/liaowenjie/.openclaw-multi/shared/paper-project-7/user_materials/method_description.md\n3. GitHub 仓库：https://github.com/jie3040/CAC-CycleGAN-WGP\n4. 实验结果标签：/home/liaowenjie/.openclaw-multi/shared/paper-project-7/user_materials/results/图像/图像标签.txt 和 /home/liaowenjie/.openclaw-multi/shared/paper-project-7/user_materials/results/表格/表格标签.txt\n\n背景：用户已有完整的方法（CAC-CycleGAN-WGP）、代码和实验结果，需要围绕这些已有成果生成论文创意。\n\n每个创意包括：\n- Title（英文）\n- 核心创新点\n- 亮点描述\n- 与已有材料的契合度\n\n将结果写入：/home/liaowenjie/.openclaw-multi/shared/paper-project-7/ideas/candidate_ideas.md",
+  "sessionKey": "hook:ideator-ideas-p7",
+  "created_at": "2026-03-25T19:28:00+08:00",
+  "status": "pending"
+}

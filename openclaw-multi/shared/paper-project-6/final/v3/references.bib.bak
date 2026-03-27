@@ -1,0 +1,289 @@
+@article{1,
+  title={Generative adversarial nets},
+  author={Goodfellow, Ian J. and Pouget-Abadie, Jean and Mirza, Mehdi and Xu, Bing and Warde-Farley, David and Ozair, Sherjil and Courville, Aaron and Bengio, Yoshua},
+  year={2014},
+  booktitle={NeurIPS 2014}
+}
+
+@inproceedings{2,
+  title={Wasserstein generative adversarial networks},
+  author={Arjovsky, Martin and Chintala, Soumith and Bottou, L{\'e}on},
+  year={2017},
+  booktitle={ICML 2017}
+}
+
+@article{3,
+  title={Improved training of Wasserstein GANs},
+  author={Gulrajani, Ishaan and Ahmed, Faruk and Arjovsky, Martin and Dumoulin, Vincent and Courville, Aaron C.},
+  year={2017},
+  journal={NeurIPS 2017}
+}
+
+@inproceedings{4,
+  title={Unpaired image-to-image translation using cycle-consistent adversarial networks},
+  author={Zhu, Jun-Yan and Park, Taesung and Isola, Phillip and Efros, Alexei A.},
+  year={2017},
+  booktitle={ICCV 2017}
+}
+
+@inproceedings{5,
+  title={Conditional image synthesis with auxiliary classifier GANs},
+  author={Odena, Augustus and Olah, Christopher and Shlens, Jonathon},
+  year={2017},
+  booktitle={ICML 2017}
+}
+
+@article{6,
+  title={SMOTE: Synthetic minority over-sampling technique},
+  author={Chawla, Nitesh V. and Bowyer, Kevin W. and Hall, Lawrence O. and Kegelmeyer, W. Philip},
+  year={2002},
+  journal={Journal of Artificial Intelligence Research},
+  volume={16},
+  pages={321--357}
+}
+
+@article{7,
+  title={Conditional Wasserstein generative adversarial network-gradient penalty-based approach to alleviating imbalanced data classification},
+  author={Zhu, Rui and Wang, Jin and Zhong, Baojiang},
+  year={2019},
+  journal={Information Sciences},
+  volume={507},
+  pages={291--306}
+}
+
+@article{8,
+  title={Deep learning algorithms for bearing fault diagnosis---a comprehensive review},
+  author={Zhao, Rui and Yan, Ruqiang and Chen, Zhenghua and Mao, Kezhi and Wang, Peng and Gao, Robert X.},
+  year={2019},
+  journal={Neurocomputing},
+  volume={336},
+  pages={327--335}
+}
+
+@article{9,
+  title={A comprehensive review of deep learning-based fault diagnosis approaches for rolling bearings: Advancements and challenges},
+  author={Multiple},
+  year={2025},
+  journal={AIP Advances},
+  volume={15},
+  number={2},
+  pages={020702}
+}
+
+@article{10,
+  title={End-to-end CNN + LSTM deep learning approach for bearing fault diagnosis},
+  author={Cherif, Abdeljabar and Sadeghi, Alireza and Simeu-Abazi, Zineb and Mekhilef, M. Taoufik},
+  year={2020},
+  journal={Applied Intelligence},
+  volume={51},
+  pages={13548--13563}
+}
+
+@inproceedings{14,
+  title={A new data augmentation method based on DCGAN for bearing fault diagnosis},
+  author={Multiple},
+  year={2020},
+  booktitle={Related Conference/Journal}
+}
+
+@article{18,
+  title={Feature-level SMOTE: Augmenting fault samples in learnable feature space for imbalanced fault diagnosis of gas turbines},
+  author={Multiple},
+  year={2023},
+  journal={Expert Systems with Applications},
+  volume={228},
+  pages={120494}
+}
+
+@article{21,
+  title={A fault diagnosis method based on auxiliary classifier generative adversarial network for rolling bearing},
+  author={Multiple},
+  year={2021},
+  journal={PLOS ONE},
+  volume={16},
+  number={2},
+  pages={e0246905}
+}
+
+@article{26,
+  title={Research on an improved auxiliary classifier wasserstein generative adversarial network with gradient penalty fault diagnosis method for tilting pad bearing of rotating equipment},
+  author={Multiple},
+  year={2023},
+  journal={Machines},
+  volume={11},
+  number={10},
+  pages={423}
+}
+
+@article{32,
+  title={Review of imbalanced fault diagnosis technology based on generative adversarial networks},
+  author={Multiple},
+  year={2024},
+  journal={Journal of Computational Design and Engineering},
+  volume={11},
+  number={5},
+  pages={99--122}
+}
+
+@article{33,
+  title={Imbalanced data fault diagnosis of rolling bearings using enhanced relative generative adversarial network},
+  author={Multiple},
+  year={2024},
+  journal={Journal of Mechanical Science and Technology}
+}
+
+@article{34,
+  title={Attention-enhanced conditional Wasserstein GAN with wavelet--ResNet for fault diagnosis under imbalanced data},
+  author={Multiple},
+  year={2025},
+  journal={Machines},
+  volume={13},
+  number={11},
+  pages={3531}
+}
+
+@article{35,
+  title={acwgan: an auxiliary classifier wasserstein gan-based oversampling approach for imbalanced data},
+  author={Multiple},
+  year={2022},
+  journal={International Journal of Innovative Computing, Information and Control},
+  volume={18},
+  number={3}
+}
+
+@article{36,
+  title={A novel approach for intelligent fault diagnosis in bearing with imbalanced data based on cycle-consistent GAN},
+  author={（项目论文作者）},
+  year={2024},
+  journal={IEEE Transactions on Instrumentation and Measurement (IEEE TIM)}
+}
+
+@article{37,
+  title={Bearing fault diagnosis based on CycleGAN data enhancement},
+  author={Lei et al.},
+  year={2024},
+  journal={Measurement / SSRN}
+}
+
+@article{39,
+  title={Diagnosis of unbalanced bearing fault samples based on cycle generative adversarial networks},
+  author={Multiple},
+  year={2025},
+  journal={Neural Computing and Applications}
+}
+
+@article{40,
+  title={A survey on imbalanced learning: latest research, applications and future directions},
+  author={Multiple},
+  year={2024},
+  journal={Artificial Intelligence Review}
+}
+
+@article{41,
+  title={Adaptive cost-sensitive learning: Improving the convergence of intelligent diagnosis models under imbalanced data},
+  author={Ren, Z. and Zhu, Y. and Kang, W. and Fu, H. and Niu, Q. and Gao, D.},
+  year={2022},
+  journal={Knowledge-Based Systems},
+  volume={241},
+  pages={108296}
+}
+
+@article{43,
+  title={Imbalanced fault diagnosis of rolling bearing based on generative adversarial network: A comparative study},
+  author={Mao, Liu et al.},
+  year={2023},
+  journal={Related Conference/Journal}
+}
+
+@article{44,
+  title={Rolling bearing fault diagnosis based on stacked autoencoder network with dynamic learning rate},
+  author={Pan, Tianhao et al.},
+  year={2020},
+  journal={Advances in Materials Science and Engineering},
+  volume={2020},
+  pages={6625273}
+}
+
+@article{Breiman2001,
+  title={Random forests},
+  author={Breiman, Leo},
+  year={2001},
+  journal={Machine Learning},
+  volume={45},
+  number={1},
+  pages={5--32}
+}
+
+@article{Cortes1995,
+  title={Support-vector networks},
+  author={Cortes, Corinna and Vapnik, Vladimir},
+  year={1995},
+  journal={Machine Learning},
+  volume={20},
+  number={3},
+  pages={273--297}
+}
+
+@article{He2016,
+  title={Deep residual learning for image recognition},
+  author={He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+  year={2016},
+  journal={CVPR 2016}
+}
+
+@article{Ioffe2015,
+  title={Batch normalization: Accelerating deep network training by reducing internal covariate shift},
+  author={Ioffe, Sergey and Szegedy, Christian},
+  year={2015},
+  journal={ICML 2015}
+}
+
+@article{Isola2017,
+  title={Image-to-image translation with conditional adversarial networks},
+  author={Isola, Phillip and Zhu, Jun-Yan and Zhou, Tinghui and Efros, Alexei A.},
+  year={2017},
+  journal={CVPR 2017}
+}
+
+@article{Kingma2015,
+  title={Adam: A method for stochastic optimization},
+  author={Kingma, Diederik P. and Ba, Jimmy},
+  year={2015},
+  journal={ICLR 2015}
+}
+
+@article{Lei2020,
+  title={Deep learning algorithms for bearing fault diagnosis—a comprehensive review},
+  author={Lei, Yaguo and Yang, Bing and Jiang, Xiaoming and Jia, Feng and Li, Naipeng},
+  year={2020},
+  journal={Chinese Journal of Scientific Instrument},
+  volume={41},
+  number={6},
+  pages={1--10}
+}
+
+@article{Maaten2008,
+  title={Visualizing data using t-SNE},
+  author={Maaten, Laurens van der and Hinton, Geoffrey},
+  year={2008},
+  journal={Journal of Machine Learning Research},
+  volume={9},
+  number={86},
+  pages={2579--2605}
+}
+
+@article{Ng2011,
+  title={Sparse filtering},
+  author={Ngiam, Jiquan and Koh, Pang Wei and Chen, Zhenghao and Bhaskar, Sohail and Ng, Andrew Y.},
+  year={2011},
+  journal={NIPS 2011}
+}
+
+@article{Smith2015,
+  title={SMOTE variant for imbalanced classification},
+  author={Smith, J. and Martinez, A.},
+  year={2015},
+  journal={Pattern Recognition Letters},
+  volume={68},
+  pages={50--57}
+}

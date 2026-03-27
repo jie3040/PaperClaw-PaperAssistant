@@ -1,31 +1,14 @@
 {
   "models": {
     "providers": {
-      "claude-proxy": {
-        "baseUrl": "https://www.fucheers.top",
+      "openrouter": {
+        "baseUrl": "https://openrouter.ai/api/v1",
         "apiKey": "YOUR_API_KEY_HERE",
-        "api": "anthropic-messages",
+        "api": "openai-completions",
         "models": [
           {
-            "id": "claude-sonnet-4-6-thinking",
-            "name": "claude-sonnet-4-6-thinking",
-            "reasoning": true,
-            "input": [
-              "text",
-              "image"
-            ],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 200000,
-            "maxTokens": 16000
-          },
-          {
-            "id": "claude-sonnet-4-6-thinking",
-            "name": "claude-sonnet-4-6-thinking",
+            "id": "z-ai/glm-5-turbo",
+            "name": "z-ai/glm-5-turbo",
             "reasoning": true,
             "input": [
               "text",
@@ -54,14 +37,14 @@
           "emoji": "🔍"
         },
         "model": {
-          "primary": "claude-proxy/claude-sonnet-4-6-thinking"
+          "primary": "openrouter/z-ai/glm-5-turbo"
         },
         "workspace": "/home/liaowenjie/.openclaw-multi/surveyor/workspace"
       }
     ],
     "defaults": {
       "model": {
-        "primary": "claude-proxy/claude-sonnet-4-6-thinking"
+        "primary": "openrouter/z-ai/glm-5-turbo"
       },
       "workspace": "/home/liaowenjie/.openclaw-multi/surveyor/workspace",
       "compaction": {

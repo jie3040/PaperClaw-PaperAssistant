@@ -1,0 +1,27 @@
+{
+  "id": "a58e7ba6-b036-4c05-ac0a-bd9fafb28654",
+  "enqueuedAt": 1774530418266,
+  "channel": "feishu",
+  "to": "user:ou_6eab9fc7f84debbe25305e3113cb609b",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "有 11 条未被引用的 bib 条目。我需要在正文中引用其中 5 条，使总引用达到 40。",
+      "replyToTag": false,
+      "replyToCurrent": false,
+      "audioAsVoice": false
+    }
+  ],
+  "threadId": null,
+  "replyToId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "有 11 条未被引用的 bib 条目。我需要在正文中引用其中 5 条，使总引用达到 40。",
+    "mediaUrls": [],
+    "isGroup": false
+  },
+  "retryCount": 1,
+  "lastAttemptAt": 1774530418991,
+  "lastError": "Request failed with status code 400"
+}

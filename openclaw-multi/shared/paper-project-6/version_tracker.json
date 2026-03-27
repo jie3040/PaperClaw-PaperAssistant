@@ -1,0 +1,28 @@
+{
+  "project": "paper-project-6",
+  "mode": "B",
+  "outline_version": 1,
+  "drafts_version": 3,
+  "final_version": 4,
+  "history": [
+    {"stage": "0", "action": "init project directory, mode B confirmed", "time": "2026-03-23T17:27"},
+    {"stage": "0.5", "action": "golden_standard.json created", "time": "2026-03-23T18:10"},
+    {"stage": "1", "action": "Surveyor: 52篇文献", "time": "2026-03-24T10:31"},
+    {"stage": "3", "action": "Architect: outline/v1/paper_outline.md - 14p", "time": "2026-03-24T10:33"},
+    {"stage": "3.5", "action": "框架对齐审查 PASS", "time": "2026-03-24T10:33"},
+    {"stage": "4", "action": "Writer 完成全部7个sections: 总计9191词", "time": "2026-03-24T10:58"},
+    {"stage": "4.5a", "action": "内容对齐审查 R1/R2/R3 通过", "time": "2026-03-24T11:15"},
+    {"stage": "7-R1", "action": "Reviewer 最终审查 R1: REVISE - 5项不通过", "time": "2026-03-25T11:50"},
+    {"stage": "10", "action": "Leader 修复: 填充占位符、统一方法名", "time": "2026-03-25T11:55"},
+    {"stage": "7-R2", "action": "Reviewer 最终审查 R2: ACCEPT", "time": "2026-03-25T11:57"},
+    {"stage": "8", "action": "PDF 编译完成: final/v2/paper.pdf", "time": "2026-03-25T12:00"},
+    {"stage": "10-v3", "action": "用户Reject v2: 引用/图片/排版问题, Leader修复v3", "time": "2026-03-25T13:30"},
+    {"stage": "6-v3", "action": "Checker v3: PASS", "time": "2026-03-25T13:35"},
+    {"stage": "7-v3", "action": "Reviewer v3: REVISE - 4项不通过(Conclusion/figure*/booktabs/float)", "time": "2026-03-25T13:37"},
+    {"stage": "10-v4", "action": "Leader修复v4: 扩充Conclusion/figure*/booktabs", "time": "2026-03-25T14:23"},
+    {"stage": "7-v4", "action": "Reviewer v4: REVISE - 浮动体位置", "time": "2026-03-25T14:26"},
+    {"stage": "10-v5", "action": "Leader确认浮动体位置正确", "time": "2026-03-25T14:29"},
+    {"stage": "7-v5", "action": "Reviewer v5: ✅ ACCEPT", "time": "2026-03-25T14:32"},
+    {"stage": "complete", "action": "Project 6 完成. 最终文件: final/v3/paper.pdf", "time": "2026-03-25T14:32"}
+  ]
+}

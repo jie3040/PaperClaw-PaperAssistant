@@ -1,0 +1,138 @@
+{
+  "project": "paper-project-5",
+  "topic": "Zero-shot fault diagnosis based on diffusion model and language model",
+  "journal": "IEEE Transactions on Instrumentation and Measurement (IEEE TIM)",
+  "template": "IEEEtran",
+  "examples": ["example_1 (DP-CDDPM-AC)", "example_2 (CycleGAN-SD)"],
+
+  "structure": {
+    "sections": [
+      "Abstract",
+      "I. Introduction",
+      "II. Background / Preliminary Knowledge",
+      "III. Method",
+      "IV. Experiments and Results",
+      "V. Conclusion",
+      "References"
+    ],
+    "notes": "Both examples follow the same 5-section structure (I-V). Section II covers problem definition, background models, and domain shift. Section III has subsections A-D covering overall framework, data preprocessing, model training, and feature generation/diagnosis. Section IV has 2-3 case studies each with dataset description, model training, results comparison, ablation study."
+  },
+
+  "length": {
+    "total_pages": "13-15 pages (double column)",
+    "abstract_words": "180-250 words",
+    "introduction_paragraphs": "7-9 paragraphs (~1500-2000 words)",
+    "background_pages": "1.5-2 pages",
+    "method_pages": "3-4 pages",
+    "experiments_pages": "4-5 pages",
+    "conclusion_words": "200-350 words"
+  },
+
+  "references": {
+    "total_count": "34-54 references",
+    "intro_ratio": "≥50% of total references must appear in Introduction",
+    "example_1_total": 54,
+    "example_1_intro_refs": "~30+ refs in Introduction",
+    "example_2_total": 34,
+    "example_2_intro_refs": "~20+ refs in Introduction"
+  },
+
+  "figures": {
+    "total_count": "8-11 figures",
+    "required_types": [
+      "Comparison between traditional and zero-shot fault diagnosis (concept figure)",
+      "Domain shift illustration",
+      "Overall framework / flowchart of proposed method (full-page width)",
+      "Training framework / model architecture detail",
+      "Loss curve during training",
+      "Feature concatenation flowchart",
+      "t-SNE visualization of generated vs real features (ablation variants)",
+      "Confusion matrices for experiment groups",
+      "Quality evaluation (MMD scores / PCC+CS metrics)"
+    ]
+  },
+
+  "tables": {
+    "total_count": "8-14 tables",
+    "required_types": [
+      "Network architecture and parameters",
+      "Dataset statistics / fault descriptions",
+      "Attribute definitions",
+      "Group settings for zero-shot experiments",
+      "Running time comparison",
+      "Accuracy of proposed method under different classifiers",
+      "Accuracy comparison with SOTA methods (with std dev)",
+      "Ablation study results",
+      "Quality metrics (MMD/PCC/CS) comparison"
+    ]
+  },
+
+  "writing_style": {
+    "tone": "Formal academic, third person",
+    "math": "Heavy use of equations (10-15 equations), properly numbered",
+    "abbreviations": "Define on first use, e.g., ZSL, ZSFD, DDPM, GAN, etc.",
+    "intro_pattern": [
+      "1. General introduction to fault diagnosis importance",
+      "2. Challenge of scarce fault data → motivate zero-shot learning",
+      "3. Review of non-generative ZSL methods for fault diagnosis",
+      "4. Review of generative methods (GAN-based) for ZSL/fault diagnosis",
+      "5. Limitations of existing methods (domain shift, insufficient semantic learning, etc.)",
+      "6. Proposed method overview and how it addresses limitations",
+      "7. Contributions list (3 items, numbered)",
+      "8. Paper organization paragraph"
+    ],
+    "contributions_count": 3,
+    "experiment_pattern": [
+      "For each case study:",
+      "  1) Dataset description and preprocessing",
+      "  2) Model training details + hyperparameters",
+      "  3) Quality evaluation of generated features",
+      "  4) Visualization (t-SNE) + ablation study",
+      "  5) Fault diagnosis accuracy comparison with SOTA",
+      "  6) Additional analyses (robustness, scalability, etc.)"
+    ]
+  },
+
+  "comparison_methods": {
+    "required_baselines": [
+      "FDAT (attribute prediction based)",
+      "SCE (feature-attribute embedding)",
+      "FAGAN (GAN-based)",
+      "SRWGAN (Wasserstein GAN)",
+      "VAEGAN-AR (VAE+GAN)",
+      "FREE (feature refinement)"
+    ],
+    "optional_baselines": [
+      "GLA-ZSL (attention-based)",
+      "GZSLCFD (diffusion-based)"
+    ],
+    "classifiers_used": ["LSVM", "NRF", "PNB", "MLP", "CNN (optional)"]
+  },
+
+  "datasets": {
+    "both_examples_use": [
+      "Tennessee Eastman Process (TEP) - 15 fault classes, 5 groups",
+      "Real hydraulic system - 144 fault types, 3 scenarios (15/25/30 unseen)"
+    ],
+    "example_1_additional": "CWRU bearing dataset (2D spectrograms)",
+    "example_2_additional": "Three-phase transmission system (TPTS) toy data"
+  },
+
+  "key_concepts_shared": [
+    "Zero-shot learning / Zero-shot fault diagnosis",
+    "Domain shift problem",
+    "Attribute-consistent loss / regressor",
+    "Feature concatenation for discriminative features",
+    "Stacked autoencoder for feature extraction",
+    "Binary fault attributes defined by expert knowledge"
+  ],
+
+  "formatting": {
+    "column": "double column",
+    "font": "10pt IEEEtran",
+    "figure_width": "single column or double column (framework figures use full width)",
+    "table_format": "IEEE standard with horizontal rules",
+    "equation_numbering": "sequential (1), (2), ...",
+    "citation_style": "numeric [1], [2], ..."
+  }
+}

@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{CLASSIFICATION ACCURACY (IN \%) FOR MULTICLASS FAULT DIAGNOSIS FOR CASE II}
+\label{tab:accuracy_caseII}
+\begin{tabular}{lcccccccccccc}
+\toprule
+\multirow{2}{*}{Model} & \multicolumn{6}{c}{Sliding Window Sampling} & \multicolumn{6}{c}{Frequency-based Selection} \\
+ & \multicolumn{6}{c}{Balance Ratio (BR)} & \multicolumn{6}{c}{Balance Ratio (BR)} \\
+ & 0.005 & 0.01 & 0.05 & 0.25 & 0.5 & 1 & 0.005 & 0.01 & 0.05 & 0.25 & 0.5 & 1 \\
+\midrule
+SVM & 16.29 & 63.25 & 91.87 & 98.33 & 100 & 100 & 15.14 & 41.43 & 87.08 & 91.43 & 95.73 & 97.53 \\
+RF & 50.38 & 71.22 & 88.60 & 99.06 & 99.92 & 100 & 32.02 & 77.11 & 80.34 & 87.87 & 96.96 & 98.42 \\
+MLP & 62.91 & 80.02 & 86.73 & 90.75 & 95.34 & 97.30 & 62.05 & 78.58 & 88.67 & 96.03 & 98.72 & 99.10 \\
+CNN & 25.52 & 45.09 & 92.02 & 98.23 & 100 & 100 & 17.27 & 55.80 & 82.86 & 91.77 & 94.98 & 96.73 \\
+\bottomrule
+\end{tabular}
+\end{table}

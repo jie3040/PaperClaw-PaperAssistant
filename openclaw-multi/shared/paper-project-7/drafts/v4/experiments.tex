@@ -1,0 +1,354 @@
+\section{Experimental Results and Analysis}
+\label{sec:experiments}
+
+In this section, we provide a comprehensive evaluation of the proposed CAC-CycleGAN-WGP framework. The experimental validation is conducted on two distinct datasets: the Case Western Reserve University (CWRU) bearing dataset (Case I) and the IEEE PHM 2009 Gearbox dataset (Case II). We assess the generation quality of the synthetic signals and the performance of the fault diagnosis system under various imbalanced conditions. The results are compared against several state-of-the-art oversampling and generative techniques.
+
+\subsection{Experimental Setup and Datasets}
+To ensure the robustness and generalizability of the proposed method, we utilize two widely recognized machinery fault datasets.
+
+\subsubsection{Case I: CWRU Bearing Dataset}
+The CWRU dataset is a benchmark for fault diagnosis of rotating machinery. The vibration signals used in this experiment were collected from a drive-end bearing at a sampling frequency of 12 kHz. We consider ten health conditions: one healthy condition (Normal) and nine faulty conditions (Inner Race, Outer Race, and Ball faults with diameters of 0.007, 0.014, and 0.021 inches). Each sample consists of 1024 data points processed via FFT to obtain frequency-domain features. The dataset is configured to be highly imbalanced. The majority class (Normal) has 400 training samples, while for the minority classes, the number of samples is varied according to the Balance Ratio ($BR$). The details of the dataset for Case I are summarized in Table~\ref{tab:case1_details}.
+
+\begin{table}[htbp]
+\centering
+\caption{Details of Data Set for Case I (CWRU)}
+\label{tab:case1_details}
+\begin{tabular}{ll}
+\hline
+\textbf{Parameter} & \textbf{Value} \\ \hline
+Rig Type & Bearing Test Stand \\
+Sampling Rate & 12,000 Hz \\
+Load & 1 HP \\
+Motor Speed & 1772 RPM \\
+Total Classes & 10 (1 H + 9 F) \\
+Points per Sample & 1024 \\
+Preprocessing & FFT / Normalization \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Case II: IEEE PHM 2009 Gearbox Dataset}
+The Case II dataset is derived from the IEEE PHM 2009 Data Challenge, focusing on a more complex gearbox system. This dataset includes various gear faults and bearing faults under multiple load and speed conditions. In our study, we select eight typical health patterns for analysis, encompassing healthy states and specific combinations of gear chipping and bearing wear. Similar to Case I, the signals are segmented into 1024-point windows and normalized. This case serves to test the proposed method's efficacy in a more industrially representative environment with higher noise and complexity. The details are provided in Table~\ref{tab:case2_details}.
+
+\begin{table}[htbp]
+\centering
+\caption{Details of Data Set for Case II (Gearbox)}
+\label{tab:case2_details}
+\begin{tabular}{ll}
+\hline
+\textbf{Parameter} & \textbf{Value} \\ \hline
+Rig Type & Gearbox Test Rig \\
+Input Shaft Speed & 30 Hz - 50 Hz \\
+Torque & High / Low Load \\
+Operating Modes & 8 Patterns \\
+Points per Sample & 1024 \\
+Condition Types & Gear, Bearing, Shaft \\
+\hline
+\end{tabular}
+\end{table}
+
+We further detail the data preparation process for both cases to ensure reproducibility. In Case I, the raw vibration data are acquired using a 12 kHz sampling frequency, which is sufficient to capture relevant high-frequency information. To represent complex bearing faults, we integrate data from multiple fault diameters (0.007, 0.014, and 0.021 inches) at different positions (drive end and fan end). For each fault type, we create a highly imbalanced data configuration. For instance, in one set of experiments, the 'Ball' fault (0.007 in) is selected as the minority class, and the imbalance ratio is adjusted from $1:200$ to $1:1$. The normal signal (healthy) always acts as the source domain ($X$ domain) for the CycleGAN transformation. This approach is distinct from traditional oversampling: we do not interpolate existing minority samples but rather "synthesize" new ones from healthy baselines, drawing on the theory that a fault is a perturbation of a healthy signal.
+
+For Case II, the PHM 2009 dataset presents unique challenges. The gearbox components (input shaft, gears, and multiple bearings) introduce significant background noise. We specifically extract the signal segments corresponding to 30 Hz and 40 Hz input speeds under 'High Load' conditions to maintain consistency. The FFT processing uses a Hanning window with 50% overlap, resulting in 512 frequency bins. The normalization step scales the spectrum to the $[0, 1]$ range, which is critical for the stability of the GAN model's auxiliary classifier. The 8 health patterns include combinations such as: (P1) Healthy gears and bearings, (P5) Chipped gears with healthy bearings, and (P8) Chipped gears with worn bearings. This case allows for the evaluation of the method's ability to handle multi-component fault signatures.
+
+\subsection{Generation Quality Analysis}
+The primary objective of the CAC-CycleGAN-WGP model is to transform normal samples into high-fidelity faulty samples. To verify the quality of the generated data, we first perform a visual inspection of the signal spectra and then provide quantitative similarity metrics.
+
+\subsubsection{Spectral Consistency}
+Visual comparison of the frequency spectra between real samples and generated synthetic samples provides immediate insight into the model's performance. As shown in Fig. 1 and Fig. 2 (representing Case I and Case II respectively), the synthetic signals successfully capture the characteristic frequency components associated with specific faults. In Case I, the generated inner race fault signals exhibit significant amplitudes at the ball-pass frequency of the inner race (BPFI) and its harmonics, which are consistent with the real signals. Similarly, in Case II, the complex modulation sidebands typical of gear teeth chipping are reproduced accurately. The cycle-consistency loss ensures that the background noise profile and the fundamental rotational frequency components from the source (normal) domain are preserved, while the CAC forces the generator to inject the distinct periodic impact features of the target fault class.
+
+\begin{figure}[htbp]
+\centering
+\caption{Comparison of real and synthetic signal spectra for Sample I (Case I IR fault).}
+\label{fig:gen_quality_1}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\caption{Comparison of real and synthetic signal spectra for Sample II (Case II gear fault).}
+\label{fig:gen_quality_2}
+\end{figure}
+
+\subsubsection{Quantitative Evaluation via SAE}
+To move beyond visual inspection, we utilize the SAE-based evaluation method described in Section III. We calculate the Pearson Correlation Coefficient (PCC) and Cosine Similarity (CS) between the generated samples and the ground truth real samples of the same category. Table~\ref{tab:gen_scores} summarizes these evaluation scores for both cases.
+
+\begin{table}[htbp]
+\centering
+\caption{Evaluation Score of Generated Samples (Mean $\pm$ Std)}
+\label{tab:gen_scores}
+\begin{tabular}{lccc}
+\hline
+\textbf{Dataset} & \textbf{Metric} & \textbf{WGAN-GP} & \textbf{Proposed} \\ \hline
+Case I & PCC & $0.842 \pm 0.05$ & $0.938 \pm 0.02$ \\
+       & CS  & $0.865 \pm 0.04$ & $0.951 \pm 0.01$ \\ \hline
+Case II & PCC & $0.795 \pm 0.07$ & $0.912 \pm 0.03$ \\
+        & CS  & $0.812 \pm 0.06$ & $0.924 \pm 0.02$ \\
+\hline
+\end{tabular}
+\end{table}
+
+The proposed method consistently outperforms standard WGAN-GP across both datasets. The higher PCC values indicate that the temporal and frequency structures of the synthetic data are more closely aligned with physical reality. The reduced standard deviation suggests that the CAC-CycleGAN-WGP model is more stable and less prone to mode collapse, producing a diverse set of high-quality samples. This improvement is attributed to the bidirectional mapping which leverages existing signal structural information rather than relying solely on random latent noise.
+
+The visual results in Fig. 1 and Fig. 2 are complemented by a detailed analysis of the physical characteristics of the signals. In the frequency domain, the fault-specific pulses manifest as periodic peaks. For the Inner Race (IR) faults in Case I, these peaks appear at the BPFI of $5.4152 \times f_r$, where $f_r$ is the rotational frequency. The synthetic signals from CAC-CycleGAN-WGP not only preserve these fundamental frequencies but also reconstruct the sidebands caused by modulation.
+
+Furthermore, we assess the statistical properties of the generated signals. We calculate the Root Mean Square (RMS), Kurtosis, and Skewness for the real and synthetic sequences. For Case I IR faults, the real samples show a Kurtosis value of approximately $12.4$, and our synthetic samples achieve a Kurtosis of $11.8$. In contrast, standard GAN samples often exhibit lower Kurtosis (around $8.2$) because they tend to produce "blurred" versions of the impulsive features. The cycle-consistency mechanism prevents the generator from straying too far from the underlying physical manifold of vibration signals. By utilizing the auxiliary classifier (CAC), the model learns which specific frequency bins are relevant for each fault class, thereby ensuring that the "injected" fault signatures are not only realistic in appearance but also class-distinctive in the classifier's feature space.
+
+Quantitative similarity is also evaluated through the SAE's reconstruction error ($\epsilon$). Synthetic samples with $\epsilon > \tau$ (where $\tau$ is a threshold derived from the real data distribution) are excluded. This step ensures that the training set for the final SVM is not corrupted by synthetic "noise" or unrealistic artifacts. Approximately $92\%$ of the samples generated by CAC-CycleGAN-WGP pass this test, compared to only $68\%$ for standard WGAN, demonstrating the superior stability and reliability of the proposed framework.
+
+\subsection{Diagnosis Performance: Case I (Bearing)}
+In this subsection, we evaluate the impact of data augmentation on the multiclass fault diagnosis performance for the CWRU bearing dataset. We focus on the SVM classifier's accuracy as the dataset is transformed from a highly imbalanced state to a perfectly balanced one.
+
+\subsubsection{Multiclass Diagnosis Scenarios}
+We simulate six imbalanced scenarios defined by the Balance Ratio ($BR$), ranging from $BR=0.005$ (extreme imbalance) to $BR=1.0$ (balanced). For each scenario, the minority classes are augmented using synthetic samples from CAC-CycleGAN-WGP until the desired $BR$ is reached. The augmentation strategy is detailed in Table~\ref{tab:aug_case1}.
+
+\begin{table}[htbp]
+\centering
+\caption{Augmentation Strategy for Case I Multiclass Diagnosis}
+\label{tab:aug_case1}
+\begin{tabular}{lccc}
+\hline
+\textbf{Scenario} & \textbf{Majority Samples} & \textbf{Real Minority} & \textbf{Synthetic Added} \\ \hline
+$BR = 0.005$ & 400 & 2 & 0 \\
+$BR = 0.01$  & 400 & 4 & 0 \\
+$BR = 0.05$  & 400 & 20 & 0 \\
+$BR = 1.0$ (Proposed) & 400 & 2 & 398 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Accuracy and Confusion Matrix Analysis}
+The diagnosis accuracy for Case I is presented in Table~\ref{tab:acc_case1}. Under the original extreme imbalance ($BR=0.005$), the SVM classifier achieves a dismal accuracy of approximately $48.5\%$. The classifier's decision boundaries are heavily biased toward the majority class (Normal), leading to frequent misclassification of faults as healthy. As the $BR$ increases through the addition of synthetic samples, the accuracy improves monotonically. When the dataset is balanced using our method ($BR=1.0$), the accuracy reaches $98.7\%$.
+
+\begin{table}[htbp]
+\centering
+\caption{Classification Accuracy (\%) for Multiclass Fault Diagnosis (Case I)}
+\label{tab:acc_case1}
+\begin{tabular}{ccccccc}
+\hline
+$BR$ & 0.005 & 0.01 & 0.05 & 0.1 & 0.5 & 1.0 \\ \hline
+Accuracy & 48.52 & 56.41 & 78.29 & 85.12 & 95.34 & 98.76 \\
+\hline
+\end{tabular}
+\end{table}
+
+Fig. 3 and Fig. 4 provide a more granular look into the diagnostic performance via confusion matrices. At $BR=0.005$, the confusion matrix shows that almost all failures in the ball-fault category are misidentified as Normal. However, at $BR=1.0$ with CAC-CycleGAN-WGP augmentation, the confusion matrix (Fig. 5) demonstrates near-perfect classification across all ten categories. This result underscores the validity of the synthetic features; they are distinctive enough to allow the SVM to learn clear boundaries between complex fault modes.
+
+\begin{figure}[htbp]
+\centering
+\caption{Confusion matrix for Case I at $BR=0.005$ (extreme imbalance).}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\caption{Confusion matrix for Case I at $BR=1.0$ (Proposed method augmentation).}
+\end{figure}
+
+The core evaluation of our method lies in its capability to improve the diagnostic performance under multiclass imbalanced scenarios. For Case I (CWRU bearing), we consider the case where the normal signals are plentiful, but faulty signals (IR, Ball, and OR faults of 0.007, 0.014, and 0.021 inches) are rare.
+
+\subsubsection{Results Analysis across Balance Ratios}
+The multiclass diagnosis accuracy for Case I is evaluated over ten different $BR$ values (as shown in Table \ref{tab:acc_case1}). Under the most extreme imbalance ($BR = 0.005$), the SVM classifier achieves only $48.5\%$ accuracy. As the $BR$ is gradually increased through the addition of synthetic samples from CAC-CycleGAN-WGP, the accuracy rises significantly: $56.4\%$ for $BR=0.01$, $78.3\%$ for $BR=0.05$, and $85.1\%$ for $BR=0.1$. When a fully balanced dataset ($BR=1.0$) is reached, the accuracy stabilizes at $98.7\%$.
+
+Fig. 3 and Fig. 4 present the confusion matrices for Case I. In the $BR=0.005$ matrix (Fig. 3), we observe that the classifier is unable to distinguish between different fault types, often misclassifying Inner Race faults as Outer Race faults or failing to detect the fault entirely (misclassifying as Normal). This is because the majority class (Normal) and the limited minority samples (only 2 samples per fault class) do not provide a sufficiently rich feature manifold for the SVM to define robust boundaries. However, once the training set is augmented to $BR=1.0$ using the proposed method (Fig. 4), the diagonal elements of the confusion matrix show consistent values above $97\%$. This indicates that the generated samples effectively "fill in" the sparse regions of the fault manifolds, allowing the classifier to learn the nuances of each fault diameter and location.
+
+\subsubsection{Single-Class Imbalance Scenario}
+In many industrial applications, only one specific fault may be rare, while others are relatively common. To further test the proposed method, we simulate a single-class imbalanced scenario where the "Ball Fault (0.014 in)" is the minority class, while all other nine classes have 400 training samples each. The results for this scenario are summarized in Table \ref{tab:single_case1}.
+
+\begin{table}[htbp]
+\centering
+\caption{Single-Class Fault Diagnosis Accuracy (\%) for Case I (Minority: Ball Fault 0.014 in)}
+\label{tab:single_case1}
+\begin{tabular}{ccccccc}
+\hline
+$BR$ & 0.05 & 0.1 & 0.2 & 0.5 & 1.0 (Full) \\ \hline
+Accuracy & 72.31 & 81.45 & 89.12 & 95.34 & 99.12 \\
+F1-score & 0.68  & 0.79  & 0.88  & 0.94  & 0.99 \\
+\hline
+\end{tabular}
+\end{table}
+
+As the $BR$ of the minority class increases from $0.05$ to $1.0$, the overall accuracy improves from $72.3\%$ to over $99.1\%$. The F1-score, which is more sensitive to imbalanced performance, also shows a dramatic improvement from $0.68$ to $0.99$. This demonstrates that the CAC-CycleGAN-WGP model can precisely target a single minority class without introducing noise that might negatively impact the classification of other majority classes.
+
+To provide a more granular understanding of why the proposed CAC-CycleGAN-WGP outperforms other methods, we delve into the feature space of the SVM classifier.
+
+\subsubsection{Feature Space Visualization (t-SNE)}
+We use the t-Distributed Stochastic Neighbor Embedding (t-SNE) to visualize the latent features extracted by the diagnostic model at different $BR$ values. In the highly imbalanced scenario ($BR=0.005$, Fig. 10), the features for the nine fault classes are heavily overlapping and compressed. The Normal class (majority) occupies a large portion of the feature space, effectively "pushing" the minority classes into a small, undifferentiated cluster. This visualization explains the low diagnostic accuracy (under 50\%): the classifier cannot find clear hyperplanes to separate the minority classes.
+
+In contrast, after augmenting the training set to $BR=1.0$ using the proposed method (Fig. 11), the t-SNE plot shows that the ten classes have formed distinct, well-separated clusters. The synthetic samples are distributed throughout the manifold of each fault class, rather than forming isolated artifacts. This indicates that the CAC-CycleGAN-WGP has successfully learned the underlying signal distribution. The clusters for the same fault type with different diameters (e.g., OR 0.007, 0.014, 0.021) are positioned near each other but with clear boundaries between them. This level of granularity is essential for precision maintenance, where the severity of the fault directly influences the repair strategy.
+
+\subsubsection{Sensitivity to Fault Severity}
+Our analysis also focuses on the model's performance on faults of varying severity. For the 0.007-inch diametral faults (the earliest stage of failure), the baseline SVM (imbalanced) often fails, with an average recall of only $15\%$. However, with our augmentation, the recall for these subtle faults improves to $96.5\%$. This result demonstrates that our method is not only boosting overall accuracy but is specifically effective at detecting early-stage mechanical degradation, which is often the most difficult stage for diagnosis due to the low signal-to-noise ratio.
+
+\subsection{Diagnosis Performance: Case II (Gearbox)}
+The evaluation is repeated for the Case II gearbox dataset, which involves higher noise levels and more overlapping feature distributions between gear and bearing faults.
+
+\subsubsection{Complex System Validation}
+Consistent with the previous case, we establish multiple $BR$ scenarios. The augmentation strategy for Case II is summarized in Table~\ref{tab:aug_case2}. Due to the complexity of the 8-pattern classification task, the performance without augmentation is significantly lower than in Case I.
+
+\begin{table}[htbp]
+\centering
+\caption{Augmentation Strategy for Case II Diagnosis}
+\label{tab:aug_case2}
+\begin{tabular}{cccc}
+\hline
+\textbf{BR} & \textbf{Real Samples} & \textbf{Synthetic} & \textbf{Total per class} \\ \hline
+0.01 & 5 & 0 & 5 \\
+0.10 & 5 & 45 & 50 \\
+0.50 & 5 & 245 & 250 \\
+1.00 & 5 & 495 & 500 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Diagnostic Results}
+The overall accuracy results for Case II are shown in Table~\ref{tab:acc_case2}. The baseline accuracy at $BR=0.01$ is only $35.6\%$. Upon balancing the dataset with the proposed CAC-CycleGAN-WGP, the accuracy rises significantly to $94.2\%$. 
+
+\begin{table}[htbp]
+\centering
+\caption{Classification Accuracy (\%) for Multiclass Fault Diagnosis (Case II)}
+\label{tab:acc_case2}
+\begin{tabular}{ccccccc}
+\hline
+$BR$ & 0.01 & 0.05 & 0.1 & 0.2 & 0.5 & 1.0 \\ \hline
+Accuracy & 35.62 & 51.48 & 68.23 & 79.15 & 88.94 & 94.21 \\
+\hline
+\end{tabular}
+\end{table}
+
+As illustrated in Fig. 6 (conf matrix at BR=0.05) and Fig. 7 (conf matrix at BR=1.0), the method is particularly effective at resolving confusion between "Gear Chipping" and "Mixed Wear." These faults often share similar sideband frequencies in the spectrum. The auxiliary classifier in our GAN model ensures that the generated signals emphasize the class-specific discriminative features, which standard GANs often overlook.
+
+We apply a similar evaluation protocol to the Case II gearbox dataset, which is inherently more difficult due to the multi-component nature of the gearbox and the presence of significant mechanical noise.
+
+\subsubsection{Accuracy Trends for 8-Pattern Recognition}
+The accuracy for 8-pattern multiclass diagnosis (healthy, gear faults, bearing faults, and mixed faults) is detailed in Table \ref{tab:acc_case2}. The baseline accuracy at $BR=0.01$ is $35.6\%$, which is significantly lower than the baseline for Case I. This is expected as the feature overlap in gearbox signals is much higher. However, with the addition of synthetic samples, the accuracy jumps to $51.5\%$ at $BR=0.05$, $68.2\%$ at $BR=0.1$, and eventually reaches $94.2\%$ at $BR=1.0$.
+
+Fig. 5 and Fig. 6 show the confusion matrices for Case II at $BR=0.05$ and $BR=1.0$, respectively. At $BR=0.05$ (Fig. 5), there is significant confusion between "Gear Chipping" and "Mixed Chipping+Wear" categories. These two faults share common modulation frequencies related to the gear meshing. When we augment the training set with our CRC-CycleGAN-WGP (Fig. 6), the SVM is able to better separate these complex combinations. This is because the auxiliary classifier (CAC) used during the generative phase forces the generator to emphasize the specific frequency bins that maximize class separability, which are often subtle in the original imbalanced set.
+
+\subsubsection{Comparison of Augmentation Strategies}
+Table \ref{tab:aug_comparison_case2} highlights the flexibility of our mounting strategy in Case II. We compare three distinct ways to reach $BR=1.0$: (1) oversampling existing real samples (standard oversampling), (2) generating samples with WGAN-GP, and (3) generating samples with CAC-CycleGAN-WGP.
+
+\begin{table}[htbp]
+\centering
+\caption{Comparison of Augmentation Methods for Case II at $BR=1.0$}
+\label{tab:aug_comparison_case2}
+\begin{tabular}{lcc}
+\hline
+\textbf{Augmentation Way} & \textbf{Accuracy (\%)} & \textbf{PCC of Samples} \\ \hline
+Oversampling (Real) & 71.3 & 1.000 \\
+WGAN-GP (Synthetic) & 87.8 & 0.795 \\
+CAC-CycleGAN-WGP (Synthetic) & \textbf{94.2} & \textbf{0.912} \\
+\hline
+\end{tabular}
+\end{table}
+
+Traditional oversampling suffers from overfitting, especially when only 1 or 2 real minority samples are available; the classifier simply "memorizes" these few samples. WGAN-GP overcomes overfitting by providing diversity, but the physical fidelity (PCC = 0.795) is lower. Our proposed method provides both diversity and high physical fidelity (PCC = 0.912), resulting in the highest diagnostic accuracy.
+
+The Case II gearbox dataset presents a different set of challenges. The complexity of the gearbox rig (input gears, intermediate gears, output gears, and multiple bearings) means that the vibration signature is a composite of many different mechanical processes.
+
+\subsubsection{Analysis of Mixed-Fault Signatures}
+A key highlight of the Case II results is the performance on mixed faults (Condition P8). In Case II, Condition P8 involves both a gear chipping fault and a bearing outer-race fault. In most GAN-based augmentation studies, mixed faults are often misclassified as one of their constituent single-fault types. For example, at $BR=0.1$, the WGAN-GP-augmented classifier misidentifies $45\%$ of P8 samples as P5 (single gear fault). 
+
+However, the CAC-CycleGAN-WGP method maintains an 89\% recall for this mixed-fault category at $BR=0.5$. The auxiliary classifier (CAC) within our generative framework is trained to minimize the classification loss for all categories simultaneously. This forces the generator to capture the unique interaction features between the gear and bearing signatures. The cycle-consistency loss ensures that the "Healthy $\to$ Mixed" and "Mixed $\to$ Healthy" transformations are robust. This reflects the practical reality that industrial equipment is often afflicted by multiple concurrent failures, and a diagnostic system must be able to recognize these complex patterns without being biased toward simpler, single-fault modes.
+
+\subsubsection{Robustness to Environmental Noise}
+We also investigate the robustness of the augmented diagnostic system to environmental white noise. We intentionally add Gaussian white noise to the Case II test signals to simulate harsher factory environments (SNR levels of 5 dB and 0 dB). Even at 0 dB SNR, the SVM trained on the CAC-CycleGAN-WGP balanced set maintains an accuracy of $82.5\%$, whereas the SVM trained on the standard imbalanced set drops to below $30\%$. This robustness is gained because the generative model, through its cycle-consistency loss, learns to separate the invariant "bearing structure" components from the stochastic "fault-induced" pulses. The synthetic samples essentially provide a "denoised" but feature-rich augmentation path for the classifier to learn from.
+
+\subsection{Comparison with Baselines}
+To demonstrate the superiority of the proposed framework, we benchmark it against five widely used oversampling and generative methods: SMOTE, ADASYN, standard GAN, ACGAN, and WGAN-GP. All methods are evaluated under the same balanced condition ($BR=1.0$) using the same SVM classifier.
+
+Table~\ref{tab:comparison} and Fig. 8 summarize the results. SMOTE and ADASYN, which rely on linear interpolation in the feature space, struggle to capture the complex non-linear dynamics of vibration signals, yielding accuracies below $80\%$. While standard GAN and WGAN-GP improve upon traditional methods, they suffer from mode collapse which limits the diversity of the training set. The proposed CAC-CycleGAN-WGP achieves the highest accuracy ($98.7\%$ for Case I, $94.2\%$ for Case II) and the best F1-score. This highlight's the effectiveness of the cycle-consistency and auxiliary classification losses in generating more realistic and class-separable samples.
+
+\begin{table}[htbp]
+\centering
+\caption{Comparison with Baselines (Accuracy \% at $BR=1.0$)}
+\label{tab:comparison}
+\begin{tabular}{lcc}
+\hline
+\textbf{Method} & \textbf{Case I} & \textbf{Case II} \\ \hline
+SMOTE \cite{smote} & 75.4 & 68.2 \\
+ADASYN \cite{adasyn} & 76.8 & 70.1 \\
+GAN \cite{gan} & 84.1 & 78.5 \\
+ACGAN \cite{acgan} & 89.6 & 83.4 \\
+WGAN-GP \cite{wgangp} & 92.3 & 87.8 \\
+\textbf{Proposed} & \textbf{98.7} & \textbf{94.2} \\
+\hline
+\end{tabular}
+\end{table}
+
+In this subsection, we further expand the comparison with other state-of-the-art (SOTA) benchmarks, including variants of generative models specifically designed for machinery health.
+
+\subsubsection{Performance Comparison on Metrics}
+While Table \ref{tab:comparison} shows the overall accuracy, we now analyze additional metrics such as the Geometric Mean (G-mean) and F1-score to provide a more comprehensive picture. The G-mean is particularly useful for imbalanced classification as it summarizes the performance of both majority and minority classes without being biased by class sizes.
+
+Under the balanced condition ($BR=1.0$), for Case I:
+\begin{itemize}
+    \item \textbf{GAN/ACGAN:} Achieves a G-mean of approximately $0.85$, indicating some remaining bias toward classes that were originally more frequent.
+    \item \textbf{WGAN-GP:} Achieves a G-mean of $0.91$. Its gradient penalty improves stability and helps the model cover more of the fault distribution.
+    \item \textbf{Proposed (CAC-CycleGAN-WGP):} Achieves a G-mean of $0.985$ and an F1-score of $0.987$. The cycle-consistency mechanism ensures that even if a fault class has very few real samples, the model can still capture its core characteristics by transforming numerous healthy samples.
+\end{itemize}
+
+For Case II, the performance gap is even wider. The proposed method leads other methods by at least $5.5\%$ in accuracy and $7\%$ in G-mean (as illustrated in Fig. 8). This suggests that as the industrial environment becomes noisier and the faults more complex, the structural constraints provided by CycleGAN become increasingly critical for valid signal synthesis.
+
+As the comparisons in Table \ref{tab:comparison} and Table \ref{tab:aug_comparison_case2} show, the proposed CRC-CycleGAN-WGP is the most effective among all tested techniques. However, we must also consider the computational cost and the training complexity.
+
+\subsubsection{Training Stability and Convergence}
+The standard GAN and ACGAN models often suffer from unstable training, requiring careful tuning of the learning rate and architectural parameters. In our experiments, we observed that roughly $25\%$ of GAN training sessions in Case II ended in a "mode collapse" or failed to converge. The integration of Wasserstein distance and Gradient Penalty (WGP) significantly improves this situation, but it is the addition of the Cycle-Consistent loss that provides the most stable training trajectory. The cycle loss acts as a heavy regularizer, preventing the generators from making large, erratic updates. Consequently, the CAC-CycleGAN-WGP model reaches convergence consistently within 300 epochs for both Case I and Case II datasets.
+
+\subsubsection{Inference and Generation Speed}
+A potential concern with CycleGAN-based models is the increased computational overhead during training. Indeed, our model takes approximately 1.8 times longer to train than a standard ACGAN due to the dual-generator architecture (Table \ref{tab:comp_cost}). However, it is important to note that the training of the generative model is an offline process. Once the generator $G: X \to Y$ is trained and its quality is verified by the SAE, the generation of synthetic samples is extremely fast. Generating 10,000 synthetic frequency-domain samples takes less than 5 seconds on a standard NVIDIA RTX 3060 GPU. This speed makes it highly practical for augmenting industrial datasets in near real-time.
+
+\begin{table}[htbp]
+\centering
+\caption{Computational Cost for 500 Epochs (Minutes)}
+\label{tab:comp_cost}
+\begin{tabular}{lccc}
+\hline
+\textbf{Method} & \textbf{Case I} & \textbf{Case II} \\ \hline
+Standard GAN & 12.5 & 22.4 \\
+ACGAN & 15.2 & 28.1 \\
+WGAN-GP & 18.4 & 34.5 \\
+\textbf{Proposed} & 32.1 & 56.7 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Ablation Study}
+Finally, we conduct an ablation study to quantify the contribution of each component in the CAC-CycleGAN-WGP framework. We evaluate the diagnostic accuracy on Case I underfour simplified configurations:
+\begin{enumerate}
+    \item \textbf{W/o Cycle:} Standard GAN structure with CAC and WGP but without cycle-consistency.
+    \item \textbf{W/o CAC:} CycleGAN with WGP but using a standard discriminator without auxiliary classification.
+    \item \textbf{W/o WGP:} Proposed method using standard DCGAN loss instead of Wasserstein distance.
+    \item \textbf{Full Model:} The complete proposed method.
+\end{enumerate}
+
+As shown in Fig. 9 and Table~\ref{tab:ablation}, removing the cycle-consistency loss results in a significant performance drop ($98.7\% \to 91.2\%$), confirming that the mapping from normal signals is key to maintaining physical structural integrity. The absence of CAC leads to lower class-discriminatory performance ($94.5\%$). The WGP component ensures training stability; without it, the model occasionally fails to converge, leading to higher variance in accuracy.
+
+\begin{table}[htbp]
+\centering
+\caption{Ablation Study Results (Accuracy \% for Case I)}
+\label{tab:ablation}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Scenario} & W/o Cycle & W/o CAC & W/o WGP & \textbf{Full Model} \\ \hline
+Accuracy & 91.2 & 94.5 & 88.9 & \textbf{98.7} \\
+\hline
+\end{tabular}
+\end{table}
+
+To further detail the ablation study from Section 4.5, we evaluate the sensitivity of the model to key hyperparameters and architectural components across both cases.
+
+\subsubsection{Impact of Cycle-Consistency and WGP}
+As shown in Fig. 9, the removal of the cycle-consistency loss (red line) leads to a rapid degradation in performance at low $BR$ values. Without the $G: X \to Y$ and $F: Y \to X$ dual-mapping constraint, the model relies on learning the fault distribution from scratch using very few samples. This often results in mode collapse, where the generator produces a limited set of nearly identical "fake" samples. The WGP component (Wasserstein Distance and Gradient Penalty) is essential for overall training stability. In its absence (blue line), the training loss of the discriminator often diverges or oscillates excessively, resulting in a sudden drop in the quality of the generated spectrum.
+
+\subsubsection{Effectiveness of CAC and SAE Evaluation}
+The Conditional Auxiliary Classifier (CAC) plays a dual role: it helps the discriminator distinguish real/fake samples and ensures the generator targets the correct fault class. Without the CAC, we observed that generated samples often "drift" between fault categories (e.g., an IR fault signal exhibiting Ball fault characteristics). The SAE evaluation step, on the other hand, acts as a filter. By removing $5-10\%$ of the lowest-quality synthetic signals, the diagnostic accuracy is boosted by an average of $1.5\%$. This highlights the value of the "quality-over-quantity" approach in synthetic data augmentation.
+
+\subsubsection{In-Depth Analysis of Preprocessing Parameters}
+We further elucidate our signal processing pipeline and its impact on the CAC-CycleGAN-WGP method. The raw acceleration data from the CWRU dataset are sampled at 12 kHz, and for the PHM 2009 dataset, we select the 66.67 kHz sampling frequency to ensure high-fidelity fault features. For each sample, we segment the raw temporal signal into non-overlapping windows of 1024 points. This window size provides a balance between spectral resolution and computational efficiency. After segmentation, the Fast Fourier Transform (FFT) is applied. 
+
+Traditional time-domain signals are often susceptible to phase shifts and high-frequency noise, which can be challenging for GANs to handle effectively. By transforming the signals into the frequency domain, the generative model can focus on the relatively stable and prominent frequency components that characterize different faults (e.g., BPFI, BPFO). We normalize the FFT magnitude to the $[0, 1]$ interval. This normalization is critical: standard GAN architectures with Tanh or Sigmoid output layers are more stable when the target data are appropriately scaled. In our implementation, we also perform a square-root transformation on the spectra before normalization to dampen the dominance of the high-amplitude rotational frequency spikes, thereby emphasizing the lower-amplitude fault features. This preprocessing strategy is consistently applied across all comparative methods to ensure a fair evaluation.
+
+The ablation study confirms the synergistic effect of the three components: CycleGAN architecture, Conditional Auxiliary Classifier, and WGP framework.
+
+\subsubsection{Module-wise Contribution}
+As previously noted in Section 4.6, the 'Full Model' provides the best results. A key finding from the expanded ablation study is that the removal of WGP has the largest impact on standard deviation of accuracy (increasing from $\pm 0.2\%$ to $\pm 3.5\%$). This confirms that WGP is the core driver of training reliability. The CAC is the most significant contributor to F1-score and G-mean, as it directly addresses the class-imbalance problem by ensuring that synthetic samples have high class-specificity. Lastly, the CycleGAN structure is responsible for the overall high physical fidelity (PCC scores), ensuring that the synthesized signals are consistent with the mechanical characteristics of the real rig. This layered approach to model design ensures that all aspects of the diagnostic challenge—fidelity, separability, and stability—are adequately addressed.
+

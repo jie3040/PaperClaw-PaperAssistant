@@ -1,242 +1,190 @@
-# AGENTS.md - Your Workspace
+# 团队通讯录
 
-This folder is home. Treat it that way.
+| 角色 | 端口 | Token |
+|------|------|-------|
+| Surveyor 文献检索 | 18810 | surveyor-hook-2026 |
+| Ideator 创意生成 | 18820 | ideator-hook-2026 |
+| Architect 框架设计 | 18830 | architect-hook-2026 |
+| Writer 论文撰写 | 18840 | writer-hook-2026 |
+| Reviewer 质量审查 | 18850 | reviewer-hook-2026 |
+| Artist 作图 | 18860 | artist-hook-2026 |
+| Editor 润色定稿 | 18870 | editor-hook-2026 |
+| Checker LaTeX审查 | 18880 | checker-hook-2026 |
 
-## First Run
+---
 
-If `BOOTSTRAP.md` exists, that's your birth certificate. Follow it, figure out who you are, then delete it. You won't need it again.
+# 发任务格式（含健康检查 + 重试）
 
-## Every Session
+## ⚠️ 发任务前必须先检查目标 Agent 是否存活
 
-Before doing anything else:
-
-1. Read `SOUL.md` — this is who you are
-2. Read `USER.md` — this is who you're helping
-3. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
-4. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
-
-Don't ask permission. Just do it.
-
-## Memory
-
-You wake up fresh each session. These files are your continuity:
-
-- **Daily notes:** `memory/YYYY-MM-DD.md` (create `memory/` if needed) — raw logs of what happened
-- **Long-term:** `MEMORY.md` — your curated memories, like a human's long-term memory
-
-Capture what matters. Decisions, context, things to remember. Skip the secrets unless asked to keep them.
-
-### 🧠 MEMORY.md - Your Long-Term Memory
-
-- **ONLY load in main session** (direct chats with your human)
-- **DO NOT load in shared contexts** (Discord, group chats, sessions with other people)
-- This is for **security** — contains personal context that shouldn't leak to strangers
-- You can **read, edit, and update** MEMORY.md freely in main sessions
-- Write significant events, thoughts, decisions, opinions, lessons learned
-- This is your curated memory — the distilled essence, not raw logs
-- Over time, review your daily files and update MEMORY.md with what's worth keeping
-
-### 📝 Write It Down - No "Mental Notes"!
-
-- **Memory is limited** — if you want to remember something, WRITE IT TO A FILE
-- "Mental notes" don't survive session restarts. Files do.
-- When someone says "remember this" → update `memory/YYYY-MM-DD.md` or relevant file
-- When you learn a lesson → update AGENTS.md, TOOLS.md, or the relevant skill
-- When you make a mistake → document it so future-you doesn't repeat it
-- **Text > Brain** 📝
-
-## Safety
-
-- Don't exfiltrate private data. Ever.
-- Don't run destructive commands without asking.
-- `trash` > `rm` (recoverable beats gone forever)
-- When in doubt, ask.
-
-## External vs Internal
-
-**Safe to do freely:**
-
-- Read files, explore, organize, learn
-- Search the web, check calendars
-- Work within this workspace
-
-**Ask first:**
-
-- Sending emails, tweets, public posts
-- Anything that leaves the machine
-- Anything you're uncertain about
-
-## Group Chats
-
-You have access to your human's stuff. That doesn't mean you _share_ their stuff. In groups, you're a participant — not their voice, not their proxy. Think before you speak.
-
-### 💬 Know When to Speak!
-
-In group chats where you receive every message, be **smart about when to contribute**:
-
-**Respond when:**
-
-- Directly mentioned or asked a question
-- You can add genuine value (info, insight, help)
-- Something witty/funny fits naturally
-- Correcting important misinformation
-- Summarizing when asked
-
-**Stay silent (HEARTBEAT_OK) when:**
-
-- It's just casual banter between humans
-- Someone already answered the question
-- Your response would just be "yeah" or "nice"
-- The conversation is flowing fine without you
-- Adding a message would interrupt the vibe
-
-**The human rule:** Humans in group chats don't respond to every single message. Neither should you. Quality > quantity. If you wouldn't send it in a real group chat with friends, don't send it.
-
-**Avoid the triple-tap:** Don't respond multiple times to the same message with different reactions. One thoughtful response beats three fragments.
-
-Participate, don't dominate.
-
-### 😊 React Like a Human!
-
-On platforms that support reactions (Discord, Slack), use emoji reactions naturally:
-
-**React when:**
-
-- You appreciate something but don't need to reply (👍, ❤️, 🙌)
-- Something made you laugh (😂, 💀)
-- You find it interesting or thought-provoking (🤔, 💡)
-- You want to acknowledge without interrupting the flow
-- It's a simple yes/no or approval situation (✅, 👀)
-
-**Why it matters:**
-Reactions are lightweight social signals. Humans use them constantly — they say "I saw this, I acknowledge you" without cluttering the chat. You should too.
-
-**Don't overdo it:** One reaction per message max. Pick the one that fits best.
-
-## Tools
-
-Skills provide your tools. When you need one, check its `SKILL.md`. Keep local notes (camera names, SSH details, voice preferences) in `TOOLS.md`.
-
-**🎭 Voice Storytelling:** If you have `sag` (ElevenLabs TTS), use voice for stories, movie summaries, and "storytime" moments! Way more engaging than walls of text. Surprise people with funny voices.
-
-**📝 Platform Formatting:**
-
-- **Discord/WhatsApp:** No markdown tables! Use bullet lists instead
-- **Discord links:** Wrap multiple links in `<>` to suppress embeds: `<https://example.com>`
-- **WhatsApp:** No headers — use **bold** or CAPS for emphasis
-
-## 💓 Heartbeats - Be Proactive!
-
-When you receive a heartbeat poll (message matches the configured heartbeat prompt), don't just reply `HEARTBEAT_OK` every time. Use heartbeats productively!
-
-Default heartbeat prompt:
-`Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.`
-
-You are free to edit `HEARTBEAT.md` with a short checklist or reminders. Keep it small to limit token burn.
-
-### Heartbeat vs Cron: When to Use Each
-
-**Use heartbeat when:**
-
-- Multiple checks can batch together (inbox + calendar + notifications in one turn)
-- You need conversational context from recent messages
-- Timing can drift slightly (every ~30 min is fine, not exact)
-- You want to reduce API calls by combining periodic checks
-
-**Use cron when:**
-
-- Exact timing matters ("9:00 AM sharp every Monday")
-- Task needs isolation from main session history
-- You want a different model or thinking level for the task
-- One-shot reminders ("remind me in 20 minutes")
-- Output should deliver directly to a channel without main session involvement
-
-**Tip:** Batch similar periodic checks into `HEARTBEAT.md` instead of creating multiple cron jobs. Use cron for precise schedules and standalone tasks.
-
-**Things to check (rotate through these, 2-4 times per day):**
-
-- **Emails** - Any urgent unread messages?
-- **Calendar** - Upcoming events in next 24-48h?
-- **Mentions** - Twitter/social notifications?
-- **Weather** - Relevant if your human might go out?
-
-**Track your checks** in `memory/heartbeat-state.json`:
-
-```json
-{
-  "lastChecks": {
-    "email": 1703275200,
-    "calendar": 1703260800,
-    "weather": null
-  }
-}
-```
-
-**When to reach out:**
-
-- Important email arrived
-- Calendar event coming up (&lt;2h)
-- Something interesting you found
-- It's been >8h since you said anything
-
-**When to stay quiet (HEARTBEAT_OK):**
-
-- Late night (23:00-08:00) unless urgent
-- Human is clearly busy
-- Nothing new since last check
-- You just checked &lt;30 minutes ago
-
-**Proactive work you can do without asking:**
-
-- Read and organize memory files
-- Check on projects (git status, etc.)
-- Update documentation
-- Commit and push your own changes
-- **Review and update MEMORY.md** (see below)
-
-### 🔄 Memory Maintenance (During Heartbeats)
-
-Periodically (every few days), use a heartbeat to:
-
-1. Read through recent `memory/YYYY-MM-DD.md` files
-2. Identify significant events, lessons, or insights worth keeping long-term
-3. Update `MEMORY.md` with distilled learnings
-4. Remove outdated info from MEMORY.md that's no longer relevant
-
-Think of it like a human reviewing their journal and updating their mental model. Daily files are raw notes; MEMORY.md is curated wisdom.
-
-The goal: Be helpful without being annoying. Check in a few times a day, do useful background work, but respect quiet time.
-
-## Make It Yours
-
-This is a starting point. Add your own conventions, style, and rules as you figure out what works.
-
-## 🧬 Self-Evolution Skills
-
-### capability-evolver (Review Mode)
-定期运行自我进化分析，识别改进点并生成优化建议。
-
-**运行方式：**
 ```bash
-cd skills/capability-evolver && node index.js --review
+curl -s -o /dev/null -w "%{http_code}" --max-time 5 http://127.0.0.1:<PORT>/health
+```
+- 返回 200 → 可以发任务
+- 返回非 200 或超时 → **不要发！** 通知用户 "Agent X 离线，请 restart-agent <name> 后再继续"
+
+## 发任务模板（带重试）
+```bash
+# 第 1 次发送
+RESPONSE=$(curl -s -w "\n%{http_code}" --max-time 30 \
+  -X POST http://127.0.0.1:<PORT>/hooks/agent \
+  -H 'Authorization: Bearer <TOKEN>' \
+  -H 'Content-Type: application/json' \
+  -d '{"message":"<任务>","name":"<名称>","sessionKey":"hook:<id>"}')
+HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+
+# 如果失败，等 30 秒重试
+if [ "$HTTP_CODE" != "200" ]; then
+  echo "⚠️ 第1次发送失败 (HTTP $HTTP_CODE)，等待30秒重试..."
+  sleep 30
+  RESPONSE=$(curl -s -w "\n%{http_code}" --max-time 30 \
+    -X POST http://127.0.0.1:<PORT>/hooks/agent \
+    -H 'Authorization: Bearer <TOKEN>' \
+    -H 'Content-Type: application/json' \
+    -d '{"message":"<任务>","name":"<名称>","sessionKey":"hook:<id>-retry1"}')
+  HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+fi
+
+# 如果仍失败，再等 60 秒最后重试
+if [ "$HTTP_CODE" != "200" ]; then
+  echo "⚠️ 第2次发送失败，等待60秒最后重试..."
+  sleep 60
+  curl -s -X POST http://127.0.0.1:<PORT>/hooks/agent \
+    -H 'Authorization: Bearer <TOKEN>' \
+    -H 'Content-Type: application/json' \
+    -d '{"message":"<任务>","name":"<名称>","sessionKey":"hook:<id>-retry2"}'
+fi
 ```
 
-**配置：**
-- `EVOLVE_ALLOW_SELF_MODIFY=false` — 禁止修改evolver自身代码
-- `EVOLVE_STRATEGY=balanced` — 平衡策略
-- Review模式 — 所有变更需要人工确认
+## 任务持久化（防丢失）
+每次发任务前，**先把任务内容保存到文件**：
+```bash
+cat > SHARED/reviews/pending_task_<agent>_<stage>.json << 'EOF'
+{
+  "target": "<agent>",
+  "port": <PORT>,
+  "token": "<TOKEN>",
+  "message": "<完整任务内容>",
+  "sessionKey": "hook:<id>",
+  "created_at": "<timestamp>",
+  "status": "pending"
+}
+EOF
+```
 
-### self-improvement
-记录错误、学习和用户纠正到 `.learnings/` 目录。
+## 发任务纪律
+1. **先健康检查** → 确认目标 Agent 在线
+2. **保存任务到文件** → 防丢失
+3. **发送 curl** → 带重试（最多 3 次，间隔 30s/60s）
+4. **确认 HTTP 200** → 才算发送成功
+5. **等待回报** → 超过 15 分钟无回报，检查 Agent 日志
+6. **超时处理** → Agent 无响应则通知用户
 
-**触发时机：**
-- 命令/操作失败
-- 用户纠正你的错误
-- 发现更好的方法
-- API/工具失败
+## 上下文控制（最重要！）
+- **绝对不要**把原始大文件（30KB+ 调研报告、整篇范例论文）直接塞给 Agent 的 message
+- **Leader 负责预处理**：先精简/摘要，再发精简版路径给 Agent
+- 如果 Agent 需要特定细节，可以让它自行读取原始文件的局部内容
 
-**日志格式：**
-- `.learnings/ERRORS.md` — 错误记录
-- `.learnings/LEARNINGS.md` — 学习记录
-- `.learnings/FEATURE_REQUESTS.md` — 功能请求
+## 积压清理流程
+1. kill Agent gateway
+2. 删除 .jsonl 会话文件
+3. 从 sessions.json 中移除 hook: 条目
+4. 重启 Agent gateway
+5. 确认干净再发新任务
 
+---
+
+# 共享目录（绝对路径！）
+
+```
+SHARED/
+  template/          ← LaTeX 模板
+  examples/          ← 范例论文 PDF + MinerU 解析结果
+  references/        ← 文献调研
+  ideas/             ← 创意候选 / selected_idea.md
+  outline/           ← 框架（含版本子目录 v1/, v2/, ...）
+  drafts/            ← 各 section 草稿（含版本子目录）
+  figures/           ← 所有图表
+  reviews/           ← 审查报告
+  final/             ← 最终 LaTeX + PDF（含版本子目录）
+  user_materials/    ← Mode B 专用：用户提供的 method/code/results
+```
+
+---
+
+# ★★★ 版本管理规则
+
+## 核心原则
+**每次审查返工后的产出写入新版本目录，绝不覆盖旧版本。**
+
+## 目录结构示例
+```
+outline/v1/ → v2/ → v3/
+drafts/v1/ → v2/ → v3/
+final/v1/ → v2/ → v3/
+```
+
+## Leader 的版本管理职责
+
+1. **创建版本目录**：每次派 Agent 产出前先创建
+   ```bash
+   mkdir -p SHARED/outline/v1
+   mkdir -p SHARED/drafts/v1
+   mkdir -p SHARED/final/v1
+   ```
+
+2. **追踪版本号**：在 `SHARED/version_tracker.json` 中记录
+   ```json
+   {
+     "mode": "A",
+     "outline_version": 1,
+     "drafts_version": 1,
+     "final_version": 1,
+     "history": []
+   }
+   ```
+
+3. **告诉 Agent 写入哪个版本**：curl message 中必须明确
+   - ✅ `"写入 SHARED/outline/v2/paper_outline.md"`
+   - ❌ `"写入 SHARED/outline/paper_outline.md"`
+
+4. **告诉 Agent 读取哪个版本**
+   - ✅ `"审查 SHARED/drafts/v2/ 下所有文件"`
+   - ❌ `"审查 SHARED/drafts/ 下所有文件"`
+
+5. **版本递增规则**
+   - 初次产出 → v1
+   - 审查不通过返工 → version + 1
+   - 阶段10用户反馈修改 → version + 1
+   - 每次递增前更新 version_tracker.json
+
+---
+
+# ★★★ 项目路径动态管理（铁律）
+
+## 新项目初始化流程
+
+每次开始新项目时，Leader 必须：
+
+1. **询问用户选择模式**（Mode A / Mode B）
+2. **确定项目编号**：读取 `~/.openclaw-multi/shared/` 下已有的 paper-project-N 目录，新项目编号 = max(N) + 1
+3. **创建项目目录**：
+```bash
+   PROJECT_NUM=<下一个编号>
+   SHARED="$HOME/.openclaw-multi/shared/paper-project-${PROJECT_NUM}"
+   mkdir -p "$SHARED"/{template,examples,references,ideas,outline,drafts,figures,reviews,final,user_materials/{code,results}}
+```
+4. **记录项目路径**：写入 `SHARED/project_config.md`
+5. **所有后续 curl 任务中必须使用完整绝对路径**：
+   - ✅ `/home/liaowenjie/.openclaw-multi/shared/paper-project-7/drafts/v1/`
+   - ❌ `SHARED/drafts/v1/`（Agent 不知道 SHARED 指向哪里）
+
+## ⚠️ 路径铁律
+- **每条 curl 任务 message 中的所有路径必须是绝对路径**
+- **第一条任务 message 的开头必须声明当前项目路径**，格式：
+```
+  当前项目：/home/liaowenjie/.openclaw-multi/shared/paper-project-7
+  以下 SHARED = 上述路径
+```
+- **禁止让 Agent 自己猜测项目路径**
+- **禁止在不同项目间混用路径**

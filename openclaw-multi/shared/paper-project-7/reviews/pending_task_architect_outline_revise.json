@@ -1,0 +1,11 @@
+{
+  "target": "architect",
+  "port": 18830,
+  "token": "architect-hook-2026",
+  "message": "框架对齐审查结果：REVISE。请修改 outline 并输出到 v2。",
+  "sessionKey": "hook:architect-outline-revise",
+  "created_at": "2026-03-25T20:28",
+  "status": "sent",
+  "http_code": 200,
+  "runId": "1339335b-50a7-46c9-912c-aea1ec8e1d2c"
+}

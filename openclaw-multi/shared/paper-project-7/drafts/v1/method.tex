@@ -1,0 +1,80 @@
+\section{Proposed Method: CAC-CycleGAN-WGP}
+\label{sec:proposed_method}
+
+This section details the proposed CAC-CycleGAN-WGP framework for intelligent fault diagnosis under imbalanced data conditions. We describe the overall framework, the specific architectural design of the generative networks, the formulation of the objective functions, and the subsequent quality evaluation and diagnosis stages.
+
+\subsection{Overall Framework and Operational Flow}
+The proposed CAC-CycleGAN-WGP method aims to synthesize high-quality faulty samples by learning the bidirectional mapping between the normal signal domain and various fault signal domains. Unlike traditional GANs that generate samples from random noise, our approach leverages the inherent structural information of normal vibration signals to "transform" them into realistic faulty signals. The overall operational flow, as illustrated in Fig. 1, consists of five primary stages:
+
+\begin{enumerate}
+    \item \textbf{Data Preprocessing:} Vibration signals collected from sensors are segmented using a sliding window. Fast Fourier Transform (FFT) or time-domain normalization is applied to convert raw temporal sequences into feature-rich representations suitable for deep learning architectures.
+    \item \textbf{CycleGAN Training:} The preprocessed normal and faulty samples are used to train the dual-generator framework. The CAC-CycleGAN-WGP model optimizes the mapping functions through a combination of adversarial, cycle-consistency, and auxiliary classification losses, stabilized by Wasserstein distance and gradient penalty.
+    \item \textbf{Sample Generation:} Once the generators reach convergence, the generator $G: X \to Y$ is employed to transform healthy samples into synthetic faulty samples for all minority classes.
+    \item \textbf{Quality Evaluation (SAE):} A Stacked Autoencoder (SAE) is utilized to evaluate the physical fidelity and diversity of the generated signals. Quantitative metrics such as Pearson Correlation Coefficient (PCC) and Cosine Similarity (CS) are used to filter out low-quality synthetic data.
+    \item \textbf{Fault Diagnosis (SVM):} The high-quality synthetic samples are merged with the original imbalanced training set to form a balanced/augmented dataset. A Support Vector Machine (SVM) classifier is trained on this augmented set and validated on a separate, real-world test set.
+\end{enumerate}
+
+By bridging the gap between healthy and faulty distributions through cycle-consistency, the model ensures that the generated signals retain the fundamental mechanical characteristics of the bearing while exhibiting the discriminative features of specific faults.
+
+\subsection{Architecture Design}
+The effectiveness of CAC-CycleGAN-WGP relies on a sophisticated deep CNN-based architecture, comprising two generators, two discriminators, and a Conditional Auxiliary Classifier (CAC).
+
+\subsubsection{Generator Architecture}
+The generators ($G_{X \to Y}$ and $F_{Y \to X}$) adopt a symmetrical encoder-decoder structure. The encoder consists of multiple 1D convolutional layers with increasing filter counts to extract hierarchical features from the input signal. Downsampling is achieved through convolution with a stride of 2. The core of the generator incorporates several residual blocks (ResBlocks) to prevent gradient degradation during deep feature transformation. The decoder utilizes 1D transposed convolutions (deconvolution) to upsample the latent representation back to the original signal dimension. Batch normalization and Leaky ReLU activation functions are employed throughout the hidden layers, with a Tanh activation at the output layer to scale the signals within $[-1, 1]$.
+
+\subsubsection{Discriminator and CAC Architecture}
+The discriminators ($D_X$ and $D_Y$) are designed as PatchGAN-style convolutional networks. They classify local segments of the signal as real or fake, which encourages the generator to produce high-frequency details. To incorporate class-specific information, the model integrates a Conditional Auxiliary Classifier (CAC). The CAC shares the feature extraction layers of the discriminator but terminates in a separate Softmax branch. This architecture allows the discriminator to not only distinguish between real and fake samples but also to identify the fault category of the input signal. By optimizing the classification accuracy of both real and synthetic samples, the generator is forced to produce signals that are class-distinctive.
+
+\subsection{Objective Functions and Formulas}
+The training of CAC-CycleGAN-WGP is governed by a multi-objective loss function. To ensure stability and handle multiclass fault categories, we formulate the optimization problem as follows.
+
+\subsubsection{Adversarial Loss with Wasserstein Distance}
+To improve training stability and provide a more informative gradient, we replace the standard JS-divergence with the Wasserstein distance. The adversarial loss for the mapping $G: X \to Y$ and its critic $D_Y$ is:
+\begin{equation}
+\mathcal{L}_{\text{adv}}(G, D_Y, X, Y) = \mathbb{E}_{\boldsymbol{y} \sim p_{data}(\boldsymbol{y})}[D_Y(\boldsymbol{y})] - \mathbb{E}_{\boldsymbol{x} \sim p_{data}(\boldsymbol{x})}[D_Y(G(\boldsymbol{x}))]
+\end{equation}
+
+\subsubsection{Cycle-Consistency Loss}
+To constrain the mapping and ensure that the generator learns a deterministic transformation rather than random mapping, the cycle-consistency loss is enforced:
+\begin{equation}
+\mathcal{L}_{\text{cyc}}(G, F) = \mathbb{E}_{\boldsymbol{x} \sim p_{data}(\boldsymbol{x})} [\|F(G(\boldsymbol{x})) - \boldsymbol{x}\|_1] + \mathbb{E}_{\boldsymbol{y} \sim p_{data}(\boldsymbol{y})} [\|G(F(\boldsymbol{y})) - \boldsymbol{y}\|_1]
+\end{equation}
+
+\subsubsection{Conditional Auxiliary Classification Loss}
+To ensure the generated samples belong to the target fault category, the CAC loss is added. It consists of two parts: the classification loss of real samples ($\mathcal{L}_{C}^{r}$) and generated samples ($\mathcal{L}_{C}^{g}$):
+\begin{equation}
+\mathcal{L}_{C} = \mathbb{E}[\log P(C=c | \boldsymbol{x}_{real})] + \mathbb{E}[\log P(C=c | G(\boldsymbol{z}))]
+\end{equation}
+where $P(C| \cdot)$ is the probability distribution over class labels predicted by the CAC.
+
+\subsubsection{Gradient Penalty}
+To strictly enforce the 1-Lipschitz constraint required by the WGAN framework, a gradient penalty (GP) term is applied to the discriminator:
+\begin{equation}
+\mathcal{L}_{\text{GP}} = \lambda \mathbb{E}_{\hat{\boldsymbol{x}} \sim p_{\hat{\boldsymbol{x}}}} [(\|\nabla_{\hat{\boldsymbol{x}}} D_Y(\hat{\boldsymbol{x}})\|_2 - 1)^2]
+\end{equation}
+where $\hat{\boldsymbol{x}}$ is an interpolation between real and fake samples.
+
+\subsubsection{Total Objective Function}
+The final loss function used to optimize the CAC-CycleGAN-WGP model is a weighted sum of the components mentioned above:
+\begin{equation}
+\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{adv}} + \alpha \mathcal{L}_{\text{cyc}} + \beta \mathcal{L}_{C} + \gamma \mathcal{L}_{\text{GP}}
+\end{equation}
+where $\alpha, \beta, \gamma$ are hyperparameters that balance the impact of structural reconstruction, classification accuracy, and training stability.
+
+\subsection{SAE-based Quality Evaluation}
+To verify that the generated signals are physically meaningful and suitable for diagnosis, we propose an evaluation strategy based on Stacked Autoencoders (SAE). An SAE is first trained on the original real dataset to learn the latent features of various fault types. 
+
+The evaluation process involves feeding the synthetic samples into the pre-trained SAE to reconstruct them. The reconstruction error and the latent feature distribution are monitored. Specifically, we calculate the Pearson Correlation Coefficient (PCC) and Cosine Similarity (CS) between the original normal signal ($\boldsymbol{x}$) and its transformed faulty counterpart ($G(\boldsymbol{x})$), as well as between $G(\boldsymbol{x})$ and real faulty signals ($\boldsymbol{y}$).
+\begin{equation}
+PCC = \frac{\sum (G(\boldsymbol{x})_i - \bar{G(\boldsymbol{x})})(\boldsymbol{y}_i - \bar{\boldsymbol{y}})}{\sqrt{\sum (G(\boldsymbol{x})_i - \bar{G(\boldsymbol{x})})^2 \sum (\boldsymbol{y}_i - \bar{\boldsymbol{y}})^2}}
+\end{equation}
+High PCC and CS values indicate that the generator has successfully preserved the temporal structure while injecting fault-specific frequency components. Samples failing to meet a predefined similarity threshold are discarded to ensure only high-fidelity data is used for training the final classifier.
+
+\subsection{SVM-based Final Diagnosis}
+The final stage of the proposed method involves the deployment of a Support Vector Machine (SVM) for fault classification. SVM is chosen for its robustness in handling high-dimensional data and its effective generalization in small-sample scenarios. 
+
+After balancing the training set using synthetic samples from CAC-CycleGAN-WGP, we define the Balance Ratio (BR) as:
+\begin{equation}
+BR = \frac{N_{synthetic} + N_{minority}}{N_{majority}}
+\end{equation}
+The SVM model is trained with multiple kernel functions (e.g., RBF) and optimized via cross-validation. By training the SVM on the augmented dataset, the decision boundaries are refined, significantly reducing the bias toward the majority (normal) class. This results in a substantial improvement in the diagnosis accuracy of rare fault conditions, which is critical for the preventive maintenance of rotating machinery.

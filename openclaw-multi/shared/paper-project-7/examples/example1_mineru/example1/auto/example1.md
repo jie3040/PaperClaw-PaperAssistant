@@ -1,0 +1,388 @@
+# A Novel Method for Imbalanced Fault Diagnosis of Rotating Machinery Based on Generative Adversarial Networks
+
+Zhenxiang Li ( ) , Taisheng Zheng ( ) , Yang Wang ( ) , Zhi Cao ( ) , Zhiqi Guo ( ) , and Hongyong Fu ( )
+
+Abstract— In the real scenario of engineering, the failure time of rotating machinery is generally much less than when it is in a healthy condition. Considering the cost, it is unrealistic to conduct the large-sample and long-time failure tests. This results in the problem of data imbalance in fault diagnosis, i.e., the number of normal samples far exceeds that of the fault ones, which seriously affects the accuracy and stability of fault diagnosis. For the settlement of the above problem, an auxiliary classier Wasserstein generative adversarial network with gradient penalty (ACWGAN-GP) is proposed in this article, which is capable of generating high-quality samples for the minority classes stably utilizing an imbalanced training set. In the experiment of fault diagnosis, the generated samples first go through the availability verification and then are employed to augment the imbalanced data set gradually. The final results show that the proposed method is competent for the generation of data, which is highly similar to real samples, and the accuracy of fault diagnosis has effective improvement as the imbalanced data set is gradually expanded to equilibrium. In addition, the ACWGAN-GP model presents better performance in sample generation than other widely used methods.
+
+Index Terms— Data imbalance, fault diagnosis, generative adversarial network (GAN), gradient penalty, rotating machinery, Wasserstein distance.
+
+# I. INTRODUCTION
+
+R OTATING machinery plays a critical role in mechanicalequipment. Any small faults may cause failure of the machine, great financial losses, and even casualties. Therefore, more and more attention [1]–[4] has been paid to fault diagnosis of rotating machinery.
+
+Many scholars are exploring more efficient methods to improve the accuracy of fault diagnosis. Li et al. [5] proposed an approach based on symbolic dynamic filtering to detect early faults of rolling bearings. Song et al. [6] combined statistic filter with wavelet package transform to extract features for low-speed rotating machinery. To address the problem of noise jamming and changing working conditions, Zhang et al. [7] applied deep learning to fault diagnosis of bearings and achieved high accuracy.
+
+Although the above studies have achieved good results in certain circumstances, it should be noted that they were conducted under the condition of data balance. However, it is generally difficult to obtain a balanced data set for fault diagnosis in practice. In other words, most of the time, researchers have to face the problem of data imbalance in fault diagnosis.
+
+Data imbalance is one of the main challenges in fault diagnosis of rotating machinery. Suffering from the problem of data imbalance, many methods for fault diagnosis fail to recognize the samples of the minority classes so as to misclassify them. For example, if an imbalanced data set with 99 normal samples and one fault sample is available, the fault diagnosis can still reach a quite high accuracy $9 9 \%$ with all samples classified to normal class. However, the diagnosis result is meaningless even harmful, because the malfunction in the equipment was not detected timely and precisely. Therefore, it is crucial to find an effective approach to solve the problem of data imbalance in fault diagnosis.
+
+In view of the problem of data imbalance in fault diagnosis, many methods [8]–[12] have been proposed. At present, the solutions for data imbalance are mainly studied from two aspects: data and algorithm. From the data perspective, oversampling on the minority classes is a widely used method for the acquirement of balanced data set. Chawla et al. [13] proposed a synthetic minority oversampling technique (SMOTE) to generate new samples. However, the strategy for neighbor selection of SMOTE exists some blindness, as it will insert lots of noise, resulting in over-generalization of classification model. Thus, Calleja and Fuentes [14] proposed an improved algorithm D-SMOTE to generate artificial samples by finding the mean points of the nearest neighbor sample. He et al. [15] put forward an adaptive synthetic sampling algorithm (ADASYN) to produce synthetic samples for each sample by adaptively changing weights of the minority class samples. From the algorithm perspective, the works mainly focus on new classification ideas and the improvement on the traditional classification algorithms to meet the needs of imbalanced data classification. Xie and Qiu [16] proposed a weighted Fisher linear discriminant model (WFLD) to weight the within-class scatter matrices of positive and negative samples. Chen et al. [17] considered the reduction of support vectors, which improved the accuracy of the minority class by properly sacrificing the classification accuracy of the majority class.
+
+Although these methods have made some progress, there are still some inevitable problems. On the one hand, the existed oversampling methods heavily rely on data characteristics, and they failed to consider the true distribution properties of the minority class samples, which caused the blindness in sample generation. On the other hand, finding a new classification algorithm or improving an existed algorithm requires lots of time and efforts.
+
+Generative adversarial network (GAN) [18] offers a feasible solution to the problem of data imbalance in fault diagnosis from the data perspective. Capturing features from raw data, GAN is capable of generating new samples sharing the same distribution with the original samples. Ever since GAN was proposed, various derivative models of GAN have been proposed and successfully applied in various fields. In order to solve the problems of convergence and mode collapse in GANs training process, Arjovsky et al. [19] proposed Wasserstein GAN (WGAN), replacing the Jensen–Shannon (J–S) divergence with the Wasserstein distance. Odena et al. [20] put forward an auxiliary classier GAN (ACGAN), which was competent to generate high-resolution images by virtue of random noise and label information and achieved prominent improvement in classification tasks. Radford et al. [21] established a deep convolutional GAN (DCGAN) model and used its discriminator for image classification.
+
+GAN and its variants have outstanding performance in generating sample, and they have achieved lots of successful applications in generation of images, audio, and texts. However, to the authors’ knowledge, there is little information available in the literature about the application of GAN in fault diagnosis of rotary machine. Spyridon and Boutalis [22] proposed an unsupervised fault detection scheme based on GAN, in which the judgment on fault occurrence was made by the discriminator. To solve the problem of imbalanced fault diagnosis of rolling bearings, Xie and Zhang [23] utilized DCGAN to generate new samples for the minority classes. Wang et al. [24] combined GAN with stacked denoising autoencoders (SDAE) for planetary gearbox fault pattern recognition in the case of small samples.
+
+It is undeniable that the above methods have indeed achieved some effects in fault diagnosis. However, there are some obvious drawbacks in their approaches. First, using balanced data sets as training set in these methods does not accord with the fact that the balanced data set is hardly available in real scenario. Moreover, these methods only adopt fault samples to train model, which makes the model difficult to cover the distinction between normal samples and fault samples. Besides, their GAN models need to overcome the problem of mode collapse and vanishing gradient.
+
+To address the above problems, this article proposes a novel method called auxiliary classier WGAN with gradient penalty (ACWGAN-GP), which can generate high-quality samples with an imbalanced training set to augment the original data set and then utilizes the augmented data set to perform fault diagnosis. The main contributions of this article can be summarized as follows.
+
+1) By introducing the Wasserstein distance and gradient penalty term, an improved ACGAN model ACWGAN-GP is first proposed to generate high-quality samples for the settlement of data imbalance in fault diagnosis.   
+2) In order to make this article significant to engineering practice, imbalanced data sets are used to train the ACWGAN-GP model in this article. It should be noted that this is the first attempt that an imbalanced data set is used for the training of GAN to generate new samples for fault diagnosis.   
+3) To verify the performance of the generated samples in imbalanced fault diagnosis, a series of fault diagnosis experiments with different balance ratios (BRs) are set by adding generated samples to the training set. Besides, tests are conducted to compare the proposed method with four widely used methods in terms of sample similarity and diagnosis accuracy.
+
+The remaining parts are organized as follows. Section II briefly surveys the theoretical background about GANs. In Section III, a presentation of the whole framework and details about our method is given. Experimental verification and discussion of the results are described in Section IV. Finally, Section V presents the primary conclusion.
+
+# II. THEORETICAL BACKGROUND
+
+# A. Generative Adversarial Network
+
+Inspired by the Game Theory, Goodfellow et al. [18] creatively proposed GAN. GAN consists of two neural networks opposed to each other: the generator G and the discriminator D, as shown in Fig. 1. G tries to capture the data distribution of the real samples, and then utilize a random noise vector $z$ to synthesize new samples $S _ { \mathrm { g e n e r a t e d } } = G ( z )$ to deceive D, while the purpose of $\mathrm { D }$ is telling apart the real samples $S _ { \mathrm { r e a l } }$ from the generated samples $S _ { \mathrm { g e n e r a t e d } }$ . In this way, the adversarial training of the two networks will continue until Nash equilibrium, and their performance in sample generation and distinction will constantly improve. The loss function can be defined as follows [18]:
+
+$$
+L ( D , G ) = E _ { s \sim P _ { \mathrm { d a t a } } } { \bigl [ } \log D ( s ) { \bigr ] } + E _ { z \sim P _ { z } } { \bigl [ } \log ( 1 - D ( G ( z ) ) ) { \bigr ] }
+$$
+
+where $P _ { \mathrm { d a t a } }$ is the real data distribution, $P _ { z }$ is the prior distribution of the noise vector $z$ , and $D ( s )$ denotes the probability that $s$ comes from the real data. $E _ { s \sim P _ { \mathrm { d a t a } } }$ represents the expectation of $s$ from the real data distribution $P _ { \mathrm { d a t a } }$ and $E _ { z \sim P _ { z } }$ is the expectation of $z$ , which is sampled from noise. The optimization process of $\mathrm { D }$ and $\mathrm { G }$ is a binary minimax problem, which can be formalized as the following equation [18]:
+
+$$
+{ \mathrm { G o a l } } = \arg \operatorname* { m i n } _ { G } \operatorname* { m a x } _ { D } L ( G , D ) .
+$$
+
+![](images/ea891716fecf7a20be52c2f1efd6092febf7099a18c8b012578edbd68ab545ef.jpg)  
+Fig. 1. Sketch map of GAN.
+
+![](images/3a2cde05a8737d55685e5423b733e08ffba885a4839c391b071ae0e3afe37267.jpg)  
+Fig. 2. Architecture of ACGAN.
+
+# B. Auxiliary Classifier Generative Adversarial Network
+
+ACGAN is an improved model of GAN, whose architecture is shown in Fig. 2. Different from GAN, ACGAN takes advantage of the label information as well for sample generation and distinction.
+
+To be more specific, the generator makes use of random noise $z$ and the class label set $y \sim p _ { y }$ to generate new samples $s _ { \mathrm { g e n e r a t e d } } = G ( z , y )$ , while the discriminator needs to identify not only the sources of samples but also their class labels. With the help of the game mechanism, ACGAN is constantly optimized in terms of the capacity for sample generation and recognition. Ultimately, the model possesses the strong capability of generating new samples with corresponding labels.
+
+Since both the samples and label information need to be processed, the objective of ACGAN consists of two parts: the log-likelihood of the correct source $L _ { \mathrm { s o u r c e } }$ and the log-likelihood of the correct class $L _ { \mathrm { c l a s s } }$ [20], represented as
+
+$$
+\begin{array} { r l } & { L _ { \mathrm { s o u r c e } } = E _ { s \sim P _ { \mathrm { d a t a } } } \big [ \log D ( s ) \big ] + E _ { z \sim P ( z ) } \big [ \log ( 1 - D ( G ( z ) ) ) \big ] } \\ & { L _ { \mathrm { c l a s s } } = E _ { s \sim P _ { \mathrm { d a t a } } } \big [ \log P ( Y = y | S _ { \mathrm { r e a l } } ) \big ] } \\ & { ~ + E _ { z \sim P ( z ) } \big [ \log P \big ( Y = y | S _ { \mathrm { g e n e r a t e d } } \big ) \big ] . } \end{array}
+$$
+
+For discriminator, the goal is to maximize the sum of the two log-likelihoods, i.e., $L _ { \mathrm { s o u r c e } } + L _ { \mathrm { c l a s s } }$ , while generator is trained to maximize $L _ { \mathrm { s o u r c e } } - L _ { \mathrm { c l a s s } }$ .
+
+# C. Wasserstein Distance and Gradient Penalty
+
+As a powerful generative model, GANs are capable of generating appealing samples, but they suffer from training instability because of vanishing gradient and mode collapse. Much endeavor [25]–[27] has been devoted to finding ways of stabilizing the training of GANs, but few satisfactory results until WGAN were proposed.
+
+WGAN proposed by Arjovsky et al. [19] makes important progress toward stable training of GANs. Arjovsky and Bottou [28] attributed the unstable training of GANs to the objective function in the form of J–S divergence. Afterward, they proposed WGAN using the Wasserstein distance instead of J–S divergence to evaluate the distribution distance between the real samples and the generated samples. Referring to [19], objective function of WGAN can be expressed as follows:
+
+$$
+\operatorname* { m i n } _ { G } \operatorname* { m a x } _ { D \in \Omega } E _ { s \sim P _ { \mathrm { d a t a } } } [ D ( s ) ] - E _ { z \sim P _ { z } } [ D ( G ( z ) ) ]
+$$
+
+where $\Omega$ represents the set of 1-Lipschitz functions, whose weights lie within a compact space $[ - w , w ]$ . Under an optimal discriminator, minimizing the value function with respect to the generator parameters is equivalent to minimizing the Wasserstein distance.
+
+Compared with regular GANs, the training process of WGAN is more stable and faster, but sometimes it still fails to generate high-quality samples or to converge. Gulrajani et al. [29] argued that the problem was due to the use of weight clipping in WGAN to enforce a Lipschitz constraint on the discriminator. Therefore, they proposed an improved WGAN by introducing gradient penalty into it, i.e., WGAN-GP. According to [29], the loss function and the WGAN-GP objective are, respectively, presented as follows:
+
+$$
+\begin{array} { r l } & { L = E _ { z \sim P _ { z } } [ D ( G ( z ) ) ] - E _ { s \sim P _ { \mathrm { d a t a } } } [ D ( s ) ] } \\ & { \phantom { x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x } } \\ & { \phantom { m i n } \quad \underset { G } { \operatorname* { m i n } } \underset { D } { \operatorname* { m a x } } E _ { s \sim P _ { \mathrm { d a t a } } } [ D ( s ) ] - E _ { z \sim P _ { z } } [ D ( G ( z ) ) ] } \\ & { \phantom { x x x x x x x x x x x } - \lambda E _ { \widehat { s } \sim P _ { \widehat { s } } } \bigl [ ( \| \nabla _ { \widehat { s } } D ( \widehat { s } ) \| _ { 2 } - 1 ) ^ { 2 } \bigr ] } \end{array}
+$$
+
+where $\widehat { s } \ = \ \varepsilon s \ + \ ( 1 \ - \ \varepsilon ) G ( z ) \ \sim \ P _ { \widehat { s } } .$ random number $\varepsilon \sim U ( 0 , 1 )$ . WGAN-GP performs better than WGAN and enables stable training without much hyperparameter tuning. Due to limited space, this article does not give a detailed derivation process of the Wasserstein distance and gradient penalty. Further details can be found in the studies by Arjovsky et al. [19] and Gulrajani et al. [29].
+
+# III. SYSTEM FRAMEWORK AND PROCEDURES OF THE PROPOSED METHOD
+
+To solve the problem of data imbalance in fault diagnosis, a novel method ACWGAN-GP is proposed in this article. The model can learn the raw data distribution adaptively and then generate new samples to augment the minority classes. Then, the augmented data set is applied to the training of support vector machine (SVM), boosting, multi-layer perceptron (MLP), random forest (RF) [30], and convolutional neural network (CNN) to conduct fault diagnosis. The whole framework mainly contains three parts: sample preprocessing, sample generation and evaluation, and imbalanced fault diagnosis. The flowchart of this method is presented in Fig. 3.
+
+![](images/caf9768781fed5ef6a97f23b4c22fc53dbeb00601d1932f56861e95a9773beb7.jpg)  
+Fig. 3. Flowchart of the proposed method.
+
+# A. ACWGAN-GP Model Design
+
+1) Overall Framework: This article devotes to establish an improved ACGAN model ACWGAN-GP for the settlement of imbalanced fault diagnosis of rotating machinery. Specifically, ACWGAN-GP is built by introducing the Wasserstein distance and gradient penalty into ACGAN. The generator produces new samples utilizing random noise $Z$ and specific labels. Then, the new samples together with the real samples are imported to the discriminator for adversarial training. For each sample, the discriminator verdicts whether it is real or fake and recognizes its class. After meeting the similarity criterion, the generated samples will be used for the augment of the original data set to implement fault diagnosis. The whole architecture is shown in Fig. 4.
+
+2) Design of Generator and Discriminator: In consideration of the outstanding performances in feature extraction and classification of CNN, both the generator and the discriminator are built based on 2-D CNN. The details of the proposed architecture are shown in Fig. 5.
+
+In the generator, the input layer composed of noise input and class input is linked to a fully connected layer, which has 1024 neuron nodes. The output of the fully connected layer is transformed into images with a size of $2 \times 2 \times 2 5 6$ b y reshape function, where width is two units, height is two units, and the number of channels is 256. The fully connected layer is followed by four 2-D deconvolution layers successively.
+
+The first 3 deconvolution layers have 128, 64, and 32 filters, respectively, while the last deconvolution layer has only one. All the filters share with the same size of $5 ~ \times ~ 5$ and the strides of 2. After the four deconvolution layers, the input data are transformed into a 2-D matrix. Before inputted to the discriminator, the 2-D matrix will be reshaped into 1-D data and be normalized.
+
+As for the discriminator, it is almost symmetric with the generator. The input data are first reshaped to a 2-D matrix with a size of $3 2 ~ \times ~ 3 2$ . Going through four convolutional layers, the data are switched into 256 2-D matrices with a size of $2 \times 2$ . After the last convolutional layer, the 2-D data will be converted back to 1-D data by reshape operation. In the end, the output layer gives a source label and a class label.
+
+Beneficial from GANs powerful performance in sample generation and CNNs strong ability in feature extraction, ACWGAN-GP is capable of utilizing an imbalanced data set to generate high-quality samples with labels, which is of great significance for the imbalanced fault diagnosis in actual projects.
+
+# B. Model Training Procedure
+
+The random noise vector $Z = ( z ^ { 1 } , z ^ { 2 } , z ^ { 3 } , . . . , z ^ { m } )$ obeying the $P _ { z }$ distribution is input to the generator together with the label set $Y ~ = ~ ( y ^ { 1 } , y ^ { 2 } , y ^ { 3 } , . . . , y ^ { \bar { k } } )$ for generating synthetic samples $\widetilde { s } = G ( z , y )$ , whose data distribution $P _ { g }$ is similar to the real samples $P _ { \mathrm { d a t a } }$ . Next, the new samples $\widetilde s$ are mixed with the original samples $S _ { \mathrm { r e a l } } ~ = ~ ( s ^ { 1 } , s ^ { 2 } , s ^ { 3 } , . ~ . ~ . ~ , s ^ { n } )$ as the input of the discriminator for authenticity discrimination. The generator and the discriminator will be trained alternately until reaching Nash equilibrium. According to the theoretical knowledge in Section $\mathrm { I I }$ , the objective functions of ACWGAN-GP are expressed as follows:
+
+$$
+\begin{array} { r l } & { L _ { D } = E _ { s \sim P _ { \mathrm { d a t a } } } \big [ \log D ( s ) \big ] - E _ { \widetilde { s } \sim P _ { g } } \big [ \log D ( \widetilde { s } ) \big ] } \\ & { \qquad - \lambda E _ { \widehat { s } \sim P _ { \widehat { s } } } \big [ ( \| \nabla _ { \widehat { s } } D ( \widehat { s } ) \| _ { 2 } - 1 ) ^ { 2 } \big ] } \\ & { \qquad + E _ { s \sim P _ { \mathrm { d a t a } } } \big [ \log P ( Y = y | S _ { \mathrm { r e a l } } ) \big ] } \\ & { L _ { G } = E _ { \widetilde { s } \sim P _ { g } } \big [ \log D ( \widetilde { s } ) \big ] + E _ { \widetilde { s } \sim P _ { g } } \big [ \log P ( Y = y | \widetilde { s } ) \big ] } \end{array}
+$$
+
+where $\widehat { s } \ : = \ : \varepsilon s + ( 1 - \varepsilon ) \widetilde { s } \sim P _ { \widehat { s } }$ are the random samples obtained by interpolating on line $s$ and $\widetilde s , \lambda$ is the gradient penalty coefficient, and $P ( Y = y | S _ { \mathrm { r e a l } } )$ denotes the conditional probability distribution over the class labels.
+
+# C. Model Evaluation
+
+The ACWGAN-GP method is aimed at solving the data imbalance problem in fault diagnosis of rotating machinery. For the validation of the method, the quality of the generated samples and their effects on imbalanced fault diagnosis need to be evaluated.
+
+In this article, the quality evaluation on the generated samples is conducted from two aspects as follows: comparing the frequency spectrums of the generated samples and the real samples qualitatively, and measuring their similarity quantitatively by calculating the Pearson correlation coefficient (PCC) and cosine similarity (CS) between the generated samples and the real samples. To assess the effect of the generated samples on imbalanced fault diagnosis, the generated samples are applied to the augment of the imbalanced training set to conduct fault diagnosis. The diagnosis accuracy can indicate the performance of the ACWGAN-GP model in sample generation.
+
+![](images/590a7d336d2f927a4be13fed3e9dc2dffcdac3f2aa79edf321d9a220a398c173.jpg)  
+Fig. 4. Whole architecture of the proposed model.
+
+![](images/217fc99bbe81157c422e39bb40a136671152f9346e8c1ecde4b976917dfa1420.jpg)  
+Fig. 5. Architecture of the proposed (a) generator and (b) discriminator.
+
+# IV. EXPERIMENTAL AND RESULTS ANALYSIS
+
+For the verification of the proposed method, experiments are carried out on two data sets in this article. For each data set, the ACWGAN-GP model is trained to generate new samples. Then, the new samples go through quality evaluation for checking whether they are available for fault diagnosis. After assessment, the generated samples are gradually added to the original data set for fault diagnosis. Two main situations of imbalanced fault diagnosis in engineering practice are simulated: multiclass imbalanced fault diagnosis and single-class imbalanced fault diagnosis. For each situation, tests are performed on different BRs, which are set by adding different numbers of the generated samples into the original imbalanced data set. Here, BR is defined as follows:
+
+$$
+\mathrm { B R } = \frac { N _ { \mathrm { m i n o r i t y } } } { N _ { \mathrm { m a j o r i t y } } } \quad ( \mathrm { 0 < B R \leq 1 } )
+$$
+
+where $N _ { \mathrm { m a j o r i t y } }$ and $N _ { \mathrm { m i n o r i t y } }$ , respectively, represent the number of samples in the majority class and the minority class.
+
+TABLE I DETAILS OF THE BEARING DATA SET   
+
+<table><tr><td colspan="2">Sample class</td><td>Load (hp)</td><td>Damage diameters (inches)</td><td>Sample length</td><td>Training set</td><td>Testing set</td><td>Class label</td></tr><tr><td rowspan="9">Majority</td><td>Normal</td><td>2</td><td></td><td>2048</td><td>1000</td><td>200</td><td>0</td></tr><tr><td>Ball1</td><td>2</td><td>0.007</td><td>2048</td><td>100</td><td>200</td><td>1</td></tr><tr><td>Ball2</td><td>2</td><td>0.014</td><td>2048</td><td>100</td><td>200</td><td>2</td></tr><tr><td>Ball3</td><td>2</td><td>0.021</td><td>2048</td><td>100</td><td>200</td><td>3</td></tr><tr><td>Inner1</td><td>2</td><td>0.007</td><td>2048</td><td>100</td><td>200</td><td>4</td></tr><tr><td>Inner2</td><td>2</td><td>0.014</td><td>2048</td><td>100</td><td>200</td><td>5</td></tr><tr><td>Inner3</td><td>2</td><td>0.021</td><td>2048</td><td>100</td><td>200</td><td>6</td></tr><tr><td>Outer1</td><td>2</td><td>0.007</td><td>2048</td><td>100</td><td>200</td><td>7</td></tr><tr><td>Outer2 Outer3</td><td>2 2</td><td>0.014 0.021</td><td>2048 2048</td><td>100 100</td><td>200 200</td><td>8 9</td></tr></table>
+
+![](images/4e502e6f06dfb639514edc300008bce4f72947ae4eec65a8cf8e6e413d178a38.jpg)  
+Fig. 6. Description of the experimental platform.
+
+# A. Case I: Experiments on Bearing Data Set
+
+1) Data Set Introduction: The data set used in this section was acquired by the Electrical Engineering Laboratory, Case Western Reserve University, Cleveland, OH, USA, and published on the Bearing Data Center Website [31]. Fig. 6 shows the test stand, which is comprised of two motors, a torque sensor, a dynamometer, and other control devices. Single point faults on inner race, outer race, and ball element of the bearings were created by using electrodischarge machining with damage diameters of 0.007, 0.014, 0.021, and 0.028 in. Accelerometers were placed at the drive end (DE), fan end (FE), and base plate (BA), respectively, to gather vibration signals under different loads of 0–3 hp. Vibration signals were gathered using a 16 channel DAT recorder at the sampling frequency of 12 and $4 8 ~ \mathrm { k H z }$ and were processed in MATLAB file format.
+
+In this case, the data of faulty bearings, which was collected at the DE, with the sampling frequency of $1 2 ~ \mathrm { \ k H z }$ and under the load of $2 \ \mathrm { h p }$ , is taken as the experimental data. The used data include four fault types and three kinds of damage diameters. The fault types cover normal condition, ball fault, inner race fault, and outer race fault, and the damage diameters are 0.007, 0.014, and 0.021 in. Therefore, there are ten classes of samples in the used data, denoted by Normal, Ball1, Ball2, Ball3, Inner1, Inner2, Inner3, Outer1, Outer2, and Outer3, respectively. The 100 samples of each fault class and 1000 samples of the Normal class are selected randomly as the training set, and 200 samples of each health condition as the testing set. In the training set, the Normal class is taken as the majority class, while the other fault classes act as the minority classes. The details of the used samples are listed in Table I, and the waveforms of the ten classes of samples are shown in Fig. 7.
+
+![](images/dd5b104cb72152cadd4ac668d408c062572a76ff7b56d1dbaf19112da7890e66.jpg)  
+Fig. 7. Time-domain waveforms of the ten kinds of samples in the bearing data set.
+
+2) Sample Generation and Evaluation: In this section, the ACWGAN-GP model is trained to generate new samples for each class. Since the features of the frequency-domain signals are more obvious than those of the time-domain signals, fast Fourier transform (FFT) is performed for the transition of the original samples from time domain to frequency domain before they are input to the ACWGAN-GP model. In this way, it will be easier for ACWGAN-GP to generate new samples with high similarity to the original samples.
+
+During sample generation, the value of the loss function is recorded to characterize the performance of the model, as shown in Fig. 8.
+
+As can be seen from Fig. 8, at the beginning, the discriminator loss and generator loss decrease dramatically, then both of the loss curves ascend gradually with the increase of iteration. After 4000 iterations, the discriminator loss converges to 0 around, and the generator loss converges to a constant less than 1, which indicates the model has been trained well and can be used for sample generation. In this case, 500 new samples are generated for each fault class.
+
+TABLE II PCC AND CS BETWEEN THE GENERATED SAMPLES AND THE ORIGINAL SAMPLES OF THE BEARING DATA SET   
+
+<table><tr><td>Sample class</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr><tr><td>PCC</td><td>0.8376</td><td>0.7329</td><td>0.7131</td><td>0.7672</td><td>0.8043</td><td>0.6529</td><td>0.7557</td><td>0.7226</td><td>0.7577</td><td>0.6656</td></tr><tr><td>CS</td><td>0.8698</td><td>0.8658</td><td>0.8438</td><td>0.8708</td><td>0.9053</td><td>0.8598</td><td>0.8875</td><td>0.8921</td><td>0.8768</td><td>0.8604</td></tr></table>
+
+![](images/1d82d9cad3135d0d0e98322ea14a5713071f3b15d7d1e5fc68c8b8a23811f307.jpg)  
+Fig. 8. Loss curve of the ACWGAN-GP model on the bearing data set. (a) Discriminator loss. (b) Generator loss.
+
+For the comparison of the similarity between the generated samples and the original samples, their frequency spectrums are presented in the same diagram, as shown in Fig. 9. Ignoring some small deviations, the generated samples are highly similar to the original samples.
+
+To further evaluate the generated samples, PCC and CS are calculated to measure the similarity between the generated samples and the original samples quantitatively. PCC indicates the correlation between the generated samples and the original samples. Generally, PCC greater than 0.5 implies a significant correlation. Similarly, CS evaluates the similarity of data distribution by calculating the cosine value of the angle between two sample vectors. The value of both PCC and CS ranges from 0 to 1. The higher value signifies the higher similarity. As recorded in Table II, PCCs are higher than 0.5 for all the ten classes of samples, and CS of all classes is higher than 0.8, which demonstrates that the generated data have a highly similar distribution to the original data. Based on the above analysis, it is clear that the ACWGAN-GP model can generate new samples with high similarity to the original samples.
+
+![](images/07e3bb0d540e67276e3477703e72bac0e12def00f7f0167542a0199abcc7b37d.jpg)  
+Fig. 9. Comparison of the frequency spectrum of original samples and generated samples of the bearing data set.
+
+# 3) Imbalanced Fault Diagnosis:
+
+a) Multiclass imbalanced fault diagnosis: In this section, 500 normal samples and five samples of each fault class are selected as the original training set to simulate the situation of multiclass data imbalance, and the testing set contains 200 samples of each class. The information of the used samples is presented in Table III.
+
+For the verification of the performance of the generated samples in multiclass imbalanced fault diagnosis, the generated fault samples are gradually added to the imbalanced training set to augment it, as shown in Table IV. Afterward, the augmented data set is used as the training set of the classification methods SVM, boosting, MLP, and CNN to conduct fault diagnosis. The diagnosis results of the four methods are recorded and plotted in Fig. 10.
+
+As shown in Fig. 10, as the number of the generated samples added to the original training set increases, the diagnosis accuracy of the four methods presents an upward trend. It indicates that the proposed method has a significant effect on improving the accuracy of multiclass imbalanced fault diagnosis.
+
+For the interpretation of the diagnosis result visually, the diagnosis process of CNN with Class 1 as the minority class is taken as an example to show the confusion matrices, as shown in Fig. 11. From Fig. 11(a), all samples of the minority classes are misclassified to the majority class when BR is 1:100. As BR increases to 1:20, the diagnosis accuracy of the minority class samples is enhanced significantly, and only a small number of minority class samples are misidentified when BR is raised to 1:5. Ultimately, as the training set achieves a balance, all samples are recognized correctly, as presented in Fig. 11(d). These results are reasonable. When BR is 1:100, the extremely imbalanced training set cannot provide enough feature information of the minority classes for the diagnosis models so that the samples of minority classes are all misclassified to the majority class. As the number of the minority class samples aggrandizes, the diagnosis models can extract more useful fault information for the distinction of the minority class samples and the majority class samples. Therefore, the diagnosis accuracy rises gradually with increase of the number of the generated samples added to the training set.
+
+TABLE III BEARING SAMPLES FOR MULTICLASS IMBALANCED FAULT DIAGNOSIS   
+
+<table><tr><td rowspan="2">Sample class</td><td>Majority class</td><td colspan="9">Minority class</td></tr><tr><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr><tr><td>Training set</td><td>500</td><td>5</td><td>5</td><td>5</td><td>5</td><td>5</td><td>5</td><td>5</td><td>5</td><td>5</td></tr><tr><td>Testing set</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td></tr></table>
+
+TABLE IV WAY TO AUGMENT THE TRAINING SET   
+
+<table><tr><td>The number of added generated samples</td><td>0</td><td>5</td><td>15</td><td>20</td><td>45</td><td>95</td><td>245</td><td>495</td></tr><tr><td>The samples of the minority class after augmentation</td><td>5</td><td>10</td><td>20</td><td>25</td><td>50</td><td>100</td><td>250</td><td>500</td></tr><tr><td>Balance Ratio (BR)</td><td>1:100</td><td>1:50</td><td>1:25</td><td>1:20</td><td>1:10</td><td>1:5</td><td>1:2</td><td>1:1</td></tr></table>
+
+TABLE V ORIGINAL SAMPLES FOR SINGLE-CLASS IMBALANCED FAULT DIAGNOSIS OF THE BEARING DATA SET   
+
+<table><tr><td colspan="2">Sample class</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr><tr><td rowspan="3">Training sets</td><td>Case 1</td><td>500</td><td>5</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td></tr><tr><td>Case 2</td><td>500</td><td>500</td><td>500</td><td>500</td><td>5</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td></tr><tr><td>Case 3</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td><td>5</td><td>500</td><td>500</td></tr><tr><td colspan="2"> Testing set</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td></tr></table>
+
+![](images/7f53254dbd2a7e3763e8fef126c61b9323f204d94466b8247ce44797e4c33b5f.jpg)  
+Fig. 10. Accuracy for multiclass imbalanced fault diagnosis on the bearing data set.
+
+b) Single-class imbalanced fault diagnosis: In fault diagnosis of rotating machinery, single-class data imbalance is another common situation of data imbalance. Due to limited space, only Class 1, Class 4, and Class 7 are chosen as the minority class for the simulation of single-class imbalanced fault diagnosis in this section. Similarly, the original training set contains 500 samples of the majority class and five samples of the minority class, and the testing set contains 200 samples of each class, as shown in Table V. Like multiclass imbalanced fault diagnosis, the generated fault samples are added to the original training set to improve BR from 1:100 to 1 gradually, and then the mixed data set is utilized for training SVM, boosting, MLP, and CNN at different BRs. The setting of BR is the same as in Table IV, and the diagnosis results are displayed in Fig. 12.
+
+As Fig. 12 shows, the four diagnosis models are tested at a series of BRs from 1:100 to 1:1, and with the increase of BR, the diagnostic accuracy rises gradually. Similarly, with Class 1 as the minority class, the confusion matrices of CNN are drawn for the intuitive interpretation of the diagnosis results, as shown in Fig. 13. As shown in Fig. 13(a), due to the extremely imbalanced training set, only 23 samples of Class 1 are correctly recognized by the diagnosis model. As the training set tends to be balanced, the number of the minority class samples identified increases, thus the diagnosis accuracy has an improvement. When BR goes up to 1:20, the number of the samples of Class 1 that are correctly classified increases to 151. With BR being 1:5, only two samples of Class 1 are misdiagnosed, as presented in Fig. 13(c). As BR is lifted to 1:1, the classification accuracy of Class 1 reaches $100 \%$ , as shown in Fig. 13(d).
+
+![](images/366aa943d480632ae105428fffc2fc570efc2c44595269176a9efb0d8c91be45.jpg)  
+Fig. 11. Confusion matrices of using CNN for multiclass imbalanced fault diagnosis of bearings at different BRs. (a) 1:100. (b) 1:20. (c) 1:5. (d) 1:1.
+
+From the above analysis, it is easy to get that the samples generated by the ACWGAN-GP model are effective for the problem of imbalanced fault diagnosis of bearings.
+
+# B. Case II: Experiments on Gearbox Data Set
+
+1) Data Set Introduction: In order to further verify the effectiveness of the proposed method, the gearbox data set is analyzed as the second case. The gearbox data set is from IEEE PHM Challenge Competition in 2009 [32], which is the representative of generic industrial gearbox data. The partial details of the gearbox are presented in Fig. 14. The data set used in this section contains eight health patterns, whose details are listed in Table VI. The used data are collected from input shaft end at a shaft speed of $3 0 ~ \mathrm { H z }$ under a high load.
+
+The sampling frequency is $6 6 . 7 ~ \mathrm { k H z }$ , and the sampling time is set to $4 \mathrm { ~ s ~ }$ . With a length of 8192 points, 100 samples of each fault class and 1000 normal samples are selected as the training samples, and 200 samples of each class as the testing samples. Details of the used samples are listed in Table VII, and the time-domain waveforms are shown in Fig. 15.
+
+2) Sample Generation and Evaluation: Similar to Case I, the training samples are inputted to the ACWGAN-GP model after FFT. With enough iterations and sufficient evaluation, the trained model is used for sample generation. In this case, 1000 new samples are generated for each class. To evaluate the new samples, the frequency spectrums of the real samples and generated samples are compared in the same diagram, as shown in Fig. 16. And the values of the similarity indexes PCC and CS are recorded in Table VIII.
+
+From Fig. 16, it can be seen intuitively that the generated samples are similar to the real samples overall. As recorded in Table X, PCCs and CS of the samples for all health patterns are higher than 0.5, which indicates high similarity between the generated samples and the real samples.
+
+3) Imbalanced Fault Diagnosis: Based on the above evaluation of similarity, the generated samples are applied to imbalanced fault diagnosis. Both multiclass imbalanced fault diagnosis and single-class imbalanced fault diagnosis are conducted like Case I. Different from Case I, the number of the majority class samples is 1000, and the number of the minority class samples is 10 in the original training set in this case. Details of the training set and the testing set are shown in Tables IX and X, respectively. And the way to augment the minority classes is listed in Table XI. In this section, five models are adopted to classify the samples of the eight classes, i.e., SVM, boosting, RF, MLP, and CNN. Among the eight classes, Classes 3, 4, 5, and 6 are taken as the minority class in single-class imbalanced fault diagnosis.
+
+![](images/bdfbc5c101fcc3cc7ca8d48b11f154a596ae7e32cbf00a1f8a4d2cc76b0d030e.jpg)  
+Fig. 12. Diagnostic accuracy of single-class imbalanced fault diagnosis on (a) data with Class 1 as the minority class, (b) data with Class 4 as the minority class, and (c) data with Class 7 as the minority class.
+
+TABLE VI DETAILS OF THE HEALTH PATTERNS OF THE GEARBOX DATA SET   
+
+<table><tr><td colspan="2">Sample class</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr><tr><td rowspan="4">Gear</td><td>32T</td><td>G</td><td>C</td><td>G</td><td>G</td><td>C</td><td>G</td><td>G</td><td>G</td></tr><tr><td>96T</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td></tr><tr><td>48T</td><td>G</td><td>E</td><td>E</td><td>E</td><td>E</td><td>G</td><td>G</td><td>G</td></tr><tr><td>80T</td><td>G</td><td>G</td><td>G</td><td>Br</td><td>Br</td><td>Br</td><td>G</td><td>G</td></tr><tr><td rowspan="6">Bearing</td><td>IS:IS</td><td>G</td><td>G</td><td>G</td><td>B</td><td>IR</td><td>IR</td><td>IR</td><td>G</td></tr><tr><td>ID:IS</td><td>G</td><td>G</td><td>G</td><td>G</td><td>B</td><td>B</td><td>G</td><td>B</td></tr><tr><td>OS:IS</td><td>G</td><td>G</td><td>G</td><td>G</td><td>OR</td><td>OR</td><td>G</td><td>OR</td></tr><tr><td>IS:OS</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td></tr><tr><td>ID:OS</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td></tr><tr><td>OS:OS</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td></tr><tr><td rowspan="2">Shaft</td><td>Input</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td><td>Im</td><td>G</td><td>Im</td></tr><tr><td>Output</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td><td>G</td><td>KS</td><td>G</td></tr></table>
+
+IS: Input Shaft;ID: Idler Shaft; OS: Output Shaft;:IS: Input Side;:OS: Output Side. G: Good; C: Chipped; E:Eccentric; Brbroken; B:Bal; IR: Innerrace; OR: Outerrace; Im: Imbalance; KS:Keywaysheared
+
+The results of imbalanced fault diagnosis are shown in Figs. 17 and 19. Similar to Case I, some confusion matrices of CNN in diagnosis are visualized for the intuitive clarification of the diagnosis results, as presented in Figs. 18 and 20.
+
+As can be seen from Figs. 17 and 19, the diagnosis accuracy of the five methods rises with the increase of BR in whole. The reason can be found from the confusion matrices
+
+![](images/b859dd4267f6a16fbfce0f70bb3109f95ea0d22bcd305706f8c2874c467c8a40.jpg)  
+Fig. 13. Confusion matrices of using CNN for single-class imbalanced fault diagnosis of bearings at different BRs. (a) 1:100. (b) 1:20. (c) 1:5. (d) 1:1.
+
+TABLE VII DETAILS OF THE USED SAMPLES   
+
+<table><tr><td></td><td> Sample class</td><td>Shaft speed (Hz)</td><td>Sample length</td><td>Training Samples</td><td>Testing Samples</td></tr><tr><td>Majority class</td><td>0</td><td>30</td><td>8192</td><td>1000</td><td>200</td></tr><tr><td rowspan="7">Minority class</td><td>1</td><td>30</td><td>8192</td><td>100</td><td>200</td></tr><tr><td>2</td><td>30</td><td>8192</td><td>100</td><td>200</td></tr><tr><td>3</td><td>30</td><td>8192</td><td>100</td><td>200</td></tr><tr><td>4</td><td>30</td><td>8192</td><td>100</td><td>200</td></tr><tr><td>5</td><td>30</td><td>8192</td><td>100</td><td>200</td></tr><tr><td>6</td><td>30</td><td>8192</td><td>100</td><td>200</td></tr><tr><td>7</td><td>30</td><td>8192</td><td>100</td><td>200</td></tr></table>
+
+TABLE VIII PCC AND CS BETWEEN THE GENERATED SAMPLES AND THE ORIGINAL SAMPLES OF THE GEARBOX DATA SET   
+in Figs. 18 and 20. As the training set tends to be balanced, the number of the minority class samples that is correctly classified increases gradually, which gives rise to the improvement of the diagnosis accuracy.   
+
+<table><tr><td>Sample class</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr><tr><td>PCC</td><td>0.7136</td><td>0.6154</td><td>0.6367</td><td>0.5847</td><td>0.6435</td><td>0.6834</td><td>0.6515</td><td>0.6209</td></tr><tr><td>CS</td><td>0.7949</td><td>0.8316</td><td>0.8252</td><td>0.8384</td><td>0.8373</td><td>0.8095</td><td>0.809</td><td>0.8112</td></tr></table>
+
+According to the analysis all above, it can be concluded that the proposed method ACWGAN-GP is also effective for the settlement of data imbalance in fault diagnosis of gearbox.
+
+TABLE IX ORIGINAL SAMPLES FOR MULTICLASS IMBALANCED FAULT DIAGNOSIS OF THE GEARBOX DATA SET   
+
+<table><tr><td rowspan="3">Sample class</td><td>Majority class</td><td colspan="7">Minority class</td></tr><tr><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr><tr><td>Training set</td><td>1000</td><td>10</td><td>10</td><td>10</td><td>10</td><td>10</td><td>10</td><td>10</td></tr><tr><td>Testing set</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td></tr></table>
+
+![](images/75cde53563f6672228981518f05f7ed80dcb5f5d5d2c6835107d528bdafe4094.jpg)  
+Fig. 14. Inside details of the gearbox.
+
+![](images/6b3f9cc7436f7f3ae17b9729b42043f11d1538f3f3fe017f757dcd03560581d8.jpg)  
+Fig. 15. Time-domain waveforms of the eight classes of gearbox samples.
+
+4) Comparison With Other Methods: To demonstrate the superiority of the proposed method, experiments are conducted to compare ACWGAN-GP with several common methods for the problem of data imbalance, including random oversampling (RO) [33], SMOTE, ADASYN, and GAN. The four methods are utilized to generate new samples for the minority classes of the bearing data set and the gearbox data set. PCCs between the original samples and new samples are calculated and used for comparison with those of ACWGAN-GP, as shown in Tables XII and XIII. It is worth noting that RO algorithm is just to make a simple copy of the minority class samples, which makes PCCs between the new samples and the original samples be almost 1. Hence, it is meaningless to compare RO algorithm with the other four methods in terms of PCCs.
+
+![](images/b153d7ba1b715364d7836b4a92e65331d5c1c86814a5f1922513a7594f787630.jpg)  
+Fig. 16. Comparison of the frequency spectrum of original samples and generated samples of the gearbox data set.
+
+![](images/3e56bae89423d3a11886730072be5310266f6b6ba3953211cbb5f4b6a73eeb0d.jpg)  
+Fig. 17. Accuracy of multiclass imbalanced fault diagnosis on the gearbox data set.
+
+For further comparison, the new samples generated by the four methods are also applied to imbalanced fault diagnosis. First, the problem of data imbalance in fault diagnosis is simulated by setting an imbalanced data set. Then, the new samples generated by the four methods are added to the imbalanced data set for augment, and the augmented data set will be used to train the diagnosis models. Finally, the verification of the diagnosis models is carried out by the testing set.
+
+![](images/8dd70d2eb7e78a08fe4312a39203eeb6acce5a768a75ebbae6098cd1bd56b681.jpg)  
+Fig. 18. Confusion matrices of using CNN for multiclass imbalanced fault diagnosis of gearbox at different BRs. (a) 1:100. (b) 1:20. (c) 1:5. (d) 1:1.
+
+![](images/9a19d43a72a4507a6445a25041f7e294ad3c3db5bf534340421366f3259c70a3.jpg)  
+Fig. 19. Diagnostic accuracy for single-class imbalanced fault diagnosis on (a) data with Class 3 as minority class, (b) data with Class 4 as minority class, (c) data with Class 5 as minority class, and (d) data with Class 6 as minority class.
+
+Due to space limitation, only tests with Class 1 of the bearing data set and Class 4 of the gearbox data set as the minority class are taken as examples for illustration. For brevity, only SVM and CNN are adopted as the diagnosis methods, which are the representatives of shallow models and deep models, respectively. The training set and testing set are shown in Tables $\mathrm { v }$ and $\mathrm { X }$ , and the settings of BR are listed in Tables IV and XI. The diagnosis accuracy of the four methods is displayed together with that of ACWGAN-GP in Figs. 21 and 22.
+
+![](images/1ca53054906723bebcd15b5f62c62189f7e74a627206e986b12b124e97237ca8.jpg)  
+Fig. 20. Confusion matrices of using CNN for single-class imbalanced fault diagnosis of gearbox at different BRs. (a) 1:100, (b) 1:20, (c) 1:5, and (d) 1:1 with Class 3 as the minority class.
+
+TABLE X ORIGINAL SAMPLES FOR SINGLE-CLASS IMBALANCED FAULT DIAGNOSIS OF THE GEARBOX DATA SET   
+
+<table><tr><td colspan="2">Sample class</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr><tr><td rowspan="4">Training sets</td><td>Case 1</td><td>1000</td><td>1000</td><td>1000</td><td>10</td><td>1000</td><td>1000</td><td>1000</td><td>1000</td></tr><tr><td>Case 2</td><td>1000</td><td>1000</td><td>1000</td><td>1000</td><td>10</td><td>1000</td><td>1000</td><td>1000</td></tr><tr><td>Case 3</td><td>1000</td><td>1000</td><td>1000</td><td>1000</td><td>1000</td><td>10</td><td>1000</td><td>1000</td></tr><tr><td>Case 4</td><td>1000</td><td>1000</td><td>1000</td><td>1000</td><td>1000</td><td>1000</td><td>10</td><td>1000</td></tr><tr><td colspan="2">Testing set</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td><td>200</td></tr></table>
+
+TABLE XI WAY TO AUGMENT THE MINORITY CLASSES   
+
+<table><tr><td>The number of added generated samples</td><td>0</td><td>10</td><td>15</td><td>40</td><td>90</td><td>190</td><td>240</td><td>490</td><td>990</td></tr><tr><td>The number of the minority class samples after augmentation</td><td>10</td><td>20</td><td>25</td><td>50</td><td>100</td><td>200</td><td>250</td><td>500</td><td>1000</td></tr><tr><td>The number of the majority class samples</td><td>1000</td><td>1000</td><td>1000</td><td>1000</td><td>1000</td><td>1000</td><td>1000</td><td>1000</td><td>1000</td></tr><tr><td>Balance Ratio (BR)</td><td>1:100</td><td>1:50</td><td>1:40</td><td>1:20</td><td>1:10</td><td>1:5</td><td>1:4</td><td>1:2</td><td>1:1</td></tr></table>
+
+TABLE XII PCCS BETWEEN ORIGINAL FAULT SAMPLES AND GENERATED FAULT SAMPLES OF THE BEARING DATA SET   
+
+<table><tr><td>Sample class</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr><tr><td>ACWGAN-GP</td><td>0.7329</td><td>0.7131</td><td>0.7672</td><td>0.8043</td><td>0.6529</td><td>0.7557</td><td>0.7226</td><td>0.7577</td><td>0.6656</td></tr><tr><td>GAN</td><td>0.6645</td><td>0.6865</td><td>0.7286</td><td>0.7594</td><td>0.6305</td><td>0.7285</td><td>0.7014</td><td>0.7452</td><td>0.651</td></tr><tr><td>SMOTE</td><td>0.7131</td><td>0.6956</td><td>0.7388</td><td>0.7637</td><td>0.7209</td><td>0.7324</td><td>0.678</td><td>0.7264</td><td>0.6412</td></tr><tr><td>ADASYN</td><td>0.705</td><td>0.7014</td><td>0.7472</td><td>0.7889</td><td>0.7113</td><td>0.748</td><td>0.7086</td><td>0.7365</td><td>0.6358</td></tr></table>
+
+TABLE XIII PCCS BETWEEN ORIGINAL FAULT SAMPLES AND GENERATED FAULT SAMPLES OF THE GEARBOX DATA SET   
+
+<table><tr><td>Sample class</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr><tr><td>ACWGAN-GP</td><td>0.6154</td><td>0.6367</td><td>0.5847</td><td>0.6435</td><td>0.6834</td><td>0.6515</td><td>0.6209</td></tr><tr><td>GAN</td><td>0.5934</td><td>0.5846</td><td>0.5431</td><td>0.6105</td><td>0.6438</td><td>0.6076</td><td>0.5968</td></tr><tr><td>SMOTE</td><td>0.6094</td><td>0.6082</td><td>0.5956</td><td>0.5969</td><td>0.6535</td><td>0.6415</td><td>0.6187</td></tr><tr><td>ADASYN</td><td>0.6012</td><td>0.6273</td><td>0.6014</td><td>0.6247</td><td>0.6522</td><td>0.6572</td><td>0.6025</td></tr></table>
+
+![](images/a0dc331ef4495b5f58f69f2e329ff7f839addb67f63f720c44469d2c5ef6819a.jpg)  
+Fig. 21. Diagnosis results of using new samples generated by the five methods to augment the imbalanced bearing training set. (a) Diagnosed by SVM. (b) Diagnosed by CNN.
+
+![](images/6f8460e2563ff1822ed18f146897e20efd68cbaccd6e0c08e1b3555b5c24f191.jpg)  
+Fig. 22. Diagnosis results of using new samples generated by the five methods to augment the imbalanced gearbox training set. (a) Diagnosed by SVM. (b) Diagnosed by CNN.
+
+From Tables XII and XIII, PCCs between the original samples and the new samples generated by ACWGAN-GP are higher than those of the other methods except Class 5 of the bearing data set and Class 3 and Class 6 of gearbox data set. As presented in Figs. 21 and 22, the diagnosis accuracy goes up with the increase of BR, which indicates all the five methods are effective for imbalanced fault diagnosis. However, it is clear that the diagnosis accuracy of using the samples generated by the proposed method to augment the training set is higher than that of the other four methods overall, which means that the samples generated by the proposed method outperform those generated by the other methods, no matter utilizing the bearing data set or the gearbox data set.
+
+Based on the above analysis, it can be concluded that ACWGAN-GP has higher performance in sample generation than the other methods. Besides, it can solve the problem of imbalanced fault diagnosis more effectively.
+
+# V. CONCLUSION
+
+In real project, the fault diagnosis of rotating machinery is confronted with the problem of data imbalance, which affects the accuracy of fault diagnosis seriously. In this article, a novel method ACWGAN-GP is proposed by introducing the Wasserstein distance and gradient penalty to ACGAN. The method has the capacity of generating new samples with high quality utilizing an imbalanced training set, and the generated samples have an excellent performance in imbalanced fault diagnosis of bearings and gearbox. By analyzing the experimental results, the following conclusions are obtained.
+
+1) By integrating the Wasserstein distance and gradient penalty to ACGAN, ACWGAN-GP can converge stably avoiding vanishing gradient and mode collapse.   
+2) ACWGAN-GP can generate high-quality samples to augment the imbalanced training set of rotating machinery. Utilizing the augmented data set to train fault diagnosis model, the diagnosis accuracy rises gradually, which demonstrates that the proposed method can effectively solve the problem of data imbalance in fault diagnosis.   
+3) Compared with the widely used methods (GAN, RO, SMOTE, and ADASYN) for data imbalance, ACWGAN-GP has higher performance in sample generation, which reflects in that the generated samples have higher similarity and they perform better in the experiment of imbalanced fault diagnosis
+
+Although the method has achieved good results in imbalanced fault diagnosis, some work are still worth exploring in the future, such as integrating GAN with diagnostic models to realize fault diagnosis directly with imbalanced fault data set, training the discriminator of GAN into a fault diagnosis model through the mechanism of adversarial learning, and so on.
+
+# REFERENCES
+
+[1] Z. Liu, H. Cao, X. Chen, Z. He, and Z. Shen, “Multi-fault classification based on wavelet SVM with PSO algorithm to analyze vibration signals from rolling element bearings,” Neurocomputing, vol. 99, pp. 399–410, Jan. 2013.   
+[2] G. Jiang, H. He, P. Xie, and Y. Tang, “Stacked multilevel-denoising autoencoders: A new representation learning approach for wind turbine gearbox fault diagnosis,” IEEE Trans. Instrum. Meas., vol. 66, no. 9, pp. 2391–2402, Sep. 2017.   
+[3] B. Samanta and K. R. AL-BALUSHI, “Artificial neural network based fault diagnostics of rolling element bearings using time-domain features,” Mech. Syst. Signal Process., vol. 17, no. 2, pp. 317–328, Mar. 2003. [4] Z. Mo, J. Wang, H. Zhang, and Q. Miao, “Weighted cyclic harmonicto-noise ratio for rolling element bearing fault diagnosis,” IEEE Trans. Instrum. Meas., vol. 69, no. 2, pp. 432–442, Feb. 2020. [5] Y. Li, M. Xu, Y. Wei, and W. Huang, “Health condition monitoring and early fault diagnosis of bearings using SDF and intrinsic characteristicscale decomposition,” IEEE Trans. Instrum. Meas., vol. 65, no. 9, pp. 2174–2189, Sep. 2016. [6] L. Song, H. Wang, and P. Chen, “Vibration-based intelligent fault diagnosis for roller bearings in low-speed rotating machinery,” IEEE Trans. Instrum. Meas., vol. 67, no. 8, pp. 1887–1899, Aug. 2018. [7] W. Zhang, C. Li, G. Peng, Y. Chen, and Z. Zhang, “A deep convolutional neural network with new training methods for bearing fault diagnosis under noisy environment and different working load,” Mech. Syst. Signal Process., vol. 100, pp. 439–453, Feb. 2018. [8] Z. Hu and P. Jiang, “An imbalance modified deep neural network with dynamical incremental learning for chemical fault diagnosis,” IEEE Trans. Ind. Electron., vol. 66, no. 1, pp. 540–550, Jan. 2019. [9] F. Jia, Y. Lei, N. Lu, and S. Xing, “Deep normalized convolutional neural network for imbalanced fault classification of machinery and its understanding via visualization,” Mech. Syst. Signal Process., vol. 110, pp. 349–367, Sep. 2018.   
+[10] W. Mao, L. He, Y. Yan, and J. Wang, “Online sequential prediction of bearings imbalanced fault diagnosis by extreme learning machine,” Mech. Syst. Signal Process., vol. 83, pp. 450–473, Jan. 2017.   
+[11] J. Mathew, C. K. Pang, M. Luo, and W. H. Leong, “Classification of imbalanced data by oversampling in kernel space of support vector machines,” IEEE Trans. Neural Netw. Learn. Syst., vol. 29, no. 9, pp. 4065–4076, Sep. 2018.   
+[12] Y. Zhang, X. Li, L. Gao, L. Wang, and L. Wen, “Imbalanced data fault diagnosis of rotating machinery using synthetic oversampling and feature learning,” J. Manuf. Syst., vol. 48, pp. 34–50, Jul. 2018.   
+[13] N. V. Chawla, K. W. Bowyer, L. O. Hall, and W. P. Kegelmeyer, “SMOTE: Synthetic minority over-sampling technique,” J. Artif. Intell. Res., vol. 16, pp. 321–357, Jun. 2002.   
+[14] J. de la Calleja, and O. Fuentes, “A distance-based over-sampling method for learning from imbalanced data sets,” in Proc. FLAIRS Conf., 2007, pp. 634–635.   
+[15] H. B. He, Y. Bai, E. A. Garcia, S. T. Li, and Ieee, “ADASYN: Adaptive synthetic sampling approach for imbalanced learning,” in Proc. IEEE Int. Joint Conference Neural Netw. (IEEE World Congr. Comput. Intell.), vols. 1–8, Jun. 2008, pp. 1322–1328.   
+[16] J. Xie and Z. Qiu, “Fisher linear discriminant model with class imbalance,” J. Beijing Jiaotong Univ., vol. 30, pp. 15–18, May 2006.   
+[17] X.-w. Chen, B. Gerlach, and D. Casasent, “Pruning support vectors for imbalanced data classification,” in Proc. IEEE Int. Joint Conf. Neural Netw., Jul./Aug. 2005, pp. 1883–1888.   
+[18] I. J. Goodfellow et al., “Generative adversarial networks,” in Proc. Adv. Neural Inf. Process. Syst., vol. 3, 2014, pp. 2672–2680.   
+[19] M. Arjovsky, S. Chintala, and L. Bottou, “Wasserstein GAN,” Jan. 2017, arXiv:1701.07875. [Online]. Available: https://arxiv.org/abs/1701.07875   
+[20] A. Odena, C. Olah, and J. Shlens, “Conditional image synthesis with auxiliary classifier GANs,” 2016, arXiv:1610.09585. [Online]. Available: http://arxiv.org/abs/1610.09585   
+[21] A. Radford, L. Metz, and S. Chintala, “Unsupervised representation learning with deep convolutional generative adversarial networks,” 2015, arXiv:1511.06434. [Online]. Available: http://arxiv.org/abs/1511.06434   
+[22] P. Spyridon and Y. S. Boutalis, “Generative adversarial networks for unsupervised fault detection,” in Proc. Eur. Control Conf. (ECC), Jun. 2018, pp. 691–696.   
+[23] Y. Xie and T. Zhang, “Imbalanced learning for fault diagnosis problem of rotating machinery based on generative adversarial networks,” in Proc. 37th Chin. Control Conf. (CCC), Jul. 2018, pp. 6017–6022.   
+[24] Z. Wang, J. Wang, and Y. Wang, “An intelligent diagnosis scheme based on generative adversarial learning deep neural networks and its application to planetary gearbox fault pattern recognition,” Neurocomputing, vol. 310, pp. 213–222, Oct. 2018.   
+[25] L. Metz, B. Poole, D. Pfau, and J. Sohl-Dickstein, “Unrolled generative adversarial networks,” 2016, arXiv:1611.02163. [Online]. Available: http://arxiv.org/abs/1611.02163   
+[26] B. Poole, A. A. Alemi, J. Sohl-Dickstein, and A. Angelova, “Improved generator objectives for GANs,” 2016, arXiv:1612.02780. [Online]. Available: http://arxiv.org/abs/1612.02780   
+[27] T. Salimans, I. Goodfellow, W. Zaremba, V. Cheung, A. Radford, and X. Chen, “Improved techniques for training GANs,” in Proc. 30th Conf. Neural Inf. Process. Syst. (NIPS), 2016, pp. 2234–2242.   
+[28] M. Arjovsky and L. Bottou, “Towards principled methods for training generative adversarial networks,” 2017, arXiv:1701.04862. [Online]. Available: http://arxiv.org/abs/1701.04862   
+[29] I. Gulrajani, F. Ahmed, M. Arjovsky, V. Dumoulin, and A. Courville, “Improved training of Wasserstein GANs,” in Proc. 31st Conf. Neural Inf. Process. Syst. (NIPS), 2017, pp. 5767–5777.   
+[30] L. Breiman, “Random forests,” Mach. Learn., vol. 45, no. 1, pp. 5–32, 2001.   
+[31] The Case Western Reserve University Bearing Data Center Website. [Online]. Available: http://csegroups.case.edu/bearingdatacenter/home   
+[32] IEEE PHM 2009 Data challenge. [Online]. Available: http://www.phmsociety.org/references/datasets   
+[33] H. Zhang and M. Li, “RWO-sampling: A random walk over-sampling approach to imbalanced data classification,” Inf. Fusion, vol. 20, pp. 99–116, Nov. 2014.
+
+![](images/ac56ebc591bca630c7a73c912ae7685a709bae688c942f2a88cf6963617c9d3c.jpg)
+
+Yang Wang received the B.Eng. degree from the College of Aerospace and Civil Engineering, Harbin Engineering University, Harbin, China, in 2014, and the M.S. degree from the School of Reliability and Systems Engineering, Beijing University of Aeronautics and Astronautics, Beijing, China, in 2017.
+
+She is currently an Engineer with the Technology and Engineering Center for Space Utilization, Chinese Academy of Sciences, Beijing. Her current research interests include prognostic and health management (PHM), fault diagnosis, and machine learning.
+
+Zhi Cao received the B.Eng. degree from the School of Mechanical Engineering, Zhengzhou University, Zhengzhou, China, in 2018. He is currently pursuing the Ph.D. degree with the University of Chinese Academy of Sciences, Beijing, China.
+
+![](images/961a6d0f7adac270f0f295988d3df742361589765eec4ee6e5a977a06548b4e5.jpg)
+
+![](images/8c42f85910e7e5b3d8fa91a4d8d5ff635bcc75f6e8b9afde1564379856f806e4.jpg)
+
+Zhenxiang Li received the B.Eng. degree from the School of Aeronautic Science and Engineering, Beijing University of Aeronautics and Astronautics, Beijing, China, in 2017. He is currently pursuing the M.S. degree with the University of Chinese Academy of Sciences, Beijing.
+
+His current research interests include machine learning, deep learning, and intelligent fault diagnosis.
+
+His current research interests include mechanism reliability analysis, advanced signal processing algorithms, intelligent fault diagnostics and prognostics, and deep learning for machine health monitoring.
+
+![](images/6e5f28a480fa29519326f934fe08d3c2866ead870e8af1d0ac14481312ed0f5f.jpg)
+
+Zhiqi Guo received the B.Eng., M.S., and Ph.D. degrees from the School of Reliability and Systems Engineering, Beijing University of Aeronautics and Astronautics, Beijing, China, in 2007, 2010, and 2018, respectively.
+
+He was a Visiting Scholar with the German Aerospace Center, Braunschweig, and also a Research Associate with The Hong Kong University of Science and Technology, Hong Kong. He is currently a Research Associate with the Technology and Engineering Center for Space Utilization, Chinese
+
+Academy of Sciences, Beijing. His current research interests include virtual reality and mixed reality.
+
+![](images/51e5f085a84e6413e380e1be2632666ecb2c52ebf57ab2ee619ef32512f8d8ec.jpg)
+
+Taisheng Zheng received the B.Eng. degree from the School of Nanjing University of Aeronautics and Astronautics, Nanjing, China, in 2017. He is currently pursuing the M.S. degree with the University of Chinese Academy of Sciences, Beijing, China.
+
+His current research interests include anomaly detection, intelligent fault diagnosis, and deep learning for machine health monitoring.
+
+![](images/deccee1f203063e38924f18edf9c71216960ad1e79a3e690f7c4beb188cce41c.jpg)
+
+Hongyong Fu received the B.Eng. and M.S. degrees from the Beijing University of Aeronautics and Astronautics, Beijing, China, in 1998 and 2002, respectively, and the Ph.D. degree from the Graduate University of the Chinese Academy of Sciences, Beijing, in 2008.
+
+He is currently a Professor with the Technology and Engineering Center for Space Utilization, Chinese Academy of Sciences, Beijing. His current research interests include mechanism reliability, testability, fault diagnosis, and virtual maintenance.

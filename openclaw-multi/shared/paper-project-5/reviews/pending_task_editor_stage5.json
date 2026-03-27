@@ -1,0 +1,9 @@
+{
+  "target": "editor",
+  "port": 18870,
+  "token": "editor-hook-2026",
+  "message": "任务：整合 LaTeX 最终版 paper.tex\n\n输入目录结构：\n- Draft sections: /home/liaowenjie/.openclaw-multi/shared/paper-project-6/drafts/v2/\n  (7 files: abstract_intro.tex, related_work.tex, methodology_p1.tex, methodology_p2.tex, experiments_p1.tex, experiments_p2.tex, conclusion.tex)\n- Figures: /home/liaowenjie/.openclaw-multi/shared/paper-project-6/final/v1/fig[1-9].png\n            plus fig10_part1.png + fig10_part2.png (需组合)\n- Tables: /home/liaowenjie/.openclaw-multi/shared/paper-project-6/final/v1/table_*.tex\n- references.bib: /home/liaowenjie/.openclaw-multi/shared/paper-project-6/drafts/v2/references.bib\n\n输出目标：\n- /home/liaowenjie/.openclaw-multi/shared/paper-project-6/final/v1/paper.tex\n\n具体要求：\n1. 按顺序合并 7 个 section 文件为标准 article 结构（\\documentclass[twocolumn]{IEEEtran}）\n2. 替换 \\ref{fig:xxx} 为对应的 figure 环境（使用 figure* 环境放置双栏大图 fig1-4，其他用 figure）\n   - fig1-3: 概念图（已就位）\n   - fig4: spectrum_caseI ← use final/v1/fig4.png\n   - fig5: spectrum_caseII ← use final/v1/fig5.png (若缺失，请通知我)\n   - fig6: confusion_caseI ← use final/v1/fig6.png\n   - fig7: confusion_caseII ← use final/v1/fig7.png\n   - fig8: tsne ← use final/v1/fig8.png\n   - fig9: loss_curves ← use final/v1/fig9.png\n   - fig10: sensitivity + sae_error 组合为 subfigure 2列\n3. 替换 \\ref{tab:xxx} 为 \\input{table_xxx.tex}（已预生成 LaTeX 表格文件）\n4. 在文档末尾添加 \\bibliographystyle{plain} \\bibliography{references}\n5. 确保所有引用标签（fig:xxx, tab:xxx）与 labels 一致\n6. IEEE 格式：abstract 单段，introduction 约 1000 词，conclusion 分小节\n\n缺失文件注意：\n- final/v1/fig5.png (spectrum_caseII) 未复制，请用 placeholder 或通知我\n- final/v1/fig10 需组合 fig10_part1+2 为 subfigure\n\n完成后报告摘要和 paper.tex 路径。",
+  "sessionKey": "hook:editor-stage5-20260325-1120",
+  "created_at": "2026-03-25T11:20:00+08:00",
+  "status": "pending"
+}

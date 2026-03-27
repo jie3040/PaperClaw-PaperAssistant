@@ -1,0 +1,62 @@
+\section{Background and Motivation}
+\label{sec:background}
+
+This section provides the essential theoretical foundation for our proposed Language-Driven Latent Diffusion model (Diff-LM-GZSL). We begin by defining the problem of zero-shot fault diagnosis, followed by a detailed review of denoising diffusion probabilistic models and the role of large language models in semantic feature extraction.
+
+\subsection{Fundamentals of Zero-Shot Fault Diagnosis}
+\label{subsec:zsl_fundamentals}
+
+The core challenge in industrial fault diagnosis is the identification of novel failure modes that were not encountered during the training phase. Zero-shot learning (ZSL) addresses this by generalizing knowledge from a set of seen classes to a disjoint set of unseen classes, where the model must rely on auxiliary semantic information to bridge the gap. Traditional ZSL assumes that the test samples only belong to the unseen classes, representing a simplified scenario for novel discovery. However, Generalized Zero-Shot Learning (GZSL) represents a more realistic and challenging industrial scenario where the test set contains samples from both seen and unseen classes simultaneously, necessitating the model to maintain accuracy on known faults while robustly identifying new ones.
+
+Formally, let $\mathcal{D}_s = \{(x_i, y_i, a_{y_i}) | x_i \in \mathcal{X}_s, y_i \in \mathcal{Y}_s, a_{y_i} \in \mathcal{A}\}$ denote the training set of seen classes, where $x_i$ is the input feature extracted from high-frequency vibration signals or acoustic emissions, $y_i$ is the discrete class label, and $a_{y_i}$ is the corresponding high-dimensional semantic attribute vector. The set of seen labels $\mathcal{Y}_s$ and unseen labels $\mathcal{Y}_u$ are strictly disjoint, meaning no samples from unseen classes are available during the model's optimization phase ($\mathcal{Y}_s \cap \mathcal{Y}_u = \emptyset$). The goal of GZSL is to learn a mapping function $f: \mathcal{X} \to \mathcal{Y}_s \cup \mathcal{Y}_u$.
+
+The semantic space (or attribute space) serves as the primary conduit for knowledge transfer. In conventional methods, this is often represented as an attribute matrix $\mathbf{A} \in \mathbb{R}^{(|\mathcal{Y}_s| + |\mathcal{Y}_u|) \times k}$ which encodes expert-defined properties or physical characteristics. By mapping physical signal features to this shared semantic manifold, the model learns the underlying logic of fault formation. This allows it to extrapolate recognized patterns to novel fault modes by comparing their linguistic or technical descriptions in the latent space, effectively treating diagnosis as a cross-modal retrieval or generative classification problem.
+
+\subsection{Denoising Diffusion Probabilistic Models}
+\label{subsec:ddpm}
+
+Denoising Diffusion Probabilistic Models (DDPMs) have recently emerged as a powerful generative framework, surpassing traditional Variational Autoencoders (VAEs) and Generative Adversarial Networks (GANs) in terms of distribution coverage and training stability. These models learn to generate data samples by reversing a diffusion process that gradually corrupts the data with Gaussian noise through a sequence of steps \cite{ho2020denoising}.
+
+The forward diffusion process defines a Markov chain that systematically transforms the initial complex data distribution into a tractable standard normal distribution. Given a clean data sample $x_0 \sim q(x_0)$, the forward process adds noise in $T$ steps according to a predefined variance schedule $\{\beta_t \in (0,1)\}_{t=1}^T$:
+\begin{equation}
+q(x_t|x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t}x_{t-1}, \beta_t \mathbf{I})
+\end{equation}
+A key mathematical advantage of this formulation is that the state $x_t$ can be sampled directly at any time step $t$ without iterating through all previous steps:
+\begin{equation}
+q(x_t|x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t}x_0, (1-\bar{\alpha}_t)\mathbf{I})
+\end{equation}
+where $\alpha_t = 1 - \beta_t$ and the cumulative product $\bar{\alpha}_t = \prod_{s=1}^t \alpha_s$ determines the signal-to-noise ratio at each step. As $t$ approaches $T$, $x_T$ becomes approximately an isotropic Gaussian noise.
+
+The generative power of DDPM lies in the learned reverse denoising process. The goal is to approximate the intractable posterior distribution $q(x_{t-1}|x_t)$ using a neural network parameterised by $\theta$. This reverse transition is modeled as a learned Gaussian process:
+\begin{equation}
+p_\theta(x_{t-1}|x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))
+\end{equation}
+Through training, the network $\epsilon_\theta(x_t, t)$ learns to estimate the noise component present in its input $x_t$. The sample at the preceding time step $t-1$ is then reconstructed via the iterative refinement equation:
+\begin{equation}
+x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{1-\alpha_t}{\sqrt{1-\bar{\alpha}_t}} \epsilon_\theta(x_t, t) \right) + \sigma_t z
+\end{equation}
+where $z \sim \mathcal{N}(0, \mathbf{I})$ adds the necessary stochasticity for sample variety. The training objective is a simplified mean squared error loss between the true noise $\epsilon$ and the model's prediction:
+\begin{equation}
+L_{simple}(\theta) = \mathbb{E}_{x_0, \epsilon, t} \left[ \| \epsilon - \epsilon_\theta(\sqrt{\bar{\alpha}_t}x_0 + \sqrt{1-\bar{\alpha}_t}\epsilon, t) \|^2 \right]
+\end{equation}
+In this study, we utilize this framework to synthesize high-fidelity latent representations of fault signals, conditioned on semantic embeddings to ensure class-specific generation for unseen fault types.
+
+\subsection{Large Language Models for Semantic Feature Extraction}
+\label{subsec:llm_semantic}
+
+The richness and accuracy of the semantic space represent the fundamental bottleneck of any GZSL system. Historically, researchers relied on binary attributes — simple yes/no flags for traits like "periodic pulse," "high-frequency resonance," or "impact intensity." However, these simplistic indicators fail to capture the complex, multi-modal relationships inherent in modern industrial systems and the nuanced technical expertise required for diagnosis \cite{devlin2018bert}. The advent of Large Language Models (LLMs) has revolutionized this by providing deep, contextualized embeddings of technical descriptions.
+
+LLM-based feature extraction follows the Pre-training and Fine-tuning paradigm. Models like BERT, RoBERTa, or GPT-4 are pre-trained on vast repositories of technical manuals, research papers, and industrial reports, allowing them to understand the intricate semantics of mechanical failure. When applied to fault diagnosis, these models convert textual descriptions—extracted from maintenance logs or technical specifications—into high-dimensional, continuous semantic vectors.
+
+The superiority of continuous semantic vectors over binary attributes is three-fold. Firstly, information density: a high-dimensional vector captures far more nuance than a small set of binary flags. Secondly, generalization: LLMs can map different but related technical terms (e.g., "spalling," "pitting," and "surface fatigue") to nearby points in the semantic space, facilitating better knowledge transfer to unseen classes. Thirdly, flexibility: linguistically-driven embeddings allow for the seamless incorporation of unstructured technical documentation directly into the diagnosis pipeline. This continuous representation provides a significantly more informative conditioning signal for the diffusion model, effectively guiding the generation of latent features that are both physically plausible and semantically accurate \cite{brown2020language}.
+
+\subsection{Problem Definition and Notations}
+\label{subsec:problem_definition}
+
+We focus on the task of Language-Driven Latent Diffusion for Continuous Semantic Alignment in GZSL. Let $\mathcal{X} \subset \mathbb{R}^d$ be the feature space of raw or processed vibration signals, and let $\mathcal{S} \subset \mathbb{R}^k$ be the continuous semantic space generated from LLM-based fault descriptions. Our dataset consists of a labeled seen set $\mathcal{D}_s = \{(x, y, s) | x \in \mathcal{X}_s, y \in \mathcal{Y}_s, s \in \mathcal{S}_s\}$ and an unseen label set $\mathcal{Y}_u$ with corresponding semantic descriptors $\mathcal{S}_u$.
+
+The primary objective is to learn a generative mapping that aligns the physical signal distribution with the linguistic semantic space. We employ a conditional latent diffusion model $G(z, s)$, where $z$ is a latent noise vector. The model is trained on seen data to minimize the following objective:
+\begin{equation}
+\min_{\theta} \mathbb{E}_{(x, s) \sim \mathcal{D}_s} [ \mathcal{L}_{diffusion}(x, G_\theta(z, s)) ] + \lambda \Omega(s, x)
+\end{equation}
+where $\mathcal{L}_{diffusion}$ represents the denoising loss and $\Omega$ is a semantic alignment constraint that ensures the generated features $G_\theta(z, s)$ retain high mutual information with the conditioning vector $s$. Following training, we synthesize a sufficient population of features for the unseen classes $\mathcal{Y}_u$ using their LLM embeddings $s_u \in \mathcal{S}_u$. This transforms the GZSL problem into a standard supervised learning task, where a final softmax classifier can be trained on the combined set of real seen features and synthetic unseen features, enabling robust diagnosis in the generalized setting where both seen and unseen classes are present at inference.

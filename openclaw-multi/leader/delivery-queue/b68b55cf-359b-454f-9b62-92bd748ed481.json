@@ -1,0 +1,27 @@
+{
+  "id": "b68b55cf-359b-454f-9b62-92bd748ed481",
+  "enqueuedAt": 1774531655528,
+  "channel": "feishu",
+  "to": "user:ou_6eab9fc7f84debbe25305e3113cb609b",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "Now update the self-improvement skill:",
+      "replyToTag": false,
+      "replyToCurrent": false,
+      "audioAsVoice": false
+    }
+  ],
+  "threadId": null,
+  "replyToId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Now update the self-improvement skill:",
+    "mediaUrls": [],
+    "isGroup": false
+  },
+  "retryCount": 1,
+  "lastAttemptAt": 1774531657546,
+  "lastError": "Request failed with status code 400"
+}

@@ -8,6 +8,8 @@
 - 用中文沟通
 - 对论文质量要求高，会仔细审查 PDF
 - 不喜欢浪费 token（禁用 health check、dashboard）
+- **严格要求执行流程，不要问用户选择**（如"怎么走？"这种问题不要问）
+- **版本管理不可覆盖**——用户曾因 v1 被覆盖严厉批评，以后每次修改必须写入新版本目录
 - 希望流程自动化但保留关键决策权（如选择 idea）
 
 ---
@@ -61,7 +63,23 @@
 - **+ Leader 手动字数调整**：Writer 无法精确缩减/扩充时，Leader 直接处理
 - **+ Leader 手动图表整合**：section 文件无 figure/table 环境时，Leader 在 paper.tex 中手动添加
 
+### v9（Project 7）— Leader 主导整合 + 用户数据完整性
+- **+ Leader 直接创建 paper.tex**：跳过 Editor（历史证明不可靠），Leader 直接整合更快更准
+- **+ Writer 返工后 diff 检查**：Writer 返工时可能误改其他 section，必须对比确认
+- **+ 用户原始数据完整展示**：Mode B 用户提供的表格/图片数据必须 100% 展示，不可简化
+- **+ 引用 key 映射检查**：编译前检查所有 \cite key 与 bib key 是否匹配
+- **+ CRC 类拼写全局检查**：每次版本变更后 grep 检查方法名拼写一致性
+- **+ docx 表格提取**：unzip + XML 解析替代 python-docx（环境兼容性更好）
+
 ---
+
+## 新项目启动流程（铁律）
+1. `mkdir -p` 所有子目录 + 初始化 `version_tracker.json`
+2. **第一步：确认模式（Mode A / Mode B）**
+3. 根据模式列出对应的材料清单
+4. 用户提供建材
+5. MinerU 解析范例论文
+6. 提取黄金标准
 
 ## 最终工作流全流程（v8）
 
@@ -120,6 +138,19 @@
 | Writer 字数控制不精确 | P4 | Leader 直接手动精简/扩充 |
 | Intro 引用占比太低 | P4 | 新增规则：Intro 引用 ≥ 总引用 50% |
 | Abstract 太短 / Conclusion 太长 | P4 | Leader 手动调整，参考范例论文均值 |
+| Editor hooks 路径错误（404） | P5 | 真实路径是 /hooks/agent，不是 openclaw.json 中的 /hooks |
+| 修改覆盖旧版本 | P5 | **绝对禁止**：每次修改必须写入新版本目录 v{N+1} |
+| 论文 abstract 分段 | P5 | IEEE 期刊 abstract 必须是单段 |
+| 论文 intro 过长 | P5 | 控制在 ~1000 词，删除冗余段落 |
+| 概念图单栏显示 | P5 | fig1-4 用 figure* 双栏显示 |
+| Writer 返工误改其他 section | P7 | 返工后对比 diff，从原版恢复未修改文件 |
+| curl message 过长（400） | P7 | 精简 message，让 Agent 自行读取文件 |
+| Experiments 子节膨胀（14+→6） | P7 | Leader Python 脚本按 \subsection 切分重组 |
+| CRC 拼写反复出现 | P7 | 每次版本变更后 grep -rn "CRC" 全局检查 |
+| 用户表格数据未完整展示 | P7 | 用 unzip+XML 提取 docx，替换为用户原始数据 |
+| 引用 key 不匹配 | P7 | 手动建立 cite key → bib key 映射表 |
+| python-docx 安装失败 | P7 | unzip -p docx word/document.xml + Python XML 解析 |
+| Leader 直接整合比 Editor 更可靠 | P7 | 阶段 5 优先 Leader 创建 paper.tex |
 
 ---
 
@@ -130,3 +161,50 @@
 - Agent 重启需设置环境变量：OPENCLAW_CONFIG_PATH + OPENCLAW_STATE_DIR
 - 标准概念图 Prompt 范例：`/home/liaowenjie/.openclaw-multi/shared/STANDARD_CONCEPT_PROMPT_EXAMPLE.md`
 - Reviewer API：`claude-proxy/claude-opus-4-6` via `https://www.fucheers.top/v1`
+- Agent hooks 真实路径：`/hooks/agent`（不是 openclaw.json 中配置的 `/hooks`，后者只是 prefix）
+- bibtex 系统无 IEEEtran.bst，用 `plain.bst` 替代
+- 论文排版：abstract 不能分段、intro ~1000 词、概念图用 figure* 双栏
+
+---
+
+## Project 5（2026-03-23）— Diff-LM-GZSL, IEEE TIM ✅
+
+- **主题**：Language-Driven Latent Diffusion for Continuous Semantic Alignment in Zero-Shot Fault Diagnosis
+- **结果**：17 页，42 引用，15 公式，11 图，11 表，用户 ACCEPT ✅
+- **耗时**：~6 小时（09:42 ~ 16:02）
+- **关键成功因素**：v8 完整流程、Leader 接管 Editor+Artist、Reviewer 最终审查 2 轮
+- **新教训**：
+  - Editor gateway hooks 路径是 `/hooks/agent`（不是 `/hooks`）
+  - Artist 数据图超时 → Leader Python matplotlib 直接生成
+  - 论文排版：abstract 不分段、intro~1000词、fig1-4 用 figure* 双栏
+  - **⚠️ 版本管理错误**：阶段 10 覆盖了 v1 而非写入 v2 → 用户严厉批评 → 事后补救
+- **最终版本**：final/v2/（v1 被污染丢失，无 git）
+
+## Project 6（2026-03-23~25）— Mode B, IEEE TIM ✅
+
+- **结果**：用户 ACCEPT ✅
+- **最终版本**：final/v3/paper.pdf
+
+## Project 7（2026-03-25~26）— CAC-CycleGAN-WGP, IEEE TIM ✅
+
+- **主题**：CAC-CycleGAN-WGP: A High-Fidelity Signal Augmentation Framework for Imbalanced Bearing Fault Diagnosis
+- **模式**：Mode B（用户提供 method_description + 实验结果图表）
+- **结果**：15 页，40 引用，11 图，11 表，用户 ACCEPT ✅
+- **耗时**：~28 小时（含中断和串台排查）
+- **版本迭代**：outline v2, drafts v4, final v2
+- **关键成功因素**：
+  - Leader 直接整合 paper.tex（跳过 Editor，更可靠）
+  - Leader 手动重构 experiments.tex（Writer 扩充时误截断其他 section）
+  - Reviewer 多轮审查（4.5a R1→R3, 7 R1→R2, v2 审查）
+  - 用户原始表格数据完整替换（TABLE I-VII）
+- **新问题与解决**：
+  - Writer 返工时误改其他 section（experiments 5306→2023 词）→ 从 v1 恢复 + 创建新版本
+  - Writer 扩充 method 时 curl message 过长（400）→ 精简 message 重试成功
+  - Experiments 14+ 子节膨胀 → Leader Python 脚本重构为 6 个主 section
+  - CRC 拼写错误反复出现 → 每次版本变更后全局 grep 检查
+  - 用户表格数据未完整展示 → 用 unzip+XML 提取 docx 原始数据，替换简化表格
+  - 引用 key 不匹配（cite{smote} vs bib 中 chawla2002smote）→ 手动映射修复
+  - Reviewer API 超时/aborted → 精简 message 重试
+  - 串台干扰（"电视艺术"）→ 确认项目文件未被污染，忽略
+  - python-docx 安装失败 → 用 unzip + XML 解析替代
+- **最终版本**：final/v2/paper.pdf

@@ -53,8 +53,8 @@
       "api": "openai-completions",
       "models": [
         {
-          "id": "minimax/minimax-m2.5",
-          "name": "minimax/minimax-m2.5",
+          "id": "xiaomi/mimo-v2-pro",
+          "name": "xiaomi/mimo-v2-pro",
           "reasoning": true,
           "input": [
             "text",

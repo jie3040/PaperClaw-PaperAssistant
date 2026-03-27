@@ -1,0 +1,9 @@
+{
+  "target": "reviewer",
+  "port": 18850,
+  "token": "reviewer-hook-2026",
+  "message": "## 阶段 7：最终对齐审查\n\n**审查对象：** final/v3/\n\n**审查标准：** golden_standard.json\n\n**审查要求：**\n\n1. **字数对齐**\n   - Introduction: ~1000 词\n   - Conclusion: ~300 词\n   - Abstract: 150-250 词\n   - 各 section 总字数与 golden_standard 对齐\n\n2. **引用分布**\n   - Introduction 引用数 ≥ 总引用数 50%\n   - 验证引用格式正确（数字顺序引用）\n\n3. **图表完整性**\n   - 图 1-4 使用 figure* 双栏显示\n   - 所有图表有题注\n   - 图表编号连续\n\n4. **LaTeX 质量**\n   - 编译无错误\n   - 无内联浮动体（所有 figure/table 在浮动环境中）\n   - 无重复句子\n   - 两端对齐\n\n5. **格式规范**\n   - Abstract 不分段（单段落）\n   - 无未定义引用\n   - 参考文献格式正确\n\n**输出：** reviews/reviewer_final_v3.md，结论：PASS / MAJOR / MINOR",
+  "sessionKey": "hook:reviewer-final-v3",
+  "created_at": "2026-03-25T13:35:00",
+  "status": "pending"
+}

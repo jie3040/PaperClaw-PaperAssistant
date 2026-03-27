@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+\centering
+\caption{NETWORK HYPERPARAMETERS}
+\label{tab:hyperparams}
+\begin{tabular}{ccc}
+\toprule
+Component & Parameter & Value \\
+\midrule
+Generator & Learning Rate & 0.0001 \\
+ & Optimizer & Adam ($\beta_1$=0.5, $\beta_2$=0.999) \\
+ & Layers & 5 FC layers \\
+Discriminator & Learning Rate & 0.0001 \\
+ & Optimizer & Adam ($\beta_1$=0.5, $\beta_2$=0.999) \\
+ & Critic updates & 5 per generator update \\
+ & Gradient penalty & $\lambda=10$ \\
+SAE & Hidden units & [512, 256, 128] \\
+ & Activation & ReLU \\
+ & Optimizer & Adam \\
+ & Batch size & 64 \\
+\bottomrule
+\end{tabular}
+\end{table}

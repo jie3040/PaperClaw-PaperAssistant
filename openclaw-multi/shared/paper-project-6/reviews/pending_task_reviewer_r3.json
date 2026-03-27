@@ -1,0 +1,9 @@
+{
+  "target": "reviewer",
+  "port": 18850,
+  "token": "reviewer-hook-2026",
+  "stage": "4.5a-R3",
+  "message": "请执行阶段4.5a内容对齐审查 R3（本轮为最终轮）。\n\n草稿路径：SHARED/drafts/v2/（已补充引用）\n输出报告：SHARED/reviews/review_content_alignment_v3.md\n\n审查标准（来自黄金标准）：\n1. 唯一引用总数 ≥34\n2. Introduction引用数 ≥23（占总引用≥50%）\n3. Methodology引用数 ≥8\n4. Experiments引用数 ≥6\n5. Abstract+Intro字数 ≥1450词\n6. 方程总数 ≥10\n\nSHARED = /home/liaowenjie/.openclaw-multi/shared/paper-project-6\n\n请逐项统计，给出ACCEPT或REVISE结论，并说明不通过项的具体数值。",
+  "created_at": "2026-03-24T11:15",
+  "status": "pending"
+}

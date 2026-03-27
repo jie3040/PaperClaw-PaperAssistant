@@ -1,0 +1,261 @@
+\documentclass[journal]{IEEEtran}
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{float}
+
+\begin{document}
+
+\title{CAC-CycleGAN-WGP: A High-Fidelity Signal Augmentation Framework for Imbalanced Bearing Fault Diagnosis with Multi-Stage Evaluation}
+
+\author{
+\IEEEauthorblockN{First Author, Second Author, Third Author}
+\IEEEauthorblockA{Department of XXX, University of XXX, City, Country\\
+Email: xxx@xxx.edu}
+}
+
+\maketitle
+
+% ============================================================
+% ABSTRACT
+% ============================================================
+\input{abstract.tex}
+
+\begin{IEEEkeywords}
+Fault diagnosis, generative adversarial network, CycleGAN, data imbalance, bearing, condition monitoring, Wasserstein distance
+\end{IEEEkeywords}
+
+% ============================================================
+% I. INTRODUCTION
+% ============================================================
+\input{introduction.tex}
+
+% ============================================================
+% II. THEORETICAL BACKGROUND
+% ============================================================
+\input{background.tex}
+
+% ============================================================
+% III. PROPOSED METHOD
+% ============================================================
+\input{method.tex}
+
+% --- Fig 1: Flowchart (after method intro) ---
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.95\textwidth]{fig_flowchart.png}
+\caption{Overall flowchart of the proposed CAC-CycleGAN-WGP framework. The process consists of four stages: (1) data preprocessing via FFT, (2) cross-domain signal generation using the CycleGAN with CAC and WGP constraints, (3) quality evaluation of synthetic samples via SAE, and (4) fault diagnosis using the SVM classifier.}
+\label{fig:flowchart}
+\end{figure*}
+
+% --- Fig 2: Architecture ---
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.95\textwidth]{fig_architecture.png}
+\caption{Detailed architecture of the proposed CAC-CycleGAN-WGP model. The dual-generator structure ($G: X \to Y$, $F: Y \to X$) ensures cycle-consistency, while the Conditional Auxiliary Classifier (CAC) enforces class-specific generation and the Wasserstein distance with Gradient Penalty (WGP) stabilizes training.}
+\label{fig:architecture}
+\end{figure*}
+
+% ============================================================
+% IV. EXPERIMENTAL RESULTS AND ANALYSIS
+% ============================================================
+\input{experiments.tex}
+
+% --- Fig 3: Spectrum Comparison ---
+\begin{figure*}[!t]
+\centering
+\begin{subfigure}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig_spectrum_case1.png}
+\caption{Case I (CWRU Bearing)}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig_spectrum_case2.png}
+\caption{Case II (PHM 2009 Gearbox)}
+\end{subfigure}
+\caption{Comparison of the frequency spectrum of real and generated samples. The synthetic signals from CAC-CycleGAN-WGP accurately reproduce the characteristic fault frequencies and their harmonics.}
+\label{fig:spectrum}
+\end{figure*}
+
+% --- Fig 4: Confusion Matrices Case I ---
+\begin{figure*}[!t]
+\centering
+\begin{subfigure}[b]{0.24\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig3_1.png}
+\caption{$BR=0.005$}
+\end{subfigure}
+\begin{subfigure}[b]{0.24\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig3_2.png}
+\caption{$BR=0.01$}
+\end{subfigure}
+\begin{subfigure}[b]{0.24\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig3_3.png}
+\caption{$BR=0.05$}
+\end{subfigure}
+\begin{subfigure}[b]{0.24\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig3_4.png}
+\caption{$BR=1.0$}
+\end{subfigure}
+\caption{Confusion matrices by SVM in Case I at various balance ratios for multiclass fault diagnosis.}
+\label{fig:cm_case1}
+\end{figure*}
+
+% --- Fig 5: Confusion Matrices Case II ---
+\begin{figure*}[!t]
+\centering
+\begin{subfigure}[b]{0.24\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig4_1.png}
+\caption{$BR=0.005$}
+\end{subfigure}
+\begin{subfigure}[b]{0.24\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig4_2.png}
+\caption{$BR=0.01$}
+\end{subfigure}
+\begin{subfigure}[b]{0.24\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig4_3.png}
+\caption{$BR=0.05$}
+\end{subfigure}
+\begin{subfigure}[b]{0.24\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig4_4.png}
+\caption{$BR=1.0$}
+\end{subfigure}
+\caption{Confusion matrices by SVM in Case II at various balance ratios for multiclass fault diagnosis.}
+\label{fig:cm_case2}
+\end{figure*}
+
+% --- Fig 6: Single-Class Accuracy ---
+\begin{figure*}[!t]
+\centering
+\begin{subfigure}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig5_1.png}
+\caption{Case I: Class 0 as minority}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig5_2.png}
+\caption{Case I: Class 5 as minority}
+\end{subfigure}
+\caption{Diagnostic accuracy of single-class imbalance fault diagnosis for Case I.}
+\label{fig:single_case1}
+\end{figure*}
+
+% --- Fig 7: Single-Class Accuracy Case II ---
+\begin{figure*}[!t]
+\centering
+\begin{subfigure}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig6_1.png}
+\caption{Case II: Class 1 as minority}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig6_2.png}
+\caption{Case II: Class 3 as minority}
+\end{subfigure}
+\caption{Diagnostic accuracy of single-class imbalance fault diagnosis for Case II.}
+\label{fig:single_case2}
+\end{figure*}
+
+% --- Fig 8: Single-Class Confusion Matrices Case I ---
+\begin{figure*}[!t]
+\centering
+\begin{subfigure}[b]{0.24\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig7_1.png}
+\caption{$BR=0.05$}
+\end{subfigure}
+\begin{subfigure}[b]{0.24\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig7_2.png}
+\caption{$BR=0.1$}
+\end{subfigure}
+\begin{subfigure}[b]{0.24\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig7_3.png}
+\caption{$BR=0.5$}
+\end{subfigure}
+\begin{subfigure}[b]{0.24\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig7_4.png}
+\caption{$BR=1.0$}
+\end{subfigure}
+\caption{Confusion matrices by SVM in Case I at various balance ratios for single-class fault diagnosis (Class 5).}
+\label{fig:single_cm_case1}
+\end{figure*}
+
+% --- Fig 9: Single-Class Confusion Matrices Case II ---
+\begin{figure*}[!t]
+\centering
+\begin{subfigure}[b]{0.24\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig8_1.png}
+\caption{$BR=0.05$}
+\end{subfigure}
+\begin{subfigure}[b]{0.24\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig8_2.png}
+\caption{$BR=0.1$}
+\end{subfigure}
+\begin{subfigure}[b]{0.24\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig8_3.png}
+\caption{$BR=0.5$}
+\end{subfigure}
+\begin{subfigure}[b]{0.24\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig8_4.png}
+\caption{$BR=1.0$}
+\end{subfigure}
+\caption{Confusion matrices by SVM in Case II at various balance ratios for single-class fault diagnosis (Class 3).}
+\label{fig:single_cm_case2}
+\end{figure*}
+
+% --- Fig 10: Multiclass Diagnosis Case I ---
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.48\textwidth]{fig_multiclass_case1.png}
+\caption{Result of multiclass diagnosis using SVM for Case I.}
+\label{fig:multiclass_case1}
+\end{figure}
+
+% --- Fig 11: Multiclass Diagnosis Case II ---
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.48\textwidth]{fig_multiclass_case2.png}
+\caption{Result of multiclass diagnosis using SVM for Case II.}
+\label{fig:multiclass_case2}
+\end{figure}
+
+% ============================================================
+% V. CONCLUSION
+% ============================================================
+\input{conclusion.tex}
+
+% ============================================================
+% REFERENCES
+% ============================================================
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

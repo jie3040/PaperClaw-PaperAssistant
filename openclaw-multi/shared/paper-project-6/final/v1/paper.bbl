@@ -1,0 +1,219 @@
+\begin{thebibliography}{35}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Arjovsky et~al.(2017)Arjovsky, Chintala, and Bottou]{2}
+Martin Arjovsky, Soumith Chintala, and L{\'e}on Bottou.
+\newblock Wasserstein generative adversarial networks.
+\newblock 2017.
+
+\bibitem[Authors(2024)]{36}
+Project Authors.
+\newblock A novel approach for intelligent fault diagnosis in bearing with
+  imbalanced data based on cycle-consistent gan.
+\newblock \emph{IEEE Transactions on Instrumentation and Measurement (IEEE
+  TIM)}, 2024.
+
+\bibitem[Breiman(2001)]{Breiman2001}
+Leo Breiman.
+\newblock Random forests.
+\newblock \emph{Machine Learning}, 45\penalty0 (1):\penalty0 5--32, 2001.
+
+\bibitem[Chawla et~al.(2002)Chawla, Bowyer, Hall, and Kegelmeyer]{6}
+Nitesh~V. Chawla, Kevin~W. Bowyer, Lawrence~O. Hall, and W.~Philip Kegelmeyer.
+\newblock Smote: Synthetic minority over-sampling technique.
+\newblock \emph{Journal of Artificial Intelligence Research}, 16:\penalty0
+  321--357, 2002.
+
+\bibitem[Cherif et~al.(2020)Cherif, Sadeghi, Simeu-Abazi, and Mekhilef]{10}
+Abdeljabar Cherif, Alireza Sadeghi, Zineb Simeu-Abazi, and M.~Taoufik Mekhilef.
+\newblock End-to-end cnn + lstm deep learning approach for bearing fault
+  diagnosis.
+\newblock \emph{Applied Intelligence}, 51:\penalty0 13548--13563, 2020.
+
+\bibitem[Cortes and Vapnik(1995)]{Cortes1995}
+Corinna Cortes and Vladimir Vapnik.
+\newblock Support-vector networks.
+\newblock \emph{Machine Learning}, 20\penalty0 (3):\penalty0 273--297, 1995.
+
+\bibitem[et~al.(2024)]{37}
+Lei et~al.
+\newblock Bearing fault diagnosis based on cyclegan data enhancement.
+\newblock \emph{Measurement / SSRN}, 2024.
+
+\bibitem[Goodfellow et~al.(2014)Goodfellow, Pouget-Abadie, Mirza, Xu,
+  Warde-Farley, Ozair, Courville, and Bengio]{1}
+Ian~J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David
+  Warde-Farley, Sherjil Ozair, Aaron Courville, and Yoshua Bengio.
+\newblock Generative adversarial nets.
+\newblock 2014.
+
+\bibitem[Gulrajani et~al.(2017)Gulrajani, Ahmed, Arjovsky, Dumoulin, and
+  Courville]{3}
+Ishaan Gulrajani, Faruk Ahmed, Martin Arjovsky, Vincent Dumoulin, and Aaron~C.
+  Courville.
+\newblock Improved training of wasserstein gans.
+\newblock \emph{NeurIPS 2017}, 2017.
+
+\bibitem[He et~al.(2016)He, Zhang, Ren, and Sun]{He2016}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock Deep residual learning for image recognition.
+\newblock \emph{CVPR 2016}, 2016.
+
+\bibitem[Ioffe and Szegedy(2015)]{Ioffe2015}
+Sergey Ioffe and Christian Szegedy.
+\newblock Batch normalization: Accelerating deep network training by reducing
+  internal covariate shift.
+\newblock \emph{ICML 2015}, 2015.
+
+\bibitem[Isola et~al.(2017)Isola, Zhu, Zhou, and Efros]{Isola2017}
+Phillip Isola, Jun-Yan Zhu, Tinghui Zhou, and Alexei~A. Efros.
+\newblock Image-to-image translation with conditional adversarial networks.
+\newblock \emph{CVPR 2017}, 2017.
+
+\bibitem[Kingma and Ba(2015)]{Kingma2015}
+Diederik~P. Kingma and Jimmy Ba.
+\newblock Adam: A method for stochastic optimization.
+\newblock \emph{ICLR 2015}, 2015.
+
+\bibitem[Lei et~al.(2020)Lei, Yang, Jiang, Jia, and Li]{Lei2020}
+Yaguo Lei, Bing Yang, Xiaoming Jiang, Feng Jia, and Naipeng Li.
+\newblock Deep learning algorithms for bearing fault diagnosis—a
+  comprehensive review.
+\newblock \emph{Chinese Journal of Scientific Instrument}, 41\penalty0
+  (6):\penalty0 1--10, 2020.
+
+\bibitem[Maaten and Hinton(2008)]{Maaten2008}
+Laurens van~der Maaten and Geoffrey Hinton.
+\newblock Visualizing data using t-sne.
+\newblock \emph{Journal of Machine Learning Research}, 9\penalty0
+  (86):\penalty0 2579--2605, 2008.
+
+\bibitem[Mao(2023)]{43}
+Liu et~al. Mao.
+\newblock Imbalanced fault diagnosis of rolling bearing based on generative
+  adversarial network: A comparative study.
+\newblock \emph{Related Conference/Journal}, 2023.
+
+\bibitem[Multiple(2020)]{14}
+Multiple.
+\newblock A new data augmentation method based on dcgan for bearing fault
+  diagnosis.
+\newblock 2020.
+
+\bibitem[Multiple(2021)]{21}
+Multiple.
+\newblock A fault diagnosis method based on auxiliary classifier generative
+  adversarial network for rolling bearing.
+\newblock \emph{PLOS ONE}, 16\penalty0 (2):\penalty0 e0246905, 2021.
+
+\bibitem[Multiple(2022)]{35}
+Multiple.
+\newblock acwgan: an auxiliary classifier wasserstein gan-based oversampling
+  approach for imbalanced data.
+\newblock \emph{International Journal of Innovative Computing, Information and
+  Control}, 18\penalty0 (3), 2022.
+
+\bibitem[Multiple(2023{\natexlab{a}})]{18}
+Multiple.
+\newblock Feature-level smote: Augmenting fault samples in learnable feature
+  space for imbalanced fault diagnosis of gas turbines.
+\newblock \emph{Expert Systems with Applications}, 228:\penalty0 120494,
+  2023{\natexlab{a}}.
+
+\bibitem[Multiple(2023{\natexlab{b}})]{26}
+Multiple.
+\newblock Research on an improved auxiliary classifier wasserstein generative
+  adversarial network with gradient penalty fault diagnosis method for tilting
+  pad bearing of rotating equipment.
+\newblock \emph{Machines}, 11\penalty0 (10):\penalty0 423, 2023{\natexlab{b}}.
+
+\bibitem[Multiple(2024{\natexlab{a}})]{32}
+Multiple.
+\newblock Review of imbalanced fault diagnosis technology based on generative
+  adversarial networks.
+\newblock \emph{Journal of Computational Design and Engineering}, 11\penalty0
+  (5):\penalty0 99--122, 2024{\natexlab{a}}.
+
+\bibitem[Multiple(2024{\natexlab{b}})]{33}
+Multiple.
+\newblock Imbalanced data fault diagnosis of rolling bearings using enhanced
+  relative generative adversarial network.
+\newblock \emph{Journal of Mechanical Science and Technology},
+  2024{\natexlab{b}}.
+
+\bibitem[Multiple(2024{\natexlab{c}})]{40}
+Multiple.
+\newblock A survey on imbalanced learning: latest research, applications and
+  future directions.
+\newblock \emph{Artificial Intelligence Review}, 2024{\natexlab{c}}.
+
+\bibitem[Multiple(2025{\natexlab{a}})]{34}
+Multiple.
+\newblock Attention-enhanced conditional wasserstein gan with wavelet--resnet
+  for fault diagnosis under imbalanced data.
+\newblock \emph{Machines}, 13\penalty0 (11):\penalty0 3531, 2025{\natexlab{a}}.
+
+\bibitem[Multiple(2025{\natexlab{b}})]{39}
+Multiple.
+\newblock Diagnosis of unbalanced bearing fault samples based on cycle
+  generative adversarial networks.
+\newblock \emph{Neural Computing and Applications}, 2025{\natexlab{b}}.
+
+\bibitem[Multiple(2025{\natexlab{c}})]{9}
+Multiple.
+\newblock A comprehensive review of deep learning-based fault diagnosis
+  approaches for rolling bearings: Advancements and challenges.
+\newblock \emph{AIP Advances}, 15\penalty0 (2):\penalty0 020702,
+  2025{\natexlab{c}}.
+
+\bibitem[Ngiam et~al.(2011)Ngiam, Koh, Chen, Bhaskar, and Ng]{Ng2011}
+Jiquan Ngiam, Pang~Wei Koh, Zhenghao Chen, Sohail Bhaskar, and Andrew~Y. Ng.
+\newblock Sparse filtering.
+\newblock \emph{NIPS 2011}, 2011.
+
+\bibitem[Odena et~al.(2017)Odena, Olah, and Shlens]{5}
+Augustus Odena, Christopher Olah, and Jonathon Shlens.
+\newblock Conditional image synthesis with auxiliary classifier gans.
+\newblock 2017.
+
+\bibitem[Pan(2020)]{44}
+Tianhao et~al. Pan.
+\newblock Rolling bearing fault diagnosis based on stacked autoencoder network
+  with dynamic learning rate.
+\newblock \emph{Advances in Materials Science and Engineering}, 2020:\penalty0
+  6625273, 2020.
+
+\bibitem[Ren et~al.(2022)Ren, Zhu, Kang, Fu, Niu, and Gao]{41}
+Z.~Ren, Y.~Zhu, W.~Kang, H.~Fu, Q.~Niu, and D.~Gao.
+\newblock Adaptive cost-sensitive learning: Improving the convergence of
+  intelligent diagnosis models under imbalanced data.
+\newblock \emph{Knowledge-Based Systems}, 241:\penalty0 108296, 2022.
+
+\bibitem[Smith and Martinez(2015)]{Smith2015}
+J.~Smith and A.~Martinez.
+\newblock Smote variant for imbalanced classification.
+\newblock \emph{Pattern Recognition Letters}, 68:\penalty0 50--57, 2015.
+
+\bibitem[Zhao et~al.(2019)Zhao, Yan, Chen, Mao, Wang, and Gao]{8}
+Rui Zhao, Ruqiang Yan, Zhenghua Chen, Kezhi Mao, Peng Wang, and Robert~X. Gao.
+\newblock Deep learning algorithms for bearing fault diagnosis---a
+  comprehensive review.
+\newblock \emph{Neurocomputing}, 336:\penalty0 327--335, 2019.
+
+\bibitem[Zhu et~al.(2017)Zhu, Park, Isola, and Efros]{4}
+Jun-Yan Zhu, Taesung Park, Phillip Isola, and Alexei~A. Efros.
+\newblock Unpaired image-to-image translation using cycle-consistent
+  adversarial networks.
+\newblock 2017.
+
+\bibitem[Zhu et~al.(2019)Zhu, Wang, and Zhong]{7}
+Rui Zhu, Jin Wang, and Baojiang Zhong.
+\newblock Conditional wasserstein generative adversarial network-gradient
+  penalty-based approach to alleviating imbalanced data classification.
+\newblock \emph{Information Sciences}, 507:\penalty0 291--306, 2019.
+
+\end{thebibliography}

@@ -1,0 +1,9 @@
+{
+  "target": "surveyor",
+  "port": 18810,
+  "token": "surveyor-hook-2026",
+  "message": "当前项目：/home/liaowenjie/.openclaw-multi/shared/paper-project-7\n以下 SHARED = 上述路径\n\n请对以下主题进行文献检索：\n\n主题：Imbalance fault diagnosis based on Cycle-Consistent GAN (CycleGAN)\n\n具体方向：\n1. CycleGAN 在故障诊断中的应用（尤其不平衡数据场景）\n2. GAN 变体（WGAN-GP, ACGAN, CycleGAN）用于数据增强\n3. 不平衡故障诊断方法综述（数据层面和算法层面）\n4. 轴承故障诊断中的数据不平衡问题\n\n请检索 30-50 篇相关文献，按主题分类整理，输出参考文献列表（BibTeX 格式）。\n将结果写入：/home/liaowenjie/.openclaw-multi/shared/paper-project-7/references/survey_report.md\n将 BibTeX 写入：/home/liaowenjie/.openclaw-multi/shared/paper-project-7/references/references.bib",
+  "sessionKey": "hook:surveyor-search-p7",
+  "created_at": "2026-03-25T19:20:00+08:00",
+  "status": "pending"
+}

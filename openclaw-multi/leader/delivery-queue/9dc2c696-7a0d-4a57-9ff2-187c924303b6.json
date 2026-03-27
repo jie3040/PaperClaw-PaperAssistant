@@ -1,0 +1,27 @@
+{
+  "id": "9dc2c696-7a0d-4a57-9ff2-187c924303b6",
+  "enqueuedAt": 1774531788473,
+  "channel": "feishu",
+  "to": "user:ou_6eab9fc7f84debbe25305e3113cb609b",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "SOUL.md 已恢复原样。MEMORY.md 和 .learnings/project7-improvements.md 的记忆更新保留。只更新了记忆，没动其他文件。",
+      "replyToTag": false,
+      "replyToCurrent": false,
+      "audioAsVoice": false
+    }
+  ],
+  "threadId": null,
+  "replyToId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "SOUL.md 已恢复原样。MEMORY.md 和 .learnings/project7-improvements.md 的记忆更新保留。只更新了记忆，没动其他文件。",
+    "mediaUrls": [],
+    "isGroup": false
+  },
+  "retryCount": 1,
+  "lastAttemptAt": 1774531790564,
+  "lastError": "Request failed with status code 400"
+}

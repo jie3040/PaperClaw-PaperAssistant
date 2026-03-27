@@ -7,8 +7,8 @@
         "api": "openai-completions",
         "models": [
           {
-            "id": "anthropic/claude-sonnet-4.6",
-            "name": "anthropic/claude-sonnet-4.6",
+            "id": "z-ai/glm-5-turbo",
+            "name": "z-ai/glm-5-turbo",
             "reasoning": true,
             "input": [
               "text",
@@ -37,14 +37,14 @@
           "emoji": "🔧"
         },
         "model": {
-          "primary": "openrouter/anthropic/claude-sonnet-4.6"
+          "primary": "openrouter/z-ai/glm-5-turbo"
         },
         "workspace": "/home/liaowenjie/.openclaw-multi/checker/workspace"
       }
     ],
     "defaults": {
       "model": {
-        "primary": "openrouter/anthropic/claude-sonnet-4.6"
+        "primary": "openrouter/z-ai/glm-5-turbo"
       },
       "workspace": "/home/liaowenjie/.openclaw-multi/checker/workspace",
       "compaction": {

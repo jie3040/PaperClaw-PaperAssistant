@@ -1,0 +1,47 @@
+{
+  "target_journal": "IEEE TIM",
+  "paper_structure": {
+    "sections": ["Abstract", "I. Introduction", "II. Background / Related Work", "III. Methodology / Proposed Method", "IV. Experiments", "V. Conclusion", "References"],
+    "required_sections": ["Abstract", "Introduction", "Methodology", "Experiments", "Conclusion", "References"]
+  },
+  "format_requirements": {
+    "pages": {"min": 13, "max": 15},
+    "citations": {"min": 34, "max": 54},
+    "figures": {"min": 8, "max": 11},
+    "tables": {"min": 8, "max": 14},
+    "equations": {"min": 10, "max": 15},
+    "abstract_paragraphs": 1,
+    "introduction_words": 1000
+  },
+  "content_requirements": {
+    "contributions": 3,
+    "datasets": "Case I + Case II (bearing datasets)",
+    "baselines": ["SMOTE", "GAN", "WGAN", "ACGAN", "ACWGAN-GP"],
+    "classifiers": ["SVM", "Random Forest", "MLP", "CNN"],
+    "metrics": ["Accuracy", "F1-score", "Pearson correlation", "Cosine similarity"],
+    "ablation_studies": true,
+    "visualization": ["Confusion matrix", "Frequency spectrum", "Training curves"]
+  },
+  "style_requirements": {
+    "writing_style": "formal academic, third person",
+    "figures_format": "figure* for concept figures (double column)",
+    "table_format": "booktabs (toprule, midrule, bottomrule)",
+    "references_format": "IEEEtran"
+  },
+  "baseline_from_example": {
+    "citations_unique": 33,
+    "figures": 47,
+    "tables": 13,
+    "equations": 14,
+    "pages_approx": 10
+  },
+  "mode": "B",
+  "user_method": "CAC-CycleGAN-WGP",
+  "user_datasets": "Case I (bearing), Case II (bearing)",
+  "user_experiments": {
+    "figures": 10,
+    "tables": 7,
+    "single_class_imbalance": true,
+    "multi_class_imbalance": true
+  }
+}

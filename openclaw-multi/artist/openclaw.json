@@ -1,31 +1,14 @@
 {
   "models": {
     "providers": {
-      "claude-proxy": {
-        "baseUrl": "https://www.fucheers.top/v1",
+      "openrouter": {
+        "baseUrl": "https://openrouter.ai/api/v1",
         "apiKey": "YOUR_API_KEY_HERE",
-        "api": "anthropic-messages",
+        "api": "openai-completions",
         "models": [
           {
-            "id": "claude-opus-4-6",
-            "name": "claude-opus-4-6",
-            "reasoning": true,
-            "input": [
-              "text",
-              "image"
-            ],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 200000,
-            "maxTokens": 16000
-          },
-          {
-            "id": "claude-opus-4-6",
-            "name": "claude-opus-4-6",
+            "id": "minimax/minimax-m2.5",
+            "name": "minimax/minimax-m2.5",
             "reasoning": true,
             "input": [
               "text",
@@ -54,14 +37,14 @@
           "emoji": "🎨"
         },
         "model": {
-          "primary": "claude-proxy/claude-opus-4-6"
+          "primary": "openrouter/minimax/minimax-m2.5"
         },
         "workspace": "/home/liaowenjie/.openclaw-multi/artist/workspace"
       }
     ],
     "defaults": {
       "model": {
-        "primary": "claude-proxy/claude-opus-4-6"
+        "primary": "openrouter/minimax/minimax-m2.5"
       },
       "workspace": "/home/liaowenjie/.openclaw-multi/artist/workspace",
       "compaction": {

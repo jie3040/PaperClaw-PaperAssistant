@@ -1,0 +1,27 @@
+{
+  "id": "3515f12c-6efb-4aa4-9f60-65854601e308",
+  "enqueuedAt": 1774527824256,
+  "channel": "feishu",
+  "to": "user:ou_6eab9fc7f84debbe25305e3113cb609b",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "Reviewer R2：**✅ ACCEPT**\n\n全部审查维度通过，R1 的 3 个问题已修复确认。",
+      "replyToTag": false,
+      "replyToCurrent": false,
+      "audioAsVoice": false
+    }
+  ],
+  "threadId": null,
+  "replyToId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Reviewer R2：**✅ ACCEPT**\n\n全部审查维度通过，R1 的 3 个问题已修复确认。",
+    "mediaUrls": [],
+    "isGroup": false
+  },
+  "retryCount": 1,
+  "lastAttemptAt": 1774527824658,
+  "lastError": "Request failed with status code 400"
+}

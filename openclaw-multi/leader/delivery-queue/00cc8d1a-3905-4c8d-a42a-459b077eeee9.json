@@ -1,0 +1,27 @@
+{
+  "id": "00cc8d1a-3905-4c8d-a42a-459b077eeee9",
+  "enqueuedAt": 1774527165846,
+  "channel": "feishu",
+  "to": "user:ou_6eab9fc7f84debbe25305e3113cb609b",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "全部修复完成：\n\n- ✅ CRC→CAC 拼写修正\n- ✅ 表格 12→8 张（合并 datasets，删除冗余 augmentation 表）\n- ✅ 引用 34→35 条（≥35 达标）\n- ✅ PDF 重新编译成功，15 页，5.0MB",
+      "replyToTag": false,
+      "replyToCurrent": false,
+      "audioAsVoice": false
+    }
+  ],
+  "threadId": null,
+  "replyToId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "全部修复完成：\n\n- ✅ CRC→CAC 拼写修正\n- ✅ 表格 12→8 张（合并 datasets，删除冗余 augmentation 表）\n- ✅ 引用 34→35 条（≥35 达标）\n- ✅ PDF 重新编译成功，15 页，5.0MB",
+    "mediaUrls": [],
+    "isGroup": false
+  },
+  "retryCount": 1,
+  "lastAttemptAt": 1774527166314,
+  "lastError": "Request failed with status code 400"
+}
