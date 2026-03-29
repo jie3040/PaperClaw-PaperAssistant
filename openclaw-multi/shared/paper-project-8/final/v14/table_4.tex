@@ -1,0 +1,19 @@
+\begin{table*}[htbp]
+\centering
+\caption{Zero-Shot Diagnosis Accuracy (\%) on the CWRU Bearing Dataset}
+\label{tab:cwru_results}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{Setting} & \textbf{Inner Race} & \textbf{Combined} & \textbf{Average} \\
+\midrule
+WDCNN \cite{zhang2017new}$^\dagger$ & Supervised & 92.3 & 91.5 & 91.9 \\
+\midrule
+ZSL-GAN \cite{xian2019fvaegan} & Zero-shot & 68.4 & 65.2 & 66.8 \\
+DMZSL \cite{schonfeld2019generalized} & Zero-shot & 74.6 & 71.3 & 73.0 \\
+AZSL \cite{lampert2014attribute} & Zero-shot & 70.2 & 67.8 & 69.0 \\
+Bi-LSTM-ZSL \cite{chen2019bearing} & Zero-shot & 76.5 & 73.1 & 74.8 \\
+\textbf{CMSA-Trans (Ours)} & Zero-shot & \textbf{91.7} & \textbf{87.1} & \textbf{89.4} \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize $^\dagger$ Supervised upper bound (trained with labels of all classes); not directly comparable to zero-shot methods.}
+\end{tabular}
+\end{table*}

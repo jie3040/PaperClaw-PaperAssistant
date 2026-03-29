@@ -1,0 +1,20 @@
+\begin{table}[htbp]
+\centering
+\caption{Ablation Study of Components}
+\label{tab:ablation}
+\begin{tabular}{p{5cm}p{3.5cm}p{3.5cm}}
+\toprule
+\textbf{Experiment Configuration} & \textbf{Accuracy - Seen Class (\%)} & \textbf{Accuracy - Unseen Class (\%)} \\
+\midrule
+Full CMSA-Trans & \textbf{94.2} & \textbf{75.9} \\
+\midrule
+w/o TST Signal Encoder (using CNN) & 92.8 & 68.4 \\
+\midrule
+w/o LLM Semantics (using Word2Vec) & 91.5 & 61.2 \\
+\midrule
+w/o Cross-Attention (Concatenation only) & 90.3 & 58.7 \\
+\midrule
+Note: & \multicolumn{2}{p{7cm}}{Ablation study demonstrates the contribution of each component. Removing any module degrades performance, particularly for unseen class accuracy, validating the importance of the TST encoder, LLM semantics, and cross-attention mechanism.} \\
+\bottomrule
+\end{tabular}
+\end{table}

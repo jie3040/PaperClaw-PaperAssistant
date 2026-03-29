@@ -15,7 +15,7 @@
     "agentId": "main",
     "text": "这个 webhook 回报可以忽略。Project 6 已经在 3 月 25 日完成了（状态 `complete`），Reviewer v5 已经 ACCEPT，最终 PDF 在 `final/v3/paper.pdf`。这条回报是迟到的重复消息，不需要任何操作。\n\nNO_REPLY"
   },
-  "retryCount": 1,
-  "lastAttemptAt": 1774527838514,
+  "retryCount": 4,
+  "lastAttemptAt": 1774769274042,
   "lastError": "Request failed with status code 400"
 }

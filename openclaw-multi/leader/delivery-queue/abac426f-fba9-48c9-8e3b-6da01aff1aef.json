@@ -1,0 +1,20 @@
+{
+  "id": "abac426f-fba9-48c9-8e3b-6da01aff1aef",
+  "enqueuedAt": 1774762526379,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Architect 回报了框架 v2 修改完成。让我检查一下产出文件。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Architect 回报了框架 v2 修改完成。让我检查一下产出文件。"
+  },
+  "retryCount": 2,
+  "lastAttemptAt": 1774769298246,
+  "lastError": "Request failed with status code 400"
+}

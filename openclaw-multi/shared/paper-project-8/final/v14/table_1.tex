@@ -1,0 +1,16 @@
+\begin{table*}[htbp]
+\centering
+\caption{Example of LLM-Generated Fault Semantic Descriptions}
+\label{tab:llm_descriptions}
+\begin{tabular}{p{2.5cm}p{4.5cm}p{7.5cm}p{1.8cm}}
+\toprule
+\textbf{Fault Category} & \textbf{LLM Prompt (Snippet)} & \textbf{Generated Description (Snippet)} & \textbf{Embed. Dim.} \\
+\midrule
+Inner Race Fault & Describe the vibration characteristics of inner race fault in rolling element bearings & The inner race fault generates characteristic fault frequencies due to defects on the inner raceway surface. The vibration signature shows periodic impulses at the inner race ball pass frequency ($BPFI$), typically accompanied by high-frequency resonance components. & 1024 \\
+\midrule
+Outer Race Fault & Describe the vibration characteristics of outer race fault in rolling element bearings & The outer race fault produces distinct vibration patterns with impulses occurring at the outer race ball pass frequency ($BPFO$). Unlike inner race faults, these vibrations are often more stable in amplitude since the load zone remains fixed. & 1024 \\
+\midrule
+Normal (No Fault) & Describe the vibration characteristics of normal (healthy) rolling element bearings & A healthy bearing exhibits minimal vibration with energy primarily concentrated at the shaft rotation frequency and its harmonics. The vibration amplitude remains low and stable with no characteristic fault frequencies present. & 1024 \\
+\bottomrule
+\end{tabular}
+\end{table*}

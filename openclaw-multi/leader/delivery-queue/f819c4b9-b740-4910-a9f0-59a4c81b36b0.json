@@ -1,0 +1,20 @@
+{
+  "id": "f819c4b9-b740-4910-a9f0-59a4c81b36b0",
+  "enqueuedAt": 1774762012859,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "任务已成功派发。Reviewer 阶段 3.5 审查结果 REVISE，3 项不通过：缺实验平台图、缺相似度评估表、缺 Index Terms。已创建 outline/v2/ 目录并派 Architect 修改框架，等待回报后再送 Reviewer 二审。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "任务已成功派发。Reviewer 阶段 3.5 审查结果 REVISE，3 项不通过：缺实验平台图、缺相似度评估表、缺 Index Terms。已创建 outline/v2/ 目录并派 Architect 修改框架，等待回报后再送 Reviewer 二审。"
+  },
+  "retryCount": 2,
+  "lastAttemptAt": 1774769292857,
+  "lastError": "Request failed with status code 400"
+}

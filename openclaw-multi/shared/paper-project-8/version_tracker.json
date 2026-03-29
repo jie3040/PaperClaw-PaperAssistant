@@ -1,0 +1,158 @@
+{
+  "mode": "A",
+  "outline_version": 1,
+  "drafts_version": 5,
+  "final_version": 14,
+  "history": [
+    {
+      "stage": "3.5",
+      "action": "outline v1 reviewed",
+      "result": "ACCEPT",
+      "timestamp": "2026-03-29T13:30"
+    },
+    {
+      "stage": "4.5a",
+      "action": "content v1 reviewed",
+      "result": "REVISE",
+      "timestamp": "2026-03-29T13:45"
+    },
+    {
+      "stage": "4-v2",
+      "action": "Writer expanded experiments + Leader fixed bib",
+      "result": "v2 complete",
+      "timestamp": "2026-03-29T13:55"
+    },
+    {
+      "stage": "5",
+      "action": "Leader integrated paper.tex",
+      "result": "final/v1 compiled 10pp",
+      "timestamp": "2026-03-29T14:09"
+    },
+    {
+      "stage": "7",
+      "action": "Reviewer final alignment review",
+      "result": "ACCEPT",
+      "timestamp": "2026-03-29T14:14"
+    },
+    {
+      "stage": "8",
+      "action": "PDF ready for user review",
+      "result": "final/v1/paper.pdf",
+      "timestamp": "2026-03-29T14:15"
+    },
+    {
+      "stage": "4.5a-R2",
+      "action": "Reviewer content review R2 on v2 drafts",
+      "result": "REVISE (3 items: bib cleanup, Eq.8 missing, Index Terms)",
+      "timestamp": "2026-03-29T14:45"
+    },
+    {
+      "stage": "10-v2",
+      "action": "Writer polished intro + Leader fixed Eq ref + bib cleaned + Index Terms added",
+      "result": "All R2 issues resolved",
+      "timestamp": "2026-03-29T14:52"
+    },
+    {
+      "stage": "5-v3",
+      "action": "Leader rebuilt paper.tex from v2 drafts",
+      "result": "final/v3 compiled 10pp, 0 errors",
+      "timestamp": "2026-03-29T14:57"
+    },
+    {
+      "stage": "4.5b+6-v4",
+      "action": "Leader added 7 figures + 4 tables + data figures (matplotlib), Checker bib fix applied",
+      "result": "final/v4 compiled 12pp, 0 errors, 0 undefined refs",
+      "timestamp": "2026-03-29T15:04"
+    },
+    {
+      "stage": "4.5a-R3-fix",
+      "action": "Leader fixed R3 issues: +220 words in experiments (batch/lr sensitivity + confusion matrix analysis), labels already in paper.tex",
+      "result": "drafts/v3 + final/v5 compiled 12pp, 0 errors",
+      "timestamp": "2026-03-29T15:07"
+    },
+    {
+      "stage": "7-R2-fix",
+      "action": "Leader trimmed Method (-250w) and Experiments (-1000w) per Reviewer final review v5",
+      "result": "drafts/v4 + final/v6 compiled 11pp, 0 errors, 0 undefined refs",
+      "timestamp": "2026-03-29T15:19"
+    },
+    {
+      "stage": "deai",
+      "action": "De-AI word substitutions applied to all sections (drafts/v5 + final/v7)",
+      "result": "final/v7 compiled 11pp, 0 errors, 0 undefined refs",
+      "timestamp": "2026-03-29T15:37"
+    },
+    {
+      "stage": "6+8",
+      "action": "Checker LaTeX review PASS (fixed IEEEtran.bst), Leader verified compile",
+      "result": "final/v8/paper.pdf 12pp, 0 errors",
+      "timestamp": "2026-03-29T16:10"
+    },
+    {
+      "stage": "7-final",
+      "action": "Reviewer final alignment review v8",
+      "result": "ACCEPT (Background -88w, Method +267w, robust x6 — minor)",
+      "timestamp": "2026-03-29T16:15"
+    },
+    {
+      "stage": "8",
+      "action": "PDF ready for user review",
+      "result": "final/v8/paper.pdf 12pp 17MB",
+      "timestamp": "2026-03-29T16:15"
+    },
+    {
+      "stage": "7-v9",
+      "action": "Reviewer final alignment review v9",
+      "result": "ACCEPT — all 13 indicators within tolerance",
+      "timestamp": "2026-03-29T16:29"
+    },
+    {
+      "stage": "8-v9",
+      "action": "PDF compiled and ready for user review",
+      "result": "final/v9/paper.pdf 13pp, 13MB, 0 errors, 0 undefined refs",
+      "timestamp": "2026-03-29T16:30"
+    },
+    {
+      "stage": "logic-fix-v10",
+      "action": "Leader fixed 4 Reviewer logic issues: (1) Table 4/5 aligned to 2 unseen classes matching text, (2) added combined loss formula L_total=λ_cls*L_cls+λ_align*L_align with Table 3 weights, (3) unified Root Crack terminology, (4) unified BERT-large across III-C and IV-B",
+      "result": "final/v10/paper.pdf 13pp, 13MB, 0 errors",
+      "timestamp": "2026-03-29T16:43"
+    },
+    {
+      "stage": "abbrev-fix-v11",
+      "action": "Leader fixed Reviewer abbrev check: (1) South East→Southeast University unified, (2) expanded GPT-4/BERT/CLIP/ReLU/GELU/1D-CNN at first use",
+      "result": "final/v11/paper.pdf 13pp, 13MB, 0 errors",
+      "timestamp": "2026-03-29T16:47"
+    },
+    {
+      "stage": "logic-fix-v12",
+      "action": "Leader fixed Reviewer R3 logic check (11 issues): Table 2 aligned to text (CWRU 2500/1000, SEU 2400/1600 5.12kHz 1200-1800rpm), Table 3 aligned (lr=1e-3, wd=1e-4, epochs=200, latent/signal/semantic=256, +BERT raw 1024), Table 4-5 WDCNN unbold+footnote, Table 1 removed attribute vector column→semantic embedding pipeline",
+      "result": "final/v12/paper.pdf 13pp, 13MB, 0 errors, 0 undefined refs",
+      "timestamp": "2026-03-29T16:52"
+    },
+    {
+      "stage": "logic-check-v12",
+      "action": "Reviewer logic check v12 ACCEPT — all 11 issues verified fixed, no new logic flaws",
+      "result": "ACCEPT",
+      "timestamp": "2026-03-29T16:55"
+    },
+    {
+      "stage": "abbrev-fix-v13",
+      "action": "Leader fixed Reviewer abbrev check v12: GPT full form, WDCNN full form, Bi-LSTM-ZSL full form, 1D-ResNet full form",
+      "result": "final/v13/paper.pdf 13pp, 13MB, 0 errors",
+      "timestamp": "2026-03-29T17:00"
+    },
+    {
+      "stage": "abbrev-check-v13-R2",
+      "action": "Reviewer abbrev check R2 ACCEPT — 34 abbreviations all compliant, PHM format fixed",
+      "result": "final/v14/paper.pdf 13pp, 13MB, 0 errors, 0 undefined refs",
+      "timestamp": "2026-03-29T17:05"
+    },
+    {
+      "stage": "9-user-review",
+      "action": "User ACCEPT - trimmed Introduction",
+      "result": "final/v14/paper.pdf",
+      "timestamp": "2026-03-29T17:11"
+    }
+  ]
+}

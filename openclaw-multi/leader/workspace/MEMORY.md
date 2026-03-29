@@ -67,6 +67,14 @@
 - **+ Leader 直接创建 paper.tex**：跳过 Editor（历史证明不可靠），Leader 直接整合更快更准
 - **+ Writer 返工后 diff 检查**：Writer 返工时可能误改其他 section，必须对比确认
 - **+ 用户原始数据完整展示**：Mode B 用户提供的表格/图片数据必须 100% 展示，不可简化
+
+### v10（Project 8）— 严格流程执行 + 并行防护 + Mode A 数据一致性
+- **+ ★ 严格流程执行**：绝对禁止跳过任何阶段，必须按 WORKFLOW.md 顺序逐步执行
+- **+ 并行 session 防护**：派任务前清理所有 hook session，确保单线程推进
+- **+ Mode A 数据一致性**：阶段 5 前 Leader 以正文为基准统一所有表格数据
+- **+ Editor 截短防护**：整合后对比 draft 词数，截短 >10% 则替换
+- **+ 7.5 逻辑检查 + 7.6 缩写检查**：不可跳过的审查门
+- **+ Intro 词数上限**：~900 词，不超过 1000
 - **+ 引用 key 映射检查**：编译前检查所有 \cite key 与 bib key 是否匹配
 - **+ CRC 类拼写全局检查**：每次版本变更后 grep 检查方法名拼写一致性
 - **+ docx 表格提取**：unzip + XML 解析替代 python-docx（环境兼容性更好）
@@ -110,6 +118,7 @@
 2. **任务只发一次** — 重复发送 = 积压 = 全部 terminated = 恶性循环
 3. **Leader 是最后的安全网** — Agent 全部故障时，Leader（Claude Opus）直接接管
 4. **Introduction 引用 ≥ 总引用 50%** — 用户明确要求，写入 Writer/Leader SOUL
+5. **★ 严格按 WORKFLOW.md 阶段顺序执行，不得跳过任何阶段** — P8 血泪教训：跳过 4.6/4.7/4.8/7.5/7.6 导致返工浪费大量 token 和时间
 
 ---
 
@@ -151,6 +160,13 @@
 | 引用 key 不匹配 | P7 | 手动建立 cite key → bib key 映射表 |
 | python-docx 安装失败 | P7 | unzip -p docx word/document.xml + Python XML 解析 |
 | Leader 直接整合比 Editor 更可靠 | P7 | 阶段 5 优先 Leader 创建 paper.tex |
+| ★ 跳过流程阶段 | P8 | **绝对禁止**：必须严格按 WORKFLOW.md 每个阶段顺序执行，不得自行判断跳过 |
+| 并行 session 竞争覆盖 | P8 | 清理所有 Agent+Leader hook session → 重启 → 单线程推进 |
+| Mode A 正文与表格数据不一致 | P8 | Writer/Artist 各自编假数据 → Leader 阶段 5 前以正文为基准统一表格 |
+| Editor 截短 section 内容 | P8 | Editor 整合后对比 draft 词数，截短 >10% 则用完整 draft 替换 |
+| 缩写首次使用未展开 | P8 | 7.6 缩写检查门不可跳过 |
+| 逻辑检查发现数据矛盾 | P8 | 7.5 逻辑检查门不可跳过，Mode A 尤其重要 |
+| 用户嫌 Intro 太长 | P8 | Intro 控制在 ~900 词，不超过 1000 |
 
 ---
 
@@ -208,3 +224,26 @@
   - 串台干扰（"电视艺术"）→ 确认项目文件未被污染，忽略
   - python-docx 安装失败 → 用 unzip + XML 解析替代
 - **最终版本**：final/v2/paper.pdf
+
+## Project 8（2026-03-29）— CMSA-Trans, IEEE TIM ✅
+
+- **主题**：Cross-Modality Semantic Alignment Transformer: Leveraging LLM-Generated Fault Semantics for Zero-Shot Fault Diagnosis of Rotating Machinery
+- **模式**：Mode A（从零开始）
+- **结果**：13 页，38 引用，9 公式，10 图，7 表，用户 ACCEPT ✅
+- **耗时**：~4 小时（13:00 ~ 17:11）
+- **版本迭代**：outline v1, drafts v2, final v14（v1→v14 含大量并行 session 干扰修复）
+- **关键成功因素**：
+  - 完整执行 4.6（润色）→ 4.7（去AI）→ 4.8（Artist）→ 7.5（逻辑检查）→ 7.6（缩写检查）
+  - Leader 手动修复正文与表格数据不一致（10+ 处）
+  - Leader 手动精简 Introduction（1246→863 词）
+  - 用户手动 Gemini 生成 4 张概念图
+- **新问题与解决**：
+  - **★ 并行 session 竞争（最严重）**：Leader 的 cron 回调触发新 session，各自推进流程互相覆盖 → 必须清理所有 Agent + Leader 的 hook session 后重启
+  - **★ 正文与表格数据不一致**：Mode A 下 Writer 和 Artist 各自编造不同假数据 → Leader 必须以正文为基准统一所有表格
+  - **★ Editor 截短 section 内容**：Background 1126→743 词 → Leader 直接用完整 draft 替换 paper.tex 中被截短的 section
+  - **★ 并行 session 覆盖已修复的表格**：修好的 table_*.tex 被并行 session 覆盖回旧版 → 每次修复必须创建新版本目录
+  - Editor API 报 system busy → 重启 Editor 重发任务
+  - bibtex 报 couldn't open paper.aux → 需要先 pdflatex 再 bibtex
+  - 缩写首次使用未展开（GPT/WDCNN/Bi-LSTM-ZSL/1D-ResNet）→ 手动展开全称
+  - 逻辑检查发现组合损失公式缺失 → 补充 L_total = λ_cls * L_cls + λ_align * L_align
+- **最终版本**：final/v14/paper.pdf

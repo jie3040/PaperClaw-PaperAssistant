@@ -1,0 +1,9 @@
+{
+  "target": "artist",
+  "port": 18860,
+  "token": "artist-hook-2026",
+  "sessionKey": "hook:p8-artist-4.5b-concepts",
+  "created_at": "2026-03-29T15:02",
+  "status": "pending",
+  "message": "concept figure prompts for 3 figures"
+}

@@ -1,0 +1,9 @@
+{
+  "target": "reviewer",
+  "port": 18850,
+  "token": "reviewer-hook-2026",
+  "sessionKey": "hook:p8-reviewer-4.5a",
+  "created_at": "2026-03-29T13:40+08:00",
+  "status": "pending",
+  "stage": "4.5a"
+}

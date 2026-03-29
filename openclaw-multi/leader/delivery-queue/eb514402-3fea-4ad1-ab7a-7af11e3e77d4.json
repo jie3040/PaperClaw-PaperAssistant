@@ -1,0 +1,20 @@
+{
+  "id": "eb514402-3fea-4ad1-ab7a-7af11e3e77d4",
+  "enqueuedAt": 1774763761952,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Let me check the output and current project status."
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Let me check the output and current project status."
+  },
+  "retryCount": 2,
+  "lastAttemptAt": 1774769308232,
+  "lastError": "Request failed with status code 400"
+}

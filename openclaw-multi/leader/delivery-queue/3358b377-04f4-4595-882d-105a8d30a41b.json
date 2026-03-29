@@ -1,0 +1,20 @@
+{
+  "id": "3358b377-04f4-4595-882d-105a8d30a41b",
+  "enqueuedAt": 1774761602740,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "任务已发送成功。\n\nArchitect 阶段 3 产出已确认：outline/v1/ 包含 5 个文件（paper_outline.md、figures_plan.md、tables_spec.md、artist_prompts.md、data_plots_spec.md），框架规划 ~7000 词正文、9 图 7 表 8 组公式，与黄金标准基本对齐。\n\n已更新 version_tracker.json（outline_version=1），并将阶段 3.5 框架对齐审查任务发给 Reviewer，等待其回报。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "任务已发送成功。\n\nArchitect 阶段 3 产出已确认：outline/v1/ 包含 5 个文件（paper_outline.md、figures_plan.md、tables_spec.md、artist_prompts.md、data_plots_spec.md），框架规划 ~7000 词正文、9 图 7 表 8 组公式，与黄金标准基本对齐。\n\n已更新 version_tracker.json（outline_version=1），并将阶段 3.5 框架对齐审查任务发给 Reviewer，等待其回报。"
+  },
+  "retryCount": 2,
+  "lastAttemptAt": 1774769291359,
+  "lastError": "Request failed with status code 400"
+}

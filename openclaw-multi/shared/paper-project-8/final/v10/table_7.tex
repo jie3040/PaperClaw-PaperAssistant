@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\caption{Similarity Metrics of Multi-Modal Embedding}
+\label{tab:similarity_metrics}
+\begin{tabular}{p{3.5cm}p{3.5cm}p{3.5cm}}
+\toprule
+\textbf{Metric Type} & \textbf{Before Alignment} & \textbf{After Alignment} \\
+\midrule
+Cosine Similarity & 0.423 & \textbf{0.812} \\
+\midrule
+Euclidean Distance & 2.35 & \textbf{0.87} \\
+\midrule
+KL-Divergence & 1.24 & \textbf{0.32} \\
+\midrule
+Note: & \multicolumn{2}{p{7cm}}{Similarity metrics measure the alignment between signal features and semantic prototype features. Higher cosine similarity and lower Euclidean distance/KL-divergence indicate better cross-modal alignment after training with CMSA-Trans.} \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,20 @@
+{
+  "id": "4ab26f8a-f06f-4096-b2c2-8dc008141ca0",
+  "enqueuedAt": 1774763680140,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Writer 回报收到，验证一下产出。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Writer 回报收到，验证一下产出。"
+  },
+  "retryCount": 2,
+  "lastAttemptAt": 1774769306614,
+  "lastError": "Request failed with status code 400"
+}

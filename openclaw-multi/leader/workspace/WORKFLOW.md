@@ -34,11 +34,15 @@
 阶段 3    Architect 设计框架 → outline/v1/
 阶段 3.5  ★ Reviewer 框架对齐审查 → 不通过则循环
 阶段 4    Writer 逐节撰写 → drafts/v1/ → 最后生成 references.bib
-阶段 4.5a ★ Reviewer 内容对齐审查 → 不通过则循环
-阶段 4.5b Artist 生图/表/数据图 → figures/
+阶段 4.5 ★ Reviewer 内容对齐审查 → 不通过则循环
+阶段 4.6  ★ Writer 润色（逐 section/subsection）
+阶段 4.7  ★ Writer 去除AI痕迹（逐 section/subsection）
+阶段 4.8 Artist 生图/表/数据图 → figures/
 阶段 5    Editor 整合 LaTeX → final/v1/
 阶段 6    ★ Checker LaTeX审查修复
 阶段 7    Reviewer 最终对齐审查
+阶段 7.5  ★ Reviewer 逻辑检查（整篇，不通过打回）
+阶段 7.6  ★ Reviewer 缩写检查（整篇，不通过打回）
 阶段 8    Leader 编译 PDF → 通知用户
 阶段 9    用户/专家审查 → Leader 整合意见
 阶段 10   分发修改任务 → 回到阶段 5 循环
@@ -191,7 +195,7 @@ curl -s -X POST http://127.0.0.1:18840/hooks/agent \
   -d '{"message":"请【生成文献引用】。\n\n扫描 SHARED/drafts/v1/*.tex 中的 \\cite{}。\n为每个 key 用 web_search 查找真实文献。\n生成 SHARED/drafts/v1/references.bib。\n\n要求：每条必须 web_search 验证、禁止编造、去重、数量对标 golden_standard.json。","name":"Generate References","sessionKey":"hook:write-references"}'
 ```
 
-### 阶段 4.5a：内容对齐审查
+### 阶段 4.5：内容对齐审查
 
 ```bash
 curl -s -X POST http://127.0.0.1:18850/hooks/agent \
@@ -202,7 +206,58 @@ curl -s -X POST http://127.0.0.1:18850/hooks/agent \
 
 REVISE → Writer 修改到 drafts/v2/，再审。最多 3 轮。
 
-### 阶段 4.5b：Artist 生图/表/数据图
+### 阶段 4.6：Writer 润色（逐 section/subsection）🆕 v1.6
+
+内容对齐审查通过后，在 Artist 生图前，先对所有 draft 进行学术润色。
+
+**Leader 先判断论文语言**：
+- 英文论文 → 使用 `shared/skills/polish_en.md`
+- 中文论文 → 使用 `shared/skills/polish_zh.md`
+
+**任务派发方式**：与阶段 4 的写作完全一致——短章节整节发，长章节（Method/Experiments）按子节拆分发，每个任务附上前序子节路径保证连贯。
+
+**短章节示例（Introduction）**：
+```bash
+curl -s -X POST http://127.0.0.1:18840/hooks/agent \
+  -H 'Authorization: Bearer writer-hook-2026' \
+  -H 'Content-Type: application/json' \
+  -d '{"message":"当前项目：<SHARED绝对路径>\n\n请执行【润色】任务。\n\n★ 润色 skill 路径：<SHARED>/../shared/skills/polish_en.md\n★ 请先读取该 skill 文件，按其要求对以下 section 进行润色\n★ 期刊要求：<期刊名称和格式要求>\n★ 待润色文件：SHARED/drafts/v{N}/section_introduction.tex\n★ 润色后覆盖写入同一文件（在同版本目录内修改）\n\n润色完成后回报，注明修改了哪些方面。","name":"润色 Introduction","sessionKey":"hook:polish-intro"}'
+```
+
+**长章节子节示例（Method 3.2）**：
+```bash
+curl ... -d '{"message":"当前项目：<SHARED绝对路径>\n\n请执行【润色】任务。\n\n★ 润色 skill：<skills>/polish_en.md\n★ 待润色：SHARED/drafts/v{N}/section_method_3.2.tex\n★ 前序子节（参考衔接）：SHARED/drafts/v{N}/section_method_3.1.tex\n★ 润色后覆盖写入同一文件\n\n确保润色后与前序子节的术语、符号、行文风格保持一致。","name":"润色 Method 3.2","sessionKey":"hook:polish-method-3.2"}'
+```
+
+**派发顺序**：Introduction → Related Work → Method 3.1 → 3.2 → ... → Experiments 4.1 → ... → Conclusion
+**每个任务等完成后再发下一个**（与阶段 4 相同的逐个派发原则）。
+
+---
+
+### 阶段 4.7：Writer 去除AI痕迹（逐 section/subsection）🆕 v1.6
+
+润色完成后，再做一轮去除 AI 生成痕迹的改写。
+
+**Leader 判断语言**：
+- 英文 → `shared/skills/deai_en.md`
+- 中文 → `shared/skills/deai_zh.md`
+
+**任务派发方式**：与阶段 4.6 完全一致——逐 section/subsection 发送。
+
+**示例**：
+```bash
+curl -s -X POST http://127.0.0.1:18840/hooks/agent \
+  -H 'Authorization: Bearer writer-hook-2026' \
+  -H 'Content-Type: application/json' \
+  -d '{"message":"当前项目：<SHARED绝对路径>\n\n请执行【去除AI痕迹】任务。\n\n★ 去AI skill 路径：<skills>/deai_en.md\n★ 请先读取该 skill 文件，按其要求改写以下 section\n★ 待改写文件：SHARED/drafts/v{N}/section_introduction.tex\n★ 改写后覆盖写入同一文件\n\n改写完成后回报，注明主要替换了哪些 AI 典型用词。","name":"去AI Introduction","sessionKey":"hook:deai-intro"}'
+```
+
+**派发顺序**：与阶段 4.6 相同。
+
+**⚠️ 注意**：阶段 4.6 和 4.7 的修改都在 drafts/v{N}/ 同一版本目录内覆盖写入（润色和去AI是在已有内容上优化，不是产出新版本）。如果阶段 4.5a 有过返工，则在最新版的 drafts/v{M}/ 上操作。
+
+
+### 阶段 4.8：Artist 生图/表/数据图
 
 ```bash
 curl -s -X POST http://127.0.0.1:18860/hooks/agent \
@@ -245,6 +300,41 @@ PASS → 阶段 7 ｜ FAIL → 循环修复，最多 3 轮
 
 审查 final/ 最新版，对标 golden_standard.json。
 不通过 → 协调修改 → 新版本
+
+### 阶段 7.5：Reviewer 逻辑检查（整篇论文）🆕 v1.6
+
+最终对齐审查通过后，对整篇论文做逻辑严谨性检查。
+
+```bash
+curl -s -X POST http://127.0.0.1:18850/hooks/agent \
+  -H 'Authorization: Bearer reviewer-hook-2026' \
+  -H 'Content-Type: application/json' \
+  -d '{"message":"当前项目：<SHARED绝对路径>\n\n请执行【逻辑检查】。\n\n★ 逻辑检查 skill：<skills>/logic_check.md\n★ 请先读取该 skill 文件\n★ 评审标准：对标目标期刊 <期刊名称> 的学术水平\n★ 待审论文：SHARED/final/v{N}/paper.tex\n\n输出到 SHARED/reviews/logic_check_v{N}.md\n\n结论格式：ACCEPT（无严重逻辑问题）/ REVISE（列出具体问题和修改要求）","name":"逻辑检查","sessionKey":"hook:logic-check-v{N}"}'
+```
+
+**判定**：
+- **ACCEPT** → 进入阶段 7.6
+- **REVISE** → Leader 读取报告，将具体修改要求派发给 Writer（修改 drafts/v{M+1}/）→ 重新走 Editor(5) → Checker(6) → Reviewer(7) → 再做逻辑检查
+- 最多 2 轮
+
+---
+
+### 阶段 7.6：Reviewer 缩写检查（整篇论文）🆕 v1.6
+
+逻辑检查通过后，检查全文缩写使用规范性。
+
+```bash
+curl -s -X POST http://127.0.0.1:18850/hooks/agent \
+  -H 'Authorization: Bearer reviewer-hook-2026' \
+  -H 'Content-Type: application/json' \
+  -d '{"message":"当前项目：<SHARED绝对路径>\n\n请执行【缩写检查】。\n\n★ 缩写检查 skill：<skills>/abbrev_check.md\n★ 请先读取该 skill 文件\n★ 待审论文：SHARED/final/v{N}/paper.tex\n\n输出到 SHARED/reviews/abbrev_check_v{N}.md\n\n结论格式：ACCEPT / REVISE","name":"缩写检查","sessionKey":"hook:abbrev-check-v{N}"}'
+```
+
+**判定**：
+- **ACCEPT** → 进入阶段 8（编译 PDF）
+- **REVISE** → Leader 将缩写修复任务派给 Writer 或 Leader 自行修复（缩写修复通常很小）→ 重新编译验证
+- 最多 2 轮
+
 
 ### 阶段 8：Leader 编译 PDF → 通知用户
 
@@ -417,13 +507,21 @@ Architect 需要：
 - 与 Mode A 相同（Writer 扫描 \cite → web_search 验证 → 生成 .bib）
 - ★ 引用数量目标设为**黄金标准中位数**（不是下限）
 
-### 阶段 4.5aB：内容对齐审查
+### 阶段 4.5B：内容对齐审查, 
 
 **★ 必须派 Reviewer 审查，不得由 Leader 自审！**
 
 与 Mode A 完全相同。
 
-### 阶段 4.5bB：Artist 处理图表（★ 与 Mode A 完全不同！）
+### 阶段 4.6B：Writer 润色（逐 section/subsection）
+
+与 Mode A 完全相同。
+
+### 阶段 4.7B  ★ Writer 去除AI痕迹（逐 section/subsection）
+
+与 Mode A 完全相同。
+
+### 阶段 4.8B：Artist 处理图表（★ 与 Mode A 完全不同！）
 
 **Mode B 下 Artist 的三项工作：**
 

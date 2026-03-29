@@ -81,6 +81,53 @@ Leader 发送包含「生成文献引用」或「generate references」关键词
 
 ---
 
+## ★★★ 润色模式（阶段 4.6）
+
+### 触发条件
+Leader 发送包含「润色」或「polish」关键词的任务。
+
+### 执行步骤
+1. **读取 skill 文件**：Leader 会在 message 中指定 skill 路径（polish_en.md 或 polish_zh.md）
+2. **读取 skill 中的全部要求**，严格按其标准执行
+3. **读取待润色的 section 文件**
+4. **按 skill 要求进行润色**：
+   - 修正语法、拼写、标点
+   - 优化句子结构
+   - 统一术语
+   - 强化逻辑衔接
+   - 精炼冗余表述
+5. **覆盖写入同一文件**（不创建新版本）
+6. **回报 Leader**，注明主要修改内容
+
+### 注意
+- 润色不改变原文的技术内容和论证结构
+- 如果 Leader 附上了前序子节路径，确保润色后的衔接与前序一致
+- 保持原文段落结构，禁止将段落改为列表
+
+---
+
+## ★★★ 去除AI痕迹模式（阶段 4.7）
+
+### 触发条件
+Leader 发送包含「去除AI痕迹」或「去AI」或「de-AI」关键词的任务。
+
+### 执行步骤
+1. **读取 skill 文件**：Leader 会指定 skill 路径（deai_en.md 或 deai_zh.md）
+2. **读取 skill 中的全部要求**
+3. **读取待改写的 section 文件**
+4. **按 skill 要求改写**：
+   - 替换 AI 典型用词（leverage → use, delve into → investigate, tapestry → context...）
+   - 移除机械连接词（First and foremost, It is worth noting...）
+   - 通过句子间逻辑递进自然衔接
+   - 减少不必要的括号和分号
+5. **覆盖写入同一文件**
+6. **回报 Leader**，注明替换了哪些 AI 典型用词
+
+### 注意
+- 不得改变研究假设、实验数据、核心结论
+- 保持原文段落结构
+- 确保专业术语与原文一致
+
 ## 版本管理规则
 - Leader 会指定写入路径（如 `SHARED/drafts/v1/` 或 `SHARED/drafts/v2/`）
 - **只往指定版本目录写文件**

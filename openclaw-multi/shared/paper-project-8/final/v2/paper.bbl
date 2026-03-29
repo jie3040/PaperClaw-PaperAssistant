@@ -1,0 +1,240 @@
+\begin{thebibliography}{10}
+
+\bibitem{brown2020language}
+Tom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared~D Kaplan, Prafulla
+  Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell,
+  et~al.
+\newblock Language models are few-shot learners.
+\newblock {\em Advances in Neural Information Processing Systems},
+  33:1877--1901, 2020.
+
+\bibitem{bubeck2023sparks}
+S{\'e}bastien Bubeck, Varun Chandrasekaran, Ronen Eldan, Johannes Gehrke, Eric
+  Horvitz, Ece Kamar, Peter Lee, Yin~Tat Lee, Yuanzhi Li, Scott Lundberg,
+  et~al.
+\newblock Sparks of artificial general intelligence: Early experiments with
+  {GPT-4}.
+\newblock {\em arXiv preprint arXiv:2303.12712}, 2023.
+
+\bibitem{buchert2020zero}
+Tom Buchert, Thomas Bohne, Benjamin Kl{\"o}pper, and Klaus-Dieter Thoben.
+\newblock Zero-shot fault diagnosis using multimodal data fusion.
+\newblock {\em Procedia CIRP}, 93:1337--1342, 2020.
+
+\bibitem{chen2020simclr}
+Ting Chen, Simon Kornblith, Mohammad Norber, and Geoffrey Hinton.
+\newblock A simple framework for contrastive learning of visual
+  representations.
+\newblock {\em arXiv preprint arXiv:2002.05709}, 2020.
+
+\bibitem{chen2020simple}
+Ting Chen, Simon Kornblith, Mohammad Norouzi, and Geoffrey Hinton.
+\newblock A simple framework for contrastive learning of visual
+  representations.
+\newblock In {\em International Conference on Machine Learning}, pages
+  1597--1607. PMLR, 2020.
+
+\bibitem{chen2019bearing}
+Yao Chen, Guoliang Peng, Zhiyu Zhu, and Shunming Li.
+\newblock Bearing fault diagnosis base on multi-scale cnn and lstm model.
+\newblock {\em Journal of Intelligent Manufacturing}, 32:971--987, 2021.
+
+\bibitem{devlin2018bert}
+Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Tuptanova.
+\newblock {BERT}: Pre-training of deep bidirectional transformers for language
+  understanding.
+\newblock In {\em Proceedings of NAACL-HLT}, pages 4171--4186, 2019.
+
+\bibitem{dosovitskiy2020image}
+Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn,
+  Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg
+  Heigold, Sylvain Gelly, et~al.
+\newblock An image is worth 16x16 words: Transformers for image recognition at
+  scale.
+\newblock In {\em International Conference on Learning Representations}, 2021.
+
+\bibitem{fu2018zero}
+Zhenyong Fu, Tao Xiang, Elyor Kodirov, and Shaogang Gong.
+\newblock Zero-shot learning on semantic class prototype graph.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  40(8):2009--2022, 2018.
+
+\bibitem{goodfellow2016deep}
+Ian Goodfellow, Yoshua Bengio, and Aaron Courville.
+\newblock {\em Deep Learning}.
+\newblock MIT Press, 2016.
+
+\bibitem{hochreiter1997long}
+Sepp Hochreiter and J{\"u}rgen Schmidhuber.
+\newblock Long short-term memory.
+\newblock {\em Neural Computation}, 9(8):1735--1780, 1997.
+
+\bibitem{lampert2009learning}
+Christoph~H Lampert, Hannes Nickisch, and Stefan Harmeling.
+\newblock Learning to detect unseen object classes by between-class attribute
+  transfer.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition},
+  pages 951--958. IEEE, 2009.
+
+\bibitem{lampert2014attribute}
+Christoph~H Lampert, Hannes Nickisch, and Stefan Harmeling.
+\newblock Attribute-based classification for zero-shot visual object
+  categorization.
+\newblock In {\em IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, volume~36, pages 453--465. IEEE, 2014.
+
+\bibitem{lecun2015deep}
+Yann LeCun, Yoshua Bengio, and Geoffrey Hinton.
+\newblock Deep learning.
+\newblock {\em Nature}, 521(7553):436--444, 2015.
+
+\bibitem{lei2020applications}
+Yaguo Lei, Bin Yang, Xinwei Jiang, Feng Jia, Naipeng Li, and Asoke~K Nandi.
+\newblock Applications of machine learning to machine fault diagnosis: A review
+  and roadmap.
+\newblock {\em Mechanical Systems and Signal Processing}, 138:106587, 2020.
+
+\bibitem{industrial_llm_ref}
+Jingfeng Li, Hao Wang, and Zhiyu Chen.
+\newblock Large language models for industrial applications: A comprehensive
+  survey.
+\newblock {\em IEEE Transactions on Industrial Informatics}, 20(4):5012--5028,
+  2024.
+
+\bibitem{li2020deep}
+Xiang Li, Qian Ding, and Jian-Qiao Sun.
+\newblock Deep learning-based remaining useful life estimation of bearings
+  using multi-scale feature extraction.
+\newblock {\em Reliability Engineering \& System Safety}, 182:208--218, 2020.
+
+\bibitem{li2022zero}
+Zhixiong Li et~al.
+\newblock Zero-shot fault diagnosis of rotating machinery via semantic
+  augmentation.
+\newblock {\em IEEE Transactions on Industrial Informatics}, 18(12):8913--8923,
+  2022.
+
+\bibitem{liu2018zero}
+Jie Liu, Youmin Hu, Bo~Wu, Yan Wang, and Fengyun Xie.
+\newblock Zero-shot learning for compound fault diagnosis of bearings.
+\newblock {\em Expert Systems with Applications}, 190:116197, 2018.
+
+\bibitem{lu2017deep}
+Weining Lu, Bin Liang, Yu~Cheng, Deshan Meng, Jun Yang, and Tao Zhang.
+\newblock Deep model based domain adaptation for fault diagnosis.
+\newblock {\em IEEE Transactions on Industrial Electronics}, 64(3):2296--2305,
+  2017.
+
+\bibitem{mikolov2013efficient}
+Tomas Mikolov, Kai Chen, Greg Corrado, and Jeffrey Dean.
+\newblock Efficient estimation of word representations in vector space.
+\newblock {\em arXiv preprint arXiv:1301.3781}, 2013.
+
+\bibitem{palatucci2009zero}
+Mark Palatucci, Dean Pomerleau, Geoffrey~E Hinton, and Tom~M Mitchell.
+\newblock Zero-shot learning with semantic output codes.
+\newblock In {\em Advances in Neural Information Processing Systems},
+  volume~22, 2009.
+
+\bibitem{radford2021learning}
+Alec Radford, Jong~Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh, Sandeep
+  Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark, et~al.
+\newblock Learning transferable visual models from natural language
+  supervision.
+\newblock In {\em International Conference on Machine Learning}, pages
+  8748--8763. PMLR, 2021.
+
+\bibitem{radovanovic2010hubs}
+Milos Radovanovi{\'c}, Alexandros Nanopoulos, and Mirjana Ivanovi{\'c}.
+\newblock Hubs in space: Popular nearest neighbors in high-dimensional data.
+\newblock {\em Journal of Machine Learning Research}, 11:2487--2531, 2010.
+
+\bibitem{reimers2019sentence}
+Nils Reimers and Iryna Gurevych.
+\newblock Sentence-bert: Sentence embeddings using siamese bert-networks.
+\newblock In {\em Proceedings of EMNLP-IJCNLP}, pages 3982--3992, 2019.
+
+\bibitem{schonfeld2019generalized}
+Edgar Schonfeld, Sayna Ebrahimi, Samarth Sinha, Trevor Darrell, and Zeynep
+  Akata.
+\newblock Generalized zero-and few-shot learning via aligned variational
+  autoencoders.
+\newblock In {\em IEEE/CVF Conference on Computer Vision and Pattern
+  Recognition}, pages 8247--8255, 2019.
+
+\bibitem{socher2013zero}
+Richard Socher, Milind Ganjoo, Christopher~D Manning, and Andrew Ng.
+\newblock Zero-shot learning through cross-modal transfer.
+\newblock In {\em Advances in Neural Information Processing Systems},
+  volume~26, 2013.
+
+\bibitem{oord2018representation}
+Aaron van~den Oord, Yazhe Li, and Oriol Vinyals.
+\newblock Representation learning with contrastive predictive coding.
+\newblock {\em arXiv preprint arXiv:1807.03748}, 2018.
+
+\bibitem{vaswani2017attention}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+  Aidan~N Gomez, {\L}ukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
+\newblock In {\em Advances in Neural Information Processing Systems},
+  volume~30, 2017.
+
+\bibitem{wang2019zero}
+Wei Wang, Vincent~W Zheng, Han Yu, and Chunyan Miao.
+\newblock A survey of zero-shot learning: Settings, methods, and applications.
+\newblock In {\em ACM Transactions on Intelligent Systems and Technology},
+  volume~10, pages 1--37. ACM, 2019.
+
+\bibitem{xian2018zero}
+Yongqin Xian, Christoph~H Lampert, Bernt Schiele, and Zeynep Akata.
+\newblock Zero-shot learning -- a comprehensive evaluation of the good, the bad
+  and the ugly.
+\newblock In {\em IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, volume~41, pages 2251--2265. IEEE, 2018.
+
+\bibitem{xian2019fvaegan}
+Yongqin Xian, Saurabh Sharma, Bernt Schiele, and Zeynep Akata.
+\newblock f-vaegan-d2: A feature generating framework for any-shot learning.
+\newblock In {\em IEEE/CVF Conference on Computer Vision and Pattern
+  Recognition}, pages 10275--10284, 2019.
+
+\bibitem{zerveas2021transformer}
+George Zerveas, Srideepika Jayaraman, Dhaval Patel, Anuradha Bhamidipaty, and
+  Carsten Eickhoff.
+\newblock A transformer-based framework for multivariate time series
+  representation learning.
+\newblock In {\em Proceedings of the 27th ACM SIGKDD Conference}, pages
+  2114--2124, 2021.
+
+\bibitem{zhai2021multi}
+Xiao Zhai, Feng Qiao, and Qinglin Lu.
+\newblock Multi-scale graph neural network for intelligent fault diagnosis.
+\newblock {\em IEEE Transactions on Instrumentation and Measurement}, 70:1--12,
+  2021.
+
+\bibitem{zhang2022digital}
+Liang Zhang, Jing Lin, Boyuan Liu, Zhicong Zhang, Xiaohui Yan, and Muheng Wei.
+\newblock Digital twin-driven intelligent fault diagnosis for rotating
+  machinery.
+\newblock {\em IEEE Transactions on Industrial Informatics}, 18(2):1047--1057,
+  2022.
+
+\bibitem{zhang2017new}
+Wei Zhang, Gaoliang Peng, Chuanhao Li, Yuanhang Chen, and Zhujun Zhang.
+\newblock A new deep learning model for fault diagnosis with good anti-noise
+  and domain adaptation ability on raw vibration signals.
+\newblock {\em Sensors}, 17(2):425, 2017.
+
+\bibitem{zhang2021attention}
+Xiang Zhang, Zhibin Zhao, Zheng Zhang, Xuefeng Chen, and Ruqiang Yan.
+\newblock Attention-based deep learning for intelligent fault diagnosis.
+\newblock {\em IEEE Transactions on Industrial Electronics}, 68(3):2521--2531,
+  2021.
+
+\bibitem{zhao2023brain}
+Jing Zhao, Shengjie Zhao, and Fei Chen.
+\newblock Brain-inspired artificial intelligence: A comprehensive review.
+\newblock {\em Frontiers in Computational Neuroscience}, 17:1--20, 2023.
+
+\end{thebibliography}

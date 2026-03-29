@@ -1,0 +1,19 @@
+\begin{table*}[htbp]
+\centering
+\caption{Zero-Shot Diagnosis Accuracy (\%) on the SEU Gearbox Dataset}
+\label{tab:seu_results}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{Setting} & \textbf{Worn Tooth} & \textbf{Root Crack} & \textbf{Average} \\
+\midrule
+WDCNN \cite{zhang2017new}$^\dagger$ & Supervised & 90.1 & 88.7 & 89.4 \\
+\midrule
+ZSL-GAN \cite{xian2019fvaegan} & Zero-shot & 61.2 & 58.9 & 60.1 \\
+DMZSL \cite{schonfeld2019generalized} & Zero-shot & 69.8 & 66.5 & 68.2 \\
+AZSL \cite{lampert2014attribute} & Zero-shot & 64.3 & 61.7 & 63.0 \\
+Bi-LSTM-ZSL \cite{chen2019bearing} & Zero-shot & 72.1 & 68.4 & 70.3 \\
+\textbf{CMSA-Trans (Ours)} & Zero-shot & \textbf{84.3} & \textbf{80.7} & \textbf{82.5} \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize $^\dagger$ Supervised upper bound; not directly comparable to zero-shot methods.}
+\end{tabular}
+\end{table*}

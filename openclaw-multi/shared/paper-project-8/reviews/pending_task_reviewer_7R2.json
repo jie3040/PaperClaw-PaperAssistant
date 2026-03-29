@@ -1,0 +1,9 @@
+{
+  "target": "reviewer",
+  "port": 18850,
+  "token": "reviewer-hook-2026",
+  "sessionKey": "hook:p8-7-R2",
+  "created_at": "2026-03-29T15:20",
+  "status": "pending",
+  "description": "Final alignment review R2 on final/v6 after Method+Experiments word count trimming"
+}

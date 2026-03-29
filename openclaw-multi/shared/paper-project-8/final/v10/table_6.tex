@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\caption{Ablation Study Results on Unseen Class Accuracy (\%)}
+\label{tab:ablation}
+\begin{tabular}{p{4cm}p{1.8cm}p{1.8cm}}
+\toprule
+\textbf{Configuration} & \textbf{CWRU} & \textbf{SEU} \\
+\midrule
+CMSA-Trans-Full & \textbf{89.4} & \textbf{82.5} \\
+\midrule
+w/o LLM (Word2Vec) & 81.6 & 74.7 \\
+\midrule
+w/o Cross-Attention & 83.9 & 77.0 \\
+\midrule
+w/o TST (1D-ResNet) & 85.1 & 78.4 \\
+\bottomrule
+\end{tabular}
+\end{table}

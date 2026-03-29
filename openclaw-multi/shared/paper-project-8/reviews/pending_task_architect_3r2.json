@@ -1,0 +1,9 @@
+{
+  "target": "architect",
+  "port": 18830,
+  "token": "architect-hook-2026",
+  "sessionKey": "hook:p8-architect-outline-v2",
+  "created_at": "2026-03-29T13:26",
+  "status": "pending",
+  "message": "修改框架 v1 → v2，修复 Reviewer 审查的 3 项❌"
+}

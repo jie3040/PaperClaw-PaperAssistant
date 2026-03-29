@@ -73,10 +73,42 @@ PaperClaw 通过 9 个独立 AI Agent 分工协作，自动化学术论文写作
 
 ---
 
+## 🆕 v1.6 更新（2026-03）
+
+### 新增 Skill 系统 — Writer 润色 & 去AI痕迹
+
+引入 `shared/skills/` 目录，存放可复用的专业 prompt。Writer 新增两种工作模式：
+
+**润色模式（阶段 4.6）**：内容对齐审查通过后，对每个 section/subsection 逐个进行学术润色。支持中英文两套 skill（`polish_en.md` / `polish_zh.md`），Leader 根据论文语言自动选择。修正语法、优化句式、统一术语、强化逻辑衔接。
+
+**去AI痕迹模式（阶段 4.7）**：润色后再做一轮改写，消除 AI 生成的机械痕迹。替换 AI 典型用词（leverage → use, delve into → investigate）、移除生硬过渡词、通过逻辑递进自然衔接。同样支持中英文两套 skill（`deai_en.md` / `deai_zh.md`）。
+
+### 新增 Reviewer 逻辑检查 & 缩写检查
+
+Reviewer 新增两种审查模式：
+
+**逻辑检查（阶段 7.5）**：最终对齐审查通过后，对整篇论文做逻辑严谨性检查——排查因果断裂、偷换概念、循环论证、结论超出论据范围等问题。不通过打回修改。
+
+**缩写检查（阶段 7.6）**：检查全文缩写使用规范性——首次出现是否给出全称、同一术语是否一致、是否过度使用缩写。不通过打回修改。
+
+### 新增 6 个 Skill 文件
+
+| 文件 | 用途 | 使用者 |
+|------|------|--------|
+| `polish_en.md` | 英文学术润色 | Writer |
+| `polish_zh.md` | 中文学术润色 | Writer |
+| `deai_en.md` | 英文去AI痕迹 | Writer |
+| `deai_zh.md` | 中文去AI痕迹 | Writer |
+| `logic_check.md` | 逻辑严谨性检查 | Reviewer |
+| `abbrev_check.md` | 缩写规范性检查 | Reviewer |
+
+---
+
 ## 🔮 路线图
 
 - **v1.0**：多 Agent 论文辅助写作流水线（Mode A）
-- **v1.5**（当前）：新增 Mode B（结果先行）+ SOUL 架构重构
+- **v1.5**：新增 Mode B（结果先行）+ SOUL 架构重构
+- **v1.6**（当前）：Skill 系统 + 润色/去AI/逻辑检查/缩写检查
 - **v2.0**（规划中）：结合项目代码仓库的子 Agent 协作，实现 Agent 编码并运行实验
 
 ---
@@ -110,8 +142,8 @@ PaperClaw 通过 9 个独立 AI Agent 分工协作，自动化学术论文写作
 | **Surveyor** 🔍 | 18810 | 文献检索和综述 | SOUL + AGENTS + WORKFLOW + IDENTITY |
 | **Ideator** 💡 | 18820 | 研究 Idea 生成（Mode B 跳过） | SOUL + AGENTS + IDENTITY |
 | **Architect** 🏗️ | 18830 | 论文框架和图表规划 | SOUL + AGENTS + WORKFLOW + IDENTITY |
-| **Writer** ✍️ | 18840 | 逐节撰写 + 生成 references.bib | SOUL + AGENTS + WORKFLOW + IDENTITY |
-| **Reviewer** 🔬 | 18850 | 框架对齐 / 内容对齐 / 全文审查 | SOUL + AGENTS + IDENTITY |
+| **Writer** ✍️ | 18840 | 逐节撰写 + 引用 + 润色 + 去AI痕迹 | SOUL + AGENTS + WORKFLOW + IDENTITY |
+| **Reviewer** 🔬 | 18850 | 框架对齐 / 内容对齐 / 全文审查 / 逻辑检查 / 缩写检查 | SOUL + AGENTS + IDENTITY |
 | **Artist** 🎨 | 18860 | 概念图 Prompt、表格、数据图（Mode B：提取转换） | SOUL + AGENTS + WORKFLOW + IDENTITY |
 | **Editor** 📝 | 18870 | LaTeX 整合（含 subfigure 支持） | SOUL + AGENTS + IDENTITY |
 | **Checker** 🔧 | 18880 | LaTeX 编译检查和修复 | SOUL + AGENTS + IDENTITY |
@@ -134,10 +166,14 @@ PaperClaw 通过 9 个独立 AI Agent 分工协作，自动化学术论文写作
 阶段 3.5  ★ Reviewer 框架对齐审查
 阶段 4    Writer 逐节撰写 → drafts/v1/ → 生成 references.bib
 阶段 4.5a ★ Reviewer 内容对齐审查
+阶段 4.6  ★ Writer 润色（逐 section/subsection）          🆕 v1.6
+阶段 4.7  ★ Writer 去除AI痕迹（逐 section/subsection）    🆕 v1.6
 阶段 4.5b Artist 概念图Prompt + 表格 + 数据图 → figures/
 阶段 5    Editor 整合 LaTeX → final/v1/
 阶段 6    ★ Checker LaTeX审查修复
 阶段 7    Reviewer 最终对齐审查
+阶段 7.5  ★ Reviewer 逻辑检查（整篇，不通过打回）          🆕 v1.6
+阶段 7.6  ★ Reviewer 缩写检查（整篇，不通过打回）          🆕 v1.6
 阶段 8    Leader 编译 PDF
 阶段 9    用户/专家审查 → 修改清单
 阶段 10   分发修改 → 新版本 → 循环至 Accept
@@ -157,8 +193,11 @@ PaperClaw 通过 9 个独立 AI Agent 分工协作，自动化学术论文写作
 阶段 3.5B ★ Reviewer 框架对齐审查
 阶段 4B   Writer 基于用户 method/results 逐节撰写 + references.bib
 阶段 4.5a ★ Reviewer 内容对齐审查
+阶段 4.6  ★ Writer 润色（逐 section/subsection）          🆕 v1.6
+阶段 4.7  ★ Writer 去除AI痕迹（逐 section/subsection）    🆕 v1.6
 阶段 4.5b Artist 扩充概念图Prompt + 提取用户数据图 + 转换用户表格为LaTeX
-阶段 5~10 与 Mode A 相同
+阶段 5~8  Editor整合 → Checker审查 → Reviewer对齐+逻辑+缩写 → 编译PDF
+阶段 9~10 用户审查 → 修改循环
 ```
 
 关键差异：Writer 基于真实 method/results 撰写 | Artist 提取转换（非生成） | Ideator 跳过
@@ -177,7 +216,7 @@ PaperClaw 通过 9 个独立 AI Agent 分工协作，自动化学术论文写作
 ### 第 1 步：克隆项目
 
 ```bash
-git clone https://github.com/jie3040/PaperClaw.git
+git clone https://github.com/jie3040/PaperClaw-Paper-Assistant.git
 cd PaperClaw
 ```
 
@@ -274,7 +313,7 @@ clear-all-agents       # 清空所有 Agent 会话
 
 ---
 
-## 📁 Workspace 文件说明（v1.5 架构）
+## 📁 Workspace 文件说明（v1.6 架构）
 
 每个 Agent 的 `workspace/` 目录下包含以下标准文件（OpenClaw 自动加载到 system prompt）：
 
@@ -286,6 +325,15 @@ clear-all-agents       # 清空所有 Agent 会话
 | `HEARTBEAT.md` | 心跳检查指令 | 仅 Leader |
 | `IDENTITY.md` | 名称、emoji | 全部 9 个 |
 | `USER.md` | 用户画像 | 仅 Leader |
+
+共享 Skill 文件（`shared/skills/`）：
+
+| 文件 | 用途 | 使用者 |
+|------|------|--------|
+| `polish_en.md` / `polish_zh.md` | 学术润色（英/中） | Writer |
+| `deai_en.md` / `deai_zh.md` | 去除AI痕迹（英/中） | Writer |
+| `logic_check.md` | 逻辑检查 | Reviewer |
+| `abbrev_check.md` | 缩写检查 | Reviewer |
 
 ---
 
@@ -319,6 +367,6 @@ MIT License
 
 ---
 
-> 🦞 PaperClaw v1.5 — 让 AI 处理论文的繁琐工作，你专注于科研创新。
+> 🦞 PaperClaw v1.6 — 让 AI 处理论文的繁琐工作，你专注于科研创新。
 >
 > ⚠️ **最终提醒：论文仅供参考。Method 自己修正，Experiments 自己复现。学术诚信第一。**

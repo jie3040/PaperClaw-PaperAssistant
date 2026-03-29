@@ -1,94 +1,44 @@
-# Learnings
+# Self-Improvement Learnings — Project 8 (2026-03-29)
 
-## [LRN-20260323-001] 版本管理不可覆盖（critical）
+## [CRITICAL] 跳过流程阶段
+- **Category**: correction
+- **Date**: 2026-03-29
+- **Context**: Project 8 开始时，Leader 跳过了 4.6（润色）、4.7（去AI）、4.8（Artist 图表）、7.5（逻辑检查）、7.6（缩写检查），直接从 4.5 跳到了 5→6→7→8
+- **User Feedback**: 用户发现后严厉批评，要求从 4.5 重新开始
+- **Root Cause**: Leader 没有严格按照 WORKFLOW.md 的阶段顺序执行，自作主张跳过了"看起来不重要"的阶段
+- **Fix**: **必须严格按照 WORKFLOW.md 的每一个阶段顺序执行，不得跳过任何阶段，不得自行判断哪些阶段"不重要"**
+- **Priority**: P0 — 这是最严重的流程违规
 
-**Logged**: 2026-03-23T15:42:00+08:00
-**Priority**: critical
-**Status**: promoted
-**Area**: config
+## [CRITICAL] 并行 session 竞争覆盖
+- **Category**: best_practice
+- **Date**: 2026-03-29
+- **Context**: Leader 的 cron 回调（Agent 回报时触发）会创建新的 Leader session，每个 session 独立推进流程，互相覆盖文件
+- **Impact**: 修好的 table_*.tex 被并行 session 覆盖回旧版，导致反复修复同一问题（v8→v13 共 6 个版本）
+- **Fix**: 派任务前清理所有 Agent + Leader 的 hook session 并重启，确保单线程推进
+- **Priority**: P0
 
-### Summary
-阶段 10 修改 paper.tex 时直接覆盖了 final/v1，违反版本管理铁律
+## [HIGH] Mode A 正文与表格数据不一致
+- **Category**: best_practice
+- **Date**: 2026-03-29
+- **Context**: Mode A 下 Writer 写正文时编造一组假数据，Artist 生成表格时编造另一组假数据，两者完全不一致
+- **Impact**: 逻辑检查发现 10+ 处矛盾（样本数差 3 倍、超参数差 10 倍、消融实验数值完全不同）
+- **Fix**: Leader 在阶段 5（Editor 整合）前，必须以正文为基准统一所有 table_*.tex 的数据
+- **Priority**: P1
 
-### Details
-Leader 在修复用户审稿意见（abstract分段、intro过长、fig1-4双栏）时，直接修改了 final/v1/paper.tex 而非创建 final/v2/ 目录。用户严厉批评。事后补救：创建 v2 目录并复制文件，但 v1 原始版本已丢失（无 git）。
+## [HIGH] Editor 截短 section 内容
+- **Category**: best_practice
+- **Date**: 2026-03-29
+- **Context**: Editor 整合 paper.tex 时把 Background 从 1126 词截短到 743 词（-34%）
+- **Fix**: Editor 整合后 Leader 对比每个 section 的词数（draft vs paper.tex），截短 >10% 则用完整 draft 替换
 
-### Suggested Action
-1. 每次修改前先 `mkdir -p final/v{N+1}` 再 `cp` 到新目录
-2. 永远不要直接编辑当前版本的 paper.tex
-3. 初始化项目时 `git init` 防止意外丢失
+## [MEDIUM] 缩写首次使用未展开
+- **Category**: knowledge_gap
+- **Date**: 2026-03-29
+- **Context**: GPT、WDCNN、Bi-LSTM-ZSL、1D-ResNet 首次出现时未给出全称
+- **Fix**: 7.6 缩写检查门不可跳过
 
-### Metadata
-- Source: user_feedback
-- Related Files: SOUL.md, MEMORY.md
-- Tags: version-control, critical-error
-- Promoted: MEMORY.md, SOUL.md
-
----
-
-## [LRN-20260323-002] Agent hooks 真实路径
-
-**Logged**: 2026-03-23T14:27:00+08:00
-**Priority**: high
-**Status**: promoted
-**Area**: config
-
-### Summary
-Agent hooks 的 openclaw.json 中 path:"/hooks" 只是前缀，真实路径是 /hooks/agent
-
-### Details
-Editor 用 /hooks 返回 404，用 /hooks/agent 返回 200。测试确认所有 Agent（Checker 等）都是 /hooks/agent。openclaw.json 中的 hooks.path 是前缀，OpenClaw 会追加 /agent。
-
-### Suggested Action
-AGENTS.md 中的发任务模板用 /hooks/agent，无需再测试其他路径
-
-### Metadata
-- Source: error
-- Tags: agent-hooks, openclaw-config
-- Promoted: MEMORY.md, AGENTS.md
-
----
-
-## [LRN-20260323-004] 新项目启动流程顺序（critical）
-
-**Logged**: 2026-03-23T17:25:00+08:00
-**Priority**: critical
-**Status**: promoted
-**Area**: config
-
-### Summary
-新项目启动后的正确顺序：初始化目录 → 确认模式(Mode A/B) → 根据模式列出材料清单 → 用户提供建材
-
-### Details
-Project 6 启动时，Leader 初始化目录后直接问用户要材料，跳过了模式确认步骤。用户纠正两次才回到正确流程。因为 Mode A 和 Mode B 需要的材料不同，必须先确认模式才能给出正确的材料清单。
-
-### Suggested Action
-新项目启动固定流程：1) mkdir + version_tracker.json 2) 问 Mode A or B 3) 根据模式问材料
-
-### Metadata
-- Source: user_feedback
-- Tags: workflow, project-init, critical
-- Promoted: MEMORY.md, SOUL.md
-
----
-
-## [LRN-20260323-003] IEEE 论文排版规范
-
-**Logged**: 2026-03-23T15:04:00+08:00
-**Priority**: medium
-**Status**: promoted
-**Area**: docs
-
-### Summary
-IEEE 期刊论文 abstract 必须单段、intro 控制在 ~1000 词、概念图用双栏
-
-### Details
-用户审稿意见：1) abstract 不能分段 2) introduction 文字太多（1752→需~1000词）3) fig1-4 概念图全部需要双栏显示（figure* 环境）
-
-### Suggested Action
-以后 Writer 任务中明确这些排版要求
-
-### Metadata
-- Source: user_feedback
-- Tags: ieee-formatting, paper-structure
-- Promoted: MEMORY.md
+## [MEDIUM] Intro 词数控制
+- **Category**: correction
+- **Date**: 2026-03-29
+- **Context**: Introduction 1246 词，用户审查时认为太长
+- **Fix**: Intro 控制在 ~900 词，不超过 1000

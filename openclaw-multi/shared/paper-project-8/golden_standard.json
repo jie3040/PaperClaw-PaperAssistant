@@ -1,0 +1,130 @@
+{
+  "journal": "IEEE Transactions on Instrumentation and Measurement (IEEE TIM)",
+  "topic": "Zero-shot fault diagnosis based on transformer-based methods",
+  "mode": "A",
+
+  "structure": {
+    "sections": [
+      "Abstract",
+      "I. Introduction",
+      "II. Theoretical Background / Preliminaries",
+      "III. Proposed Method / System Framework",
+      "IV. Experiments and Results",
+      "V. Conclusion",
+      "References"
+    ],
+    "notes": "Both examples use 5-section structure (I-V). Section II covers background theory, Section III details the proposed method, Section IV presents experiments with multiple cases/datasets."
+  },
+
+  "word_counts": {
+    "abstract": {
+      "example1": 180,
+      "example2": 200,
+      "target": 190,
+      "range": "170-210",
+      "notes": "Single paragraph, no line breaks. Include key contributions and accuracy numbers."
+    },
+    "introduction": {
+      "example1": 1400,
+      "example2": 1300,
+      "target": 1350,
+      "range": "1200-1500",
+      "notes": "4-6 paragraphs covering: problem significance, existing methods and limitations, proposed solution, contributions list (3-4 items), paper organization."
+    },
+    "background": {
+      "example1": 1200,
+      "example2": 1100,
+      "target": 1150,
+      "range": "1000-1300",
+      "notes": "2-4 subsections covering key theoretical foundations with equations."
+    },
+    "method": {
+      "example1": 1500,
+      "example2": 1800,
+      "target": 1650,
+      "range": "1400-1900",
+      "notes": "3-5 subsections. Include model architecture, training procedure, evaluation criteria. Equations for loss functions and key formulations."
+    },
+    "experiments": {
+      "example1": 2800,
+      "example2": 2500,
+      "target": 2650,
+      "range": "2300-3000",
+      "notes": "Multiple cases/datasets. Include dataset description, experimental setup, results analysis, comparison with state-of-the-art, ablation studies."
+    },
+    "conclusion": {
+      "example1": 200,
+      "example2": 180,
+      "target": 190,
+      "range": "150-250",
+      "notes": "Summarize contributions (numbered list), mention future work briefly."
+    },
+    "total_body": {
+      "example1": 7300,
+      "example2": 7100,
+      "target": 7200,
+      "range": "6500-8000"
+    }
+  },
+
+  "references": {
+    "example1": 33,
+    "example2": 32,
+    "target": 35,
+    "range": "30-45",
+    "intro_ratio": ">=50% of total references must appear in Introduction"
+  },
+
+  "figures": {
+    "example1": 22,
+    "example2": 5,
+    "target": "8-15",
+    "types": [
+      "Conceptual/framework diagram (figure*: double-column)",
+      "Architecture diagram (figure*: double-column)",
+      "Experimental setup/platform",
+      "Results plots (accuracy curves, confusion matrices, t-SNE)",
+      "Comparison charts"
+    ],
+    "notes": "Key conceptual figures use figure* for double-column display. Data figures can be single-column."
+  },
+
+  "tables": {
+    "example1": 13,
+    "example2": 6,
+    "target": "6-12",
+    "types": [
+      "Dataset description",
+      "Experimental settings/hyperparameters",
+      "Results comparison with state-of-the-art",
+      "Ablation study results",
+      "Similarity/evaluation metrics"
+    ]
+  },
+
+  "equations": {
+    "example1": 8,
+    "example2": 6,
+    "target": "8-15",
+    "notes": "Include loss functions, distance metrics, key mathematical formulations of the proposed method."
+  },
+
+  "formatting": {
+    "template": "IEEEtran.cls (journal mode)",
+    "columns": 2,
+    "abstract_style": "Single paragraph, no line breaks",
+    "index_terms": "Required, 4-8 terms",
+    "contributions": "Numbered list in Introduction (3-4 items)",
+    "paper_organization": "Last paragraph of Introduction describes remaining sections",
+    "bibtex_style": "plain (IEEEtran.bst not available locally)"
+  },
+
+  "quality_criteria": {
+    "novelty": "Must clearly state what is NEW compared to existing methods",
+    "motivation": "Problem significance must be established with real-world context",
+    "comparison": "Must compare with at least 4-5 state-of-the-art methods",
+    "datasets": "Validate on at least 2 benchmark datasets",
+    "ablation": "Include ablation study to validate each component",
+    "visualization": "Include t-SNE, confusion matrices, or similar visual analysis"
+  }
+}

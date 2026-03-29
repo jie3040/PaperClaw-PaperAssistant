@@ -1,0 +1,125 @@
+\relax 
+\citation{zhai2021multi}
+\citation{lei2020applications}
+\citation{li2020deep}
+\citation{zhang2022digital}
+\citation{liu2018zero}
+\citation{wang2019zero,socher2013zero}
+\citation{lampert2014attribute}
+\citation{fu2018zero}
+\citation{mikolov2013efficient}
+\citation{xian2018zero,buchert2020zero}
+\citation{vaswani2017attention,radford2021learning}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{}\protected@file@percent }
+\citation{li2022zero}
+\citation{bubeck2023sparks}
+\citation{brown2020language}
+\citation{goodfellow2016deep,lecun2015deep}
+\citation{devlin2018bert,dosovitskiy2020image}
+\citation{zhang2021attention}
+\citation{hochreiter1997long}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Conceptual overview of the proposed cross-modality semantic alignment approach for zero-shot fault diagnosis of rotating machinery. The framework bridges physical vibration signals and LLM-generated fault semantics through a shared embedding space, enabling recognition of unseen fault categories.}}{2}{}\protected@file@percent }
+\newlabel{fig:concept}{{1}{2}}
+\citation{zhao2023brain}
+\citation{radovanovic2010hubs}
+\citation{vaswani2017attention}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Theoretical Background}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Zero-Shot Learning Framework}{3}{}\protected@file@percent }
+\citation{palatucci2009zero,lampert2009learning}
+\citation{xian2018zero}
+\citation{brown2020language,devlin2018bert,li2024industrial}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Structure of a standard Transformer encoder block, consisting of Multi-Head Self-Attention (MHSA), Feed-Forward Network (FFN), residual connections, and layer normalization.}}{4}{}\protected@file@percent }
+\newlabel{fig:transformer}{{2}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Large Language Models in Industrial Semantics}{4}{}\protected@file@percent }
+\citation{vaswani2017attention,zerveas2021transformer}
+\citation{radford2021learning}
+\citation{radford2021learning,oord2018representation,chen2020simple}
+\citation{zerveas2021transformer}
+\@writefile{toc}{\contentsline {section}{\numberline {III}Proposed Method}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Overall Architecture}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Signal Encoder: Time-Series Transformer}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Semantic Prototyping via LLM}{5}{}\protected@file@percent }
+\citation{reimers2019sentence}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Overall architecture of the proposed CMSA-Trans framework. Raw vibration signals are processed by the Time Series Transformer (TST) encoder, while LLM-generated fault descriptions are encoded by BERT into semantic prototypes. The cross-attention alignment module maps signal features into the shared semantic space for zero-shot classification.}}{6}{}\protected@file@percent }
+\newlabel{fig:framework}{{3}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Comparison of Semantic Representation Methods for Fault Diagnosis}}{6}{}\protected@file@percent }
+\newlabel{tab:llm_semantics}{{I}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}Cross-Modality Alignment}{6}{}\protected@file@percent }
+\citation{chen2020simple}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-E}}Training and Optimization}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Experiments and Results}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Experimental Setup}{7}{}\protected@file@percent }
+\citation{zhang2017new}
+\citation{xian2019fvaegan}
+\citation{schonfeld2019generalized}
+\citation{lampert2014attribute}
+\citation{chen2019bearing}
+\citation{li2022zero,lu2017deep}
+\citation{zhang2017new}
+\citation{xian2019fvaegan}
+\citation{schonfeld2019generalized}
+\citation{lampert2014attribute}
+\citation{chen2019bearing}
+\citation{jia2016deep}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Implementation Details}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Zero-Shot Recognition Performance}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Ablation Study}{8}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Confusion matrix for unseen fault categories on the CWRU dataset, showing the high discriminative capability of CMSA-Trans across different fault types.}}{8}{}\protected@file@percent }
+\newlabel{fig:accuracy_bar}{{4}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-E}}Parameter Sensitivity \& Robustness}{8}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Zero-Shot Fault Diagnosis Accuracy (\%) Comparison on CWRU and SEU Datasets}}{9}{}\protected@file@percent }
+\newlabel{tab:comparison}{{II}{9}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Ablation Study Results: Zero-Shot Accuracy (\%) on CWRU and SEU Datasets}}{9}{}\protected@file@percent }
+\newlabel{tab:ablation}{{III}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Sensitivity analysis of the embedding dimension $d_{model}$ on zero-shot accuracy for both CWRU and SEU datasets. The optimal dimension is 256.}}{9}{}\protected@file@percent }
+\newlabel{fig:sensitivity}{{5}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Robustness analysis under varying noise levels (SNR from $-10$ dB to $10$ dB). CMSA-Trans shows superior noise resistance compared to baseline methods.}}{9}{}\protected@file@percent }
+\newlabel{fig:snr_curve}{{6}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-F}}Visual Analysis}{9}{}\protected@file@percent }
+\bibstyle{IEEEtran}
+\bibdata{references}
+\bibcite{zhai2021multi}{1}
+\bibcite{lei2020applications}{2}
+\bibcite{li2020deep}{3}
+\bibcite{zhang2022digital}{4}
+\bibcite{liu2018zero}{5}
+\bibcite{wang2019zero}{6}
+\bibcite{socher2013zero}{7}
+\bibcite{lampert2014attribute}{8}
+\bibcite{fu2018zero}{9}
+\bibcite{mikolov2013efficient}{10}
+\bibcite{xian2018zero}{11}
+\bibcite{buchert2020zero}{12}
+\bibcite{vaswani2017attention}{13}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces t-SNE visualization of the aligned features in the shared embedding space. Star markers ($\bigstar $) denote LLM-generated semantic prototypes. Unseen class features form distinct clusters near their corresponding prototypes.}}{10}{}\protected@file@percent }
+\newlabel{fig:tsne}{{7}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Cross-attention heatmap between vibration signal patches and semantic tokens for an unseen inner race fault. High attention weights on diagnostic keywords show the model's interpretability.}}{10}{}\protected@file@percent }
+\newlabel{fig:attn_map}{{8}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Conclusion}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{References}{10}{}\protected@file@percent }
+\bibcite{radford2021learning}{14}
+\bibcite{li2022zero}{15}
+\bibcite{bubeck2023sparks}{16}
+\bibcite{brown2020language}{17}
+\bibcite{goodfellow2016deep}{18}
+\bibcite{lecun2015deep}{19}
+\bibcite{devlin2018bert}{20}
+\bibcite{dosovitskiy2020image}{21}
+\bibcite{zhang2021attention}{22}
+\bibcite{hochreiter1997long}{23}
+\bibcite{zhao2023brain}{24}
+\bibcite{radovanovic2010hubs}{25}
+\bibcite{palatucci2009zero}{26}
+\bibcite{lampert2009learning}{27}
+\bibcite{li2024industrial}{28}
+\bibcite{zerveas2021transformer}{29}
+\bibcite{oord2018representation}{30}
+\bibcite{chen2020simple}{31}
+\bibcite{reimers2019sentence}{32}
+\bibcite{zhang2017new}{33}
+\bibcite{xian2019fvaegan}{34}
+\bibcite{schonfeld2019generalized}{35}
+\bibcite{chen2019bearing}{36}
+\bibcite{lu2017deep}{37}
+\bibcite{jia2016deep}{38}
+\gdef \@abspage@last{11}

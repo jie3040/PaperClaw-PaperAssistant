@@ -1,0 +1,20 @@
+{
+  "id": "2d99e3d1-0c70-4b83-bf79-4ca0687f98a1",
+  "enqueuedAt": 1774760945656,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Ideator 已生成 5 个 idea 候选，请选择一个：\n\n| # | 名称 | 核心创新 | 新颖性 |\n|---|------|----------|--------|\n| 1 | CMSA-Trans | 跨模态语义对准，振动信号+LLM文本语义在互注意空间对齐 | 8.5 |\n| 2 | GD-Trans | 复合故障解耦VAE-Transformer，隐空间线性组合生成未见复合故障 | 9.0 |\n| 3 | PDG-Trans | Prompt Tuning驱动的跨设备域泛化，可学习领域提示词 | 8.0 |\n| 4 | KGA-CapsTrans | 知识图谱+胶囊Transformer，因果可解释零样本诊断 | 8.7 |\n| 5 | LMST² | 轻量化时间位移Transformer+知识蒸馏，面向边缘设备 | 7.5 |\n\n我的建议：Idea 2（GD-Trans）新颖性最高且切入复合故障这个实际痛点，Idea 4（KGA-CapsTrans）可解释性强符合 IEEE TIM 偏好。\n\n请告诉我选哪个，我立刻推进到阶段 3（Architect 框架设计）。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Ideator 已生成 5 个 idea 候选，请选择一个：\n\n| # | 名称 | 核心创新 | 新颖性 |\n|---|------|----------|--------|\n| 1 | CMSA-Trans | 跨模态语义对准，振动信号+LLM文本语义在互注意空间对齐 | 8.5 |\n| 2 | GD-Trans | 复合故障解耦VAE-Transformer，隐空间线性组合生成未见复合故障 | 9.0 |\n| 3 | PDG-Trans | Prompt Tuning驱动的跨设备域泛化，可学习领域提示词 | 8.0 |\n| 4 | KGA-CapsTrans | 知识图谱+胶囊Transformer，因果可解释零样本诊断 | 8.7 |\n| 5 | LMST² | 轻量化时间位移Transformer+知识蒸馏，面向边缘设备 | 7.5 |\n\n我的建议：Idea 2（GD-Trans）新颖性最高且切入复合故障这个实际痛点，Idea 4（KGA-CapsTrans）可解释性强符合 IEEE TIM 偏好。\n\n请告诉我选哪个，我立刻推进到阶段 3（Architect 框架设计）。"
+  },
+  "retryCount": 2,
+  "lastAttemptAt": 1774769290760,
+  "lastError": "Request failed with status code 400"
+}

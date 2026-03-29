@@ -1,0 +1,54 @@
+\section{Theoretical Background}
+This section describes the foundational architectures and theories that support the Cross-Modality Semantic Alignment Transformer (CMSA-Trans). Specifically, it examines the Transformer architecture, the Zero-Shot Learning (ZSL) framework, and the application of Large Language Models (LLMs) in representing industrial fault semantics.
+
+\subsection{Transformer Architecture and Self-Attention Mechanism}
+The Transformer architecture, developed for natural language processing, has shown significant performance in computer vision and signal processing because it models long-range dependencies in sequential data. The Multi-Head Self-Attention (MHSA) mechanism calculates correlations across the entire sequence to weight input segments. Unlike recurrent networks that process data sequentially, this design enables global context modeling, which is necessary to identify the periodic components and impulse signatures in mechanical vibration signals.
+
+Self-attention generates Queries ($Q$), Keys ($K$), and Values ($V$) using weight matrices $W^Q$, $W^K$, and $W^V$ for temporal or spectral embeddings. Attention scores are calculated from the scaled dot product of $Q$ and $K$, then normalized into weights through a softmax operation. The output is a weighted sum of $V$:
+\begin{equation}
+\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+\end{equation}
+where $d_k$ is the key dimension. This mechanism allows the model to prioritize relevant features in machinery signals and isolate fault signatures otherwise masked by noise.
+
+MHSA runs this process across $h$ parallel heads, with each head evaluating different representation subspaces. This parallel processing extracts information from multiple positions and perspectives to enrich the learned features. The outputs from each head are concatenated and projected:
+\begin{equation}
+\text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, \dots, \text{head}_h)W^O
+\end{equation}
+where $\text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)$.
+
+To preserve the temporal structure of raw signals, positional encoding (PE) adds location information to the inputs. Since the Transformer lacks inherent recurrence, sinusoidal functions or learnable embeddings provide order:
+\begin{equation}
+\begin{aligned}
+PE_{(pos, 2i)} &= \sin(pos / 10000^{2i/d_{model}}) \\
+PE_{(pos, 2i+1)} &= \cos(pos / 10000^{2i/d_{model}})
+\end{aligned}
+\end{equation}
+These functions enable the model to attend to relative positions, which is critical for identifying frequency-related patterns in non-stationary vibration data. The specific periodic nature of the sine and cosine functions allows the model to extrapolate to sequence lengths longer than those encountered during training, ensuring stability for varying signal durations.
+
+The Transformer contains several structural components to ensure training stability. Each layer uses a position-wise Feed-Forward Network (FFN) with two linear transformations and a non-linear activation (ReLU or GELU) for feature mapping: $FFN(x) = \max(0, xW_1 + b_1)W_2 + b_2$. Residual connections and Layer Normalization (LN) are used around each sub-layer to stabilize the stack and mitigate vanishing gradients. LN normalizes the inputs across the features for each training example, calculated as:
+\begin{equation}
+\text{LN}(x) = \gamma \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} + \beta
+\end{equation}
+where $\mu$ and $\sigma$ are the mean and variance, and $\gamma, \beta$ are learnable parameters. Layer Normalization is critical because it ensures that the mean and variance of activations are controlled, preventing internal covariate shift and allowing for faster convergence in deep architectures. This normalization ensures consistent activation distributions throughout deep architectures \cite{vaswani2017attention}.
+
+\subsection{Zero-Shot Learning Framework}
+Zero-Shot Learning (ZSL) identifies objects from classes that were not included in the training set. In industrial fault diagnosis, ZSL is useful when collecting labeled data for every failure mode is difficult or unsafe. ZSL uses auxiliary semantic information to transfer knowledge from known conditions to new fault types. The framework divides the label space into seen classes $\mathcal{Y}_s$ (used for training) and unseen classes $\mathcal{Y}_u$ (used for inference), where $\mathcal{Y}_s \cap \mathcal{Y}_u = \emptyset$. Generalization relies on a semantic space $\mathcal{S}$, where each class $y$ is represented by a prototype $a_y$ encoding physical attributes or text descriptions.
+
+The standard ZSL task maps the signal feature space $\mathcal{X}$ to the semantic space $\mathcal{S}$ using a compatibility function $f(x, a_y; \theta)$. The parameters $\theta$ are trained to maximize compatibility scores for seen classes. For a test sample $x$ from an unseen category, the model chooses the class with the highest score:
+\begin{equation}
+\hat{y} = \arg\max_{y \in \mathcal{Y}_u} f(x, a_y; \theta)
+\end{equation}
+Generalized Zero-Shot Learning (GZSL) identifies samples from both seen and unseen classes together during inference:
+\begin{equation}
+\hat{y} = \arg\max_{y \in \mathcal{Y}_s \cup \mathcal{Y}_u} f(x, a_y; \theta)
+\end{equation}
+In GZSL, models often exhibit a strong bias toward seen categories because the softmax layer is trained only on these classes. This bias is particularly problematic in industrial monitoring, where rare faults might be misclassified as healthy states or common failures.
+
+Traditional ZSL methods face two major challenges: "domain shift" and the "hubness problem." Domain shift occurs when the mapping learned from seen classes does not generalize to the distribution of unseen classes. The hubness problem involves the emergence of "hubs" in high-dimensional spaces—points that are search neighbors of many other points—which leads to incorrect classification of unseen samples into certain seen-class prototypes. As the dimensionality of the embedding space increases, these hubs become more prominent, significantly reducing the accuracy of cross-modality retrieval. Additionally, manual attribute labeling is subjective and demanding \cite{palatucci2009zero, lampert2009learning}. Large Language Models (LLMs) can address these issues by generating standardized, expert-level semantic prototypes \cite{xian2018zero}.
+
+\subsection{Large Language Models in Industrial Semantics}
+Large Language Models, such as GPT or BERT, are trained on datasets that include technical manuals, scientific literature, and engineering standards. This training provides technical knowledge missing from standard word embeddings. LLMs link technical concepts to physical phenomena, connecting abstract labels to sensor data. Prompting strategies like Chain-of-Thought (CoT) enable LLMs to describe how faults affect machinery, including frequency modulation, impact patterns, and energy dissipation. For example, a prompt can ask for the vibration characteristics of a high-speed bearing fault. This study uses a multi-turn approach where the model outlines the failure mechanism, determines the expected sensor response (e.g., inner race pass frequency), and summarizes the results into a technical descriptor.
+
+The choice of embedding strategy is significant for maintaining semantic integrity. Word-level embeddings (e.g., Word2Vec) represent individual terms in isolation, often losing the global context of complex fault descriptions. In industrial semantics, a single word like "bearing" or "outer" has different meanings depending on the neighboring technical terms. In contrast, sentence-level or document-level embeddings capture the hierarchical context of engineering descriptions. Sentence embeddings (e.g., from SBERT or CLIP-text) aggregate information into a single vector that represents the complete failure mode by considering the interaction between all tokens. These vectors serve as stable anchors in the CMSA-Trans framework.
+
+Advanced prompt engineering, including "Few-Shot Prompting" and "Role-Prompting," is used to refine these industrial descriptors. By assigning the model the role of a machinery diagnostics expert and providing examples of technical reports, the generated prototypes achieve higher granularity. This process improves the accuracy of the semantic prototypes by reducing noise and hallucinations, which are common issues in zero-shot tasks using LLMs. Aligning signal features with LLM-enhanced semantics improves performance across different conditions and new fault modes, supporting a knowledge-driven approach to signal analysis \cite{brown2020language, devlin2018bert, li2024industrial}.

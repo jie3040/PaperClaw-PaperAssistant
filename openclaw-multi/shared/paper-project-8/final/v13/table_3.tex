@@ -1,0 +1,28 @@
+\begin{table}[htbp]
+\centering
+\caption{Hyperparameter Settings for CMSA-Trans}
+\label{tab:hyperparameters}
+\begin{tabular}{llc}
+\toprule
+\textbf{Phase} & \textbf{Parameter} & \textbf{Value} \\
+\midrule
+Training & Learning Rate & $1 \times 10^{-3}$ \\
+Training & Batch Size & 64 \\
+Training & Optimizer & Adam \\
+Training & Weight Decay & $1 \times 10^{-4}$ \\
+Training & Epochs & 200 \\
+\midrule
+Transformer & Layers & 4 \\
+Transformer & Attention Heads & 8 \\
+Transformer & $d_{model}$ & 256 \\
+Transformer & Feed-Forward Dim. & 1024 \\
+Transformer & Dropout Rate & 0.1 \\
+\midrule
+Embedding & Signal Feature Dim. & 256 \\
+Embedding & LLM Semantic Dim. & 1024 $\rightarrow$ 256 \\
+\midrule
+Loss & $\lambda_{cls}$ (Classification) & 1.0 \\
+Loss & $\lambda_{align}$ (Alignment) & 0.5 \\
+\bottomrule
+\end{tabular}
+\end{table}

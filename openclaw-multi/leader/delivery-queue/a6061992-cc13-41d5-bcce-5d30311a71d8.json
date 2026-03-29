@@ -1,0 +1,20 @@
+{
+  "id": "a6061992-cc13-41d5-bcce-5d30311a71d8",
+  "enqueuedAt": 1774768993207,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "这是一个过期回报。当前项目已经推进到 drafts/v4 + final/v6（15:19 完成），Writer 写入的 drafts/v2/experiments.tex 已被后续版本覆盖。无需处理，忽略即可。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "这是一个过期回报。当前项目已经推进到 drafts/v4 + final/v6（15:19 完成），Writer 写入的 drafts/v2/experiments.tex 已被后续版本覆盖。无需处理，忽略即可。"
+  },
+  "retryCount": 2,
+  "lastAttemptAt": 1774769326036,
+  "lastError": "Request failed with status code 400"
+}

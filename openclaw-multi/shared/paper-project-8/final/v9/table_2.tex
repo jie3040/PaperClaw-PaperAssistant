@@ -1,0 +1,16 @@
+\begin{table}[htbp]
+\centering
+\caption{Description of Rotating Machinery Benchmark Datasets}
+\label{tab:datasets}
+\begin{tabular}{p{3.5cm}p{2.5cm}p{3cm}p{2cm}p{2cm}}
+\toprule
+\textbf{Dataset Name} & \textbf{Sampling Freq (kHz)} & \textbf{Number of Samples (Seen/Unseen)} & \textbf{Load Type} & \textbf{Speed (rpm)} \\
+\midrule
+CWRU Bearing Dataset & 12 & 800/400 (200 per class) & Varying motor loads (0-3 HP) & 1730-1797 \\
+\midrule
+SEU Gearbox Dataset & 10 & 600/300 (150 per class) & Different torque levels & 800-2400 \\
+\midrule
+Note: & \multicolumn{4}{p{12cm}}{CWRU = Case Western Reserve University; SEU = Southeast University. Seen classes are used for training, while unseen classes are reserved for zero-shot testing. All datasets are preprocessed with standard normalization techniques.} \\
+\bottomrule
+\end{tabular}
+\end{table}

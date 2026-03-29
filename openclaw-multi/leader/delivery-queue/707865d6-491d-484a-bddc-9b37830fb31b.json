@@ -21,7 +21,7 @@
     "mediaUrls": [],
     "isGroup": false
   },
-  "retryCount": 1,
-  "lastAttemptAt": 1774527165844,
+  "retryCount": 4,
+  "lastAttemptAt": 1774769269372,
   "lastError": "Request failed with status code 400"
 }

@@ -1,0 +1,349 @@
+\documentclass[journal]{IEEEtran}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{balance}
+\usepackage{subcaption}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{float}
+
+\begin{document}
+
+\title{Cross-Modality Semantic Alignment Transformer for Zero-Shot Fault Diagnosis of Rotating Machinery}
+
+\author{%
+\IEEEauthorblockN{First~Author\IEEEauthorrefmark{1}, Second~Author\IEEEauthorrefmark{1}, and Third~Author\IEEEauthorrefmark{2}}
+\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Mechanical Engineering, University Name, City, Country\\
+Email: \{first.author, second.author\}@university.edu}
+\IEEEauthorblockA{\IEEEauthorrefmark{2}Department of Computer Science, University Name, City, Country\\
+Email: third.author@university.edu}
+}
+
+\markboth{IEEE Transactions on Instrumentation \& Measurement}{Author et al.: Cross-Modality Semantic Alignment Transformer}
+
+\maketitle
+
+\begin{abstract}
+Efficient and reliable fault diagnosis of rotating machinery is important for ensuring industrial safety and reducing maintenance costs. While deep learning has greatly advanced this field, existing methods often struggle with data scarcity and rely heavily on labor-intensive manual attribute labeling for zero-shot scenarios. To address these challenges, we propose the Cross-Modality Semantic Alignment Transformer (CMSA-Trans), a new framework that uses Large Language Model (LLM)-generated fault semantics for zero-shot fault diagnosis. CMSA-Trans employs a strong Time Series Transformer (TST) encoder to extract discriminative features from raw vibration signals and aligns them with semantic prototypes synthesized by an LLM. A cross-attention mechanism is integrated to enable deep semantic alignment between visual-like signal representations and textual descriptors, effectively capturing complex fault characteristics without requiring seen-class samples during training. Extensive experimental evaluations on the Case Western Reserve University (CWRU) and Southeast University (SEU) datasets show that CMSA-Trans markedly outperforms current best zero-shot diagnosis methods. Our approach establishes a new approach for cross-modality diagnosis by bridging the gap between physical sensor data and high-level linguistic knowledge, offering a scalable solution for intelligent maintenance in dynamic industrial environments.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Zero-shot learning, fault diagnosis, Transformer, large language model, semantic alignment, rotating machinery.
+\end{IEEEkeywords}
+
+%% ===================================================================
+%%  SECTION I: INTRODUCTION
+%% ===================================================================
+\section{Introduction}
+\label{sec:introduction}
+
+Modern industrial infrastructures rely on rotating machinery, including wind turbines, aero-engines, and high-speed railways, where critical components such as bearings and gearboxes operate under demanding conditions \cite{zhai2021multi}. Reliable health monitoring is essential for operational safety and economic stability, as unexpected failures may lead to catastrophic accidents and significant financial losses \cite{lei2020applications}. Intelligent Fault Diagnosis (IFD) has emerged as a fundamental technology in smart manufacturing, using sensor-based monitoring to identify anomalies before they trigger system-wide failures \cite{li2020deep}. Fig.~\ref{fig:concept} illustrates the proposed cross-modality semantic alignment approach for industrial zero-shot fault diagnosis.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_concept.png}
+\caption{Conceptual overview of the cross-modality semantic alignment approach for zero-shot fault diagnosis of rotating machinery. The framework bridges physical vibration signals and LLM-generated linguistic fault semantics via a shared embedding space.}
+\label{fig:concept}
+\end{figure*}
+
+Despite advancements in deep learning for fault diagnosis, most current methods depend on a closed-set assumption requiring intensive manual labeling across all predefined health states \cite{zhang2022digital}. In practice, fault samples---particularly those representing early-stage degradation---are rare and difficult to collect \cite{liu2018zero}. To address this data scarcity, research has shifted toward Zero-Shot Learning (ZSL), which aims to recognize novel fault classes without physical training samples by using auxiliary semantic information \cite{wang2019zero, socher2013zero}.
+
+Current ZSL approaches in fault diagnosis primarily use manual attributes or generic word vectors (e.g., Word2Vec) to associate vibration signals with class labels \cite{lampert2014attribute}. These methods face three critical limitations: (1) defining manual attributes is labor-intensive and subjective \cite{fu2018zero}; (2) generic word embeddings lack the technical specificity required for industrial diagnostics \cite{mikolov2013efficient}; and (3) existing models often overlook the complex temporal dependencies in high-frequency vibration data, resulting in an unstable alignment between signal features and semantic space \cite{xian2018zero, buchert2020zero}.
+
+To address these challenges, this paper introduces the Cross-Modality Semantic Alignment Transformer (CMSA-Trans), a zero-shot fault diagnosis framework that uses Large Language Models (LLMs) to bridge the semantic divide. CMSA-Trans employs LLMs such as Generative Pre-trained Transformer 4 (GPT-4) to generate high-fidelity, domain-specific fault semantics \cite{bubeck2023sparks, brown2020language}. A Transformer-based temporal encoder extracts discriminative features from raw vibration signals, which are projected into a shared latent space alongside the LLM-generated semantics \cite{vaswani2017attention, radford2021learning}. This alignment enables the model to learn the underlying physical relationships between signal patterns and their linguistic definitions, allowing for the detection of unseen faults based on semantic proximity.
+
+The primary contributions of this research are as follows. First, we develop the CMSA-Trans framework, which reformulates zero-shot fault diagnosis as a cross-modal semantic alignment task, eliminating the need for labeled samples of target fault categories. Second, we propose a systematic method to utilize LLMs for generating expert-level fault semantics that capture detailed physical characteristics more effectively than traditional word embeddings. Third, a Transformer-based temporal feature extractor is designed to capture long-range dependencies in vibration signals, providing a robust representation for alignment with high-dimensional semantic descriptors. Finally, extensive experiments on multiple benchmarks demonstrate that CMSA-Trans outperforms state-of-the-art ZSL methods with strong generalization across various operating conditions.
+
+Unlike static word embeddings that aggregate broad linguistic associations, LLMs synthesize technical descriptions capturing fault physics such as impact repetition frequencies and localized high-frequency resonances. This creates a richer semantic space where the distance between fault classes reflects actual physical mechanisms \cite{goodfellow2016deep, lecun2015deep}. For rotating machinery, vibration signals exhibit long-range dependencies where early-stage fault signatures may be obscured by noise \cite{zhang2021attention}. While Recurrent Neural Networks (RNNs) and Long Short-Term Memory (LSTM) units face vanishing gradient issues over long windows \cite{hochreiter1997long}, the self-attention mechanism of the Transformer effectively weights different time steps according to their relevance \cite{devlin2018bert, dosovitskiy2020image}.
+
+The use of large-scale pre-trained models for industrial semantic understanding is motivated by their extensive technical knowledge \cite{zhao2023brain}. While an engineer might define a bearing fault by physical dimensions, an LLM provides a textual profile linking those dimensions to expected sensor responses and characteristic frequencies. Our semantic alignment approach uses a projection layer to map the high-level signal representations from the Transformer into the same dimensional space as the LLM-derived technical descriptors. This ensures the model associates specific signal patterns, such as periodic transients or increases in broadband noise, with physical descriptions. When a new fault type with a unique technical signature occurs, the model can identify it by matching the signal pattern to its linguistic definition, even without labeled training examples. This capability is vital for critical infrastructure where failures are rare but significant, as the ability to identify a new failure mode upon its first occurrence is essential for maintaining structural integrity.
+
+Expanding zero-shot learning to include cross-modality also addresses the hubness problem in semantic embedding spaces, where certain vectors become nearest neighbors to many unrelated items in high-dimensional space \cite{radovanovic2010hubs}. A technically grounded semantic space makes the separation between distinct fault modes---such as inner-race versus outer-race bearing defects---more pronounced. Unlike conventional ZSL approaches relying on manually crafted attribute vectors, CMSA-Trans integrates structured LLM-generated fault semantics with a dedicated cross-modal alignment module, enabling more discriminative and physically meaningful representations. Validation on various machinery types, including complex planetary gearsets and varying load-speed conditions, confirms that the framework provides a scalable and robust solution for intelligent Prognostics and Health Management (PHM) systems.
+
+The remainder of this paper is organized as follows. Section~\ref{sec:background} reviews the related literature on intelligent fault diagnosis and zero-shot learning. Section~\ref{sec:method} describes the CMSA-Trans architecture, including the LLM semantic generation and the cross-modal alignment mechanism. Section~\ref{sec:experiments} presents the experimental setup, results, and comparative analysis. Finally, Section~\ref{sec:conclusion} concludes the paper and discusses future research directions.
+
+%% ===================================================================
+%%  SECTION II: THEORETICAL BACKGROUND
+%% ===================================================================
+\section{Theoretical Background}
+\label{sec:background}
+This section describes the foundational architectures and theories that support the Cross-Modality Semantic Alignment Transformer (CMSA-Trans). Specifically, it examines the Transformer architecture, the Zero-Shot Learning (ZSL) framework, and the application of Large Language Models (LLMs) in representing industrial fault semantics.
+
+\subsection{Transformer Architecture and Self-Attention Mechanism}
+The Transformer architecture, developed for natural language processing, has shown significant performance in computer vision and signal processing because it models long-range dependencies in sequential data. The Multi-Head Self-Attention (MHSA) mechanism calculates correlations across the entire sequence to weight input segments. Unlike recurrent networks that process data sequentially, this design enables global context modeling, which is necessary to identify the periodic components and impulse signatures in mechanical vibration signals.
+
+Self-attention generates Queries ($Q$), Keys ($K$), and Values ($V$) using weight matrices $W^Q$, $W^K$, and $W^V$ for temporal or spectral embeddings. Attention scores are calculated from the scaled dot product of $Q$ and $K$, then normalized into weights through a softmax operation. The output is a weighted sum of $V$:
+\begin{equation}
+\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+\end{equation}
+where $d_k$ is the key dimension. This mechanism allows the model to prioritize relevant features in machinery signals and isolate fault signatures otherwise masked by noise.
+
+MHSA runs this process across $h$ parallel heads, with each head evaluating different representation subspaces. This parallel processing extracts information from multiple positions and perspectives to enrich the learned features. The outputs from each head are concatenated and projected:
+\begin{equation}
+\text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, \dots, \text{head}_h)W^O
+\end{equation}
+where $\text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)$.
+
+To preserve the temporal structure of raw signals, positional encoding (PE) adds location information to the inputs. Since the Transformer lacks inherent recurrence, sinusoidal functions or learnable embeddings provide order:
+\begin{equation}
+\begin{aligned}
+PE_{(pos, 2i)} &= \sin(pos / 10000^{2i/d_{model}}) \\
+PE_{(pos, 2i+1)} &= \cos(pos / 10000^{2i/d_{model}})
+\end{aligned}
+\end{equation}
+These functions enable the model to attend to relative positions, which is critical for identifying frequency-related patterns in non-stationary vibration data. The specific periodic nature of the sine and cosine functions allows the model to extrapolate to sequence lengths longer than those encountered during training, ensuring stability for varying signal durations.
+
+The Transformer contains several structural components to ensure training stability. Each layer uses a position-wise Feed-Forward Network (FFN) with two linear transformations and a non-linear activation (Rectified Linear Unit (ReLU) or Gaussian Error Linear Unit (GELU)) for feature mapping: $FFN(x) = \max(0, xW_1 + b_1)W_2 + b_2$. Residual connections and Layer Normalization (LN) are used around each sub-layer to stabilize the stack and mitigate vanishing gradients. LN normalizes the inputs across the features for each training example, calculated as:
+\begin{equation}
+\text{LN}(x) = \gamma \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} + \beta
+\end{equation}
+where $\mu$ and $\sigma$ are the mean and variance, and $\gamma, \beta$ are learnable parameters. Layer Normalization is critical because it ensures that the mean and variance of activations are controlled, preventing internal covariate shift and allowing for faster convergence in deep architectures. This normalization ensures consistent activation distributions throughout deep architectures \cite{vaswani2017attention}.
+
+\subsection{Zero-Shot Learning Framework}
+Zero-Shot Learning (ZSL) identifies objects from classes that were not included in the training set. In industrial fault diagnosis, ZSL is useful when collecting labeled data for every failure mode is difficult or unsafe. ZSL uses auxiliary semantic information to transfer knowledge from known conditions to new fault types. The framework divides the label space into seen classes $\mathcal{Y}_s$ (used for training) and unseen classes $\mathcal{Y}_u$ (used for inference), where $\mathcal{Y}_s \cap \mathcal{Y}_u = \emptyset$. Generalization relies on a semantic space $\mathcal{S}$, where each class $y$ is represented by a prototype $a_y$ encoding physical attributes or text descriptions.
+
+The standard ZSL task maps the signal feature space $\mathcal{X}$ to the semantic space $\mathcal{S}$ using a compatibility function $f(x, a_y; \theta)$. The parameters $\theta$ are trained to maximize compatibility scores for seen classes. For a test sample $x$ from an unseen category, the model chooses the class with the highest score:
+\begin{equation}
+\hat{y} = \arg\max_{y \in \mathcal{Y}_u} f(x, a_y; \theta)
+\end{equation}
+Generalized Zero-Shot Learning (GZSL) identifies samples from both seen and unseen classes together during inference:
+\begin{equation}
+\hat{y} = \arg\max_{y \in \mathcal{Y}_s \cup \mathcal{Y}_u} f(x, a_y; \theta)
+\end{equation}
+In GZSL, models often exhibit a strong bias toward seen categories because the softmax layer is trained only on these classes. This bias is particularly problematic in industrial monitoring, where rare faults might be misclassified as healthy states or common failures.
+
+Traditional ZSL methods face two major challenges: "domain shift" and the "hubness problem." Domain shift occurs when the mapping learned from seen classes does not generalize to the distribution of unseen classes. The hubness problem involves the emergence of "hubs" in high-dimensional spaces—points that are search neighbors of many other points—which leads to incorrect classification of unseen samples into certain seen-class prototypes. As the dimensionality of the embedding space increases, these hubs become more prominent, significantly reducing the accuracy of cross-modality retrieval. Additionally, manual attribute labeling is subjective and demanding \cite{palatucci2009zero, lampert2009learning}. Large Language Models (LLMs) can address these issues by generating standardized, expert-level semantic prototypes \cite{xian2018zero}.
+
+\subsection{Large Language Models in Industrial Semantics}
+Large Language Models, such as Generative Pre-trained Transformer (GPT) or Bidirectional Encoder Representations from Transformers (BERT), are trained on datasets that include technical manuals, scientific literature, and engineering standards. This training provides technical knowledge missing from standard word embeddings. LLMs link technical concepts to physical phenomena, connecting abstract labels to sensor data. Prompting strategies like Chain-of-Thought (CoT) enable LLMs to describe how faults affect machinery, including frequency modulation, impact patterns, and energy dissipation. For example, a prompt can ask for the vibration characteristics of a high-speed bearing fault. This study uses a multi-turn approach where the model outlines the failure mechanism, determines the expected sensor response (e.g., inner race pass frequency), and summarizes the results into a technical descriptor.
+
+The choice of embedding strategy is significant for maintaining semantic integrity. Word-level embeddings (e.g., Word2Vec) represent individual terms in isolation, often losing the global context of complex fault descriptions. In industrial semantics, a single word like "bearing" or "outer" has different meanings depending on the neighboring technical terms. In contrast, sentence-level or document-level embeddings capture the hierarchical context of engineering descriptions. Sentence embeddings (e.g., from BERT-large or CLIP-text) aggregate information into a single vector that represents the complete failure mode by considering the interaction between all tokens. These vectors serve as stable anchors in the CMSA-Trans framework.
+
+Advanced prompt engineering, including "Few-Shot Prompting" and "Role-Prompting," is used to refine these industrial descriptors. By assigning the model the role of a machinery diagnostics expert and providing examples of technical reports, the generated prototypes achieve higher granularity. This process improves the accuracy of the semantic prototypes by reducing noise and hallucinations, which are common issues in zero-shot tasks using LLMs. Aligning signal features with LLM-enhanced semantics improves performance across different conditions and new fault modes, supporting a knowledge-driven approach to signal analysis \cite{brown2020language, devlin2018bert, li2024industrial}.
+
+
+\section{Proposed Method}
+\label{sec:method}
+
+In this section, we present the architecture and theoretical formulation of the Cross-Modality Semantic Alignment Transformer (CMSA-Trans). The core objective of the proposed framework is to bridge the gap between high-dimensional vibration signals and abstract technical concepts by using the extensive mechanical knowledge built-in to large language models (LLMs). By mapping physical signal features into a shared semantic space, the model enables zero-shot fault diagnosis of rotating machinery. In this approach, health states of unseen components are recognized without prior training samples.
+
+\subsection{Overall Architecture}
+
+The overall architecture of the proposed CMSA-Trans is illustrated in Fig.~\ref{fig:framework}. The framework is designed to transform raw sensor data into semantic-aligned representations that are directly comparable to linguistic descriptions of machinery faults. The high-level workflow begins with the acquisition of raw vibration signals from sensors mounted on rotating components, such as bearings or gearboxes. These signals are typically non-stationary and contain periodic impulsive components that signify specific fault modes.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_framework.png}
+\caption{Overall architecture of the proposed CMSA-Trans framework. The pipeline consists of four primary modules: (1)~a Time-Series Transformer signal encoder, (2)~an LLM-based semantic prototyping module, (3)~a cross-modality alignment layer with mutual attention, and (4)~a zero-shot classification head.}
+\label{fig:framework}
+\end{figure*}
+
+The architecture consists of four primary functional modules: a signal encoder, a semantic prototyping module, a cross-modality alignment layer, and a zero-shot classification head. The signal encoder uses a transformer-based structure \cite{vaswani2017attention, zerveas2021transformer} to extract deep temporal features from the vibration data. At the same time, the semantic prototyping module interfaces with a pre-trained LLM \cite{radford2021learning} to generate high-fidelity technical descriptions for each fault category. These descriptions are then converted into fixed-dimensional semantic vectors (prototypes). This automation removes the need for expert-defined attribute matrices.
+
+The heart of the CMSA-Trans is the cross-modality alignment module. This module employs a mutual-attention mechanism to project the learned signal features into the semantic space. Unlike traditional diagnostic models that map signals directly to discrete class labels, the proposed approach maps signals to a continuous semantic space defined by the LLM. This allows the model to reason about the similarity between a physical signal pattern and a technical concept (e.g., ``outer race pitting''). This alignment process is inspired by recent advances in contrastive learning architectures like Contrastive Language-Image Pre-training (CLIP) \cite{radford2021learning} and cross-modal projection frameworks \cite{oord2018representation, chen2020simple}. For instance, a signal characterized by sharp transients at specific intervals is matched with a textual description that defines those intervals as the characteristic ball pass frequency. Finally, zero-shot classification is performed by identifying the nearest semantic prototype for a given signal embedding. This structured approach ensures that the model captures the underlying physics of machine failures rather than just memorizing data patterns. This method helps generalization to new, unseen fault modes. By using the semantic bridge provided by the LLM, CMSA-Trans effectively enables zero-shot diagnosis for industrial applications.
+
+\subsection{Signal Encoder: Time-Series Transformer}
+
+Vibration signals from rotating machinery are characterized by multi-scale periodicity and non-stationary impulses. Traditional deep learning backbones, such as convolutional neural networks (CNNs), often fail to capture the long-range dependencies between impacts occurring across multiple shaft revolutions due to local receptive fields. While recurrent neural networks (RNNs) can handle sequential data, they suffer from vanishing gradients when processing long industrial signal sequences. To address these limitations, a time-series transformer (TST) is used as the signal encoder \cite{zerveas2021transformer}. This encoder uses self-attention to maintain a global view of the entire signal window.
+
+Given a raw vibration signal segment $\mathbf{X} \in \mathbb{R}^{L \times 1}$, where $L$ is the window length, the signal is first partitioned into $N$ non-overlapping patches $\mathbf{x}_p \in \mathbb{R}^{P \times 1}$, with $P$ denoting the patch size. Each patch represents a localized temporal window of the vibration waveform. These patches are then projected into a high-dimensional embedding space using a linear layer with weights $\mathbf{W}_b \in \mathbb{R}^{P \times d_m}$, where $d_m$ is the model dimension. This projection allows the model to process 1D temporal segments as discrete tokens. To preserve the relative and absolute temporal order of the signal, learnable positional encodings $\mathbf{E}_{pos} \in \mathbb{R}^{N \times d_m}$ are added to the projected embeddings. The resulting sequence of input embeddings $\mathbf{Z}_0$ is formulated as:
+\begin{equation}
+\mathbf{Z}_0 = [\mathbf{x}_p^{(1)}\mathbf{W}_b; \mathbf{x}_p^{(2)}\mathbf{W}_b; \dots; \mathbf{x}_p^{(N)}\mathbf{W}_b] + \mathbf{E}_{pos}
+\end{equation}
+where $\mathbf{Z}_0 \in \mathbb{R}^{N \times d_m}$ serves as the input to the transformer backbone.
+
+The embedded sequence passes through a stack of transformer encoder layers. Each layer consists of a multi-head self-attention (MHSA) sub-layer and a position-wise feed-forward network (FFN). The MHSA mechanism is particularly effective for vibration signals. It allows each segment of the signal to attend to every other segment, regardless of the distance in time. This is key for detecting fault signatures like inner-race faults, where the impulsive pattern is modulated by the shaft rotation and may be separated by long intervals of background noise. The FFN layer then applies non-linear transformations to each token independently, refining the feature representation. Residual connections and layer normalization are used to ensure stable training. The output of the final transformer layer, denoted as $\mathbf{H}_v \in \mathbb{R}^{N \times d_m}$, represents the refined long-range structural features. This encoder effectively reduces the inductive bias of local-receptive field models and enables reliable feature extraction in the presence of industrial background noise. Through this architecture, the TST captures the rhythm of the machine, which is fundamental for subsequent semantic alignment.
+
+\subsection{Semantic Prototyping via LLM}
+
+A major bottleneck in zero-shot fault diagnosis is the construction of a discriminative semantic space. Conventional methods rely on manual attribute engineering (e.g., binary labels for ``impulsive'' or ``harmonic''). Such work is labor-intensive, subjective, and fails to scale to complex industrial systems with hundreds of failure modes. The proposed CMSA-Trans overcomes this by automating semantic generation through an LLM interface, treating the LLM as a virtual domain expert.
+
+The world knowledge of a pre-trained LLM (e.g., GPT-4) is used to generate detailed technical descriptions for each fault mode. Specifically, for each seen class in the training set and unseen class in the test set, a structured prompt is provided: ``Provide a detailed technical description of the vibration characteristics for a [Fault Name] in a bearing, focusing on its frequency components, impact patterns, and resonance bands.'' The LLM generates a text corpus that describes the physical manifestations of the fault, effectively linking the label to mechanical engineering principles. This process is better than manual labeling because the LLM synthesizes information from a large array of technical manuals and research papers.
+
+Table~\ref{tab:llm_descriptions} presents a comparison of the LLM-generated semantic descriptions with traditional word-level embeddings. These textual descriptions are then transformed into fixed-length semantic vectors (prototypes) using a pre-trained language model encoder. In our implementation, we adopt BERT-large with Whole Word Masking (WWM) \cite{reimers2019sentence} to produce high-dimensional semantic embeddings (see Section~\ref{sec:experiments} for details). For a class $y$, the LLM-generated text $T_y$ is encoded into a semantic prototype $\mathbf{a}_y \in \mathbb{R}^{d_s}$, where $d_s$ is the dimensionality of the semantic space. These prototypes $\mathbf{a}_y$ act as anchors in the embedding space. Since the LLM uses external technical knowledge to define these anchors, the resulting semantic space is grounded in the physics of failures. This allows the model to distinguish between similar fault types based on small differences in technical descriptions. These include the specific ball pass frequency (BPF) characteristics or sideband patterns mentioned in the text. Also, because these prototypes are generated in a continuous vector space, the model represents the relationships between faults. For instance, two different seal-rubbing faults naturally have similar semantic vectors. This rich semantic structure enables the cross-modal alignment module to generalize signal features to previously unobserved conditions.
+
+\input{table_1.tex}
+
+\subsection{Cross-Modality Alignment}
+
+The core innovation of the proposed method is the cross-modality alignment module. This module maps the vibration signal features $\mathbf{H}_v$ into the semantic space $\mathcal{S}$ populated by the LLM-derived prototypes. This mapping is not a simple linear projection but a dynamic process that identifies which physical signal features correspond to the technical descriptors. This stage is vital for overcoming the modality gap, where raw numerical data and linguistic concepts reside in different distributions.
+
+A mutual-attention mechanism is used where the signal features $\mathbf{H}_v$ act as the query, and the semantic prototypes of the seen classes $\mathbf{A}_{seen} \in \mathbb{R}^{C_{seen} \times d_s}$ act as the keys and values. This allows the model to learn a cross-modal sensitivity. When the LLM description mentions a ``high-frequency impact,'' the attention mechanism puts more weight on the spectral tokens within $\mathbf{H}_v$ that exhibit such impulsiveness. This dynamic selection process ensures that the model focuses on diagnostic-relevant information rather than background noise. The query ($\mathbf{Q}$), key ($\mathbf{K}$), and value ($\mathbf{V}$) matrices for the alignment layer are defined as:
+\begin{equation}
+\mathbf{Q} = \text{Norm}(\mathbf{H}_v) \mathbf{W}_Q, \quad \mathbf{K} = \mathbf{A}_{seen} \mathbf{W}_K, \quad \mathbf{V} = \mathbf{A}_{seen} \mathbf{W}_V
+\end{equation}
+where $\mathbf{W}_Q$, $\mathbf{W}_K$, and $\mathbf{W}_V$ are learnable weight matrices. The cross-modality attention score is then computed to aggregate the signal features aligned with the semantic context:
+\begin{equation}
+\mathbf{H}_{aligned} = \text{softmax}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d_k}}\right) \mathbf{V}
+\end{equation}
+where $\mathbf{H}_{aligned}$ represents the semantic-aware signal representation and $d_k$ is the scaling factor. This ensures that the alignment is driven by the intrinsic relationship between signal morphology and technical terminology.
+
+Following the attention layer, global average pooling is applied to the aligned sequence, which is then passed through a final projection layer $\mathbf{W}_p \in \mathbb{R}^{d_m \times d_s}$. The final signal embedding $\mathbf{v}_x \in \mathbb{R}^{d_s}$ in the semantic space is given by:
+\begin{equation}
+\mathbf{v}_x = \text{ReLU}(\text{Pooling}(\mathbf{H}_{aligned}) \mathbf{W}_p)
+\end{equation}
+By mapping $\mathbf{v}_x$ into the same $d_s$-dimensional space as the LLM prototypes, a unified platform is created for direct similarity measurement between signals and textual concepts. This projection layer $\mathbf{W}_p$ is basically a translation matrix that converts structural vibration features into the semantic dialect of the LLM.
+
+\subsection{Training and Optimization}
+
+The training phase aims to align the signal embedding $\mathbf{v}_x$ with its corresponding semantic prototype $\mathbf{a}_{y}$ for seen classes. A contrastive alignment loss \cite{chen2020simple} based on cosine similarity is used to pull the signal embedding towards its correct prototype while pushing it away from all other prototypes in the seen set. This helps the learning of an embedding space where clusters are formed based on health-state semantics. This contrastive approach is strong against intra-class variations, as it focuses on invariant semantic features.
+
+For a training batch of size $B$, the contrastive alignment loss $\mathcal{L}_{align}$ is defined as a multi-class cross-entropy variant applied to cosine distances:
+\begin{equation}
+\mathcal{L}_{align} = -\frac{1}{B} \sum_{i=1}^{B} \log \frac{\exp(\text{cos}(\mathbf{v}_x^{(i)}, \mathbf{a}_{y_i}) / \tau)}{\sum_{j \in \mathcal{Y}_{seen}} \exp(\text{cos}(\mathbf{v}_x^{(i)}, \mathbf{a}_j) / \tau)}
+\end{equation}
+where $\text{cos}(\cdot)$ is the cosine similarity between two vectors, $\tau$ is a temperature hyperparameter, and $\mathcal{Y}_{seen}$ is the set of seen class labels. In addition, a standard cross-entropy classification loss $\mathcal{L}_{cls}$ is applied to the signal encoder output to maintain discriminative power on seen classes. The total training objective combines both losses:
+\begin{equation}
+\mathcal{L}_{total} = \lambda_{cls} \mathcal{L}_{cls} + \lambda_{align} \mathcal{L}_{align}
+\end{equation}
+where $\lambda_{cls} = 1.0$ and $\lambda_{align} = 0.5$ are the classification and cross-modal alignment weights, respectively (see Table~\ref{tab:hyperparameters}). This dual-objective formulation ensures that the model simultaneously learns discriminative seen-class boundaries and a well-structured cross-modal embedding space for zero-shot generalization.
+
+During inference, a test vibration signal $\mathbf{X}_{test}$ is passed through the signal encoder and alignment module to obtain its semantic embedding $\mathbf{v}_{test}$. Zero-shot classification is then performed by identifying the nearest semantic prototype among all candidate classes, including unseen ones. The predicted label $\hat{y}$ is determined by the following utility function:
+\begin{equation}
+\hat{y} = \arg\max_{c \in \mathcal{Y}_{all}} \text{cos}(\mathbf{v}_{test}, \mathbf{a}_c)
+\end{equation}
+where $\mathcal{Y}_{all} = \mathcal{Y}_{seen} \cup \mathcal{Y}_{unseen}$ encompasses both seen and unseen fault categories, and $\mathbf{a}_c$ denotes the LLM-generated semantic prototype for class $c$. This formulation enables the model to generalize to new fault types without retraining. The semantic prototypes for unseen classes are generated independently by the LLM.
+
+%% ===================================================================
+%%  SECTION IV: EXPERIMENTS AND RESULTS
+%% ===================================================================
+\section{Experiments and Results}
+\label{sec:experiments}
+
+In this section, we conduct extensive experiments to evaluate the performance of the proposed Cross-Modality Semantic Alignment Transformer (CMSA-Trans) for the zero-shot fault diagnosis of rotating machinery. The evaluation focuses on the ability of the model to generalize to unseen fault categories by using Large Language Model (LLM)-generated semantic descriptions.
+
+\subsection{Experimental Setup}
+
+To validate the effectiveness of the proposed method, we use two widely recognized mechanical fault diagnosis benchmarks: the Case Western Reserve University (CWRU) bearing dataset and the Southeast University (SEU) gearbox dataset. These datasets provide a full evaluation across different rotating components (bearings vs. gears) and varying levels of background noise and mechanical complexity. A summary of the datasets is provided in Table~\ref{tab:datasets}.
+
+\input{table_2.tex}
+
+The CWRU bearing dataset is a gold-standard benchmark in the domain of rotating machinery health monitoring, consisting of vibration measurements acquired under a wide spectrum of drive-end and fan-end motor-driven states. In this study, we use signals collected from a 2-hp Reliance Electric motor-driven mechanical system across four distinct operational load conditions (0, 1, 2, and 3 hp) and varying rotating frequencies. The primary data segments are sampled at a rate of 12 kHz, which captures the fine-grained high-frequency transient impacts characteristic of industrial faults. Our experimental corpus includes 3,500 signal segments, where each segment is meticulously labeled according to its fault diameter (0.007, 0.014, 0.021, or 0.028 inches) and localized component position.
+
+For our specialized zero-shot experimental configuration, we partition the fault categories into seen and unseen sets following a rigorous protocol to simulate real-world failure detection scenarios. Specifically, health states in the seen training set include the normal baseline (N), ball-induced defect (B, 0.007'' diameter), and outer race fault (OR, 0.014'' diameter) under a steady-state condition of 1797 rpm. In contrast, inner race faults (IR, 0.021'' diameter) and complex multi-component fault combinations (such as a 0.028'' ball failure) are defined as unseen categories, which are deliberately withheld during the training phase to test the zero-shot inference capability of the model. The data splitting strategy follows an 80/20 ratio for seen classes, where 80\% (2,000 samples) are used for optimization and 20\% (500 samples) are used for validation. The 1,000 samples belonging to unseen classes are reserved exclusively for the final zero-shot evaluation phase.
+
+The SEU gearbox dataset, sourced from the Southeast University dynamics laboratory, provides a more challenging testbed by introducing complex mechanical interactions within a simulated industrial gearbox architecture. This system features a multi-stage transmission involving a motor, a planetary gear reducer, a parallel shaft gearbox, and a magnetic powder brake for torque loading. The presence of overlapping vibration signals from diverse gear pairs creates a significant cross-component noise environment. Data segments are sampled at 5120 Hz across rotating speeds of 20 Hz and 30 Hz under varying operational loads of 0 V and 7.3 V. The dataset contains 4,000 segments, each representing distinct health conditions under different load profiles. Within this dataset, we characterize five prevalent gearbox health states: the normal monitoring state, the chipped tooth gear failure, the worn tooth condition, the catastrophic broken tooth state, and the root crack fault. For our cross-modality zero-shot alignment experiments, we designate the Normal, Broken, and Chipped states as the seen classes (consisting of 2,400 training/validation samples), while the Worn Tooth and Root Crack faults are reserved as the unseen target categories (1,600 test samples, 800 per class). Technical text-based semantic descriptors for these specific faults are generated by querying the GPT-4 LLM with technical prompt engineering.
+
+Signal preprocessing is a high-priority phase for ensuring the reliability and efficiency of the transformer-based architectural encoder. The raw vibration signals, often contaminated by industrial environment interference, are first segmented using an overlapping sliding window approach. We employ a fixed window size of 1024 data points combined with an overlap of 512 samples. This segmentation strategy is important. It ensures sufficient data diversity for model generalization. It also preserves critical transient features---such as periodic impacts and impulsive components---that are necessary for accurate zero-shot fault identification. Subsequently, each segment undergoes Gaussian Z-score normalization, which is key to eliminate the bias from stationary DC components and minimize the influence of varying operating conditions. To further enhance the spectral representation, we apply a Hanning window to reduce spectral leakage before feeding the signal into the feature extractor. The resulting normalized temporal sequences, mathematically represented as $X \in \mathbb{R}^{1024 \times 1}$, are used as the direct input tensors.
+
+\subsection{Implementation Details}
+
+The proposed CMSA-Trans framework is implemented using the PyTorch 2.1 deep learning library, using its dynamic graph capabilities for multi-modal fusion. The architecture is modularly designed and optimized for GPU parallelization, consisting of a custom three-layer one-dimensional Convolutional Neural Network (1D-CNN) backbone for deep local feature extraction, followed by a four-layer Transformer encoder block integrated with eight multi-head self-attention units. The final embedding dimension $d_{model}$ within the latent space of the Transformer is set to 256, which provides an optimal balance between representational expressiveness and computational efficiency. The detailed hyperparameter settings are listed in Table~\ref{tab:hyperparameters}.
+
+\input{table_3.tex}
+
+For the language processing branch, we use the pre-trained BERT-large model with Whole Word Masking (WWM). The LLM-generated technical fault semantics are processed by the BERT encoder to produce 1024-dimensional semantic embedding vectors. These linguistic representations are then mapped into the shared 256-dimensional joint embedding space through a dedicated two-layer feed-forward neural network (FFN), which acts as a semantic projection head. The model is optimized using the Adam optimizer with a weight decay coefficient of $1e$-$4$. The initial learning rate is set to 0.001, and we employ a Cosine Annealing scheduler to dynamically adjust the learning rate, allowing for stable convergence over a 200-epoch training trajectory. We use a batch size of 64 to maintain high gradient fidelity during the stochastic optimization process. All training and inference tasks are performed on a workstation equipped with an NVIDIA GeForce RTX 3090 GPU (24GB VRAM) and an Intel Core i9-12900K processor. To eliminate the stochastic variability of random weight initialization and ensure the statistical reliability of the findings, every experiment is executed 10 times independently.
+
+\subsection{Zero-Shot Recognition Performance}
+
+The zero-shot diagnostic performance of the CMSA-Trans is rigorously benchmarked against five leading baseline methods to highlight its superiority in cross-modality alignment. These baselines include: (1) Wide Deep Convolutional Neural Network (WDCNN) \cite{zhang2017new}, a classic CNN-based model adapted for ZSL via attribute matching; (2) ZSL-GAN \cite{xian2019fvaegan}, a generative adversarial network designed to synthesize unseen class features; (3) Deep Multi-modal ZSL (DMZSL) \cite{schonfeld2019generalized}, which uses a shared subspace for vision and language; (4) Attribute-based ZSL (AZSL) \cite{lampert2014attribute}, relying on manual engineer-defined fault attributes; and (5) Bidirectional Long Short-Term Memory for Zero-Shot Learning (Bi-LSTM-ZSL) \cite{chen2019bearing}, which captures temporal dependencies but lacks specialized semantic alignment layers.
+
+The zero-shot diagnosis results on the CWRU bearing dataset and SEU gearbox dataset are summarized in Tables~\ref{tab:cwru_results} and~\ref{tab:seu_results}, respectively. CMSA-Trans demonstrates a marked performance advantage across all fault categories \cite{li2022zero, lu2017deep}.
+
+\input{table_4.tex}
+
+On the CWRU bearing dataset, CMSA-Trans achieves the highest average zero-shot accuracy among the ZSL methods. While GAN-based methods often struggle with instability and generate noisy feature distributions that lack physical consistency \cite{lei2020applications}, the Transformer-based CMSA-Trans architecture provides a stable and structured mapping between the vibration signal patches and the LLM semantic tokens. Deep architectures like WDCNN often fail to capture subtle fault signatures; their fixed kernels are insensitive to the long-range temporal periodicity of inner race impacts \cite{hochreiter1997long}. In contrast, our model treats each impact as a distinct semantic token, allowing for a more granular identification process.
+
+\input{table_5.tex}
+
+On the more complex SEU gearbox dataset, the advantages of the semantic alignment strategy are more pronounced. Traditional attribute-based methods (AZSL) drop significantly in accuracy. The performance gap shows that the rich, descriptive technical semantics provided by LLMs act as a superior bridge for knowledge transfer compared to sparse binary attributes. Root faults exhibit unique spectral signatures in the sideband frequencies. These are explicitly detailed in our LLM prompts but are ignored by LSTM-based sequence models that only look at global temporal patterns \cite{zhang2021attention}. The confusion matrices for the unseen categories on the CWRU and SEU datasets are shown in Figs.~\ref{fig:cwru_cm} and~\ref{fig:seu_cm}, respectively. The high precision and recall across unseen categories demonstrate that CMSA-Trans is highly effective at generalizing to new mechanical health states without requiring any labeled signal data during training, showcasing its potential for practical prognostic and health management (PHM) applications \cite{jia2016deep}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{plot_4_confusion_matrix_cwru.png}
+\caption{Confusion matrix of zero-shot diagnosis on the CWRU bearing dataset. The model demonstrates high classification accuracy for unseen fault categories.}
+\label{fig:cwru_cm}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{plot_5_confusion_matrix_seu.png}
+\caption{Confusion matrix of zero-shot diagnosis on the SEU gearbox dataset. The semantic alignment enables reliable discrimination among gear faults.}
+\label{fig:seu_cm}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{plot_6_accuracy_vs_snr.png}
+\caption{Zero-shot diagnosis accuracy versus signal-to-noise ratio (SNR) under additive white Gaussian noise. CMSA-Trans maintains robust performance at low SNR levels.}
+\label{fig:snr_curve}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{plot_8_convergence_curves.png}
+\caption{Training convergence curves of CMSA-Trans on the CWRU and SEU datasets. The cross-modal alignment loss converges steadily within 200 epochs.}
+\label{fig:convergence}
+\end{figure}
+
+As shown in Fig.~\ref{fig:convergence}, the training convergence curves reveal that the cross-modal alignment loss decreases rapidly during the first 50 epochs and stabilizes after approximately 150 epochs on both datasets. The CWRU dataset converges faster due to its simpler fault taxonomy and higher signal quality, while the SEU dataset requires additional iterations to resolve the overlapping spectral signatures from multi-stage gear interactions. The smooth convergence behavior without oscillation confirms the stability of the proposed joint optimization strategy, where the signal encoder and semantic alignment module are trained end-to-end with a balanced combination of classification loss and contrastive alignment loss. The final training loss values are 0.023 and 0.041 for the CWRU and SEU datasets, respectively, indicating that the model achieves a tight fit to the cross-modal embedding space without overfitting, as validated by the consistent validation accuracy throughout the later training epochs. These convergence characteristics demonstrate that the proposed architecture is computationally efficient and suitable for practical deployment scenarios where training resources may be limited.
+
+\subsection{Ablation Study}
+
+To further dissect the contribution of each component within the CMSA-Trans framework, we conduct a systematic ablation study on both the CWRU and SEU datasets. We evaluate four distinct model configurations: (1) CMSA-Trans-Full: the proposed architecture with all components active; (2) CMSA-Trans-NoLLM: uses traditional 20-dimensional manual attribute vectors instead of 1024-dimensional LLM-generated semantic embeddings; (3) CMSA-Trans-NoAttn: replaces the cross-modality attention alignment module with global average pooling followed by a concatenation fusion of signal and text features; (4) CMSA-Trans-Base: replaces the Transformer encoder with a standard one-dimensional Residual Network (1D-ResNet) structure, thereby removing the self-attention mechanism for temporal dependency modeling.
+
+The quantitative results are presented in Table~\ref{tab:ablation}. For the CWRU dataset, CMSA-Trans-Full achieves 89.4\% accuracy, while CMSA-Trans-NoLLM, CMSA-Trans-NoAttn, and CMSA-Trans-Base achieve 81.6\%, 83.9\%, and 85.1\%, respectively. On the more challenging SEU dataset, CMSA-Trans-Full maintains a high 82.5\%, whereas the variants drop markedly to 74.7\%, 77.0\%, and 78.4\%.
+
+\input{table_6.tex}
+
+The removal of LLM-generated semantics (CMSA-Trans-NoLLM) results in the most significant performance degradation, with a 7.8\% drop in zero-shot accuracy on the SEU dataset. This confirms our hypothesis that the ``semantic bottleneck'' in traditional ZSL for fault diagnosis is caused by the low information density and subjective nature of manual attributes. LLMs provide a high-dimensional, continuous semantic space that better preserves the transitive relations between different fault types by encoding linguistic relationships.
+
+The exclusion of the cross-attention mechanism (CMSA-Trans-NoAttn) leads to a 5.5\% accuracy loss. This indicates that local alignment between specific signal segments (e.g., transient impacts) and semantic keywords is key for fine-grained fault recognition. Simple global fusion fails to capture the intricate temporal-semantic correlations. Finally, the comparison with CMSA-Trans-Base shows that the self-attention layers of the Transformer are better at capturing the long-range periodic nature of rotating machinery vibrations compared to the local receptive fields of standard residual convolutions.
+
+\subsection{Parameter Sensitivity and Robustness}
+
+We conduct a sensitivity analysis to determine the optimal configuration of the latent embedding space and evaluate the robustness of the model against measurement noise. Fig.~\ref{fig:sensitivity} illustrates the variation in zero-shot accuracy as the hidden embedding dimension $d_{model}$ is tuned from 64 to 512. We observe that increasing the dimension from 64 to 256 yields a sharp improvement in performance as the model gains the capacity to represent complex cross-modal relationships between the vibration and semantic domains. However, a further increase to 512 results in a slight decrease in validation accuracy, likely due to optimization challenges in the higher-dimensional space. Therefore, 256 is selected as the optimal dimension for our final architecture.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_sensitivity.png}
+\caption{Parameter sensitivity analysis: zero-shot diagnosis accuracy versus the latent embedding dimension $d_{model}$. The optimal performance is achieved at $d_{model} = 256$.}
+\label{fig:sensitivity}
+\end{figure}
+
+The robustness of the proposed CMSA-Trans is an important factor for its deployment in harsh industrial environments. To test this, we inject Additive White Gaussian Noise (AWGN) into the raw test signals to simulate different Signal-to-Noise Ratios (SNR), ranging from $-10$ dB to 10 dB. As shown in Fig.~\ref{fig:snr_curve}, CMSA-Trans maintains a relatively stable performance even in low SNR conditions. At SNR = 0 dB, CMSA-Trans achieves 75.6\% accuracy, which is 12.3\% higher than the performance of WDCNN under the same conditions. This superior noise resistance is attributed to the patch embedding layer that extracts noise-invariant local features and the Transformer-based attention mechanism that acts as a temporal filter, focusing on the quasi-periodic fault impacts. These results emphasize that CMSA-Trans is not only accurate in laboratory conditions but also reliable for actual field diagnosis where noise interference is inevitable.
+
+The embedding similarity metrics before and after cross-modal alignment are summarized in Table~\ref{tab:similarity_metrics}. The results confirm that the alignment module substantially increases the cosine similarity between signal features and semantic prototypes while reducing the Euclidean distance and KL-divergence.
+
+\input{table_7.tex}
+
+\subsection{Visual Analysis}
+
+In this subsection, we provide a visual interpretation of the alignment mechanism to explain why the model generalizes effectively to unseen classes. We first use the t-Distributed Stochastic Neighbor Embedding (t-SNE) algorithm to project the 256-dimensional features from the alignment layer into a 2D space. As illustrated in Fig.~\ref{fig:tsne}, the signal features of the unseen classes (Inner Race and Combined Faults) form distinct, high-density clusters that are spatially adjacent to their corresponding LLM-generated semantic prototypes. The spatial distance between the clusters in the embedding space mirrors the semantic distance between their textual descriptions, validating that the model successfully learns a physically meaningful semantic manifold.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.75\textwidth]{fig_tsne_gemini.png}
+\caption{t-SNE visualization of the cross-modal embedding space. Signal features (colored dots) and LLM-generated semantic prototypes (star markers) are projected into a 2D space. Unseen classes form well-separated clusters adjacent to their corresponding semantic anchors.}
+\label{fig:tsne}
+\end{figure*}
+
+We also visualize the attention scores between the input vibration signal patches and the semantic tokens to assess the explainability of our zero-shot predictions. As shown in the attention heatmaps in Fig.~\ref{fig:attn_map}, when presented with an unseen inner race fault signal, the attention heads consistently assign high weights to semantic tokens such as ``periodic peak,'' ``carrier frequency,'' and ``bearing housing resonance.'' This indicates that the CMSA-Trans is able to recognize the physical characteristics within the raw waveform and match them with the conceptual keywords provided by the LLM. This evidence suggests that the cross-modality semantic alignment transformer establishes a deep logical connection between the physical laws of machinery failure and natural language descriptions. Such a mechanism provides a transparent and strong foundation for autonomous fault diagnosis in smart manufacturing systems, allowing engineers to verify the diagnostic logic of the model via human-understandable text alignment.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_attn_map.png}
+\caption{Cross-modal attention heatmaps for an unseen inner race fault signal. The attention weights highlight the alignment between signal patches and semantic tokens related to fault-characteristic frequency components.}
+\label{fig:attn_map}
+\end{figure}
+
+%% ===================================================================
+%%  SECTION V: CONCLUSION
+%% ===================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper presents the Cross-Modality Semantic Alignment Transformer (CMSA-Trans), which represents a new approach to the zero-shot fault diagnosis of rotating machinery. By using the expansive, high-dimensional linguistic knowledge from Large Language Models (LLMs), CMSA-Trans effectively removes the traditional dependency on labor-intensive and error-prone manual attribute labeling. The integration of a Time Series Transformer (TST) encoder with a cross-attention mechanism enables smooth alignment of raw vibration signal features with semantic fault prototypes generated by LLMs. Experimental results on two datasets, Case Western Reserve University (CWRU) and Southeast University (SEU), show that CMSA-Trans not only achieves high accuracy in zero-shot scenarios but also shows reliable generalization across unseen fault types. This research shows that bridging the gap between physical sensor data and large-scale semantic descriptors is an effective strategy for intelligent industrial maintenance. Future work will focus on expanding the framework to multi-source domain adaptation to further improve cross-machine reliability and investigating the deployment of lightweight CMSA-Trans variants for edge computing environments, enabling real-time, on-device diagnostic capabilities in industrial Internet of Things (IoT) networks.
+
+%% ===================================================================
+%%  REFERENCES
+%% ===================================================================
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

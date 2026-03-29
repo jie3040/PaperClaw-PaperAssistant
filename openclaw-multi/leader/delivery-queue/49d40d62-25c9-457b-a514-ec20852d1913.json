@@ -1,0 +1,20 @@
+{
+  "id": "49d40d62-25c9-457b-a514-ec20852d1913",
+  "enqueuedAt": 1774772497298,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "看了 version_tracker 和 Checker 报告。Checker 对 v8 审查结果是 PASS，0 error，所有引用/标签/图表完整。而且 Reviewer 在 16:15 已经给了 ACCEPT。\n\n根据流程，阶段 6（Checker）和阶段 7（Reviewer）都已通过，PDF 已在 final/v8/paper.pdf（12页，17MB）。现在进入阶段 8 → 通知用户审查。\n\nChecker LaTeX 审查通过 ✅ — v8 零错误，38 引用全匹配，10 图 7 表完整。\n\n加上之前 Reviewer 最终审查也 ACCEPT，流程阶段 6+7 全部通过。\n\n📄 final/v8/paper.pdf（12页）已就绪，等你审查。需要我把 PDF 发给你吗？"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "看了 version_tracker 和 Checker 报告。Checker 对 v8 审查结果是 PASS，0 error，所有引用/标签/图表完整。而且 Reviewer 在 16:15 已经给了 ACCEPT。\n\n根据流程，阶段 6（Checker）和阶段 7（Reviewer）都已通过，PDF 已在 final/v8/paper.pdf（12页，17MB）。现在进入阶段 8 → 通知用户审查。\n\nChecker LaTeX 审查通过 ✅ — v8 零错误，38 引用全匹配，10 图 7 表完整。\n\n加上之前 Reviewer 最终审查也 ACCEPT，流程阶段 6+7 全部通过。\n\n📄 final/v8/paper.pdf（12页）已就绪，等你审查。需要我把 PDF 发给你吗？"
+  },
+  "retryCount": 1,
+  "lastAttemptAt": 1774772498582,
+  "lastError": "Request failed with status code 400"
+}

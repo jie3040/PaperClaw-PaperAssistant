@@ -68,7 +68,7 @@
         "mode": "safeguard"
       },
       "heartbeat": {
-        "every": "5m"
+        "every": "10m"
       }
     }
   },

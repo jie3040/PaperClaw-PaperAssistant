@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: paper.aux
+The style file: plain.bst
+Database file #1: references.bib
+Warning--can't use both volume and number fields in lampert2014attribute
+Warning--can't use both volume and number fields in wang2019zero
+Warning--can't use both volume and number fields in xian2018zero
+You've used 38 entries,
+            2118 wiz_defined-function locations,
+            713 strings with 11431 characters,
+and the built_in function-call counts, 16894 in all, are:
+= -- 1627
+> -- 1009
+< -- 17
++ -- 402
+- -- 358
+* -- 1314
+:= -- 2745
+add.period$ -- 120
+call.type$ -- 38
+change.case$ -- 287
+chr.to.int$ -- 0
+cite$ -- 41
+duplicate$ -- 573
+empty$ -- 1161
+format.name$ -- 358
+if$ -- 3502
+int.to.chr$ -- 0
+int.to.str$ -- 38
+missing$ -- 39
+newline$ -- 193
+num.names$ -- 76
+pop$ -- 293
+preamble$ -- 1
+purify$ -- 250
+quote$ -- 0
+skip$ -- 433
+stack$ -- 0
+substring$ -- 1069
+swap$ -- 175
+text.length$ -- 17
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 150
+warning$ -- 3
+while$ -- 142
+width$ -- 40
+write$ -- 423
+(There were 3 warnings)
