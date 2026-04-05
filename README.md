@@ -37,6 +37,60 @@ PaperClaw 通过 9 个独立 AI Agent 分工协作，自动化学术论文写作
 
 ---
 
+## 🆕 v1.7 更新（2026-04）
+
+### 新增 Writer 扩写/缩写 Skill
+
+当 Reviewer 内容对齐审查指出字数偏差时，Leader 派发修改任务给 Writer 并附上对应 skill：
+
+**扩写模式**（`expand_en.md`）：通过深挖隐含结论、增强逻辑连接、升级学术表达来微幅扩充（每次约 5-15 词），严禁恶意注水。
+
+**缩写模式**（`shrink_en.md`）：通过句法压缩、剔除冗余填充词来微幅缩减（每次约 5-15 词），保留所有核心信息和实验参数。
+
+### 新增铁律：Leader 禁止直接修改论文内容
+
+Reviewer 返回审查意见后，Leader **必须**将修改任务分发给对应 Agent（尤其是 Writer），不得自己直接修改 .tex 文件。Leader 可自行处理的仅限文件路径修复、版本追踪更新等非内容性操作。
+
+### 新增 2 个 Skill 文件
+
+| 文件 | 用途 | 使用者 |
+|------|------|--------|
+| `expand_en.md` | 英文学术微幅扩写 | Writer |
+| `shrink_en.md` | 英文学术微幅缩减 | Writer |
+
+---
+
+## 🆕 v1.6 更新（2026-03）
+
+### 新增 Skill 系统 — Writer 润色 & 去AI痕迹
+
+引入 `shared/skills/` 目录，存放可复用的专业 prompt。Writer 新增两种工作模式：
+
+**润色模式（阶段 4.6）**：内容对齐审查通过后，对每个 section/subsection 逐个进行学术润色。支持中英文两套 skill（`polish_en.md` / `polish_zh.md`），Leader 根据论文语言自动选择。修正语法、优化句式、统一术语、强化逻辑衔接。
+
+**去AI痕迹模式（阶段 4.7）**：润色后再做一轮改写，消除 AI 生成的机械痕迹。替换 AI 典型用词（leverage → use, delve into → investigate）、移除生硬过渡词、通过逻辑递进自然衔接。同样支持中英文两套 skill（`deai_en.md` / `deai_zh.md`）。
+
+### 新增 Reviewer 逻辑检查 & 缩写检查
+
+Reviewer 新增两种审查模式：
+
+**逻辑检查（阶段 7.5）**：最终对齐审查通过后，对整篇论文做逻辑严谨性检查——排查因果断裂、偷换概念、循环论证、结论超出论据范围等问题。不通过打回修改。
+
+**缩写检查（阶段 7.6）**：检查全文缩写使用规范性——首次出现是否给出全称、同一术语是否一致、是否过度使用缩写。不通过打回修改。
+
+### 新增 6 个 Skill 文件
+
+| 文件 | 用途 | 使用者 |
+|------|------|--------|
+| `polish_en.md` | 英文学术润色 | Writer |
+| `polish_zh.md` | 中文学术润色 | Writer |
+| `deai_en.md` | 英文去AI痕迹 | Writer |
+| `deai_zh.md` | 中文去AI痕迹 | Writer |
+| `logic_check.md` | 逻辑严谨性检查 | Reviewer |
+| `abbrev_check.md` | 缩写规范性检查 | Reviewer |
+
+---
+
 ## 🆕 v1.5 更新（2026-03）
 
 ### 新增 Mode B — 结果先行模式
@@ -70,37 +124,6 @@ PaperClaw 通过 9 个独立 AI Agent 分工协作，自动化学术论文写作
 - **图片预处理**：Mode B 自动检测子图文件夹，PIL 拼接为合并图
 - **Editor subfigure 支持**：子图使用 subcaption 环境，图表三件套铁律
 - **引用数量目标**：设为黄金标准中位数，不是下限
-
----
-
-## 🆕 v1.6 更新（2026-03）
-
-### 新增 Skill 系统 — Writer 润色 & 去AI痕迹
-
-引入 `shared/skills/` 目录，存放可复用的专业 prompt。Writer 新增两种工作模式：
-
-**润色模式（阶段 4.6）**：内容对齐审查通过后，对每个 section/subsection 逐个进行学术润色。支持中英文两套 skill（`polish_en.md` / `polish_zh.md`），Leader 根据论文语言自动选择。修正语法、优化句式、统一术语、强化逻辑衔接。
-
-**去AI痕迹模式（阶段 4.7）**：润色后再做一轮改写，消除 AI 生成的机械痕迹。替换 AI 典型用词（leverage → use, delve into → investigate）、移除生硬过渡词、通过逻辑递进自然衔接。同样支持中英文两套 skill（`deai_en.md` / `deai_zh.md`）。
-
-### 新增 Reviewer 逻辑检查 & 缩写检查
-
-Reviewer 新增两种审查模式：
-
-**逻辑检查（阶段 7.5）**：最终对齐审查通过后，对整篇论文做逻辑严谨性检查——排查因果断裂、偷换概念、循环论证、结论超出论据范围等问题。不通过打回修改。
-
-**缩写检查（阶段 7.6）**：检查全文缩写使用规范性——首次出现是否给出全称、同一术语是否一致、是否过度使用缩写。不通过打回修改。
-
-### 新增 6 个 Skill 文件
-
-| 文件 | 用途 | 使用者 |
-|------|------|--------|
-| `polish_en.md` | 英文学术润色 | Writer |
-| `polish_zh.md` | 中文学术润色 | Writer |
-| `deai_en.md` | 英文去AI痕迹 | Writer |
-| `deai_zh.md` | 中文去AI痕迹 | Writer |
-| `logic_check.md` | 逻辑严谨性检查 | Reviewer |
-| `abbrev_check.md` | 缩写规范性检查 | Reviewer |
 
 ---
 
