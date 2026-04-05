@@ -1,0 +1,27 @@
+{
+  "id": "707865d6-491d-484a-bddc-9b37830fb31b",
+  "enqueuedAt": 1774527165442,
+  "channel": "feishu",
+  "to": "user:ou_6eab9fc7f84debbe25305e3113cb609b",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "表格从 12 张精简到 8 张 ✅。现在补充引用到 ≥35 条。",
+      "replyToTag": false,
+      "replyToCurrent": false,
+      "audioAsVoice": false
+    }
+  ],
+  "threadId": null,
+  "replyToId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "表格从 12 张精简到 8 张 ✅。现在补充引用到 ≥35 条。",
+    "mediaUrls": [],
+    "isGroup": false
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775112808959,
+  "lastError": "Request failed with status code 400"
+}

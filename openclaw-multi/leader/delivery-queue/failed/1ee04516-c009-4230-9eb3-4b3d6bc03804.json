@@ -1,0 +1,27 @@
+{
+  "id": "1ee04516-c009-4230-9eb3-4b3d6bc03804",
+  "enqueuedAt": 1774531657547,
+  "channel": "feishu",
+  "to": "user:ou_6eab9fc7f84debbe25305e3113cb609b",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "Now update SOUL.md with the new v9 workflow insights:",
+      "replyToTag": false,
+      "replyToCurrent": false,
+      "audioAsVoice": false
+    }
+  ],
+  "threadId": null,
+  "replyToId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Now update SOUL.md with the new v9 workflow insights:",
+    "mediaUrls": [],
+    "isGroup": false
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775112817542,
+  "lastError": "Request failed with status code 400"
+}

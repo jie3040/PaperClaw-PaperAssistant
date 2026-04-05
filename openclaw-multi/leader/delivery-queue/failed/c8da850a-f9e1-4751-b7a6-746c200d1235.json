@@ -1,0 +1,20 @@
+{
+  "id": "c8da850a-f9e1-4751-b7a6-746c200d1235",
+  "enqueuedAt": 1774772581422,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "文件确认到位，1126 词，内容包含位置编码公式、GZSL/hubness 定义、LLM embedding 对比，符合要求。\n\n现在看下当前项目进度，确认下一步该做什么。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "文件确认到位，1126 词，内容包含位置编码公式、GZSL/hubness 定义、LLM embedding 对比，符合要求。\n\n现在看下当前项目进度，确认下一步该做什么。"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775130247549,
+  "lastError": "Request failed with status code 400"
+}

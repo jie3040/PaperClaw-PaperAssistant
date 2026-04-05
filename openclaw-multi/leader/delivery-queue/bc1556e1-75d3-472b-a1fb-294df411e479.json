@@ -1,0 +1,20 @@
+{
+  "id": "bc1556e1-75d3-472b-a1fb-294df411e479",
+  "enqueuedAt": 1775202338803,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "✅ **Surveyor 回报确认 — 阶段 1 完成**\n\n文献检索产出已写入 `/home/liaowenjie/.openclaw-multi/shared/paper-project-9/references/`，内容摘要如下：\n\n---\n\n**📚 检索成果：34 篇文献，覆盖 2020-2025**\n\n| 分组 | 数量 | 主题 |\n|------|------|------|\n| a) MLLM/LLM/VLM 故障诊断 | 10 篇 | MMFault, LLM4FD, FaultGPT, MM-IFD 等 |\n| b) 零样本/少样本诊断 | 8 篇 | 原型网络、MAML、对比学习、GNN |\n| c) 跨域故障诊断 | 8 篇 | 迁移学习、域适应、GZSL |\n| d) 传统深度学习基线 | 8 篇 | CNN、Transformer、GAN、ViT |\n\n**核心发现：**\n- 2024-2025 趋势明显向基础模型（Foundation Models）转移\n- MLLMs/VLMs 在零/少样本场景显著优于传统 DL\n- 跨域方法以对抗训练和 MMD 为主流\n- 未来方向：MLLMs + 边缘实时部署用于工业 PHM\n\n---\n\n**⏭️ 下一步：阶段 1.5 — Leader 精简调研报告**\n\n当前 `survey_report.md` 为 112 行，需精简至 <5KB 后再发给 Ideator，准备进入阶段 2（创意生成）。\n\n是否现在执行阶段 1.5 精简并发送给 Ideator？"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "✅ **Surveyor 回报确认 — 阶段 1 完成**\n\n文献检索产出已写入 `/home/liaowenjie/.openclaw-multi/shared/paper-project-9/references/`，内容摘要如下：\n\n---\n\n**📚 检索成果：34 篇文献，覆盖 2020-2025**\n\n| 分组 | 数量 | 主题 |\n|------|------|------|\n| a) MLLM/LLM/VLM 故障诊断 | 10 篇 | MMFault, LLM4FD, FaultGPT, MM-IFD 等 |\n| b) 零样本/少样本诊断 | 8 篇 | 原型网络、MAML、对比学习、GNN |\n| c) 跨域故障诊断 | 8 篇 | 迁移学习、域适应、GZSL |\n| d) 传统深度学习基线 | 8 篇 | CNN、Transformer、GAN、ViT |\n\n**核心发现：**\n- 2024-2025 趋势明显向基础模型（Foundation Models）转移\n- MLLMs/VLMs 在零/少样本场景显著优于传统 DL\n- 跨域方法以对抗训练和 MMD 为主流\n- 未来方向：MLLMs + 边缘实时部署用于工业 PHM\n\n---\n\n**⏭️ 下一步：阶段 1.5 — Leader 精简调研报告**\n\n当前 `survey_report.md` 为 112 行，需精简至 <5KB 后再发给 Ideator，准备进入阶段 2（创意生成）。\n\n是否现在执行阶段 1.5 精简并发送给 Ideator？"
+  },
+  "retryCount": 3,
+  "lastAttemptAt": 1775265305930,
+  "lastError": "Request failed with status code 400"
+}

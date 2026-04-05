@@ -1,0 +1,20 @@
+{
+  "id": "c6751b7b-a018-4892-97f2-e06268bb6ceb",
+  "enqueuedAt": 1775184366519,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Abstract (177w) and conclusion (200w) are in v3. Still waiting for the other 3 polish tasks: intro, background, method, and experiments. I'll wait for those to come in before proceeding.\n\nNO_REPLY"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Abstract (177w) and conclusion (200w) are in v3. Still waiting for the other 3 polish tasks: intro, background, method, and experiments. I'll wait for those to come in before proceeding.\n\nNO_REPLY"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775265302282,
+  "lastError": "Request failed with status code 400"
+}

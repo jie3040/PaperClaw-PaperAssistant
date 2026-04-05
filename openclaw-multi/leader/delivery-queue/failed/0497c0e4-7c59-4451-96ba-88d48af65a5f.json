@@ -1,0 +1,20 @@
+{
+  "id": "0497c0e4-7c59-4451-96ba-88d48af65a5f",
+  "enqueuedAt": 1774772477587,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Now expand Experiments — Ablation Study (ResNet discussion):"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Now expand Experiments — Ablation Study (ResNet discussion):"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775130247179,
+  "lastError": "Request failed with status code 400"
+}

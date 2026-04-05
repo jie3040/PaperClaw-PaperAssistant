@@ -1,0 +1,20 @@
+{
+  "id": "2a3c1358-59bc-4f25-90ea-80e25d6621f1",
+  "enqueuedAt": 1775116571250,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Writer 最后一批（§4.5 消融实验 862词、§4.6 可视化 493词、Conclusion 301词）已确认到位，字数与回报一致。\n\n阶段 4 全部 14 个 section + references.bib 完成，总字数 11046，44 条引用（Intro 占 88.6%），9 个公式，各项指标均达标。已派 Reviewer 执行阶段 4.5a 内容对齐审查，等待回报。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Writer 最后一批（§4.5 消融实验 862词、§4.6 可视化 493词、Conclusion 301词）已确认到位，字数与回报一致。\n\n阶段 4 全部 14 个 section + references.bib 完成，总字数 11046，44 条引用（Intro 占 88.6%），9 个公式，各项指标均达标。已派 Reviewer 执行阶段 4.5a 内容对齐审查，等待回报。"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775130251661,
+  "lastError": "Request failed with status code 400"
+}

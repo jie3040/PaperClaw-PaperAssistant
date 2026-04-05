@@ -7,7 +7,7 @@
         "api": "openai-completions",
         "models": [
           {
-            "id": "minimax/minimax-m2.5",
+            "id": "x-ai/grok-4.1-fast",
             "name": "minimax/minimax-m2.5",
             "reasoning": true,
             "input": [
@@ -37,14 +37,14 @@
           "emoji": "🎨"
         },
         "model": {
-          "primary": "openrouter/minimax/minimax-m2.5"
+          "primary": "openrouter/x-ai/grok-4.1-fast"
         },
         "workspace": "/home/liaowenjie/.openclaw-multi/artist/workspace"
       }
     ],
     "defaults": {
       "model": {
-        "primary": "openrouter/minimax/minimax-m2.5"
+        "primary": "openrouter/x-ai/grok-4.1-fast"
       },
       "workspace": "/home/liaowenjie/.openclaw-multi/artist/workspace",
       "compaction": {

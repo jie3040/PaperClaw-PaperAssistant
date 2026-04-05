@@ -1,0 +1,20 @@
+{
+  "id": "85c87d64-cf27-4434-ac85-2cc83a3a33e0",
+  "enqueuedAt": 1775212951382,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "📋 **Writer 扩写完成 + Reviewer 审查已派发**\n\n**Writer v8 产出汇总：**\n| Section | 词数 | 目标 | 状态 |\n|---------|------|------|------|\n| Introduction | 1049 | 1040 | ✅ |\n| Method | 2518 | 2530 | ✅ |\n| Conclusion | 348 | 320 | ✅ |\n\n**当前总词数：6232 词**（含 abstract 190 + related_work 771 + experiments 1356）\n\n⚠️ **预判**：总词数距目标 9000 还有差距，**Experiments 仅 1356 词（目标 2250）** 是最大缺口。Reviewer 阶段 4.5 审查中，预计会标记 Experiments 需要扩写。\n\n已派发审查任务 → 等待 Reviewer 回报。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "📋 **Writer 扩写完成 + Reviewer 审查已派发**\n\n**Writer v8 产出汇总：**\n| Section | 词数 | 目标 | 状态 |\n|---------|------|------|------|\n| Introduction | 1049 | 1040 | ✅ |\n| Method | 2518 | 2530 | ✅ |\n| Conclusion | 348 | 320 | ✅ |\n\n**当前总词数：6232 词**（含 abstract 190 + related_work 771 + experiments 1356）\n\n⚠️ **预判**：总词数距目标 9000 还有差距，**Experiments 仅 1356 词（目标 2250）** 是最大缺口。Reviewer 阶段 4.5 审查中，预计会标记 Experiments 需要扩写。\n\n已派发审查任务 → 等待 Reviewer 回报。"
+  },
+  "retryCount": 2,
+  "lastAttemptAt": 1775265317647,
+  "lastError": "Request failed with status code 400"
+}

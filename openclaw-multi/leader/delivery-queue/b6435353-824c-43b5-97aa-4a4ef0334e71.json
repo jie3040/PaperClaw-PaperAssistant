@@ -1,0 +1,20 @@
+{
+  "id": "b6435353-824c-43b5-97aa-4a4ef0334e71",
+  "enqueuedAt": 1775203714833,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Ideator 已完成，生成了 3 个差异化 idea 候选，保存在 `ideas/idea_candidates.md`。请查看后选择一个：\n\n---\n\n## 📋 Idea 候选方案概览\n\n### Idea 1：零样本故障诊断 - 振动谱图与MLLM深度对齐\n**标题**：Zero-Shot Fault Diagnosis through Adaptive Spectrogram Alignment in Multimodal Large Language Models\n- **核心**：轻量级LoRA Adapter将振动谱图嵌入对齐到MLLM（LLaVA/Qwen-VL）的视觉-语言空间，参数 <1%，MLLM冻结\n- **亮点**：真正零样本，精度提升15%+，填补深度融合空白\n- **数据集**：CWRU、PU、MFPT\n\n---\n\n### Idea 2：少样本故障诊断 - 多模态（振动+文本+图像）联合建模\n**标题**：Few-Shot Multimodal Fault Diagnosis: Joint Vibration-Text-Image Modeling with Instruction-Tuned MLLMs\n- **核心**：振动谱图 + 故障文本描述 + 辅助图像三模态联合，指令微调MiniCPM-V，Chain-of-Thought生成诊断报告\n- **亮点**：少样本精度提升20%，强解释性，5-10 shot场景\n- **数据集**：SEU轴承、Paderborn\n\n---\n\n### Idea 3：跨域故障诊断 - MLLM知识蒸馏轻量化部署\n**标题**：Cross-Domain Fault Diagnosis via Knowledge Distillation from Multimodal Large Models to Edge Devices\n- **核心**：MLLM（InternVL）作教师生成软标签，轻量ViT（<10M参数）作学生+DANN域自适应，边缘部署延迟 <50ms\n- **亮点**：精度仅降2%，泛化提升12%，工业边缘部署友好\n- **数据集**：CWRU→SEU、Paderborn→MFPT、HUST\n\n---\n\n**请问您选择哪个 Idea？** 选定后我将进入 **阶段 3**，派 Architect 设计论文框架。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Ideator 已完成，生成了 3 个差异化 idea 候选，保存在 `ideas/idea_candidates.md`。请查看后选择一个：\n\n---\n\n## 📋 Idea 候选方案概览\n\n### Idea 1：零样本故障诊断 - 振动谱图与MLLM深度对齐\n**标题**：Zero-Shot Fault Diagnosis through Adaptive Spectrogram Alignment in Multimodal Large Language Models\n- **核心**：轻量级LoRA Adapter将振动谱图嵌入对齐到MLLM（LLaVA/Qwen-VL）的视觉-语言空间，参数 <1%，MLLM冻结\n- **亮点**：真正零样本，精度提升15%+，填补深度融合空白\n- **数据集**：CWRU、PU、MFPT\n\n---\n\n### Idea 2：少样本故障诊断 - 多模态（振动+文本+图像）联合建模\n**标题**：Few-Shot Multimodal Fault Diagnosis: Joint Vibration-Text-Image Modeling with Instruction-Tuned MLLMs\n- **核心**：振动谱图 + 故障文本描述 + 辅助图像三模态联合，指令微调MiniCPM-V，Chain-of-Thought生成诊断报告\n- **亮点**：少样本精度提升20%，强解释性，5-10 shot场景\n- **数据集**：SEU轴承、Paderborn\n\n---\n\n### Idea 3：跨域故障诊断 - MLLM知识蒸馏轻量化部署\n**标题**：Cross-Domain Fault Diagnosis via Knowledge Distillation from Multimodal Large Models to Edge Devices\n- **核心**：MLLM（InternVL）作教师生成软标签，轻量ViT（<10M参数）作学生+DANN域自适应，边缘部署延迟 <50ms\n- **亮点**：精度仅降2%，泛化提升12%，工业边缘部署友好\n- **数据集**：CWRU→SEU、Paderborn→MFPT、HUST\n\n---\n\n**请问您选择哪个 Idea？** 选定后我将进入 **阶段 3**，派 Architect 设计论文框架。"
+  },
+  "retryCount": 3,
+  "lastAttemptAt": 1775265307035,
+  "lastError": "Request failed with status code 400"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "59c809d9-2b7d-4539-a337-36d5ca84e796",
+  "enqueuedAt": 1774769021524,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Writer 回报：Introduction 去AI痕迹完成，已写入 drafts/v2/introduction.tex，约1170词。替换了 leverage、delve into、paramount 等典型AI"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Writer 回报：Introduction 去AI痕迹完成，已写入 drafts/v2/introduction.tex，约1170词。替换了 leverage、delve into、paramount 等典型AI"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775129718394,
+  "lastError": "Cannot destructure property 'tenant_access_token' of '(intermediate value)' as it is undefined."
+}

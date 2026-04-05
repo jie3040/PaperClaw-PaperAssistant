@@ -1,0 +1,20 @@
+{
+  "id": "558d0586-51a3-4da0-b977-eb8c12ddc0cd",
+  "enqueuedAt": 1774766793558,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Reviewer R2 回来了，REVISE，3 个必修项都不复杂。我直接处理，不需要派 Agent。先看当前文件。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Reviewer R2 回来了，REVISE，3 个必修项都不复杂。我直接处理，不需要派 Agent。先看当前文件。"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775128921069,
+  "lastError": "Request failed with status code 400"
+}

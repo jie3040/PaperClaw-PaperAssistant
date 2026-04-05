@@ -1,0 +1,9 @@
+{
+  "target": "reviewer",
+  "port": 18850,
+  "token": "reviewer-hook-2026",
+  "message": "请对 /home/liaowenjie/.openclaw-multi/shared/paper-project-9/drafts/v9/ 下所有section文件进行阶段4.5内容对齐审查。当前项目：/home/liaowenjie/.openclaw-multi/shared/paper-project-9\n\n审查依据：outline/v2/paper_outline.md + golden_standard.json\n\n上次审查v8结论REVISE（reviews/stage_4.5_review_v8.md），v9修改如下：\n1. Experiments新增E4: Qualitative Analysis（t-SNE可视化、注意力热图、语义匹配案例）和E6: Computational Complexity（Table VII修复+GFLOPs/Params对比+边缘部署延迟），扩展E5: Discussions（4点讨论含few-shot和MAML分析）\n2. Conclusion扩展（具体数字+Jetson延迟+未来方向细化）\n3. Related Work增加few-shot语义转移段落\n4. 修复Table VII（v8有转义字符问题）\n\n请检查：总词数≥9000、Experiments≥2250词、6个子节齐全（E1-E6）、所有Fig/Table已引用、Intro引用≥50%。审查报告写入 /home/liaowenjie/.openclaw-multi/shared/paper-project-9/reviews/stage_4.5_review_v9.md",
+  "sessionKey": "hook:reviewer-4.5-v9",
+  "created_at": "2026-04-03T18:50:00+08:00",
+  "status": "pending"
+}

@@ -1,0 +1,37 @@
+\section{Introduction}
+
+Rotating machinery is critical to manufacturing, energy, and transportation sectors. Bearings, gears, and rotors degrade due to wear and fatigue, causing failures with substantial economic losses \cite{cite1}\cite{cite22}. Vibration monitoring uses accelerometers to capture fault signatures at characteristic frequencies such as BPFO and BPFI \cite{cite2}\cite{cite3}. Despite advances in edge computing, automated interpretation remains challenging due to variable speeds and structural resonances \cite{cite4}.
+
+\subsection{Data Scarcity and Domain Shift Challenges}
+
+Contemporary fault diagnosis algorithms demand large labeled datasets, yet industrial environments impose acute data scarcity. Controlled run-to-failure experiments are expensive, generating limited faulty samples against voluminous healthy baselines \cite{cite5}. Standard benchmarks like the Case Western Reserve University (CWRU) dataset offer 10--12 fault severities under fixed conditions but neglect real-world complexities such as multi-component faults and gradual degradation \cite{cite6}. The Paderborn dataset introduces accelerated wear tests but remains constrained to specific bearing types \cite{cite7}. Field data collection faces privacy regulations, sensor heterogeneity, and rare severe faults with imbalance ratios exceeding 1000:1 \cite{cite8}.
+
+Deployment amplifies these issues through domain shifts. Laboratory setups differ from industrial sensors subjected to loose fixtures and thermal drifts, altering signal amplitudes and phases \cite{cite25}. Operational variances—rpm fluctuations, torque cycles, lubrication changes—cause covariate shifts that degrade source-domain models by 30--60\% accuracy on target domains \cite{cite9}\cite{cite26}.
+
+\subsection{Limitations of Existing Methods}
+
+Traditional signal processing exhibits inherent constraints. FFT resolves steady-state harmonics but obscures transient impulse trains \cite{cite10}. Wavelet transforms provide time-frequency localization but depend on ad-hoc basis selection \cite{cite11}. Deep learning paradigms revolutionized the field: 1D CNNs detect impulses via hierarchical filtering \cite{cite12}, 2D CNNs exploit spectrogram invariances \cite{cite13}, and CNN-Transformer hybrids achieve 98--99\% accuracy on intra-domain CWRU splits \cite{cite15}. However, systemic shortcomings endure. Models overfit to laboratory distributions, causing 20--50\% accuracy drops across datasets \cite{cite17}. GAN-based augmentation injects domain-incongruent artifacts \cite{cite18}, and metric-based few-shot learners falter on semantically divergent faults \cite{cite19}. Transfer learning approaches reduce distributional mismatch \cite{cite25}, yet demand target-domain samples, limiting applicability in rare-fault scenarios.
+
+Emerging multimodal large language models (MLLMs) and vision-language models (VLMs) like CLIP, BLIP-2, and LLaVA demonstrate prowess in aligning images with text via contrastive pretraining on web-scale data \cite{cite20}\cite{cite21}. Their ability to encode arbitrary visual modalities into semantically rich representations suggests a compelling direction for vibration analysis. However, their applicability is curtailed by fundamental domain gaps: spectrograms deviate from natural imagery with engineered time-frequency axes and quantized intensity bins, while MLLMs exhibit hallucination rates up to 40\% on technical prompts without modality-specific finetuning \cite{cite27}\cite{cite28}\cite{cite29}. Prior works such as MMFault \cite{cite23} and VLM-IFD \cite{cite24} demonstrate the potential of VLMs for fault diagnosis but rely on direct fine-tuning without explicit vibration-semantic alignment mechanisms. LLMMFD \cite{cite25} and FaultGPT \cite{cite26} attempt zero-shot reasoning but exhibit limited cross-domain generalization. These limitations underscore the need for tailored alignment strategies bridging vibrations to semantic fault narratives.
+
+\subsection{Proposed Framework and Contributions}
+
+VibSemAlign addresses these challenges by projecting vibration spectrograms—derived via short-time Fourier transform (STFT) as 2D heatmaps—into unified embedding spaces alongside textual fault descriptors, e.g., ``bearing inner race crack with spalling under high load.'' The framework employs targeted VLM finetuning with a vibration-semantic contrastive loss to explicitly align spectrographic features with fault semantics, cross-attention for refined multimodal fusion of visual and textual representations, and model-agnostic meta-learning (MAML) for rapid adaptation to novel domains using only 5--10 target shots. Crucially, unlike prior VLM-based approaches that treat spectrograms as generic images, VibSemAlign incorporates domain-specific design choices—including linear frequency scaling to preserve mechanical fault harmonics and semantic prompting grounded in fault ontologies—that exploit the unique characteristics of vibration data. Figure~\ref{fig:1} illustrates the comprehensive pipeline from raw vibration acquisition to probabilistic fault inference.
+
+Existing attempts remain limited: MMFault \cite{cite23} and VLM-IFD \cite{cite24} treat spectrograms as generic images, while FaultGPT \cite{cite26} struggles with cross-domain transfer. To the best of our knowledge, VibSemAlign is the first framework to jointly address vibration-semantic alignment and cross-domain generalization within a unified MLLM architecture, making five principal contributions:
+\begin{enumerate}
+\item Introducing VibSemAlign, a pioneering MLLM framework for zero-shot fault diagnosis achieving 96.5\% accuracy on CWRU (12\% absolute gain over CNN baselines) and 92.3\% on Paderborn (18\% improvement).
+\item A domain-specialized contrastive loss surpassing standard NT-Xent by 8\% in embedding alignment, enforcing invariances to speed and load perturbations through hybrid negative sampling and spectral augmentations.
+\item MAML integration reducing few-shot adaptation shots by 50--70\% compared to vanilla finetuning while sustaining zero-shot performance within 2\%, leveraging bi-level optimization with curriculum-based task sampling.
+\item Comprehensive empirical evaluation across CWRU and Paderborn benchmarks, including t-SNE projections (Silhouette score 0.78 vs. 0.52 for unimodal CNNs) and ablation studies isolating each module's contribution.
+\item Open-sourced models, code, and standardized evaluation protocols to advance reproducible research in semantic signal processing for industrial diagnostics.
+\end{enumerate}
+
+The remainder of this paper is organized as follows: Section~II reviews related work, Section~III presents the proposed methodology, Section~IV reports experimental results, and Section~V concludes.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{fig1_architecture.png}
+\caption{The overall pipeline of the VibSemAlign framework for zero-shot cross-domain fault diagnosis via vibration-semantic alignment.}
+\label{fig:1}
+\end{figure*}

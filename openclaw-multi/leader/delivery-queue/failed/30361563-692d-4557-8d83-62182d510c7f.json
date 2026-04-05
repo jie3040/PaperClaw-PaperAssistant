@@ -1,0 +1,27 @@
+{
+  "id": "30361563-692d-4557-8d83-62182d510c7f",
+  "enqueuedAt": 1774530420355,
+  "channel": "feishu",
+  "to": "user:ou_6eab9fc7f84debbe25305e3113cb609b",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "Reviewer v2：**✅ ACCEPT**",
+      "replyToTag": false,
+      "replyToCurrent": false,
+      "audioAsVoice": false
+    }
+  ],
+  "threadId": null,
+  "replyToId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Reviewer v2：**✅ ACCEPT**",
+    "mediaUrls": [],
+    "isGroup": false
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775112815351,
+  "lastError": "Request failed with status code 400"
+}

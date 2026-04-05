@@ -1,0 +1,20 @@
+{
+  "id": "bab21ff4-be81-44f7-a593-439f2b2be741",
+  "enqueuedAt": 1775194397424,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Introduction 润色任务已发送 ✅（HTTP 200）。Writer 正在处理，下一个是 Background，等 Introduction 完成后再发。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Introduction 润色任务已发送 ✅（HTTP 200）。Writer 正在处理，下一个是 Background，等 Introduction 完成后再发。"
+  },
+  "retryCount": 4,
+  "lastAttemptAt": 1775265304756,
+  "lastError": "Request failed with status code 400"
+}

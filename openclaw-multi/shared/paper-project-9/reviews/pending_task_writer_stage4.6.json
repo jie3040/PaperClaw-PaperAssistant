@@ -1,0 +1,9 @@
+{
+  "target": "writer",
+  "port": 18840,
+  "token": "writer-hook-2026",
+  "message": "阶段4.6：学术润色。请逐 section/subsection 润色 drafts/v9/ 下所有 .tex 文件，输出到 drafts/v10/。\n\n项目路径：/home/liaowenjie/.openclaw-multi/shared/paper-project-9\n\n润色要求：\n1. 提升学术写作风格（避免口语化、增强逻辑衔接词）\n2. 变化句式结构，避免重复模式\n3. 修正不自然的表达（尤其 AI 痕迹：过度使用冒号列表、\"It is worth noting that\" 等套话）\n4. 保留所有 \\cite{}、\\ref{}、\\label{}、公式、表格引用原封不动\n5. 保持各 section 字数基本不变（±10%）\n6. 每个文件读取→润色→写入 /home/liaowenjie/.openclaw-multi/shared/paper-project-9/drafts/v10/\n\n文件清单（按此顺序处理）：\n- abstract.tex\n- introduction.tex\n- related_work.tex\n- method.tex\n- experiments.tex\n- conclusion.tex\n\n完成后回报各文件润色前后的词数对比。",
+  "sessionKey": "hook:writer-v10-polish",
+  "created_at": "2026-04-03T18:47",
+  "status": "pending"
+}

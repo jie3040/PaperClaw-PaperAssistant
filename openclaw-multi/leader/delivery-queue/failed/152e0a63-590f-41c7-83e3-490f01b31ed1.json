@@ -1,0 +1,20 @@
+{
+  "id": "152e0a63-590f-41c7-83e3-490f01b31ed1",
+  "enqueuedAt": 1775115103571,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Ideator 完成了，生成了 5 个 idea 候选。请选择一个：\n\n| # | 名称 | 核心创新 | 可行性 |\n|---|------|----------|--------|\n| 1 | PhysAlign-MLLM | 物理先验注入跨模态对齐，用振动物理公式引导 LLM 理解故障频谱 | 高 |\n| 2 | LiteDiag-MoE | 轻量化 MoE 架构，边缘设备实时诊断，推理延迟降 70% | 中 |\n| 3 | CrossDomain-Bench | 首个标准化 MLLM 故障诊断 Benchmark，含多任务评估协议 | 高 |\n| 4 | HieReason-GPT | 层次化多粒度推理链，从组件级分类到系统级因果推理 | 中 |\n| 5 | SensFusion-TIM | 自适应多传感器融合，MLLM 不确定性加权，应对噪声/缺失模态 | 高 |\n\n请告诉我选哪个（回复编号即可），选定后我立即推进到阶段 3（Architect 框架设计）。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Ideator 完成了，生成了 5 个 idea 候选。请选择一个：\n\n| # | 名称 | 核心创新 | 可行性 |\n|---|------|----------|--------|\n| 1 | PhysAlign-MLLM | 物理先验注入跨模态对齐，用振动物理公式引导 LLM 理解故障频谱 | 高 |\n| 2 | LiteDiag-MoE | 轻量化 MoE 架构，边缘设备实时诊断，推理延迟降 70% | 中 |\n| 3 | CrossDomain-Bench | 首个标准化 MLLM 故障诊断 Benchmark，含多任务评估协议 | 高 |\n| 4 | HieReason-GPT | 层次化多粒度推理链，从组件级分类到系统级因果推理 | 中 |\n| 5 | SensFusion-TIM | 自适应多传感器融合，MLLM 不确定性加权，应对噪声/缺失模态 | 高 |\n\n请告诉我选哪个（回复编号即可），选定后我立即推进到阶段 3（Architect 框架设计）。"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775130249681,
+  "lastError": "Request failed with status code 400"
+}

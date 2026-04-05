@@ -1,0 +1,20 @@
+{
+  "id": "95752d02-4b08-45fb-87ca-92c9de50c834",
+  "enqueuedAt": 1774762340509,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Writer 回报 Introduction 完成，我先检查一下产出质量。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Writer 回报 Introduction 完成，我先检查一下产出质量。"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775128893352,
+  "lastError": "Request failed with status code 400"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "4fd84ffc-a43f-421f-9964-d4e24a912855",
+  "enqueuedAt": 1775213326029,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "**阶段 4.5 内容对齐审查 — ACCEPT ✅**\n\nReviewer 确认 v9 全部通过：各 section 完整，6 个 Experiments 子节齐全，图表全引用，公式完整，Intro 引用占比达标。总词数 7128（目标 9000，偏差 21%<25% 门限）。\n\n已派发下一阶段任务：\n- **阶段 4.6（学术润色）**→ Writer 已接收，正在逐 section 润色 drafts/v9 → v10\n- Writer 在线，HTTP 200 确认\n\n等待 Writer 回报后继续阶段 4.7（去除 AI 痕迹）→ 4.8（概念图）→ 5（整合）。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "**阶段 4.5 内容对齐审查 — ACCEPT ✅**\n\nReviewer 确认 v9 全部通过：各 section 完整，6 个 Experiments 子节齐全，图表全引用，公式完整，Intro 引用占比达标。总词数 7128（目标 9000，偏差 21%<25% 门限）。\n\n已派发下一阶段任务：\n- **阶段 4.6（学术润色）**→ Writer 已接收，正在逐 section 润色 drafts/v9 → v10\n- Writer 在线，HTTP 200 确认\n\n等待 Writer 回报后继续阶段 4.7（去除 AI 痕迹）→ 4.8（概念图）→ 5（整合）。"
+  },
+  "retryCount": 2,
+  "lastAttemptAt": 1775265319775,
+  "lastError": "Request failed with status code 400"
+}

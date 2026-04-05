@@ -1,0 +1,27 @@
+{
+  "id": "7027f1ea-bfa1-47bc-aa75-57062d1995ef",
+  "enqueuedAt": 1774530417178,
+  "channel": "feishu",
+  "to": "user:ou_6eab9fc7f84debbe25305e3113cb609b",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "现在清楚了。用户原始表格数据比论文中的丰富得多：\n\n- TABLE I/II：详细的数据集配置（每个类的故障直径、训练/测试数量）\n- TABLE III：每个类的 PCC 评分（两种采样方式）\n- TABLE IV：增强策略详情\n- TABLE V/VI：4 个分类器 × 6 个 BR × 2 种采样方式的完整精度矩阵\n- TABLE VII：单类诊断增强策略\n\n当前论文只用了简化版。我来创建 v2，用用户的完整数据替换。",
+      "replyToTag": false,
+      "replyToCurrent": false,
+      "audioAsVoice": false
+    }
+  ],
+  "threadId": null,
+  "replyToId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "现在清楚了。用户原始表格数据比论文中的丰富得多：\n\n- TABLE I/II：详细的数据集配置（每个类的故障直径、训练/测试数量）\n- TABLE III：每个类的 PCC 评分（两种采样方式）\n- TABLE IV：增强策略详情\n- TABLE V/VI：4 个分类器 × 6 个 BR × 2 种采样方式的完整精度矩阵\n- TABLE VII：单类诊断增强策略\n\n当前论文只用了简化版。我来创建 v2，用用户的完整数据替换。",
+    "mediaUrls": [],
+    "isGroup": false
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775112812840,
+  "lastError": "Request failed with status code 400"
+}

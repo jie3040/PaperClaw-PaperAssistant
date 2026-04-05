@@ -7,7 +7,7 @@
         "api": "openai-completions",
         "models": [
           {
-            "id": "z-ai/glm-5-turbo",
+            "id": "x-ai/grok-4.1-fast",
             "name": "z-ai/glm-5-turbo",
             "reasoning": true,
             "input": [
@@ -37,14 +37,14 @@
           "emoji": "🔬"
         },
         "model": {
-          "primary": "openrouter/z-ai/glm-5-turbo"
+          "primary": "openrouter/x-ai/grok-4.1-fast"
         },
         "workspace": "/home/liaowenjie/.openclaw-multi/reviewer/workspace"
       }
     ],
     "defaults": {
       "model": {
-        "primary": "openrouter/z-ai/glm-5-turbo"
+        "primary": "openrouter/x-ai/grok-4.1-fast"
       },
       "workspace": "/home/liaowenjie/.openclaw-multi/reviewer/workspace",
       "compaction": {

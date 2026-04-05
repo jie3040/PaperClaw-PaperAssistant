@@ -1,0 +1,20 @@
+{
+  "id": "4d6e80ad-b7ab-4d38-b650-a70fdc9995ab",
+  "enqueuedAt": 1775182295726,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Writer 已接收 Experiments A-C 任务。等 Writer 完成后再派发 D-G 子节，然后是 Conclusion。\n\n阶段 4 进展：abstract ✅ → introduction ✅ → background ✅ → method ✅ → experiments A-C（进行中）→ experiments D-G → conclusion → references.bib\n\nNO_REPLY"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Writer 已接收 Experiments A-C 任务。等 Writer 完成后再派发 D-G 子节，然后是 Conclusion。\n\n阶段 4 进展：abstract ✅ → introduction ✅ → background ✅ → method ✅ → experiments A-C（进行中）→ experiments D-G → conclusion → references.bib\n\nNO_REPLY"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775265298305,
+  "lastError": "Request failed with status code 400"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "8987ced2-0f29-46c4-8d72-8e61666a9984",
+  "enqueuedAt": 1775211755710,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "49% 非常接近 50%，但还差一点。再加一个："
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "49% 非常接近 50%，但还差一点。再加一个："
+  },
+  "retryCount": 3,
+  "lastAttemptAt": 1775265315811,
+  "lastError": "Request failed with status code 400"
+}

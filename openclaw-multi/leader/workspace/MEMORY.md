@@ -89,7 +89,7 @@
 5. MinerU 解析范例论文
 6. 提取黄金标准
 
-## 最终工作流全流程（v8）
+## 最终工作流全流程（v10）
 
 ```
 阶段 0    用户提供主题 + 期刊 + 模板 + 2篇范例 PDF → MinerU 解析
@@ -98,17 +98,23 @@
 阶段 1.5  Leader 精简调研报告（<5KB）
 阶段 2    Ideator 生成 idea → 用户选定
 阶段 3    Architect 设计框架 → outline/v1/
-阶段 3.5  ★ Reviewer 框架对齐审查 → 不通过 → Architect 修改 → 再审（最多3轮）
+阶段 3.5  ★ Reviewer 框架对齐审查 → 不通过则循环（最多3轮）
 阶段 4    Writer 逐节撰写 → drafts/v1/（长章节按子节拆分）→ 生成 references.bib
-阶段 4.5a ★ Reviewer 内容对齐审查 → 不通过 → Writer 修改 → 再审（最多3轮）
-阶段 4.5b Artist 生概念图 prompt → 用户手动 Gemini 生图 → Artist 生数据图/表
-阶段 5    Editor 整合 LaTeX → final/v{N}/（不可靠时 Leader 接管）
-阶段 6    Checker LaTeX 审查修复
+阶段 4.5  ★ Reviewer 内容对齐审查 → 不通过则循环（最多3轮）
+阶段 4.6  ★ Writer 润色（逐 section/subsection）
+阶段 4.7  ★ Writer 去除AI痕迹（逐 section/subsection）
+阶段 4.8  Artist 生概念图 prompt → 用户手动 Gemini 生图 → Artist 生数据图/表
+阶段 5    Editor 整合 LaTeX → final/v1/（不可靠时 Leader 接管）
+阶段 6    ★ Checker LaTeX 审查修复
 阶段 7    Reviewer 最终对齐审查
+阶段 7.5  ★ Reviewer 逻辑检查（整篇，不通过打回）
+阶段 7.6  ★ Reviewer 缩写检查（整篇，不通过打回）
 阶段 8    Leader 编译 PDF → 通知用户
 阶段 9    用户/专家审查 → Leader 整合意见生成 todo_list
 阶段 10   Leader 分发修改任务 → 新版本 → 回到阶段 5（最多3轮）
 ```
+
+⚠️ 以 WORKFLOW.md 为最终权威，MEMORY.md 仅为快速参考。
 
 ---
 
@@ -247,3 +253,21 @@
   - 缩写首次使用未展开（GPT/WDCNN/Bi-LSTM-ZSL/1D-ResNet）→ 手动展开全称
   - 逻辑检查发现组合损失公式缺失 → 补充 L_total = λ_cls * L_cls + λ_align * L_align
 - **最终版本**：final/v14/paper.pdf
+
+## Project 9（2026-04-03~04）— VibSemAlign, IEEE TIM ✅
+
+- **主题**：VibSemAlign: Vibration-Semantic Alignment Framework for Multimodal Large Model-based Intelligent Fault Diagnosis
+- **模式**：Mode A（从零开始）
+- **结果**：12 页，40 引用，10 公式，7 图，用户 ACCEPT ✅
+- **耗时**：~2 天（含等待审查）
+- **版本迭代**：outline v2, drafts v12, final v4
+- **关键成功因素**：
+  - 快速修复用户审查意见（2 轮 minor → accept）
+- **用户审查意见及修复**：
+  - 第 1 轮：Introduction subsection 编号不符合 IEEE 格式 → 改为 `\subsection*`
+  - 第 2 轮：Introduction 不能用 subsection → 完全删除 subsection，合并为连贯段落
+  - 符号/公式乱码：Unicode em-dash `—` → LaTeX `---`，`$d_model$` → `$d_{\mathrm{model}}$`
+- **新教训**：
+  - **IEEE Introduction 禁止 subsection**：与 Project 8 不同，此项目要求 Introduction 完全无 subsection，不仅是无编号
+  - **Unicode 字符必须全部替换**：pdflatex 不支持 Unicode em-dash，必须用 `---`
+- **最终版本**：final/v4/paper.pdf

@@ -1,0 +1,9 @@
+{
+  "target": "reviewer",
+  "port": 18850,
+  "token": "reviewer-hook-2026",
+  "message": "当前项目：/home/liaowenjie/.openclaw-multi/shared/paper-project-9\n以下 SHARED = 上述路径\n\n【阶段 4.5 — 内容对齐审查 v8】\n\n请审查 /home/liaowenjie/.openclaw-multi/shared/paper-project-9/drafts/v8/ 下所有 .tex 文件，对照 /home/liaowenjie/.openclaw-multi/shared/paper-project-9/outline/v2/paper_outline.md 的要求。\n\n审查要点：\n1. 总词数是否达到目标 9000 词\n2. Introduction 目标 ~850-1040 词，引用 ≥20 条\n3. Related Work 目标 ~900 词\n4. Method 目标 ~2500 词，含 10 个公式\n5. Experiments 目标 ~2250 词\n6. Conclusion 目标 ~300-350 词\n7. 每个 subsection 是否覆盖 outline 中对应的子节内容\n8. 所有 Figure 和 Table 是否在正文中被引用\n9. 引用分布：Introduction 引用数 ≥ 总引用的 50%\n10. 无 AI 痕迹（In this paper we propose / It is worth noting 等）\n\n请给出：\n- 每个 section 的实际词数 vs 目标词数\n- 通过/不通过的结论（ACCEPT / REVISE）\n- 如 REVISE，列出具体修改项\n\n输出写入 /home/liaowenjie/.openclaw-multi/shared/paper-project-9/reviews/stage_4.5_review_v8.md",
+  "sessionKey": "hook:reviewer-4.5-v8",
+  "created_at": "2026-04-03T18:42",
+  "status": "pending"
+}

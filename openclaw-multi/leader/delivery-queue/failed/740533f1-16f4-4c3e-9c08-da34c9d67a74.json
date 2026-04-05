@@ -1,0 +1,27 @@
+{
+  "id": "740533f1-16f4-4c3e-9c08-da34c9d67a74",
+  "enqueuedAt": 1774531980140,
+  "channel": "feishu",
+  "to": "user:ou_6eab9fc7f84debbe25305e3113cb609b",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "没有 2026-03-26 的日志。补上。",
+      "replyToTag": false,
+      "replyToCurrent": false,
+      "audioAsVoice": false
+    }
+  ],
+  "threadId": null,
+  "replyToId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "没有 2026-03-26 的日志。补上。",
+    "mediaUrls": [],
+    "isGroup": false
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775112819223,
+  "lastError": "Request failed with status code 400"
+}

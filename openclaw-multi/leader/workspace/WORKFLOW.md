@@ -206,6 +206,24 @@ curl -s -X POST http://127.0.0.1:18850/hooks/agent \
 
 REVISE → Writer 修改到 drafts/v2/，再审。最多 3 轮。
 
+**★ 字数调整时使用 Skill（v1.7）**
+
+当 Reviewer 的审查报告中指出某个 section 字数偏差 >25%，Leader 在派发修改任务给 Writer 时：
+
+- **字数不足（需扩写）**：curl message 中附上 `★ 扩写 skill：<SHARED>/../shared/skills/expand_en.md`
+```
+  "请对以下 section 进行扩写。\n★ 扩写 skill：<skills路径>/expand_en.md\n请先读取该 skill，按其要求扩写\n★ 目标字数：从当前 XXX 词扩充至 YYY 词\n★ 待扩写文件：SHARED/drafts/v{N}/section_xxx.tex\n★ 扩写后覆盖写入同一文件"
+```
+
+- **字数过多（需缩写）**：curl message 中附上 `★ 缩写 skill：<SHARED>/../shared/skills/shrink_en.md`
+```
+  "请对以下 section 进行缩减。\n★ 缩写 skill：<skills路径>/shrink_en.md\n请先读取该 skill，按其要求缩减\n★ 目标字数：从当前 XXX 词缩减至 YYY 词\n★ 待缩减文件：SHARED/drafts/v{N}/section_xxx.tex\n★ 缩减后覆盖写入同一文件"
+```
+
+- **长章节（Method/Experiments）按子节单独发**，每个子节附上前序子节路径保证衔接
+- **⚠️ Leader 禁止自己直接修改 .tex 文件，必须派发给 Writer！**
+
+
 ### 阶段 4.6：Writer 润色（逐 section/subsection）🆕 v1.6
 
 内容对齐审查通过后，在 Artist 生图前，先对所有 draft 进行学术润色。
@@ -357,6 +375,17 @@ curl -s -X POST http://127.0.0.1:18850/hooks/agent \
 
 按 todo_list 中的优先级分发给对应 Agent，高优先级先发。
 全部完成后 → 回到阶段 5 重新整合。最多 3 轮 Round。
+
+**★ v1.7 铁律：Leader 分发修改任务，不得自行修改**
+
+阶段 10 分发修改时，所有涉及论文内容的修改（字数调整、内容补充、段落改写）必须派发给 Writer。Leader 只负责：
+- 读取 Reviewer/用户的意见
+- 拆分为具体任务（指定哪个 section、修改什么、目标字数）
+- 附上对应 skill（扩写/缩写/润色/去AI，如适用）
+- curl 发送给 Writer
+- 验证 Writer 的产出
+
+Leader 可以自行处理的仅限：文件路径修复、version_tracker 更新、目录创建等非内容性操作。
 
 ---
 

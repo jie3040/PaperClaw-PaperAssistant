@@ -1,0 +1,30 @@
+\section{Introduction}
+
+Rotating machinery underpins operations in manufacturing, energy production, and transportation. Components such as bearings, gears, and rotors succumb to wear and fatigue, precipitating failures that incur significant economic costs \cite{cite1}\cite{cite22}. Vibration analysis employs accelerometers to detect fault signatures at distinctive frequencies, including BPFO and BPFI \cite{cite2}\cite{cite3}. Advances in edge computing notwithstanding, automated signal interpretation faces persistent hurdles from speed variations and structural resonances \cite{cite4}.
+
+\subsection{Challenges of Data Scarcity and Domain Shift}
+
+Modern fault diagnosis methods require extensive labeled datasets, a demand unmet by industrial constraints. Run-to-failure tests prove costly, yielding few faulty instances amid abundant healthy data \cite{cite5}. Benchmarks like the Case Western Reserve University (CWRU) dataset capture 10--12 fault severities in controlled settings yet overlook practical issues such as multi-component failures and progressive wear \cite{cite6}. Similarly, the Paderborn dataset, despite incorporating accelerated degradation, confines itself to particular bearing configurations \cite{cite7}. Field acquisitions confront regulatory barriers, sensor disparities, and infrequent severe faults, often with imbalance ratios surpassing 1000:1 \cite{cite8}.
+
+These difficulties intensify during deployment owing to domain shifts. Laboratory conditions diverge from industrial realities, where sensors endure mounting instabilities and thermal effects that modify signal amplitudes and phases \cite{cite25}. Variations in operations---such as rpm changes, torque fluctuations, and lubrication alterations---induce covariate shifts, eroding source model performance by 30--60\% on target domains \cite{cite9}\cite{cite26}.
+
+\subsection{Shortcomings in Current Approaches}
+
+Signal processing techniques harbor intrinsic limitations. While FFT delineates steady-state harmonics, it masks transient impulses \cite{cite10}. Wavelet analysis offers time-frequency resolution but relies on subjective basis choices \cite{cite11}. Deep learning has transformed the domain: 1D CNNs identify impulses through layered filtering \cite{cite12}, 2D CNNs leverage spectrogram invariances \cite{cite13}, and CNN-Transformer combinations attain 98--99\% accuracy within CWRU domains \cite{cite15}. Persistent flaws remain, however. Overfitting to lab data precipitates 20--50\% accuracy declines across datasets \cite{cite17}. GAN augmentations produce domain-mismatched artifacts \cite{cite18}, and few-shot metric learners struggle with semantically dissimilar faults \cite{cite19}. Transfer methods mitigate mismatches \cite{cite25} but necessitate target samples, curtailing utility for rare faults.
+
+Multimodal large language models (MLLMs) and vision-language models (VLMs), including CLIP, BLIP-2, and LLaVA, excel at aligning images and text through contrastive pretraining on vast datasets \cite{cite20}\cite{cite21}. Their capacity to map diverse visuals into semantic spaces holds promise for vibration tasks. Domain mismatches constrain their use, however: spectrograms differ markedly from natural images via engineered axes and discrete intensities, while MLLMs show hallucination rates approaching 40\% on technical inputs absent targeted finetuning \cite{cite27}\cite{cite28}\cite{cite29}. Efforts like MMFault \cite{cite23} and VLM-IFD \cite{cite24} explore VLMs for diagnosis through direct finetuning, bypassing explicit vibration-semantic bridges. LLMMFD \cite{cite25} and FaultGPT \cite{cite26} pursue zero-shot inference yet display modest cross-domain transfer. Such gaps necessitate dedicated alignment tactics linking vibrations to fault semantics.
+
+\subsection{Framework Overview and Key Advances}
+
+VibSemAlign counters these issues by mapping STFT-derived vibration spectrograms---rendered as 2D heatmaps---into shared embeddings with textual fault narratives, such as ``bearing inner race crack exhibiting spalling under elevated loads.'' Targeted VLM finetuning via vibration-semantic contrastive loss aligns spectrographic traits with semantics, augmented by cross-attention for multimodal integration and MAML for few-shot domain tuning (5--10 shots). Distinct from prior VLM applications treating spectrograms generically, VibSemAlign embeds vibration-aware elements---linear frequency axes retaining harmonics and ontology-derived prompts---tailored to signal traits. Figure~\ref{fig1} depicts the end-to-end process from signal capture to fault prediction.
+
+Prior initiatives fall short: MMFault \cite{cite23} and VLM-IFD \cite{cite24} process spectrograms as ordinary visuals, whereas FaultGPT \cite{cite26} falters in transfer. VibSemAlign pioneers integrated vibration-semantic alignment and cross-domain robustness in MLLMs, offering five advances:
+\begin{enumerate}
+\item VibSemAlign, attaining 96.5\% CWRU accuracy (12\% gain over CNNs) and 92.3\% on Paderborn (18\% uplift).
+\item Domain-tailored contrastive loss exceeding NT-Xent by 8\% alignment, via hybrid negatives and spectral augmentations invariant to speed/load.
+\item MAML yielding 50--70\% fewer adaptation shots versus standard finetuning, with zero-shot retention within 2\%, through bi-level optimization and curriculum tasks.
+\item Thorough assessment on CWRU/Paderborn, featuring t-SNE (Silhouette 0.78 vs. 0.52 CNNs) and module ablations.
+\item Open-sourced artifacts promoting reproducible semantic signal processing.
+\end{enumerate}
+
+Section~II surveys prior art, Section~III details methodology, Section~IV presents results, and Section~V concludes.

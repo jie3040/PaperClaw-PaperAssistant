@@ -1,0 +1,20 @@
+{
+  "id": "90d9d440-d47c-4885-b0d6-56be0de107f3",
+  "enqueuedAt": 1775182473338,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Background section 已收到（710词，目标1150）。所有 6 个 section 的初稿都已完成，总计 3503 词（目标 7200），各 section 均低于黄金标准。正在等待 references.bib 生成完成，之后进入阶段 4.5 Reviewer 内容对齐审查，审查会指出词数不足的问题，再派 Writer 扩充。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Background section 已收到（710词，目标1150）。所有 6 个 section 的初稿都已完成，总计 3503 词（目标 7200），各 section 均低于黄金标准。正在等待 references.bib 生成完成，之后进入阶段 4.5 Reviewer 内容对齐审查，审查会指出词数不足的问题，再派 Writer 扩充。"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775265298813,
+  "lastError": "Request failed with status code 400"
+}

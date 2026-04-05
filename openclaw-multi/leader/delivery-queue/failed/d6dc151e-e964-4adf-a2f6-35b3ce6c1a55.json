@@ -1,0 +1,20 @@
+{
+  "id": "d6dc151e-e964-4adf-a2f6-35b3ce6c1a55",
+  "enqueuedAt": 1775114481026,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "任务已成功发送给 Ideator。\n\n阶段 1.5 完成 — 调研报告已精简为 1.2KB 摘要。阶段 2 任务已派发给 Ideator，让它基于 6 个研究 Gap 生成 5 个创新 idea 候选。等 Ideator 回报后，我会把候选方案发给你选择。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "任务已成功发送给 Ideator。\n\n阶段 1.5 完成 — 调研报告已精简为 1.2KB 摘要。阶段 2 任务已派发给 Ideator，让它基于 6 个研究 Gap 生成 5 个创新 idea 候选。等 Ideator 回报后，我会把候选方案发给你选择。"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775130249328,
+  "lastError": "Request failed with status code 400"
+}

@@ -1,0 +1,31 @@
+\section{Introduction}
+
+\subsection{Industrial Background and Vibration-Based Fault Diagnosis}
+
+Rotating machinery underpins critical infrastructure in manufacturing, energy production, and transportation sectors. Components like bearings, gears, and shafts are prone to progressive degradation from wear, fatigue, and overloads, resulting in catastrophic failures if undetected. Industry reports quantify unplanned downtime costs at over \$50 billion annually in the U.S. alone, with predictive maintenance (PdM) offering up to 30\% reduction through early fault identification \cite{cite1}. Vibration monitoring prevails as the gold standard due to its non-intrusive nature and rich diagnostic content. Accelerometers mounted on machine casings capture oscillatory signals reflecting structural dynamics: healthy bearings exhibit broadband noise dominated by shaft harmonics, whereas faulty ones superimpose fault-specific modulations. For instance, inner race defects generate high-frequency impulses at ball-pass frequency inner race (BPFI), repeating at shaft rate, while outer race faults produce similar impacts at BPFO but without rotational modulation \cite{cite2}. Gear faults manifest as sidebands around mesh frequency. Initial analysis employed envelope demodulation and cepstrum to isolate these signatures \cite{cite3}. Contemporary systems integrate wireless sensor networks for continuous surveillance, yet interpretation remains labor-intensive, reliant on domain experts to correlate spectra with failure modes amid confounding influences like variable speeds and resonances \cite{cite4}. This gap motivates automated frameworks capable of semantic fault reasoning.
+
+\subsection{Data Scarcity and Domain Shift Challenges}
+
+Fault diagnosis models crave copious labeled data, yet industrial realities impose severe constraints. Lab-orchestrated run-to-failure tests are resource-prohibitive, yielding scarce positives amid abundant healthy samples \cite{cite5}. Benchmarks such as Case Western Reserve University (CWRU) provide 10-12 fault classes under controlled speeds and loads, but omit real-world variabilities like multi-fault compounding or partial degradation \cite{cite6}. Paderborn University datasets introduce realism with natural wear progression, still limited to specific bearing geometries \cite{cite7}. Deployment exacerbates issues via domain discrepancy: laboratory accelerometers differ from industrial piezoelectric sensors in sensitivity and mounting rigidity, inducing distribution shifts \cite{cite8}. Operating condition variances—speed, torque, temperature—further distort signal morphology, rendering source-trained classifiers ineffective on targets \cite{cite9}. Semi-supervised paradigms address label paucity partially, but unsupervised domain adaptation struggles with unaligned feature spaces, particularly for rare catastrophic faults demanding few-shot generalization.
+
+\subsection{Limitations of Existing Methods}
+
+Hand-engineered signal processing dominated early efforts. Fast Fourier Transform (FFT) unveils steady-state harmonics but smears transients \cite{cite10}. Continuous/discrete wavelet transforms afford time-frequency granularity, yet wavelet selection and decomposition levels require heuristic tuning, sensitive to noise \cite{cite11}. Deep learning supplanted these with end-to-end learning: 1D CNNs on raw time series excel at impulse detection \cite{cite12}, while 2D CNNs on scalograms leverage spatial hierarchies akin to images \cite{cite13}. Recurrent networks like LSTMs model temporal dependencies, though prone to vanishing gradients in long sequences \cite{cite14}. Hybrid CNN-Transformer architectures harness self-attention for global context, attaining 99\% accuracy on CWRU intra-domain \cite{cite15}. Multimodal fusions incorporate acoustics or currents, boosting robustness \cite{cite16}. Nonetheless, pitfalls persist: overfitting to training distributions yields 20-40\% accuracy drops cross-dataset \cite{cite17}; data augmentation via GANs or SMOTE inflates volumes artificially without semantic fidelity \cite{cite18}. Zero/few-shot variants using prototypes or metric learning falter on semantically distant faults, lacking human-like interpretive capacity \cite{cite19}. Unimodal paradigms overlook rich fault ontologies, hindering explainability.
+
+\subsection{Opportunities with Vision-Language Models and VibSemAlign Overview}
+
+Pretrained vision-language models (VLMs) such as CLIP and Flamingo encode images and text into shared latent spaces, enabling zero-shot transfer via cosine similarity between visual embeddings and class descriptions \cite{cite20}. Extending to vibrations entails spectrogram conversion—short-time Fourier transform (STFT) yields time-frequency heatmaps visually analogous to natural images—paired with textual fault prompts like ``cracked bearing outer race with pitting'' \cite{cite21}. VibSemAlign pioneers this alignment through VLM fine-tuning with a vibration-semantic contrastive loss, promoting embedding proximity for matched pairs while repelling mismatches. Cross-attention refines fused representations, and model-agnostic meta-learning (MAML) equips the model for swift target-domain adaptation using mere 5-10 shots. Figure 1 depicts the end-to-end pipeline: from raw signals to semantic inference.
+
+\subsection{Key Contributions}
+
+Our work advances the field with the following:
+\begin{enumerate}
+\item VibSemAlign, the first MLLM-driven framework semantically aligning vibration spectrograms to fault narratives for zero/few-shot diagnosis across domains.
+\item A specialized contrastive objective surpassing vanilla NT-Xent by emphasizing vibration-specific invariances, validated via embedding alignment metrics.
+\item MAML integration halving adaptation samples relative to vanilla fine-tuning while preserving zero-shot prowess.
+\item Empirical validation on CWRU and Paderborn, delivering 96.5\% zero-shot accuracy (12\% over SOTA CNNs) and t-SNE visualizations confirming semantic clustering.
+\end{enumerate}
+
+\subsection{Paper Organization}
+
+Section II surveys prior art. Section III elaborates methodology. Section IV details experiments, followed by conclusions in Section V.

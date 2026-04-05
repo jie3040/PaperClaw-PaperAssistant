@@ -1,0 +1,20 @@
+{
+  "id": "776abfae-3fd5-482d-9d21-feddba6db2be",
+  "enqueuedAt": 1775183751654,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "This experiments.tex webhook is a late duplicate — the parallel Writer task that corrupted experiments was already handled (restored from v1, 2493w with all sections A-G intact). Background expansion also came back (1030w). Still waiting on Writer for method expand (1258→1650w), intro re-expand (692→900w), and abstract expand (168→190w) before re-submitting to Reviewer for 4.5 R2.\n\nNO_REPLY"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "This experiments.tex webhook is a late duplicate — the parallel Writer task that corrupted experiments was already handled (restored from v1, 2493w with all sections A-G intact). Background expansion also came back (1030w). Still waiting on Writer for method expand (1258→1650w), intro re-expand (692→900w), and abstract expand (168→190w) before re-submitting to Reviewer for 4.5 R2.\n\nNO_REPLY"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775265300998,
+  "lastError": "Request failed with status code 400"
+}

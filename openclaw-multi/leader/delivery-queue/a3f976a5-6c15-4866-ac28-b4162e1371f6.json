@@ -1,0 +1,20 @@
+{
+  "id": "a3f976a5-6c15-4866-ac28-b4162e1371f6",
+  "enqueuedAt": 1775203293202,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Ideator 已完成创意生成！📋 共生成 **3 个创新 Idea**，请选择其中一个继续：\n\n---\n\n## Idea 1: VibAlign-MM\n**振动对齐多模态故障诊断**\n\n- 定制化振动专用视觉编码器（VibViT），融合时频谱图与原始信号\n- CLIP-style 对比学习 + LLM 提示工程跨模态对齐\n- 零样本跨域推理（知识图谱 + 原型网络）\n- 验证数据集：CWRU、PU 轴承\n\n---\n\n## Idea 2: FaultReasoner-LLM\n**可解释故障推理多模态大模型**\n\n- LLM 驱动因果推理链（CoT）：异常检测 → 故障匹配 → 因果解释\n- RAG + 故障本体知识库实时检索\n- 输出结构化诊断报告 + 注意力热图\n- 验证数据集：Paderborn\n\n---\n\n## Idea 3: UniZero-MMFD\n**统一零样本跨域多模态故障诊断**\n\n- 零样本 + 跨域 + 多模态三合一统一框架\n- GNN 语义原型 + Wasserstein GAN 域桥接\n- 渐进式蒸馏支持轻量工业部署\n- 验证数据集：MFPT、SEU\n\n---\n\n**请选择哪个 Idea 继续推进？**（回复 1、2 或 3）\n\n选定后，我将启动 **阶段 3：Architect 框架设计**。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Ideator 已完成创意生成！📋 共生成 **3 个创新 Idea**，请选择其中一个继续：\n\n---\n\n## Idea 1: VibAlign-MM\n**振动对齐多模态故障诊断**\n\n- 定制化振动专用视觉编码器（VibViT），融合时频谱图与原始信号\n- CLIP-style 对比学习 + LLM 提示工程跨模态对齐\n- 零样本跨域推理（知识图谱 + 原型网络）\n- 验证数据集：CWRU、PU 轴承\n\n---\n\n## Idea 2: FaultReasoner-LLM\n**可解释故障推理多模态大模型**\n\n- LLM 驱动因果推理链（CoT）：异常检测 → 故障匹配 → 因果解释\n- RAG + 故障本体知识库实时检索\n- 输出结构化诊断报告 + 注意力热图\n- 验证数据集：Paderborn\n\n---\n\n## Idea 3: UniZero-MMFD\n**统一零样本跨域多模态故障诊断**\n\n- 零样本 + 跨域 + 多模态三合一统一框架\n- GNN 语义原型 + Wasserstein GAN 域桥接\n- 渐进式蒸馏支持轻量工业部署\n- 验证数据集：MFPT、SEU\n\n---\n\n**请选择哪个 Idea 继续推进？**（回复 1、2 或 3）\n\n选定后，我将启动 **阶段 3：Architect 框架设计**。"
+  },
+  "retryCount": 3,
+  "lastAttemptAt": 1775265306421,
+  "lastError": "Request failed with status code 400"
+}

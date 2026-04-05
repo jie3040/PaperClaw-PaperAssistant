@@ -1,0 +1,20 @@
+{
+  "id": "017b0138-b755-460a-973e-26e4abdd4ef3",
+  "enqueuedAt": 1775196461589,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "逻辑检查的 4 个问题已全部修复，final/v3 编译成功（11页，298KB）。现在重新发给 Reviewer 做逻辑复查。\n\n**已修复的问题：**\n1. ✅ Conclusion 数据修正：96.2%→91.2%，91.3% noisy→75.2-88.4% missing modality 范围\n2. ✅ 公式标签去重：method.tex `eq:wasserstein` → `eq:wasserstein_method`\n3. ✅ Ablation 表条件澄清：caption 改为 \"SNR=+5 dB moderate noise\"\n4. ✅ PU/WT 无数据支撑的 +18% 说法：软化为定性描述\n\n正在派发阶段 7.5 逻辑复查（第二轮）。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "逻辑检查的 4 个问题已全部修复，final/v3 编译成功（11页，298KB）。现在重新发给 Reviewer 做逻辑复查。\n\n**已修复的问题：**\n1. ✅ Conclusion 数据修正：96.2%→91.2%，91.3% noisy→75.2-88.4% missing modality 范围\n2. ✅ 公式标签去重：method.tex `eq:wasserstein` → `eq:wasserstein_method`\n3. ✅ Ablation 表条件澄清：caption 改为 \"SNR=+5 dB moderate noise\"\n4. ✅ PU/WT 无数据支撑的 +18% 说法：软化为定性描述\n\n正在派发阶段 7.5 逻辑复查（第二轮）。"
+  },
+  "retryCount": 4,
+  "lastAttemptAt": 1775265305768,
+  "lastError": "Request failed with status code 400"
+}

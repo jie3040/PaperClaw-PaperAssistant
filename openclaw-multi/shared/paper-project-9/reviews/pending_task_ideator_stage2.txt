@@ -1,0 +1,20 @@
+请生成3个创新性论文idea。
+
+当前项目：/home/liaowenjie/.openclaw-multi/shared/paper-project-9
+目标期刊：IEEE Transactions on Instrumentation and Measurement
+主题：基于多模态大模型的智能故障诊断
+
+文献调研摘要路径：/home/liaowenjie/.openclaw-multi/shared/paper-project-9/references/survey_summary_slim.md
+
+任务要求：
+1. 先读取上述文献调研摘要文件
+2. 生成3个不同方向的创新idea，每个idea包括：
+   - 方法名称（英文缩写）
+   - 核心创新点（2-3句）
+   - 技术路线概述
+   - 与现有方法的差异化优势
+   - 预期贡献（IEEE TIM投稿亮点）
+3. idea需针对研究空白，结合多模态大模型特性
+4. 结果写入：/home/liaowenjie/.openclaw-multi/shared/paper-project-9/ideas/ideas_candidates.md
+
+注意：只列出候选idea，不要自行选择，由用户决定。

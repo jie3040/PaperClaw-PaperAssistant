@@ -1,0 +1,15 @@
+{
+  "version": "v2",
+  "tasks": [
+    {"id": 1, "desc": "精简Method至2200词（从3744删减1500词）", "agent": "leader", "status": "pending"},
+    {"id": 2, "desc": "合并表格至6张（从18张删除冗余）", "agent": "leader", "status": "pending"},
+    {"id": 3, "desc": "扩充Experiments +800词", "agent": "leader", "status": "pending"},
+    {"id": 4, "desc": "扩充Related Work +500词", "agent": "leader", "status": "pending"},
+    {"id": 5, "desc": "补充参考文献至40篇（+15篇）", "agent": "leader", "status": "pending"},
+    {"id": 6, "desc": "添加Fig8跨域t-SNE", "agent": "leader", "status": "pending"},
+    {"id": 7, "desc": "重新整合LaTeX → final/v2/", "agent": "leader", "status": "pending"},
+    {"id": 8, "desc": "阶段7.5 逻辑检查", "agent": "reviewer", "status": "pending"},
+    {"id": 9, "desc": "阶段7.6 缩写检查", "agent": "reviewer", "status": "pending"},
+    {"id": 10, "desc": "编译PDF", "agent": "leader", "status": "pending"}
+  ]
+}

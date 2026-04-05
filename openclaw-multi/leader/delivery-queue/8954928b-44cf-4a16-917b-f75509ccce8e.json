@@ -1,0 +1,20 @@
+{
+  "id": "8954928b-44cf-4a16-917b-f75509ccce8e",
+  "enqueuedAt": 1775196219830,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "📋 **项目 9 完成报告**\n\n✅ Reviewer 最终审查 **ACCEPT**\n✅ PDF 编译成功\n\n📄 **最终文件**：`/home/liaowenjie/.openclaw-multi/shared/paper-project-9/final/v2/paper.pdf`\n- 11 页，298KB\n- 34 条引用，15 个公式\n- 所有黄金标准指标 ±10% 内对齐\n\n请查看 PDF，如有修改意见随时告诉我。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "📋 **项目 9 完成报告**\n\n✅ Reviewer 最终审查 **ACCEPT**\n✅ PDF 编译成功\n\n📄 **最终文件**：`/home/liaowenjie/.openclaw-multi/shared/paper-project-9/final/v2/paper.pdf`\n- 11 页，298KB\n- 34 条引用，15 个公式\n- 所有黄金标准指标 ±10% 内对齐\n\n请查看 PDF，如有修改意见随时告诉我。"
+  },
+  "retryCount": 4,
+  "lastAttemptAt": 1775265305576,
+  "lastError": "Request failed with status code 400"
+}

@@ -1,31 +1,14 @@
 {
   "models": {
     "providers": {
-      "claude-proxy": {
-        "baseUrl": "https://www.fucheers.top/v1",
+      "openrouter": {
+        "baseUrl": "https://openrouter.ai/api/v1",
         "apiKey": "YOUR_API_KEY_HERE",
-        "api": "anthropic-messages",
+        "api": "openai-completions",
         "models": [
           {
-            "id": "claude-opus-4-6",
-            "name": "claude-opus-4-6",
-            "reasoning": true,
-            "input": [
-              "text",
-              "image"
-            ],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 200000,
-            "maxTokens": 16000
-          },
-          {
-            "id": "claude-opus-4-6",
-            "name": "claude-opus-4-6",
+            "id": "xiaomi/mimo-v2-pro",
+            "name": "xiaomi/mimo-v2-pro",
             "reasoning": true,
             "input": [
               "text",
@@ -54,21 +37,21 @@
           "emoji": "👑"
         },
         "model": {
-          "primary": "claude-proxy/claude-opus-4-6"
+          "primary": "openrouter/xiaomi/mimo-v2-pro"
         },
         "workspace": "/home/liaowenjie/.openclaw-multi/leader/workspace"
       }
     ],
     "defaults": {
       "model": {
-        "primary": "claude-proxy/claude-opus-4-6"
+        "primary": "openrouter/xiaomi/mimo-v2-pro"
       },
       "workspace": "/home/liaowenjie/.openclaw-multi/leader/workspace",
       "compaction": {
         "mode": "safeguard"
       },
       "heartbeat": {
-        "every": "10m"
+        "every": "5m"
       }
     }
   },

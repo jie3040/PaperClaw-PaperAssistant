@@ -104,11 +104,35 @@ Reviewer 新增两种审查模式：
 
 ---
 
+## 🆕 v1.7 更新（2026-04）
+
+### 新增 Writer 扩写/缩写 Skill
+
+当 Reviewer 内容对齐审查指出字数偏差时，Leader 派发修改任务给 Writer 并附上对应 skill：
+
+**扩写模式**（`expand_en.md`）：通过深挖隐含结论、增强逻辑连接、升级学术表达来微幅扩充（每次约 5-15 词），严禁恶意注水。
+
+**缩写模式**（`shrink_en.md`）：通过句法压缩、剔除冗余填充词来微幅缩减（每次约 5-15 词），保留所有核心信息和实验参数。
+
+### 新增铁律：Leader 禁止直接修改论文内容
+
+Reviewer 返回审查意见后，Leader **必须**将修改任务分发给对应 Agent（尤其是 Writer），不得自己直接修改 .tex 文件。Leader 可自行处理的仅限文件路径修复、版本追踪更新等非内容性操作。
+
+### 新增 2 个 Skill 文件
+
+| 文件 | 用途 | 使用者 |
+|------|------|--------|
+| `expand_en.md` | 英文学术微幅扩写 | Writer |
+| `shrink_en.md` | 英文学术微幅缩减 | Writer |
+
+---
+
 ## 🔮 路线图
 
 - **v1.0**：多 Agent 论文辅助写作流水线（Mode A）
 - **v1.5**：新增 Mode B（结果先行）+ SOUL 架构重构
-- **v1.6**（当前）：Skill 系统 + 润色/去AI/逻辑检查/缩写检查
+- **v1.6**：Skill 系统 + 润色/去AI/逻辑检查/缩写检查
+- **v1.7**（当前）：扩写/缩写 Skill + Leader 禁止直接修改铁律
 - **v2.0**（规划中）：结合项目代码仓库的子 Agent 协作，实现 Agent 编码并运行实验
 
 ---
@@ -142,7 +166,7 @@ Reviewer 新增两种审查模式：
 | **Surveyor** 🔍 | 18810 | 文献检索和综述 | SOUL + AGENTS + WORKFLOW + IDENTITY |
 | **Ideator** 💡 | 18820 | 研究 Idea 生成（Mode B 跳过） | SOUL + AGENTS + IDENTITY |
 | **Architect** 🏗️ | 18830 | 论文框架和图表规划 | SOUL + AGENTS + WORKFLOW + IDENTITY |
-| **Writer** ✍️ | 18840 | 逐节撰写 + 引用 + 润色 + 去AI痕迹 | SOUL + AGENTS + WORKFLOW + IDENTITY |
+| **Writer** ✍️ | 18840 | 逐节撰写 + 引用 + 润色 + 去AI + 扩写/缩写 | SOUL + AGENTS + WORKFLOW + IDENTITY |
 | **Reviewer** 🔬 | 18850 | 框架对齐 / 内容对齐 / 全文审查 / 逻辑检查 / 缩写检查 | SOUL + AGENTS + IDENTITY |
 | **Artist** 🎨 | 18860 | 概念图 Prompt、表格、数据图（Mode B：提取转换） | SOUL + AGENTS + WORKFLOW + IDENTITY |
 | **Editor** 📝 | 18870 | LaTeX 整合（含 subfigure 支持） | SOUL + AGENTS + IDENTITY |
@@ -313,7 +337,7 @@ clear-all-agents       # 清空所有 Agent 会话
 
 ---
 
-## 📁 Workspace 文件说明（v1.6 架构）
+## 📁 Workspace 文件说明（v1.7 架构）
 
 每个 Agent 的 `workspace/` 目录下包含以下标准文件（OpenClaw 自动加载到 system prompt）：
 
@@ -334,6 +358,8 @@ clear-all-agents       # 清空所有 Agent 会话
 | `deai_en.md` / `deai_zh.md` | 去除AI痕迹（英/中） | Writer |
 | `logic_check.md` | 逻辑检查 | Reviewer |
 | `abbrev_check.md` | 缩写检查 | Reviewer |
+| `expand_en.md` | 英文微幅扩写 | Writer |
+| `shrink_en.md` | 英文微幅缩减 | Writer |
 
 ---
 
@@ -367,6 +393,6 @@ MIT License
 
 ---
 
-> 🦞 PaperClaw v1.6 — 让 AI 处理论文的繁琐工作，你专注于科研创新。
+> 🦞 PaperClaw v1.7 — 让 AI 处理论文的繁琐工作，你专注于科研创新。
 >
 > ⚠️ **最终提醒：论文仅供参考。Method 自己修正，Experiments 自己复现。学术诚信第一。**

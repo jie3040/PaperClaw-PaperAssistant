@@ -1,0 +1,20 @@
+{
+  "id": "ccd9db34-17ce-469a-8599-57695eda42cf",
+  "enqueuedAt": 1775185531711,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "HTTP 503 new_api_error: No available channel for model claude-opus-4-6 under group claude--kiro (distributor) (request id: 20260403030531326311601nuSc1kpD)"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "HTTP 503 new_api_error: No available channel for model claude-opus-4-6 under group claude--kiro (distributor) (request id: 20260403030531326311601nuSc1kpD)"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775265303784,
+  "lastError": "Request failed with status code 400"
+}

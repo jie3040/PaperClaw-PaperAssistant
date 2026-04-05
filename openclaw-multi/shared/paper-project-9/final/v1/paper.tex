@@ -1,0 +1,41 @@
+\documentclass[lettersize,journal]{IEEEtran}
+\usepackage{amsmath,amsfonts}
+\usepackage{booktabs}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{array}
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\usepackage{textcomp}
+\usepackage{stfloats}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{cite}
+\hyphenation{op-tical net-works semi-conduc-tor IEEE-Xplore}
+
+\begin{document}
+
+\title{VibSemAlign: Vibration-Semantic Alignment for Zero-Shot Fault Diagnosis via Multimodal Large Models}
+
+\author{Anonymous}
+
+\maketitle
+
+\begin{abstract}
+Rotating machinery fault diagnosis is critical for industrial reliability, yet existing approaches face data scarcity and domain shift challenges. We propose VibSemAlign, a novel framework that semantically aligns vibration spectrograms with natural language fault descriptions through vision-language models (VLMs). The framework employs a domain-specialized vibration-semantic contrastive loss to explicitly align spectrographic features with fault semantics, cross-attention for multimodal fusion, and model-agnostic meta-learning (MAML) for rapid cross-domain adaptation using only 5--10 target shots. Unlike prior VLM-based methods that treat spectrograms as generic images, VibSemAlign incorporates domain-specific design choices including linear frequency scaling to preserve mechanical fault harmonics and semantic prompting grounded in fault ontologies. Extensive experiments on CWRU and Paderborn datasets demonstrate that VibSemAlign achieves 96.5\% accuracy on CWRU (12\% gain over CNN baselines) and 92.3\% on Paderborn (18\% improvement), with zero-shot cross-domain transfer reaching 85.3\% without any target-domain labels. Ablation studies confirm the contribution of each module, and t-SNE visualization validates tight semantic clustering (Silhouette score 0.78 vs. 0.52 for unimodal CNNs).
+\end{abstract}
+
+\begin{IEEEkeywords}
+Fault diagnosis, vision-language model, multimodal learning, contrastive learning, meta-learning, zero-shot, vibration spectrogram.
+\end{IEEEkeywords}
+
+\input{introduction}
+\input{related_work}
+\input{method}
+\input{experiments}
+\input{conclusion}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

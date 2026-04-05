@@ -1,0 +1,9 @@
+{
+  "target": "architect",
+  "port": 18830,
+  "token": "architect-hook-2026",
+  "message": "请执行论文框架设计任务（阶段3）。\n\n当前项目：/home/liaowenjie/.openclaw-multi/shared/paper-project-9\n\n【选定Idea】VibSemAlign —— 振动-语义对齐框架\n核心创新：双模态对齐模块，通过对比学习将振动频谱图与语义文本显式对齐，支持零样本跨域故障推理。\n技术路线：振动信号→时频谱图+语义Prompt→VLM微调（LLaVA）+振动-语义对比损失+跨注意力解码器+MAML元学习快速适应→CWRU/Paderborn评估。\n\n【调研空白（对标）】\n- 现有MLLM未针对工业振动信号特性优化\n- 多模态对齐在实际工况下泛化性不足\n- 零样本+跨域+多模态联合挑战无统一框架\n\n【黄金标准】\n- 总页数：11-17页，目标14页\n- 总词数：8500-9500词，目标9000词\n- 引用：30-50条，目标40条\n- 图：5-12张，目标8张\n- 表：4-8个，目标6个\n- Introduction引用数 ≥ 总引用50%\n- Abstract：单段，150-250词\n\n【任务】\n设计完整论文框架，包括：\n1. 各Section标题（罗马数字编号，IEEE风格）\n2. 每个Section的子节（Subsection）列表\n3. 每个Section/Subsection的目标词数\n4. 每个Section拟包含的图表（编号+简述）\n5. 关键公式列表（每个公式用途说明）\n6. Introduction中需引用的文献主题列表（确保≥20条引用）\n\n输出写入：/home/liaowenjie/.openclaw-multi/shared/paper-project-9/outline/v1/paper_outline.md\n（请先创建目录 mkdir -p /home/liaowenjie/.openclaw-multi/shared/paper-project-9/outline/v1/）",
+  "sessionKey": "hook:p9-architect-stage3",
+  "created_at": "2026-04-03T16:43:00+08:00",
+  "status": "pending"
+}

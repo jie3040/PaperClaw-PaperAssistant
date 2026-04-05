@@ -1,10 +1,22 @@
 {
-  "agent:main:hook:activate": {
-    "sessionId": "f70fca01-345a-44a3-b150-0a993e10dc0d",
-    "updatedAt": 1774758731490,
+  "agent:main:main": {
+    "sessionId": "aaa48780-8272-4795-b830-2068eabde80b",
+    "updatedAt": 1775179260551,
+    "systemSent": false,
+    "abortedLastRun": false,
+    "model": "x-ai/grok-4.1-fast",
+    "modelProvider": "openrouter",
+    "inputTokens": 0,
+    "outputTokens": 0,
+    "totalTokens": 0,
+    "totalTokensFresh": true
+  },
+  "agent:main:hook:p9-stage1-survey": {
+    "sessionId": "c2c51ba9-6c57-496b-89a3-28a9056db085",
+    "updatedAt": 1775180776380,
     "systemSent": true,
     "skillsSnapshot": {
-      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
+      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>session-logs</name>\n    <description>Search and analyze your own session logs (older/parent conversations) using jq.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/session-logs/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
       "skills": [
         {
           "name": "clawhub",
@@ -19,6 +31,10 @@
         },
         {
           "name": "oracle",
+          "requiredEnv": []
+        },
+        {
+          "name": "session-logs",
           "requiredEnv": []
         },
         {
@@ -78,6 +94,14 @@
           "description": "Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).",
           "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md",
           "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle",
+          "source": "openclaw-bundled",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "session-logs",
+          "description": "Search and analyze your own session logs (older/parent conversations) using jq.",
+          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/session-logs/SKILL.md",
+          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/session-logs",
           "source": "openclaw-bundled",
           "disableModelInvocation": false
         },
@@ -149,21 +173,21 @@
       "version": 0
     },
     "modelProvider": "openrouter",
-    "model": "z-ai/glm-5-turbo",
+    "model": "x-ai/grok-4.1-fast",
     "contextTokens": 200000,
-    "inputTokens": 5325,
-    "outputTokens": 7,
-    "totalTokens": 11515,
+    "inputTokens": 27600,
+    "outputTokens": 26651,
+    "totalTokens": 17528,
     "totalTokensFresh": true,
-    "cacheRead": 6190,
+    "cacheRead": 112745,
     "cacheWrite": 0
   },
-  "agent:main:hook:p5-stage1-survey": {
-    "sessionId": "a9f1a77e-7920-4cf3-af0e-cea509b8feee",
-    "updatedAt": 1774231412011,
+  "agent:main:hook:p9-stage1-survey-redo": {
+    "sessionId": "c90f4f38-22f0-4cf3-805a-fe29b9e63f62",
+    "updatedAt": 1775180990325,
     "systemSent": true,
     "skillsSnapshot": {
-      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
+      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>session-logs</name>\n    <description>Search and analyze your own session logs (older/parent conversations) using jq.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/session-logs/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
       "skills": [
         {
           "name": "clawhub",
@@ -178,6 +202,10 @@
         },
         {
           "name": "oracle",
+          "requiredEnv": []
+        },
+        {
+          "name": "session-logs",
           "requiredEnv": []
         },
         {
@@ -241,797 +269,10 @@
           "disableModelInvocation": false
         },
         {
-          "name": "skill-creator",
-          "description": "Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "tmux",
-          "description": "Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "weather",
-          "description": "Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "LaTeX",
-          "description": "Write LaTeX documents with correct syntax, packages, and compilation workflow.",
-          "filePath": "/home/liaowenjie/.agents/skills/LaTeX/SKILL.md",
-          "baseDir": "/home/liaowenjie/.agents/skills/LaTeX",
-          "source": "agents-skills-personal",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "brave-api-search",
-          "description": "Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/brave-api-search",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "capability-evolver",
-          "description": "A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/capability-evolver",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "multi-agent-monitor",
-          "description": "Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.",
-          "filePath": "/home/liaowenjie/.agents/skills/multi-agent-monitor/SKILL.md",
-          "baseDir": "/home/liaowenjie/.agents/skills/multi-agent-monitor",
-          "source": "agents-skills-personal",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "self-improvement",
-          "description": "Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), (3) User requests a capability that doesn't exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/self-improvement",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        }
-      ],
-      "version": 0
-    },
-    "modelProvider": "claude-proxy",
-    "model": "claude-sonnet-4-6-thinking",
-    "contextTokens": 200000,
-    "inputTokens": 96264,
-    "outputTokens": 1530,
-    "totalTokens": 28514,
-    "totalTokensFresh": true,
-    "cacheRead": 65711,
-    "cacheWrite": 0
-  },
-  "agent:main:hook:p5-stage1-survey-v2": {
-    "sessionId": "55eb2521-b10d-4cad-b6b0-dbcf64dd512b",
-    "updatedAt": 1774232228007,
-    "systemSent": true,
-    "skillsSnapshot": {
-      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
-      "skills": [
-        {
-          "name": "clawhub",
-          "requiredEnv": []
-        },
-        {
-          "name": "healthcheck"
-        },
-        {
-          "name": "mcporter",
-          "requiredEnv": []
-        },
-        {
-          "name": "oracle",
-          "requiredEnv": []
-        },
-        {
-          "name": "skill-creator"
-        },
-        {
-          "name": "tmux",
-          "requiredEnv": []
-        },
-        {
-          "name": "weather",
-          "requiredEnv": []
-        },
-        {
-          "name": "LaTeX"
-        },
-        {
-          "name": "brave-api-search"
-        },
-        {
-          "name": "capability-evolver"
-        },
-        {
-          "name": "multi-agent-monitor"
-        },
-        {
-          "name": "self-improvement"
-        }
-      ],
-      "resolvedSkills": [
-        {
-          "name": "clawhub",
-          "description": "Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "healthcheck",
-          "description": "Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "mcporter",
-          "description": "Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "oracle",
-          "description": "Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "skill-creator",
-          "description": "Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "tmux",
-          "description": "Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "weather",
-          "description": "Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "LaTeX",
-          "description": "Write LaTeX documents with correct syntax, packages, and compilation workflow.",
-          "filePath": "/home/liaowenjie/.agents/skills/LaTeX/SKILL.md",
-          "baseDir": "/home/liaowenjie/.agents/skills/LaTeX",
-          "source": "agents-skills-personal",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "brave-api-search",
-          "description": "Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/brave-api-search",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "capability-evolver",
-          "description": "A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/capability-evolver",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "multi-agent-monitor",
-          "description": "Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.",
-          "filePath": "/home/liaowenjie/.agents/skills/multi-agent-monitor/SKILL.md",
-          "baseDir": "/home/liaowenjie/.agents/skills/multi-agent-monitor",
-          "source": "agents-skills-personal",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "self-improvement",
-          "description": "Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), (3) User requests a capability that doesn't exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/self-improvement",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        }
-      ],
-      "version": 0
-    },
-    "modelProvider": "claude-proxy",
-    "model": "claude-sonnet-4-6-thinking",
-    "contextTokens": 200000,
-    "inputTokens": 82475,
-    "outputTokens": 1422,
-    "totalTokens": 26882,
-    "totalTokensFresh": true,
-    "cacheRead": 88889,
-    "cacheWrite": 0
-  },
-  "agent:main:hook:p5-stage1-survey-v3": {
-    "sessionId": "4a58bd72-8c4d-4322-8a2a-b2aa1c3129bc",
-    "updatedAt": 1774233488488,
-    "systemSent": true,
-    "skillsSnapshot": {
-      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
-      "skills": [
-        {
-          "name": "clawhub",
-          "requiredEnv": []
-        },
-        {
-          "name": "healthcheck"
-        },
-        {
-          "name": "mcporter",
-          "requiredEnv": []
-        },
-        {
-          "name": "oracle",
-          "requiredEnv": []
-        },
-        {
-          "name": "skill-creator"
-        },
-        {
-          "name": "tmux",
-          "requiredEnv": []
-        },
-        {
-          "name": "weather",
-          "requiredEnv": []
-        },
-        {
-          "name": "LaTeX"
-        },
-        {
-          "name": "brave-api-search"
-        },
-        {
-          "name": "capability-evolver"
-        },
-        {
-          "name": "multi-agent-monitor"
-        },
-        {
-          "name": "self-improvement"
-        }
-      ],
-      "resolvedSkills": [
-        {
-          "name": "clawhub",
-          "description": "Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "healthcheck",
-          "description": "Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "mcporter",
-          "description": "Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "oracle",
-          "description": "Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "skill-creator",
-          "description": "Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "tmux",
-          "description": "Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "weather",
-          "description": "Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "LaTeX",
-          "description": "Write LaTeX documents with correct syntax, packages, and compilation workflow.",
-          "filePath": "/home/liaowenjie/.agents/skills/LaTeX/SKILL.md",
-          "baseDir": "/home/liaowenjie/.agents/skills/LaTeX",
-          "source": "agents-skills-personal",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "brave-api-search",
-          "description": "Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/brave-api-search",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "capability-evolver",
-          "description": "A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/capability-evolver",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "multi-agent-monitor",
-          "description": "Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.",
-          "filePath": "/home/liaowenjie/.agents/skills/multi-agent-monitor/SKILL.md",
-          "baseDir": "/home/liaowenjie/.agents/skills/multi-agent-monitor",
-          "source": "agents-skills-personal",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "self-improvement",
-          "description": "Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), (3) User requests a capability that doesn't exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/self-improvement",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        }
-      ],
-      "version": 0
-    },
-    "modelProvider": "claude-proxy",
-    "model": "claude-sonnet-4-6-thinking",
-    "contextTokens": 200000,
-    "inputTokens": 135352,
-    "outputTokens": 3518,
-    "totalTokens": 43863,
-    "totalTokensFresh": true,
-    "cacheRead": 199335,
-    "cacheWrite": 0
-  },
-  "agent:main:hook:p5-stage1-survey-v4": {
-    "sessionId": "12283d93-f19f-4f62-9c35-9575217e12f0",
-    "updatedAt": 1774233903297,
-    "systemSent": true,
-    "skillsSnapshot": {
-      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
-      "skills": [
-        {
-          "name": "clawhub",
-          "requiredEnv": []
-        },
-        {
-          "name": "healthcheck"
-        },
-        {
-          "name": "mcporter",
-          "requiredEnv": []
-        },
-        {
-          "name": "oracle",
-          "requiredEnv": []
-        },
-        {
-          "name": "skill-creator"
-        },
-        {
-          "name": "tmux",
-          "requiredEnv": []
-        },
-        {
-          "name": "weather",
-          "requiredEnv": []
-        },
-        {
-          "name": "LaTeX"
-        },
-        {
-          "name": "brave-api-search"
-        },
-        {
-          "name": "capability-evolver"
-        },
-        {
-          "name": "multi-agent-monitor"
-        },
-        {
-          "name": "self-improvement"
-        }
-      ],
-      "resolvedSkills": [
-        {
-          "name": "clawhub",
-          "description": "Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "healthcheck",
-          "description": "Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "mcporter",
-          "description": "Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "oracle",
-          "description": "Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "skill-creator",
-          "description": "Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "tmux",
-          "description": "Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "weather",
-          "description": "Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "LaTeX",
-          "description": "Write LaTeX documents with correct syntax, packages, and compilation workflow.",
-          "filePath": "/home/liaowenjie/.agents/skills/LaTeX/SKILL.md",
-          "baseDir": "/home/liaowenjie/.agents/skills/LaTeX",
-          "source": "agents-skills-personal",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "brave-api-search",
-          "description": "Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/brave-api-search",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "capability-evolver",
-          "description": "A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/capability-evolver",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "multi-agent-monitor",
-          "description": "Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.",
-          "filePath": "/home/liaowenjie/.agents/skills/multi-agent-monitor/SKILL.md",
-          "baseDir": "/home/liaowenjie/.agents/skills/multi-agent-monitor",
-          "source": "agents-skills-personal",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "self-improvement",
-          "description": "Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), (3) User requests a capability that doesn't exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/self-improvement",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        }
-      ],
-      "version": 0
-    },
-    "modelProvider": "claude-proxy",
-    "model": "claude-sonnet-4-6-thinking",
-    "contextTokens": 200000,
-    "inputTokens": 243556,
-    "outputTokens": 2703,
-    "totalTokens": 49891,
-    "totalTokensFresh": true,
-    "cacheRead": 261011,
-    "cacheWrite": 0
-  },
-  "agent:main:hook:p5-survey-v5": {
-    "sessionId": "e216485d-7a9f-47a4-89d2-a073be6896cf",
-    "updatedAt": 1774234559257,
-    "systemSent": true,
-    "skillsSnapshot": {
-      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
-      "skills": [
-        {
-          "name": "clawhub",
-          "requiredEnv": []
-        },
-        {
-          "name": "healthcheck"
-        },
-        {
-          "name": "mcporter",
-          "requiredEnv": []
-        },
-        {
-          "name": "oracle",
-          "requiredEnv": []
-        },
-        {
-          "name": "skill-creator"
-        },
-        {
-          "name": "tmux",
-          "requiredEnv": []
-        },
-        {
-          "name": "weather",
-          "requiredEnv": []
-        },
-        {
-          "name": "LaTeX"
-        },
-        {
-          "name": "brave-api-search"
-        },
-        {
-          "name": "capability-evolver"
-        },
-        {
-          "name": "multi-agent-monitor"
-        },
-        {
-          "name": "self-improvement"
-        }
-      ],
-      "resolvedSkills": [
-        {
-          "name": "clawhub",
-          "description": "Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "healthcheck",
-          "description": "Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "mcporter",
-          "description": "Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "oracle",
-          "description": "Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "skill-creator",
-          "description": "Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "tmux",
-          "description": "Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "weather",
-          "description": "Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "LaTeX",
-          "description": "Write LaTeX documents with correct syntax, packages, and compilation workflow.",
-          "filePath": "/home/liaowenjie/.agents/skills/LaTeX/SKILL.md",
-          "baseDir": "/home/liaowenjie/.agents/skills/LaTeX",
-          "source": "agents-skills-personal",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "brave-api-search",
-          "description": "Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/brave-api-search",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "capability-evolver",
-          "description": "A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/capability-evolver",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "multi-agent-monitor",
-          "description": "Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.",
-          "filePath": "/home/liaowenjie/.agents/skills/multi-agent-monitor/SKILL.md",
-          "baseDir": "/home/liaowenjie/.agents/skills/multi-agent-monitor",
-          "source": "agents-skills-personal",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "self-improvement",
-          "description": "Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), (3) User requests a capability that doesn't exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/self-improvement",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        }
-      ],
-      "version": 0
-    },
-    "modelProvider": "claude-proxy",
-    "model": "claude-opus-4-6",
-    "contextTokens": 200000,
-    "inputTokens": 258724,
-    "outputTokens": 2415,
-    "totalTokens": 54670,
-    "totalTokensFresh": true,
-    "cacheRead": 166441,
-    "cacheWrite": 0
-  },
-  "agent:main:hook:p5-survey-v6": {
-    "sessionId": "ad965a69-84bb-43cd-9ee5-f0c8cf736e91",
-    "updatedAt": 1774237018452,
-    "systemSent": true,
-    "skillsSnapshot": {
-      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
-      "skills": [
-        {
-          "name": "clawhub",
-          "requiredEnv": []
-        },
-        {
-          "name": "healthcheck"
-        },
-        {
-          "name": "mcporter",
-          "requiredEnv": []
-        },
-        {
-          "name": "oracle",
-          "requiredEnv": []
-        },
-        {
-          "name": "skill-creator"
-        },
-        {
-          "name": "tmux",
-          "requiredEnv": []
-        },
-        {
-          "name": "weather",
-          "requiredEnv": []
-        },
-        {
-          "name": "LaTeX"
-        },
-        {
-          "name": "brave-api-search"
-        },
-        {
-          "name": "capability-evolver"
-        },
-        {
-          "name": "multi-agent-monitor"
-        },
-        {
-          "name": "self-improvement"
-        }
-      ],
-      "resolvedSkills": [
-        {
-          "name": "clawhub",
-          "description": "Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "healthcheck",
-          "description": "Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "mcporter",
-          "description": "Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "oracle",
-          "description": "Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle",
+          "name": "session-logs",
+          "description": "Search and analyze your own session logs (older/parent conversations) using jq.",
+          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/session-logs/SKILL.md",
+          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/session-logs",
           "source": "openclaw-bundled",
           "disableModelInvocation": false
         },
@@ -1103,21 +344,21 @@
       "version": 0
     },
     "modelProvider": "openrouter",
-    "model": "z-ai/glm-5-turbo",
+    "model": "x-ai/grok-4.1-fast",
     "contextTokens": 200000,
-    "inputTokens": 41923,
-    "outputTokens": 6857,
-    "totalTokens": 53113,
+    "inputTokens": 27445,
+    "outputTokens": 25489,
+    "totalTokens": 18821,
     "totalTokensFresh": true,
-    "cacheRead": 323387,
+    "cacheRead": 88117,
     "cacheWrite": 0
   },
-  "agent:main:hook:p6-surveyor-stage1": {
-    "sessionId": "27df254f-8f44-4fb5-9df9-c55ddbb90f7f",
-    "updatedAt": 1774318741804,
+  "agent:main:hook:p9-surveyor-stage1": {
+    "sessionId": "8afc46fd-2ee4-4d76-a287-4518b6b3da9c",
+    "updatedAt": 1775201951765,
     "systemSent": true,
     "skillsSnapshot": {
-      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
+      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>session-logs</name>\n    <description>Search and analyze your own session logs (older/parent conversations) using jq.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/session-logs/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
       "skills": [
         {
           "name": "clawhub",
@@ -1132,6 +373,10 @@
         },
         {
           "name": "oracle",
+          "requiredEnv": []
+        },
+        {
+          "name": "session-logs",
           "requiredEnv": []
         },
         {
@@ -1191,6 +436,14 @@
           "description": "Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).",
           "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md",
           "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle",
+          "source": "openclaw-bundled",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "session-logs",
+          "description": "Search and analyze your own session logs (older/parent conversations) using jq.",
+          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/session-logs/SKILL.md",
+          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/session-logs",
           "source": "openclaw-bundled",
           "disableModelInvocation": false
         },
@@ -1262,21 +515,21 @@
       "version": 0
     },
     "modelProvider": "openrouter",
-    "model": "z-ai/glm-5-turbo",
+    "model": "x-ai/grok-4.1-fast",
     "contextTokens": 200000,
-    "inputTokens": 51065,
-    "outputTokens": 6039,
-    "totalTokens": 57248,
+    "inputTokens": 44382,
+    "outputTokens": 19260,
+    "totalTokens": 34376,
     "totalTokensFresh": true,
-    "cacheRead": 300678,
+    "cacheRead": 89473,
     "cacheWrite": 0
   },
-  "agent:main:hook:surveyor-search-p7": {
-    "sessionId": "704f56d0-108a-4dee-8719-e919fb8bf577",
-    "updatedAt": 1774437649604,
+  "agent:main:hook:p9-surveyor-stage1-r2": {
+    "sessionId": "f9353c12-4eb7-459d-b365-405d1cca31ab",
+    "updatedAt": 1775202124320,
     "systemSent": true,
     "skillsSnapshot": {
-      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
+      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>session-logs</name>\n    <description>Search and analyze your own session logs (older/parent conversations) using jq.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/session-logs/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
       "skills": [
         {
           "name": "clawhub",
@@ -1291,6 +544,10 @@
         },
         {
           "name": "oracle",
+          "requiredEnv": []
+        },
+        {
+          "name": "session-logs",
           "requiredEnv": []
         },
         {
@@ -1350,6 +607,14 @@
           "description": "Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).",
           "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md",
           "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle",
+          "source": "openclaw-bundled",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "session-logs",
+          "description": "Search and analyze your own session logs (older/parent conversations) using jq.",
+          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/session-logs/SKILL.md",
+          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/session-logs",
           "source": "openclaw-bundled",
           "disableModelInvocation": false
         },
@@ -1421,490 +686,13 @@
       "version": 0
     },
     "modelProvider": "openrouter",
-    "model": "z-ai/glm-5-turbo",
+    "model": "x-ai/grok-4.1-fast",
     "contextTokens": 200000,
-    "inputTokens": 35324,
-    "outputTokens": 6989,
-    "totalTokens": 41034,
+    "inputTokens": 30826,
+    "outputTokens": 28167,
+    "totalTokens": 20871,
     "totalTokensFresh": true,
-    "cacheRead": 254946,
-    "cacheWrite": 0
-  },
-  "agent:main:hook:surveyor-research-p7": {
-    "sessionId": "3e1fcca5-b117-46fd-8f6e-190dba3bbf97",
-    "updatedAt": 1774439403261,
-    "systemSent": true,
-    "skillsSnapshot": {
-      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
-      "skills": [
-        {
-          "name": "clawhub",
-          "requiredEnv": []
-        },
-        {
-          "name": "healthcheck"
-        },
-        {
-          "name": "mcporter",
-          "requiredEnv": []
-        },
-        {
-          "name": "oracle",
-          "requiredEnv": []
-        },
-        {
-          "name": "skill-creator"
-        },
-        {
-          "name": "tmux",
-          "requiredEnv": []
-        },
-        {
-          "name": "weather",
-          "requiredEnv": []
-        },
-        {
-          "name": "LaTeX"
-        },
-        {
-          "name": "brave-api-search"
-        },
-        {
-          "name": "capability-evolver"
-        },
-        {
-          "name": "multi-agent-monitor"
-        },
-        {
-          "name": "self-improvement"
-        }
-      ],
-      "resolvedSkills": [
-        {
-          "name": "clawhub",
-          "description": "Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "healthcheck",
-          "description": "Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "mcporter",
-          "description": "Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "oracle",
-          "description": "Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "skill-creator",
-          "description": "Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "tmux",
-          "description": "Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "weather",
-          "description": "Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "LaTeX",
-          "description": "Write LaTeX documents with correct syntax, packages, and compilation workflow.",
-          "filePath": "/home/liaowenjie/.agents/skills/LaTeX/SKILL.md",
-          "baseDir": "/home/liaowenjie/.agents/skills/LaTeX",
-          "source": "agents-skills-personal",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "brave-api-search",
-          "description": "Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/brave-api-search",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "capability-evolver",
-          "description": "A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/capability-evolver",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "multi-agent-monitor",
-          "description": "Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.",
-          "filePath": "/home/liaowenjie/.agents/skills/multi-agent-monitor/SKILL.md",
-          "baseDir": "/home/liaowenjie/.agents/skills/multi-agent-monitor",
-          "source": "agents-skills-personal",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "self-improvement",
-          "description": "Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), (3) User requests a capability that doesn't exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/self-improvement",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        }
-      ],
-      "version": 0
-    },
-    "modelProvider": "openrouter",
-    "model": "z-ai/glm-5-turbo",
-    "contextTokens": 200000,
-    "inputTokens": 103466,
-    "outputTokens": 8715,
-    "totalTokens": 64937,
-    "totalTokensFresh": true,
-    "cacheRead": 438553,
-    "cacheWrite": 0
-  },
-  "agent:main:hook:p8-stage1-survey": {
-    "sessionId": "e999d25a-2764-4594-b7b9-75f8147fa608",
-    "updatedAt": 1774759328421,
-    "systemSent": true,
-    "skillsSnapshot": {
-      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
-      "skills": [
-        {
-          "name": "clawhub",
-          "requiredEnv": []
-        },
-        {
-          "name": "healthcheck"
-        },
-        {
-          "name": "mcporter",
-          "requiredEnv": []
-        },
-        {
-          "name": "oracle",
-          "requiredEnv": []
-        },
-        {
-          "name": "skill-creator"
-        },
-        {
-          "name": "tmux",
-          "requiredEnv": []
-        },
-        {
-          "name": "weather",
-          "requiredEnv": []
-        },
-        {
-          "name": "LaTeX"
-        },
-        {
-          "name": "brave-api-search"
-        },
-        {
-          "name": "capability-evolver"
-        },
-        {
-          "name": "multi-agent-monitor"
-        },
-        {
-          "name": "self-improvement"
-        }
-      ],
-      "resolvedSkills": [
-        {
-          "name": "clawhub",
-          "description": "Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "healthcheck",
-          "description": "Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "mcporter",
-          "description": "Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "oracle",
-          "description": "Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "skill-creator",
-          "description": "Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "tmux",
-          "description": "Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "weather",
-          "description": "Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "LaTeX",
-          "description": "Write LaTeX documents with correct syntax, packages, and compilation workflow.",
-          "filePath": "/home/liaowenjie/.agents/skills/LaTeX/SKILL.md",
-          "baseDir": "/home/liaowenjie/.agents/skills/LaTeX",
-          "source": "agents-skills-personal",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "brave-api-search",
-          "description": "Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/brave-api-search",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "capability-evolver",
-          "description": "A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/capability-evolver",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "multi-agent-monitor",
-          "description": "Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.",
-          "filePath": "/home/liaowenjie/.agents/skills/multi-agent-monitor/SKILL.md",
-          "baseDir": "/home/liaowenjie/.agents/skills/multi-agent-monitor",
-          "source": "agents-skills-personal",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "self-improvement",
-          "description": "Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), (3) User requests a capability that doesn't exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/self-improvement",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        }
-      ],
-      "version": 0
-    },
-    "modelProvider": "openrouter",
-    "model": "z-ai/glm-5-turbo",
-    "contextTokens": 200000,
-    "inputTokens": 31919,
-    "outputTokens": 494,
-    "totalTokens": 120819,
-    "totalTokensFresh": true,
-    "cacheRead": 88900,
-    "cacheWrite": 0
-  },
-  "agent:main:hook:p8-stage1-survey-retry1": {
-    "sessionId": "dc877c9f-4a7d-47ed-a09e-24dc0d63df5f",
-    "updatedAt": 1774760567585,
-    "systemSent": true,
-    "skillsSnapshot": {
-      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
-      "skills": [
-        {
-          "name": "clawhub",
-          "requiredEnv": []
-        },
-        {
-          "name": "healthcheck"
-        },
-        {
-          "name": "mcporter",
-          "requiredEnv": []
-        },
-        {
-          "name": "oracle",
-          "requiredEnv": []
-        },
-        {
-          "name": "skill-creator"
-        },
-        {
-          "name": "tmux",
-          "requiredEnv": []
-        },
-        {
-          "name": "weather",
-          "requiredEnv": []
-        },
-        {
-          "name": "LaTeX"
-        },
-        {
-          "name": "brave-api-search"
-        },
-        {
-          "name": "capability-evolver"
-        },
-        {
-          "name": "multi-agent-monitor"
-        },
-        {
-          "name": "self-improvement"
-        }
-      ],
-      "resolvedSkills": [
-        {
-          "name": "clawhub",
-          "description": "Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "healthcheck",
-          "description": "Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "mcporter",
-          "description": "Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "oracle",
-          "description": "Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "skill-creator",
-          "description": "Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "tmux",
-          "description": "Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "weather",
-          "description": "Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "LaTeX",
-          "description": "Write LaTeX documents with correct syntax, packages, and compilation workflow.",
-          "filePath": "/home/liaowenjie/.agents/skills/LaTeX/SKILL.md",
-          "baseDir": "/home/liaowenjie/.agents/skills/LaTeX",
-          "source": "agents-skills-personal",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "brave-api-search",
-          "description": "Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/brave-api-search/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/brave-api-search",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "capability-evolver",
-          "description": "A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/capability-evolver/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/capability-evolver",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "multi-agent-monitor",
-          "description": "Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.",
-          "filePath": "/home/liaowenjie/.agents/skills/multi-agent-monitor/SKILL.md",
-          "baseDir": "/home/liaowenjie/.agents/skills/multi-agent-monitor",
-          "source": "agents-skills-personal",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "self-improvement",
-          "description": "Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), (3) User requests a capability that doesn't exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.",
-          "filePath": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/self-improvement/SKILL.md",
-          "baseDir": "/home/liaowenjie/.openclaw-multi/surveyor/workspace/skills/self-improvement",
-          "source": "openclaw-workspace",
-          "disableModelInvocation": false
-        }
-      ],
-      "version": 0
-    },
-    "modelProvider": "openrouter",
-    "model": "z-ai/glm-5-turbo",
-    "contextTokens": 200000,
-    "inputTokens": 72020,
-    "outputTokens": 7508,
-    "totalTokens": 44217,
-    "totalTokensFresh": true,
-    "cacheRead": 215897,
+    "cacheRead": 75680,
     "cacheWrite": 0
   }
 }

@@ -1,0 +1,20 @@
+{
+  "id": "73256301-84c4-496f-9222-a998572a2aec",
+  "enqueuedAt": 1775205926508,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Architect 已完成框架设计 ✅\n\n**框架概览（outline/v1/paper_outline.md）：**\n\n| 项目 | 计划 |\n|------|------|\n| 总词数 | 9000 词 |\n| 章节数 | 6节（Abstract + I-VI） |\n| 图表 | 8 图 + 6 表 |\n| 引用 | ~40 条（Intro ≥ 20） |\n| 公式 | 4 个（F1-F4） |\n\n**各节词数分配：**\n- Abstract：~200 词\n- I. Introduction：~1500 词（7个子节）\n- II. Related Work：~1000 词\n- III. Problem Formulation：~600 词\n- IV. Proposed Method：~3200 词（5个子节，含完整公式）\n- V. Experiments：~2200 词（6个子节，3图3表）\n- VI. Conclusion：~400 词\n\n**框架质量初判：**\n- ✅ Introduction 引用主题计划了 20 个，满足 ≥50% 规则\n- ✅ Method 最重（35%词数），符合 IEEE TIM 论文惯例\n- ✅ 图表分布合理（Method 3图，Experiments 3图）\n- ✅ 4个关键公式已列出（含对比损失、交叉注意力、元学习目标）\n\n---\n\n**下一步：阶段 3.5 — Reviewer 框架对齐审查**\n\n即将派 Reviewer 对照 golden_standard.json 审查此框架，确认通过后才进入阶段 4 派 Writer 写作。是否现在开始？"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Architect 已完成框架设计 ✅\n\n**框架概览（outline/v1/paper_outline.md）：**\n\n| 项目 | 计划 |\n|------|------|\n| 总词数 | 9000 词 |\n| 章节数 | 6节（Abstract + I-VI） |\n| 图表 | 8 图 + 6 表 |\n| 引用 | ~40 条（Intro ≥ 20） |\n| 公式 | 4 个（F1-F4） |\n\n**各节词数分配：**\n- Abstract：~200 词\n- I. Introduction：~1500 词（7个子节）\n- II. Related Work：~1000 词\n- III. Problem Formulation：~600 词\n- IV. Proposed Method：~3200 词（5个子节，含完整公式）\n- V. Experiments：~2200 词（6个子节，3图3表）\n- VI. Conclusion：~400 词\n\n**框架质量初判：**\n- ✅ Introduction 引用主题计划了 20 个，满足 ≥50% 规则\n- ✅ Method 最重（35%词数），符合 IEEE TIM 论文惯例\n- ✅ 图表分布合理（Method 3图，Experiments 3图）\n- ✅ 4个关键公式已列出（含对比损失、交叉注意力、元学习目标）\n\n---\n\n**下一步：阶段 3.5 — Reviewer 框架对齐审查**\n\n即将派 Reviewer 对照 golden_standard.json 审查此框架，确认通过后才进入阶段 4 派 Writer 写作。是否现在开始？"
+  },
+  "retryCount": 3,
+  "lastAttemptAt": 1775265307523,
+  "lastError": "Request failed with status code 400"
+}

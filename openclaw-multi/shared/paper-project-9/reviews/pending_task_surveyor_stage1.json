@@ -1,0 +1,9 @@
+{
+  "target": "surveyor",
+  "port": 18810,
+  "token": "surveyor-hook-2026",
+  "message": "请执行文献检索任务。\n\n当前项目：/home/liaowenjie/.openclaw-multi/shared/paper-project-9\n\n主题：基于多模态大模型的智能故障诊断（Multimodal Large Model-based Intelligent Fault Diagnosis）\n目标期刊：IEEE Transactions on Instrumentation and Measurement\n\n任务要求：\n1. 检索该主题最新相关文献（2020-2025年），重点包括：\n   - 多模态大语言模型（MLLM）用于故障诊断\n   - 大模型（LLM/VLM）结合振动信号分析\n   - 零样本/少样本故障诊断\n   - 跨域故障诊断\n   - 传统深度学习故障诊断（CNN/Transformer/GAN等）作为对比基线\n2. 每篇文献提供：标题、作者、年份、期刊/会议、核心贡献（1-2句）、与本主题的关联\n3. 总计检索 40-50 篇文献\n4. 结果写入：/home/liaowenjie/.openclaw-multi/shared/paper-project-9/references/survey_report.md\n\n格式要求：Markdown，按主题分组，每组附简短综述。",
+  "sessionKey": "hook:p9-surveyor-stage1",
+  "created_at": "2026-04-03T15:38:00+08:00",
+  "status": "pending"
+}

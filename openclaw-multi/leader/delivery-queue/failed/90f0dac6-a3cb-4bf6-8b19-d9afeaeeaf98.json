@@ -1,0 +1,20 @@
+{
+  "id": "90f0dac6-a3cb-4bf6-8b19-d9afeaeeaf98",
+  "enqueuedAt": 1775116696190,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Files confirmed. This is a late callback from the earlier §4.3/§4.4 writing task — these files were already counted in the stage 4 completion (all 14 sections done, 11047 words total). The workflow has already moved past this to stage 4.5a (Reviewer content alignment review) and bib fixing.\n\nNo action needed — this is a duplicate completion notification for work already tracked.\n\nNO_REPLY"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Files confirmed. This is a late callback from the earlier §4.3/§4.4 writing task — these files were already counted in the stage 4 completion (all 14 sections done, 11047 words total). The workflow has already moved past this to stage 4.5a (Reviewer content alignment review) and bib fixing.\n\nNo action needed — this is a duplicate completion notification for work already tracked.\n\nNO_REPLY"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775130252017,
+  "lastError": "Request failed with status code 400"
+}

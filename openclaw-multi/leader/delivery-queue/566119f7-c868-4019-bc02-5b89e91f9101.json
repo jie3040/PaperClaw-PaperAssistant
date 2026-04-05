@@ -1,0 +1,20 @@
+{
+  "id": "566119f7-c868-4019-bc02-5b89e91f9101",
+  "enqueuedAt": 1775184348929,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "阶段 4.5 内容对齐审查 ACCEPT ✅。已进入阶段 4.6（润色），向 Writer 派发了 5 个润色任务（abstract+conclusion、introduction、background、method、experiments），输出写入 drafts/v3/。等待 Writer 回报。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "阶段 4.5 内容对齐审查 ACCEPT ✅。已进入阶段 4.6（润色），向 Writer 派发了 5 个润色任务（abstract+conclusion、introduction、background、method、experiments），输出写入 drafts/v3/。等待 Writer 回报。"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775265302117,
+  "lastError": "Request failed with status code 400"
+}

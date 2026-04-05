@@ -1,0 +1,20 @@
+{
+  "id": "859c303d-b2cf-4db2-972b-9c34f8f0bd7a",
+  "enqueuedAt": 1775116443661,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Stage 4 drafts 全部完成。14 个 section 文件，总计 ~11,047 词，27 个引用 key（Intro 占 89%）。已派 Writer 生成 references.bib。等 bib 回来后进入阶段 4.5a（Reviewer 内容对齐审查）。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Stage 4 drafts 全部完成。14 个 section 文件，总计 ~11,047 词，27 个引用 key（Intro 占 89%）。已派 Writer 生成 references.bib。等 bib 回来后进入阶段 4.5a（Reviewer 内容对齐审查）。"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775130251298,
+  "lastError": "Request failed with status code 400"
+}

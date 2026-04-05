@@ -1,0 +1,172 @@
+\begin{thebibliography}{10}
+
+\bibitem{cite8}
+Peng Cao, Shaocong Zhang, and Jie Tang.
+\newblock Preprocessing-free gear fault diagnosis using small datasets with
+  deep convolutional neural network.
+\newblock {\em Journal of Sound and Vibration}, 439:275--291, 2018.
+
+\bibitem{cite6}
+{Case Western Reserve University}.
+\newblock Bearing data center.
+\newblock \url{http://csegroups.case.edu/bearingdatacenter}, 2015.
+
+\bibitem{cite11}
+Xuefeng Chen, Shibin Wang, Baojie Qiao, and Qiang Chen.
+\newblock Basic research on machinery fault diagnostics: past, present, and
+  future trends.
+\newblock {\em Frontiers of Mechanical Engineering}, 13(2):264--291, 2018.
+
+\bibitem{cite3}
+Konstantin Dragomiretskiy and Dominique Zosso.
+\newblock Variational mode decomposition.
+\newblock {\em IEEE Transactions on Signal Processing}, 62(3):531--544, 2014.
+
+\bibitem{cite19}
+Duy-Tang Hoang and Hee-Jun Kang.
+\newblock Rolling element bearing fault diagnosis using convolutional neural
+  network and vibration image.
+\newblock volume~53, pages 42--50, 2019.
+
+\bibitem{cite29}
+Ziwei Ji, Nayeon Liu, See-Kiong Lee, et~al.
+\newblock Survey of hallucination in natural language generation.
+\newblock {\em ACM Computing Surveys}, 55(12):1--38, 2023.
+
+\bibitem{cite12}
+Feng Jia, Yaguo Lei, Jing Lin, Xin Zhou, and Lu~Na.
+\newblock Deep neural networks: a promising tool for fault characteristic
+  mining and intelligent diagnosis of rotating machinery.
+\newblock {\em Mechanical Systems and Signal Processing}, 72--73:303--315,
+  2016.
+
+\bibitem{cite22}
+Yaguo Lei, Feng Jia, Jing Lin, Saibo Xing, and Steven~X. Ding.
+\newblock An intelligent fault diagnosis method using unsupervised feature
+  learning towards mechanical big data.
+\newblock {\em IEEE Transactions on Industrial Electronics}, 63(5):3137--3147,
+  2016.
+
+\bibitem{cite2}
+Yaguo Lei, Jing Lin, Zhengjia He, and Ming~J. Zuo.
+\newblock A review on empirical mode decomposition in fault diagnosis of
+  rotating machinery.
+\newblock {\em Mechanical Systems and Signal Processing}, 35(1--2):108--126,
+  2013.
+
+\bibitem{cite10}
+Yaguo Lei, Bin Yang, Xinwei Jiang, Feng Jia, Naipeng Li, and Asoke~K. Nandi.
+\newblock Applications of machine learning to machine fault diagnosis: a review
+  and roadmap.
+\newblock {\em Mechanical Systems and Signal Processing}, 138:106587, 2020.
+
+\bibitem{cite7}
+Christian Lessmeier, James~Kuria Kimotho, Detmar Zimmer, and Walter Sextro.
+\newblock Condition monitoring of bearing damage in electromechanical drive
+  systems.
+\newblock {\em PHM Society European Conference}, 3(1), 2016.
+
+\bibitem{cite28}
+Junnan Li, Dongxu Li, Caiming Xiong, and Steven C.~H. Hoi.
+\newblock Blip-2: bootstrapping language-image pre-training with frozen image
+  encoders and large language models.
+\newblock pages 19730--19742, 2023.
+
+\bibitem{cite15}
+Xiang Li, Wei Zhang, and Qian Ding.
+\newblock Deep learning-based remaining useful life estimation of bearings
+  using multi-scale feature extraction.
+\newblock {\em Reliability Engineering and System Safety}, 182:208--218, 2019.
+
+\bibitem{cite21}
+Haotian Liu, Chunyuan Li, Qingyang Wu, and Yong~Jae Lee.
+\newblock Visual instruction tuning.
+\newblock {\em Advances in Neural Information Processing Systems}, 36, 2023.
+
+\bibitem{cite26}
+Jialin Liu, Xin Chen, Yan Wang, and Tao Zhang.
+\newblock Faultgpt: Generative multimodal models for comprehensive sensor fault
+  diagnosis.
+\newblock {\em Expert Systems with Applications}, 238:122073, 2024.
+
+\bibitem{cite20}
+Alec Radford, Jong~Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh,
+  Sandhini Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark,
+  Gretchen Krueger, and Ilya Sutskever.
+\newblock Learning transferable visual models from natural language
+  supervision.
+\newblock In {\em International Conference on Machine Learning (ICML)}, pages
+  8748--8763, 2021.
+
+\bibitem{cite1}
+Robert~B. Randall and J{\'e}r{\^o}me Antoni.
+\newblock Rolling element bearing diagnostics---a tutorial.
+\newblock {\em Mechanical Systems and Signal Processing}, 25(2):485--520, 2011.
+
+\bibitem{cite18}
+Siyu Shao, Ping Wang, and Ruqiang Yan.
+\newblock Generative adversarial networks for data augmentation in machine
+  fault diagnosis.
+\newblock {\em Computers in Industry}, 106:85--93, 2019.
+
+\bibitem{cite27}
+Yunjie Tian, Jianwei Liu, Guoping Pang, Xiabi Liu, et~al.
+\newblock Fine-grained visual classification with vision-language models:
+  challenges and opportunities.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  46(12):7900--7916, 2024.
+
+\bibitem{cite13}
+David Verstraete, Andr{\'e}s Ferrada, Enrique~L{\'o}pez Droguett, Viviana
+  Meruane, and Mohammad Modarres.
+\newblock Deep learning enabled fault diagnosis using time-frequency image
+  analysis of rolling element bearings.
+\newblock {\em Shock and Vibration}, 2017:5067651, 2017.
+
+\bibitem{cite17}
+Jiaqiang Wang, Zili Mo, Hui Zhang, and Qiang Miao.
+\newblock A deep learning method for bearing fault diagnosis based on
+  time-frequency image.
+\newblock {\em IEEE Access}, 7:42373--42383, 2019.
+
+\bibitem{cite9}
+Long Wen, Liang Gao, and Xiang Li.
+\newblock A new deep transfer learning based on sparse auto-encoder for fault
+  diagnosis.
+\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics: Systems},
+  49(1):136--144, 2019.
+
+\bibitem{cite4}
+Long Wen, Xiang Li, Liang Gao, and Yi~Zhang.
+\newblock A new convolutional neural network-based data-driven fault diagnosis
+  method.
+\newblock {\em IEEE Transactions on Industrial Electronics}, 65(7):5990--5998,
+  2018.
+
+\bibitem{cite25}
+Yong Xu, Guanghua Chen, and Weihua Li.
+\newblock Multimodal large language models for industrial fault diagnosis with
+  knowledge grounding.
+\newblock {\em IEEE Transactions on Industrial Electronics}, 72(3):2890--2901,
+  2025.
+
+\bibitem{cite23}
+Wei Zhang, Xiang Li, Hui Ma, Yongyao Luo, and Xueliang Li.
+\newblock Zero-shot fault diagnosis of rotating machinery via vision-language
+  models.
+\newblock {\em IEEE Transactions on Industrial Informatics}, 20(4):5678--5689,
+  2024.
+
+\bibitem{cite5}
+Rui Zhao, Ruqiang Yan, Zhenghua Chen, Kezhi Mao, Peng Wang, and Robert~X. Gao.
+\newblock Deep learning and its applications to machine health monitoring.
+\newblock {\em Mechanical Systems and Signal Processing}, 115:213--237, 2019.
+
+\bibitem{cite24}
+Tong Zhao, Mingzuo Wang, and Yanyan Li.
+\newblock Vision-language models for intelligent fault diagnosis under low-data
+  conditions.
+\newblock {\em IEEE Transactions on Instrumentation and Measurement}, 74:1--12,
+  2025.
+
+\end{thebibliography}

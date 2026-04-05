@@ -1,0 +1,12 @@
+{
+  "mode": "A",
+  "outline_version": 2,
+  "drafts_version": 12,
+  "final_version": 4,
+  "history": [
+    {"stage": "7-revise", "version": "v1", "comment": "REVISE: Method too long (3744w), too many tables (18), refs不足(35)"},
+    {"stage": "leader-revision", "version": "v2", "comment": "Fixed: Method trimmed to ~2100w, tables reduced to 6, refs to 40, expanded Related+Experiments"},
+    {"stage": "user-review", "version": "v3", "comment": "Fixed: Introduction subsection*, em-dashes → ---, d_model"},
+    {"stage": "user-review", "version": "v4", "comment": "Fixed: Removed all subsection* from Introduction, merged into continuous flow"}
+  ]
+}

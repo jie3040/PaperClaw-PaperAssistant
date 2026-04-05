@@ -1,0 +1,27 @@
+{
+  "id": "44730e91-32f5-4db9-b8a1-cd8df97e443e",
+  "enqueuedAt": 1774531651856,
+  "channel": "feishu",
+  "to": "user:ou_6eab9fc7f84debbe25305e3113cb609b",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "Now let me update MEMORY.md with Project 7 details and update the learnings.",
+      "replyToTag": false,
+      "replyToCurrent": false,
+      "audioAsVoice": false
+    }
+  ],
+  "threadId": null,
+  "replyToId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Now let me update MEMORY.md with Project 7 details and update the learnings.",
+    "mediaUrls": [],
+    "isGroup": false
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775112816240,
+  "lastError": "Request failed with status code 400"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "b72a62fa-6484-44b2-80ad-0edc0722bd35",
+  "enqueuedAt": 1775116934112,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "27 个 cite key 全部匹配 bib 中的 27 个条目，零缺失。bib 文件完全正确。\n\n现在等待 Reviewer 4.5a 审查结果回报。当前状态：阶段 4.5a 审查进行中。\n\nNO_REPLY"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "27 个 cite key 全部匹配 bib 中的 27 个条目，零缺失。bib 文件完全正确。\n\n现在等待 Reviewer 4.5a 审查结果回报。当前状态：阶段 4.5a 审查进行中。\n\nNO_REPLY"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775130252545,
+  "lastError": "Request failed with status code 400"
+}

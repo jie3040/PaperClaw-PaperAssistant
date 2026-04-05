@@ -1,0 +1,20 @@
+{
+  "id": "57f87493-c556-43ff-a0d7-915340194e52",
+  "enqueuedAt": 1775115915136,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "阶段 3.5 Reviewer 审查结论 REVISE，3 个问题：表格数正文仅 5 张（声称 8 张）、缺页数预估、公式数不一致。已派 Architect 修改 outline v1→v2，等 Architect 回报后再送 Reviewer 二审。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "阶段 3.5 Reviewer 审查结论 REVISE，3 个问题：表格数正文仅 5 张（声称 8 张）、缺页数预估、公式数不一致。已派 Architect 修改 outline v1→v2，等 Architect 回报后再送 Reviewer 二审。"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775130250184,
+  "lastError": "Request failed with status code 400"
+}

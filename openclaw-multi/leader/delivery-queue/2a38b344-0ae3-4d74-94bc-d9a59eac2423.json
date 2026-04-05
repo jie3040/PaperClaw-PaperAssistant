@@ -1,0 +1,20 @@
+{
+  "id": "2a38b344-0ae3-4d74-94bc-d9a59eac2423",
+  "enqueuedAt": 1775206047442,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "阶段 3.5 框架对齐审查结果：**ACCEPT** ✅\n\nReviewer 已完成对 outline/v1 的框架对齐审查，所有维度均通过：\n\n| 维度 | 结果 |\n|------|------|\n| 总词数 | ✅ 9000词，精确匹配目标 |\n| Introduction 引用数 | ✅ ≥20条，满足≥50%总引用要求 |\n| 图表数量 | ✅ 图8张、表6个，精确匹配 |\n| Abstract | ✅ 单段，~200词 |\n| 关键公式覆盖 | ✅ 对比损失/交叉注意力/元学习目标全覆盖 |\n| Section结构 | ✅ 完全符合IEEE TIM惯例 |\n| 子节字数分配 | ✅ 全部标注并求和校验通过 |\n\n框架优秀，无需修改，可直接进入**阶段 4：Writer 逐节撰写**。\n\n---\n\n准备开始阶段 4 吗？我将按子节拆分任务逐一派给 Writer（Abstract → Introduction → Related Work → Method各子节 → Experiments各子节 → Conclusion）。请确认是否继续。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "阶段 3.5 框架对齐审查结果：**ACCEPT** ✅\n\nReviewer 已完成对 outline/v1 的框架对齐审查，所有维度均通过：\n\n| 维度 | 结果 |\n|------|------|\n| 总词数 | ✅ 9000词，精确匹配目标 |\n| Introduction 引用数 | ✅ ≥20条，满足≥50%总引用要求 |\n| 图表数量 | ✅ 图8张、表6个，精确匹配 |\n| Abstract | ✅ 单段，~200词 |\n| 关键公式覆盖 | ✅ 对比损失/交叉注意力/元学习目标全覆盖 |\n| Section结构 | ✅ 完全符合IEEE TIM惯例 |\n| 子节字数分配 | ✅ 全部标注并求和校验通过 |\n\n框架优秀，无需修改，可直接进入**阶段 4：Writer 逐节撰写**。\n\n---\n\n准备开始阶段 4 吗？我将按子节拆分任务逐一派给 Writer（Abstract → Introduction → Related Work → Method各子节 → Experiments各子节 → Conclusion）。请确认是否继续。"
+  },
+  "retryCount": 3,
+  "lastAttemptAt": 1775265307675,
+  "lastError": "Request failed with status code 400"
+}

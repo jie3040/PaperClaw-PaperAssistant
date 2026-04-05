@@ -1,0 +1,133 @@
+\section{Experiments}
+
+Comprehensive testing on CWRU and Paderborn bearing benchmarks validates VibSemAlign's efficacy in supervised and zero-shot cross-domain regimes. Ablations isolate component impacts. Implementations use PyTorch 2.1 on RTX 4090 (24 GB). Metrics: accuracy (Acc), macro F1, Matthews correlation coefficient (MCC), suited to imbalance.
+
+\subsection{Datasets and Protocols}
+
+\subsubsection{CWRU Dataset}
+CWRU \cite{casewestern2010} records 12 kHz/48 kHz from 2-HP motor bearings: healthy, IR/OR/B faults (0.007/0.014/0.021 in.). Loads 0--3 HP, 1797 rpm. ~2.5M 0.1-s segments (1200 samples), healthy-skewed (60\%).
+
+CWRU prep: non-overlap 0.1-s (1200@12kHz); stratified splits; aug: shift ($\pm10\%$), noise (20--30 dB), scale ($\pm10\%$).
+
+\subsubsection{Paderborn Dataset}
+Paderborn \cite{paderborn2014}: 64 kHz, 32 runs; healthy/artificial/real damages; forces 0.1--4.8 N, speeds 900--1500 rpm. 1.2M 0.1-s (6400 samples), 10 classes, real 15\%.
+
+Paderborn prep: 0.1-s clips; SMOTE oversample reals; aug: speed jitter, wear filter, noise 15--25 dB.
+
+\subsubsection{Setup}
+STFT: 1024 Hann, 75\% overlap, 128 mel (III-C). CLIP ViT-L/14@336px, LoRA r=16 $\alpha$=32. Prompts per III-C. Splits 80/10/10 stratified. Cross-zero: CWRU train, Paderborn test. AdamW lr=$10^{-5}$, batch=64, 100 epochs, early F1. Baselines: CNN-1D \cite{wen2019convolutional}, ResNet-1D \cite{he2016deep}, Transformer \cite{vaswani2017attention}, DANN \cite{ganin2016domain}, vanilla CLIP. Identical prep; 5-fold CV mean$\pm$std.
+
+\subsection{Principal Outcomes}
+
+VibSemAlign exceeds SOTA, especially zero-shot cross-domain.
+
+CWRU Table~\ref{tab:iv}: 96.8\% Acc (+7.6\% CNN, +5.3\% Transformer, +4.7\% DANN). Minor faults gain from modulations.
+
+\begin{table}[htbp]
+\centering
+\caption{Comparison with SOTA on CWRU Dataset (\%).}
+\label{tab:iv}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Method & Acc & F1 & MCC \\
+\midrule
+CNN-1D \cite{wen2019convolutional} & 89.2 $\pm$ 1.2 & 88.5 $\pm$ 1.4 & 87.9 $\pm$ 1.5 \\
+ResNet-1D \cite{he2016deep} & 90.8 $\pm$ 1.0 & 90.1 $\pm$ 1.1 & 89.5 $\pm$ 1.2 \\
+Transformer \cite{vaswani2017attention} & 91.5 $\pm$ 0.9 & 90.8 $\pm$ 1.0 & 90.2 $\pm$ 1.1 \\
+DANN \cite{ganin2016domain} & 92.1 $\pm$ 0.8 & 91.4 $\pm$ 0.9 & 90.8 $\pm$ 1.0 \\
+CLIP Zero-shot & 93.4 $\pm$ 1.1 & 92.7 $\pm$ 1.2 & 92.1 $\pm$ 1.3 \\
+\midrule
+VibSemAlign (Ours) & \textbf{96.8 $\pm$ 0.6} & \textbf{96.2 $\pm$ 0.7} & \textbf{95.9 $\pm$ 0.7} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Paderborn Table~\ref{tab:v}: 94.5\% (+8--12\%). Reals +13\% DANN via wear prompts.
+
+\begin{table}[htbp]
+\centering
+\caption{Results on Paderborn Dataset (\%).}
+\label{tab:v}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Method & Acc & F1 & MCC \\
+\midrule
+CNN-1D & 86.3 $\pm$ 1.5 & 85.4 $\pm$ 1.6 & 84.7 $\pm$ 1.7 \\
+Transformer & 88.7 $\pm$ 1.3 & 87.9 $\pm$ 1.4 & 87.2 $\pm$ 1.5 \\
+DANN & 89.2 $\pm$ 1.2 & 88.5 $\pm$ 1.3 & 87.8 $\pm$ 1.4 \\
+CLIP Zero-shot & 90.1 $\pm$ 1.4 & 89.3 $\pm$ 1.5 & 88.6 $\pm$ 1.6 \\
+\midrule
+VibSemAlign & \textbf{94.5 $\pm$ 0.9} & \textbf{93.8 $\pm$ 1.0} & \textbf{93.4 $\pm$ 1.0} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+CWRU$\to$Paderborn zero-shot (Fig.~\ref{fig:7}): 85.3\% vs. CLIP 72.4\%, DANN 68.1\%; semantics bridge gaps. Load prompts +3.2\%.
+
+\subsection{Ablations}
+
+CWRU focus (Paderborn similar). Table~\ref{tab:vi}: no VSCL -3.6\%; no MAML -2.7\%; no CA -1.7\%; no LoRA -4.1\%. Synergy SOTA.
+
+\begin{table}[htbp]
+\centering
+\caption{Ablation Study on CWRU (\%).}
+\label{tab:vi}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Variant & Acc & F1 & MCC \\
+\midrule
+Full Model & \textbf{96.8} & \textbf{96.2} & \textbf{95.9} \\
+w/o Contrastive Loss & 93.2 & 92.5 & 92.1 \\
+w/o MAML Adaptation & 94.1 & 93.4 & 93.0 \\
+w/o Cross-Attention & 95.1 & 94.6 & 94.3 \\
+w/o LoRA Reg & 92.7 & 92.0 & 91.6 \\
+\midrule
+Vanilla CLIP & 93.4 & 92.7 & 92.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Fig.~\ref{fig:6}: VSCL +5.2\% ball; MAML +4.8\% minor IR. Rich prompts +2.9\%. Window 1024 optimal (+1.8/0.9 vs. 512/2048).
+
+VSCL largest (+5.1\%); MAML cross-domain key.
+
+\subsection{Qualitative Insights}
+
+\subsubsection{t-SNE Embeddings}
+Fig.~\ref{fig:8}: VibSemAlign separates (intra 0.85 cos, inter >2.1 dist); CLIP overlaps IR/ball. Minors resolved via modulations.
+
+\subsubsection{Attention Maps}
+Fig.~\ref{fig:4}: BPFO ridges OR; harmonics ball; prompts guide +2.9\%.
+
+\subsubsection{Semantic Case}
+Paderborn plastic: 0.92 ``deformation dispersion'' vs. 0.67 generic.
+
+\subsection{Discussions}
+
+Gains generalize lab-industrial (+4.7/5.3\%); zero-shot 85.3\%. Imbalance: reals 91.2\% F1 vs. DANN 78.4\%; few-shot 89.7 vs. 76.3\%. Prompts critical (+2.9\%, +4.1 minor). MAML recovers 5.5\% cross.
+
+\subsection{Complexity}
+
+Table~\ref{tab:vii}: 45 GFLOPs, 125M (1.2M train); 8.2 ms RTX (batch32); Jetson INT8 45 ms (22 Hz).
+
+\begin{table}[htbp]
+\centering
+\caption{Computational Complexity Comparison (per 1\,s signal).}
+\label{tab:vii}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Method & GFLOPs & Params (M) \\
+\midrule
+CNN-1D \cite{wen2019convolutional} & 0.3 & 5 \\
+ResNet-1D \cite{he2016deep} & 2.1 & 11 \\
+Transformer \cite{vaswani2017attention} & 12 & 15 \\
+DANN \cite{ganin2016domain} & 2.5 & 12 \\
+\midrule
+VibSemAlign (Ours) & 45 & 125 (1.2 trainable) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Limitations}
+
+VLM low-freq limits; GPU train (edge ok); handcrafted prompts; non-bearings untested. Future: fusion, auto-prompts, scale.

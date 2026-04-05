@@ -1,0 +1,205 @@
+\relax 
+\citation{cite1}
+\citation{cite22}
+\citation{cite2}
+\citation{cite3}
+\citation{cite4}
+\citation{cite5}
+\citation{cite6}
+\citation{cite7}
+\citation{cite8}
+\citation{cite25}
+\citation{cite9}
+\citation{cite26}
+\citation{cite10}
+\citation{cite11}
+\citation{cite12}
+\citation{cite13}
+\citation{cite15}
+\citation{cite17}
+\citation{cite18}
+\citation{cite19}
+\citation{cite25}
+\citation{cite20}
+\citation{cite21}
+\citation{cite27}
+\citation{cite28}
+\citation{cite29}
+\citation{cite23}
+\citation{cite24}
+\citation{cite25}
+\citation{cite26}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {I-A}}Data Scarcity and Domain Shift Challenges}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {I-B}}Limitations of Existing Methods}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {I-C}}Proposed Framework and Contributions}{1}{}\protected@file@percent }
+\citation{cite23}
+\citation{cite24}
+\citation{cite26}
+\citation{randall2011vibration}
+\citation{lei2018review}
+\citation{randall2011vibration}
+\citation{dragomiretskiy2014emd}
+\citation{wen2020domain}
+\citation{casewestern,paderborn}
+\citation{casewestern,paderborn}
+\citation{jia2016deep,verstraete2020cnn}
+\citation{li2022transformer}
+\citation{wen2022maml}
+\citation{li2023gnn}
+\citation{wang2020transfer,hoang2023vit}
+\citation{hoang2023vit}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Related Work}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Vibration Fault Diagnosis}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-A}1}Traditional Signal Processing}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-A}2}Deep Learning Approaches}{2}{}\protected@file@percent }
+\citation{radford2021clip}
+\citation{li2023align,jia2021scaling}
+\citation{kim2025llmzs}
+\citation{liu2023llava}
+\citation{zhang2024mmfault,li2024llm4fd}
+\citation{zhao2025vlmifd,xu2025mmifd,liu2024faultgpt}
+\citation{qiao2022grl,li2021mmd,wen2020domain}
+\citation{wang2020transfer}
+\citation{chen2023gzsl}
+\citation{hoang2023vit}
+\citation{wen2022maml}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The overall pipeline of the VibSemAlign framework for zero-shot cross-domain fault diagnosis via vibration-semantic alignment.}}{3}{}\protected@file@percent }
+\newlabel{fig:1}{{1}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Multimodal Learning and VLMs}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-B}1}Contrastive Alignment (CLIP-like)}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-B}2}VLMs for Non-RGB Modalities}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-C}}Domain Adaptation and Zero-Shot}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-C}1}Transfer Learning in Diagnostics}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-C}2}Few-Shot and Meta-Learning}{3}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Comparison of fault diagnosis methods.}}{4}{}\protected@file@percent }
+\newlabel{tab:comparison}{{I}{4}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Comparison of Fault Diagnosis Methods.}}{4}{}\protected@file@percent }
+\newlabel{tab:I}{{II}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}Proposed Method}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Problem Formulation}{4}{}\protected@file@percent }
+\newlabel{subsec:problem_formulation}{{\mbox  {III-A}}{4}}
+\newlabel{eq:f1}{{1}{4}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Key Notations in Problem Formulation.}}{4}{}\protected@file@percent }
+\newlabel{tab:notation}{{III}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Overall Framework}{5}{}\protected@file@percent }
+\newlabel{subsec:overall_framework}{{\mbox  {III-B}}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Spectrogram Generation and Semantic Prompting}{5}{}\protected@file@percent }
+\newlabel{subsec:spectrogram_prompting}{{\mbox  {III-C}}{5}}
+\newlabel{eq:f2}{{2}{5}}
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Extended Sensitivity to Temperature $\tau $ (CWRU/Paderborn Zero-shot Acc. \%).}}{6}{}\protected@file@percent }
+\newlabel{tab:tau_extended}{{IV}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}VLM Fine-tuning with Vibration-Semantic Contrastive Loss}{6}{}\protected@file@percent }
+\newlabel{subsec:vlm_fine_tuning}{{\mbox  {III-D}}{6}}
+\newlabel{eq:f3}{{3}{6}}
+\newlabel{eq:f4}{{4}{6}}
+\newlabel{eq:f5}{{5}{6}}
+\newlabel{eq:f6}{{6}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-E}}MAML-based Fast Adaptation}{6}{}\protected@file@percent }
+\newlabel{subsec:maml_adaptation}{{\mbox  {III-E}}{6}}
+\newlabel{eq:f7}{{7}{6}}
+\newlabel{eq:f8}{{8}{6}}
+\citation{casewestern2010}
+\citation{paderborn2014}
+\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces MAML Episode Construction Ablation (5-shot CWRU Avg. Acc. \%).}}{7}{}\protected@file@percent }
+\newlabel{tab:maml_ablation}{{V}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-F}}Inference Pipeline}{7}{}\protected@file@percent }
+\newlabel{subsec:inference_pipeline}{{\mbox  {III-F}}{7}}
+\newlabel{eq:f9}{{9}{7}}
+\newlabel{eq:f10}{{10}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Experiments}{7}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces Hyperparameters of VibSemAlign.}}{7}{}\protected@file@percent }
+\newlabel{tab:hyperparameters}{{VI}{7}}
+\@writefile{lot}{\contentsline {table}{\numberline {VII}{\ignorespaces Zero-shot Ablation (CWRU 12-class acc. \%).}}{7}{}\protected@file@percent }
+\newlabel{tab:ablation_study}{{VII}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Datasets and Setup}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-A}1}CWRU Bearing Dataset}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-A}2}Paderborn Bearing Dataset}{7}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The dual-modality alignment module: spectrogram and text prompt are projected into a shared embedding space and aligned via the vibration-semantic contrastive loss.}}{8}{}\protected@file@percent }
+\newlabel{fig:2}{{2}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Cross-attention decoder architecture: text tokens serve as queries while vibration tokens provide keys and values for multimodal fusion.}}{8}{}\protected@file@percent }
+\newlabel{fig:3}{{3}{8}}
+\citation{wen2019convolutional}
+\citation{he2016deep}
+\citation{vaswani2017attention}
+\citation{ganin2016domain}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces MAML-based fast adaptation: inner loop performs task-specific gradient updates while outer loop meta-optimizes initialization parameters.}}{9}{}\protected@file@percent }
+\newlabel{fig:4}{{4}{9}}
+\@writefile{lot}{\contentsline {table}{\numberline {VIII}{\ignorespaces Zero-shot Performance of Prompt Variants (CWRU 12-class Accuracy \%).}}{9}{}\protected@file@percent }
+\newlabel{tab:prompt_variants}{{VIII}{9}}
+\@writefile{lot}{\contentsline {table}{\numberline {IX}{\ignorespaces Sensitivity to Temperature $\tau $ (CWRU Zero-shot Acc. \%).}}{9}{}\protected@file@percent }
+\newlabel{tab:tau_sensitivity}{{IX}{9}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-A}3}Experimental Setup}{9}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {X}{\ignorespaces Hyperparameters of VibSemAlign.}}{9}{}\protected@file@percent }
+\newlabel{tab:II}{{X}{9}}
+\@writefile{lot}{\contentsline {table}{\numberline {XI}{\ignorespaces Model Components.}}{9}{}\protected@file@percent }
+\newlabel{tab:III}{{XI}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Main Results}{9}{}\protected@file@percent }
+\citation{wen2019convolutional}
+\citation{he2016deep}
+\citation{vaswani2017attention}
+\citation{ganin2016domain}
+\@writefile{lot}{\contentsline {table}{\numberline {XII}{\ignorespaces Comparison with SOTA on CWRU Dataset (\%).}}{10}{}\protected@file@percent }
+\newlabel{tab:iv}{{XII}{10}}
+\@writefile{lot}{\contentsline {table}{\numberline {XIII}{\ignorespaces Results on Paderborn Dataset (\%).}}{10}{}\protected@file@percent }
+\newlabel{tab:v}{{XIII}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Ablation Studies}{10}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {XIV}{\ignorespaces Ablation Study on CWRU (\%).}}{10}{}\protected@file@percent }
+\newlabel{tab:vi}{{XIV}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Qualitative Analysis}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-D}1}t-SNE Embedding Visualization}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-D}2}Attention Heatmap Analysis}{10}{}\protected@file@percent }
+\citation{wen2019convolutional}
+\citation{he2016deep}
+\citation{vaswani2017attention}
+\citation{ganin2016domain}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-D}3}Semantic Matching Case Study}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-E}}Discussions}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-F}}Computational Complexity}{11}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {XV}{\ignorespaces Computational Complexity Comparison (per 1\,s signal).}}{11}{}\protected@file@percent }
+\newlabel{tab:vii}{{XV}{11}}
+\@writefile{lot}{\contentsline {table}{\numberline {XVI}{\ignorespaces CWRU Results (12-class, \%).}}{11}{}\protected@file@percent }
+\newlabel{tab:IV}{{XVI}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-G}}Limitations}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {V}Conclusion}{11}{}\protected@file@percent }
+\bibstyle{plain}
+\bibdata{references}
+\bibcite{cite8}{1}
+\bibcite{cite6}{2}
+\bibcite{cite11}{3}
+\bibcite{cite3}{4}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces t-SNE visualization of learned embeddings: VibSemAlign achieves tighter semantic clustering (Silhouette score 0.78) compared to unimodal CNNs (0.52) and vanilla CLIP (0.61).}}{12}{}\protected@file@percent }
+\newlabel{fig:5}{{5}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Ablation study results showing the contribution of each module to overall performance on CWRU dataset.}}{12}{}\protected@file@percent }
+\newlabel{fig:6}{{6}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Zero-shot cross-domain performance from CWRU to Paderborn under varying load conditions.}}{12}{}\protected@file@percent }
+\newlabel{fig:7}{{7}{12}}
+\@writefile{lot}{\contentsline {table}{\numberline {XVII}{\ignorespaces Paderborn Zero-Shot (Acc \%).}}{12}{}\protected@file@percent }
+\newlabel{tab:V}{{XVII}{12}}
+\@writefile{lot}{\contentsline {table}{\numberline {XVIII}{\ignorespaces SOTA Comparison (CWRU Zero-Shot Acc \%).}}{12}{}\protected@file@percent }
+\newlabel{tab:VI}{{XVIII}{12}}
+\@writefile{toc}{\contentsline {section}{References}{12}{}\protected@file@percent }
+\bibcite{cite19}{5}
+\bibcite{cite29}{6}
+\bibcite{cite12}{7}
+\bibcite{cite22}{8}
+\bibcite{cite2}{9}
+\bibcite{cite10}{10}
+\bibcite{cite7}{11}
+\bibcite{cite28}{12}
+\bibcite{cite15}{13}
+\bibcite{cite21}{14}
+\bibcite{cite26}{15}
+\bibcite{cite20}{16}
+\bibcite{cite1}{17}
+\bibcite{cite18}{18}
+\bibcite{cite27}{19}
+\bibcite{cite13}{20}
+\bibcite{cite17}{21}
+\bibcite{cite9}{22}
+\bibcite{cite4}{23}
+\bibcite{cite25}{24}
+\bibcite{cite23}{25}
+\bibcite{cite5}{26}
+\bibcite{cite24}{27}
+\gdef \@abspage@last{13}

@@ -1,0 +1,20 @@
+{
+  "id": "fceadbb8-0306-4a42-9e8a-05e6311a5186",
+  "enqueuedAt": 1774768971779,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Let me check what polish tasks are currently in flight — this background.tex polish is part of a batch."
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Let me check what polish tasks are currently in flight — this background.tex polish is part of a batch."
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775128934207,
+  "lastError": "Request failed with status code 400"
+}

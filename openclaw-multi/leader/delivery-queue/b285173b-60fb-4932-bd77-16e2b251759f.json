@@ -1,0 +1,20 @@
+{
+  "id": "b285173b-60fb-4932-bd77-16e2b251759f",
+  "enqueuedAt": 1775206424454,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "阶段 3.5 框架对齐审查结果：**ACCEPT** ✅\n\n**审查摘要：**\n\n| 维度 | 结果 |\n|------|------|\n| 期刊结构（IEEE TIM） | ✅ 标准章节齐全 |\n| 总词数 | ✅ ~9100词（目标9000，误差<2%） |\n| Introduction引用数 | ✅ 20条（达标≥50%） |\n| 图表数量 | ✅ 图8张、表6个，精确匹配 |\n| 公式覆盖 | ✅ 核心方法均有公式支持 |\n| Abstract格式 | ✅ 单段~200词 |\n\n无不通过项，所有维度通过。\n\n---\n\n**下一步：阶段 4 — Writer 逐节撰写**\n\n框架已通过审查，现在进入 Writer 写作阶段。按 WORKFLOW.md 规定，需逐节派发 Writer 撰写草稿到 `SHARED/drafts/v1/`。\n\n是否开始派发 Writer？如需继续，请确认，我将按子节拆分任务逐一派发。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "阶段 3.5 框架对齐审查结果：**ACCEPT** ✅\n\n**审查摘要：**\n\n| 维度 | 结果 |\n|------|------|\n| 期刊结构（IEEE TIM） | ✅ 标准章节齐全 |\n| 总词数 | ✅ ~9100词（目标9000，误差<2%） |\n| Introduction引用数 | ✅ 20条（达标≥50%） |\n| 图表数量 | ✅ 图8张、表6个，精确匹配 |\n| 公式覆盖 | ✅ 核心方法均有公式支持 |\n| Abstract格式 | ✅ 单段~200词 |\n\n无不通过项，所有维度通过。\n\n---\n\n**下一步：阶段 4 — Writer 逐节撰写**\n\n框架已通过审查，现在进入 Writer 写作阶段。按 WORKFLOW.md 规定，需逐节派发 Writer 撰写草稿到 `SHARED/drafts/v1/`。\n\n是否开始派发 Writer？如需继续，请确认，我将按子节拆分任务逐一派发。"
+  },
+  "retryCount": 3,
+  "lastAttemptAt": 1775265307839,
+  "lastError": "Request failed with status code 400"
+}

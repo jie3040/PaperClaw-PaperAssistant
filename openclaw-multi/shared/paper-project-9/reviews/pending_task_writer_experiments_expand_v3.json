@@ -1,0 +1,9 @@
+{
+  "target": "writer",
+  "port": 18840,
+  "token": "writer-hook-2026",
+  "message": "扩充 experiments.tex，目标 +800 词（从 2294 到约 3100 词）",
+  "sessionKey": "hook:writer-exp-expand-v3",
+  "created_at": "2026-04-03T17:50",
+  "status": "pending"
+}

@@ -1,147 +1,22 @@
 {
-  "agent:main:hook:leader-inbox": {
-    "sessionId": "53e726d9-72fe-4bc1-b481-602414b14aef",
-    "updatedAt": 1774775015504,
-    "systemSent": true,
-    "skillsSnapshot": {
-      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.agents/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
-      "skills": [
-        {
-          "name": "clawhub",
-          "requiredEnv": []
-        },
-        {
-          "name": "healthcheck"
-        },
-        {
-          "name": "mcporter",
-          "requiredEnv": []
-        },
-        {
-          "name": "oracle",
-          "requiredEnv": []
-        },
-        {
-          "name": "skill-creator"
-        },
-        {
-          "name": "tmux",
-          "requiredEnv": []
-        },
-        {
-          "name": "weather",
-          "requiredEnv": []
-        },
-        {
-          "name": "LaTeX"
-        },
-        {
-          "name": "self-improvement"
-        }
-      ],
-      "resolvedSkills": [
-        {
-          "name": "clawhub",
-          "description": "Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "healthcheck",
-          "description": "Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "mcporter",
-          "description": "Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "oracle",
-          "description": "Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "skill-creator",
-          "description": "Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "tmux",
-          "description": "Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "weather",
-          "description": "Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.",
-          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md",
-          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather",
-          "source": "openclaw-bundled",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "LaTeX",
-          "description": "Write LaTeX documents with correct syntax, packages, and compilation workflow.",
-          "filePath": "/home/liaowenjie/.agents/skills/LaTeX/SKILL.md",
-          "baseDir": "/home/liaowenjie/.agents/skills/LaTeX",
-          "source": "agents-skills-personal",
-          "disableModelInvocation": false
-        },
-        {
-          "name": "self-improvement",
-          "description": "Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), (3) User requests a capability that doesn't exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.",
-          "filePath": "/home/liaowenjie/.agents/skills/self-improvement/SKILL.md",
-          "baseDir": "/home/liaowenjie/.agents/skills/self-improvement",
-          "source": "agents-skills-personal",
-          "disableModelInvocation": false
-        }
-      ],
-      "version": 0
-    },
-    "modelProvider": "claude-proxy",
-    "model": "claude-opus-4-6",
-    "contextTokens": 200000,
-    "inputTokens": 364393,
-    "outputTokens": 1399,
-    "totalTokens": 34797,
-    "totalTokensFresh": true,
-    "cacheRead": 0,
-    "cacheWrite": 0
-  },
   "agent:main:main": {
-    "sessionId": "32aeadc5-8539-4a68-9a8e-c50671354ff0",
-    "updatedAt": 1774776588994,
+    "sessionId": "1d1f3dd8-7680-4ff4-8e82-b7cf466dc52c",
+    "updatedAt": 1775271510015,
     "systemSent": true,
     "abortedLastRun": false,
-    "model": "claude-opus-4-6",
-    "modelProvider": "claude-proxy",
+    "model": "xiaomi/mimo-v2-pro",
+    "modelProvider": "openrouter",
     "origin": {
-      "label": "openclaw-tui",
-      "provider": "webchat",
+      "label": "heartbeat",
+      "provider": "heartbeat",
       "surface": "webchat",
       "chatType": "direct",
       "from": "heartbeat",
       "to": "heartbeat"
     },
+    "lastChannel": "webchat",
     "skillsSnapshot": {
-      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>feishu-doc</name>\n    <description>Feishu document read/write operations. Activate when user mentions Feishu docs, cloud docs, or docx links.\n</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-doc/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>feishu-drive</name>\n    <description>Feishu cloud storage file management. Activate when user mentions cloud space, folders, drive.\n</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-drive/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>feishu-perm</name>\n    <description>Feishu permission management for documents and files. Activate when user mentions sharing, permissions, collaborators.\n</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-perm/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>feishu-wiki</name>\n    <description>Feishu knowledge base navigation. Activate when user mentions knowledge base, wiki, or wiki links.\n</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-wiki/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.agents/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.agents/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.agents/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
+      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>feishu-doc</name>\n    <description>Feishu document read/write operations. Activate when user mentions Feishu docs, cloud docs, or docx links.\n</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-doc/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>feishu-drive</name>\n    <description>Feishu cloud storage file management. Activate when user mentions cloud space, folders, drive.\n</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-drive/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>feishu-perm</name>\n    <description>Feishu permission management for documents and files. Activate when user mentions sharing, permissions, collaborators.\n</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-perm/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>feishu-wiki</name>\n    <description>Feishu knowledge base navigation. Activate when user mentions knowledge base, wiki, or wiki links.\n</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-wiki/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>session-logs</name>\n    <description>Search and analyze your own session logs (older/parent conversations) using jq.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/session-logs/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.agents/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.agents/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.agents/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
       "skills": [
         {
           "name": "feishu-doc"
@@ -168,6 +43,10 @@
         },
         {
           "name": "oracle",
+          "requiredEnv": []
+        },
+        {
+          "name": "session-logs",
           "requiredEnv": []
         },
         {
@@ -263,6 +142,14 @@
           "disableModelInvocation": false
         },
         {
+          "name": "session-logs",
+          "description": "Search and analyze your own session logs (older/parent conversations) using jq.",
+          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/session-logs/SKILL.md",
+          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/session-logs",
+          "source": "openclaw-bundled",
+          "disableModelInvocation": false
+        },
+        {
           "name": "skill-creator",
           "description": "Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.",
           "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md",
@@ -335,14 +222,14 @@
       "to": "heartbeat"
     },
     "chatType": "direct",
-    "sessionFile": "/home/liaowenjie/.openclaw-multi/leader/agents/main/sessions/32aeadc5-8539-4a68-9a8e-c50671354ff0.jsonl",
+    "sessionFile": "/home/liaowenjie/.openclaw-multi/leader/agents/main/sessions/1d1f3dd8-7680-4ff4-8e82-b7cf466dc52c.jsonl",
     "systemPromptReport": {
       "source": "run",
-      "generatedAt": 1774776361331,
-      "sessionId": "32aeadc5-8539-4a68-9a8e-c50671354ff0",
+      "generatedAt": 1775271499365,
+      "sessionId": "1d1f3dd8-7680-4ff4-8e82-b7cf466dc52c",
       "sessionKey": "agent:main:main",
-      "provider": "claude-proxy",
-      "model": "claude-opus-4-6",
+      "provider": "openrouter",
+      "model": "xiaomi/mimo-v2-pro",
       "workspaceDir": "/home/liaowenjie/.openclaw-multi/leader/workspace",
       "bootstrapMaxChars": 20000,
       "bootstrapTotalMaxChars": 150000,
@@ -351,9 +238,9 @@
         "sandboxed": false
       },
       "systemPrompt": {
-        "chars": 35995,
-        "projectContextChars": 18604,
-        "nonProjectContextChars": 17391
+        "chars": 38551,
+        "projectContextChars": 20916,
+        "nonProjectContextChars": 17635
       },
       "injectedWorkspaceFiles": [
         {
@@ -368,8 +255,8 @@
           "name": "SOUL.md",
           "path": "/home/liaowenjie/.openclaw-multi/leader/workspace/SOUL.md",
           "missing": false,
-          "rawChars": 1902,
-          "injectedChars": 1902,
+          "rawChars": 2018,
+          "injectedChars": 2018,
           "truncated": false
         },
         {
@@ -416,13 +303,13 @@
           "name": "MEMORY.md",
           "path": "/home/liaowenjie/.openclaw-multi/leader/workspace/MEMORY.md",
           "missing": false,
-          "rawChars": 7643,
-          "injectedChars": 7643,
+          "rawChars": 9839,
+          "injectedChars": 9839,
           "truncated": false
         }
       ],
       "skills": {
-        "promptChars": 6113,
+        "promptChars": 6369,
         "entries": [
           {
             "name": "feishu-doc",
@@ -455,6 +342,10 @@
           {
             "name": "oracle",
             "blockChars": 276
+          },
+          {
+            "name": "session-logs",
+            "blockChars": 253
           },
           {
             "name": "skill-creator",
@@ -492,7 +383,7 @@
       },
       "tools": {
         "listChars": 3402,
-        "schemaChars": 24678,
+        "schemaChars": 24690,
         "entries": [
           {
             "name": "read",
@@ -545,7 +436,7 @@
           {
             "name": "message",
             "summaryChars": 89,
-            "schemaChars": 4210,
+            "schemaChars": 4222,
             "propertiesCount": 86
           },
           {
@@ -701,15 +592,228 @@
         ]
       }
     },
-    "cacheRead": 0,
+    "cacheRead": 52544,
     "cacheWrite": 0,
-    "compactionCount": 1,
-    "lastChannel": "webchat",
+    "compactionCount": 0,
     "contextTokens": 200000,
-    "inputTokens": 2649715,
-    "outputTokens": 5518,
-    "lastTo": "heartbeat",
-    "channel": "feishu",
-    "totalTokens": 152108
+    "inputTokens": 526,
+    "outputTokens": 385,
+    "totalTokens": 53038,
+    "lastTo": "heartbeat"
+  },
+  "agent:main:hook:leader-inbox": {
+    "sessionId": "33476864-a7b2-48d5-9d0b-0086e6896559",
+    "updatedAt": 1775219914538,
+    "systemSent": true,
+    "skillsSnapshot": {
+      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>feishu-doc</name>\n    <description>Feishu document read/write operations. Activate when user mentions Feishu docs, cloud docs, or docx links.\n</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-doc/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>feishu-drive</name>\n    <description>Feishu cloud storage file management. Activate when user mentions cloud space, folders, drive.\n</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-drive/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>feishu-perm</name>\n    <description>Feishu permission management for documents and files. Activate when user mentions sharing, permissions, collaborators.\n</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-perm/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>feishu-wiki</name>\n    <description>Feishu knowledge base navigation. Activate when user mentions knowledge base, wiki, or wiki links.\n</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-wiki/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>clawhub</name>\n    <description>Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>mcporter</name>\n    <description>Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>oracle</name>\n    <description>Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>session-logs</name>\n    <description>Search and analyze your own session logs (older/parent conversations) using jq.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/session-logs/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>tmux</name>\n    <description>Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>LaTeX</name>\n    <description>Write LaTeX documents with correct syntax, packages, and compilation workflow.</description>\n    <location>~/.agents/skills/LaTeX/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>brave-api-search</name>\n    <description>Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.</description>\n    <location>~/.agents/skills/brave-api-search/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>capability-evolver</name>\n    <description>A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.</description>\n    <location>~/.agents/skills/capability-evolver/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>multi-agent-monitor</name>\n    <description>Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.</description>\n    <location>~/.agents/skills/multi-agent-monitor/SKILL.md</location>\n  </skill>\n  <skill>\n    <name>self-improvement</name>\n    <description>Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&apos;No, that&apos;s wrong...&apos;, &apos;Actually...&apos;), (3) User requests a capability that doesn&apos;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.</description>\n    <location>~/.agents/skills/self-improvement/SKILL.md</location>\n  </skill>\n</available_skills>",
+      "skills": [
+        {
+          "name": "feishu-doc"
+        },
+        {
+          "name": "feishu-drive"
+        },
+        {
+          "name": "feishu-perm"
+        },
+        {
+          "name": "feishu-wiki"
+        },
+        {
+          "name": "clawhub",
+          "requiredEnv": []
+        },
+        {
+          "name": "healthcheck"
+        },
+        {
+          "name": "mcporter",
+          "requiredEnv": []
+        },
+        {
+          "name": "oracle",
+          "requiredEnv": []
+        },
+        {
+          "name": "session-logs",
+          "requiredEnv": []
+        },
+        {
+          "name": "skill-creator"
+        },
+        {
+          "name": "tmux",
+          "requiredEnv": []
+        },
+        {
+          "name": "weather",
+          "requiredEnv": []
+        },
+        {
+          "name": "LaTeX"
+        },
+        {
+          "name": "brave-api-search"
+        },
+        {
+          "name": "capability-evolver"
+        },
+        {
+          "name": "multi-agent-monitor"
+        },
+        {
+          "name": "self-improvement"
+        }
+      ],
+      "resolvedSkills": [
+        {
+          "name": "feishu-doc",
+          "description": "Feishu document read/write operations. Activate when user mentions Feishu docs, cloud docs, or docx links.\n",
+          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-doc/SKILL.md",
+          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-doc",
+          "source": "openclaw-extra",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "feishu-drive",
+          "description": "Feishu cloud storage file management. Activate when user mentions cloud space, folders, drive.\n",
+          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-drive/SKILL.md",
+          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-drive",
+          "source": "openclaw-extra",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "feishu-perm",
+          "description": "Feishu permission management for documents and files. Activate when user mentions sharing, permissions, collaborators.\n",
+          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-perm/SKILL.md",
+          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-perm",
+          "source": "openclaw-extra",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "feishu-wiki",
+          "description": "Feishu knowledge base navigation. Activate when user mentions knowledge base, wiki, or wiki links.\n",
+          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-wiki/SKILL.md",
+          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/extensions/feishu/skills/feishu-wiki",
+          "source": "openclaw-extra",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "clawhub",
+          "description": "Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.",
+          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub/SKILL.md",
+          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/clawhub",
+          "source": "openclaw-bundled",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "healthcheck",
+          "description": "Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).",
+          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck/SKILL.md",
+          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/healthcheck",
+          "source": "openclaw-bundled",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "mcporter",
+          "description": "Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.",
+          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter/SKILL.md",
+          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/mcporter",
+          "source": "openclaw-bundled",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "oracle",
+          "description": "Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).",
+          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md",
+          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/oracle",
+          "source": "openclaw-bundled",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "session-logs",
+          "description": "Search and analyze your own session logs (older/parent conversations) using jq.",
+          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/session-logs/SKILL.md",
+          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/session-logs",
+          "source": "openclaw-bundled",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "skill-creator",
+          "description": "Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.",
+          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator/SKILL.md",
+          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/skill-creator",
+          "source": "openclaw-bundled",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "tmux",
+          "description": "Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.",
+          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux/SKILL.md",
+          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/tmux",
+          "source": "openclaw-bundled",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "weather",
+          "description": "Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.",
+          "filePath": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md",
+          "baseDir": "/home/liaowenjie/.npm-global/lib/node_modules/openclaw/skills/weather",
+          "source": "openclaw-bundled",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "LaTeX",
+          "description": "Write LaTeX documents with correct syntax, packages, and compilation workflow.",
+          "filePath": "/home/liaowenjie/.agents/skills/LaTeX/SKILL.md",
+          "baseDir": "/home/liaowenjie/.agents/skills/LaTeX",
+          "source": "agents-skills-personal",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "brave-api-search",
+          "description": "Real-time web search, autosuggest, and AI-powered answers using the official Brave Search API. Use for searching documentation, facts, current events, or any web content. Supports AI grounded answers with citations and query autosuggest. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY.",
+          "filePath": "/home/liaowenjie/.agents/skills/brave-api-search/SKILL.md",
+          "baseDir": "/home/liaowenjie/.agents/skills/brave-api-search",
+          "source": "agents-skills-personal",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "capability-evolver",
+          "description": "A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.",
+          "filePath": "/home/liaowenjie/.agents/skills/capability-evolver/SKILL.md",
+          "baseDir": "/home/liaowenjie/.agents/skills/capability-evolver",
+          "source": "agents-skills-personal",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "multi-agent-monitor",
+          "description": "Monitor and display real-time health status of all 8 AI agents in the paper-writing pipeline. Use when checking agent status, diagnosing connectivity issues, or when the user wants to see a dashboard of all agents. Triggers on keywords like monitor, dashboard, agent status, health check, 监控, 状态.",
+          "filePath": "/home/liaowenjie/.agents/skills/multi-agent-monitor/SKILL.md",
+          "baseDir": "/home/liaowenjie/.agents/skills/multi-agent-monitor",
+          "source": "agents-skills-personal",
+          "disableModelInvocation": false
+        },
+        {
+          "name": "self-improvement",
+          "description": "Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), (3) User requests a capability that doesn't exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.",
+          "filePath": "/home/liaowenjie/.agents/skills/self-improvement/SKILL.md",
+          "baseDir": "/home/liaowenjie/.agents/skills/self-improvement",
+          "source": "agents-skills-personal",
+          "disableModelInvocation": false
+        }
+      ],
+      "version": 0
+    },
+    "modelProvider": "openrouter",
+    "model": "xiaomi/mimo-v2-pro",
+    "contextTokens": 200000,
+    "inputTokens": 235707,
+    "outputTokens": 39408,
+    "totalTokens": 90975,
+    "totalTokensFresh": true,
+    "cacheRead": 3169920,
+    "cacheWrite": 0
   }
 }

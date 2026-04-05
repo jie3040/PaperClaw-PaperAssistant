@@ -1,0 +1,20 @@
+{
+  "id": "ef7ece6e-bfb0-43cf-9b30-4d198b5e9fde",
+  "enqueuedAt": 1775116462133,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "references.bib hasn't arrived yet. This is a late callback from the 4.3/4.4 writing task — the drafts are already on disk and accounted for in version_tracker. Currently waiting on Writer to deliver references.bib (the last stage 4 task dispatched at 15:49).\n\nNO_REPLY"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "references.bib hasn't arrived yet. This is a late callback from the 4.3/4.4 writing task — the drafts are already on disk and accounted for in version_tracker. Currently waiting on Writer to deliver references.bib (the last stage 4 task dispatched at 15:49).\n\nNO_REPLY"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775130251468,
+  "lastError": "Request failed with status code 400"
+}

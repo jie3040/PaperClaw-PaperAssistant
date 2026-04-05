@@ -1,0 +1,38 @@
+\documentclass[lettersize,journal]{IEEEtran}
+
+\usepackage{amsmath,amsfonts}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{stfloats}
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\begin{document}
+
+\title{VibSemAlign: Vibration-Semantic Alignment Framework for Multimodal Large Model-based Intelligent Fault Diagnosis}
+
+\author{Anonymous}
+
+\maketitle
+
+\begin{abstract}
+Vibration-based fault diagnosis remains challenged by domain discrepancies and limited labeled data in industrial deployments. This paper presents VibSemAlign, a framework that aligns vibration spectrograms with semantic fault descriptions via vision-language models (VLMs). VibSemAlign introduces a vibration-semantic contrastive loss (VSCL) for aligning spectrogram and text embeddings in a shared latent space, an 8-head cross-attention decoder for multimodal fusion, and Model-Agnostic Meta-Learning (MAML) for rapid few-shot adaptation to unseen domains. Physics-informed prompt engineering encodes fault characteristic frequencies and operating conditions into natural language descriptors. Evaluated on CWRU and Paderborn bearing datasets, VibSemAlign achieves 96.8\% intra-domain accuracy and 85.3\% zero-shot cross-domain transfer (CWRU$\to$Paderborn), surpassing state-of-the-art methods by 4.7--17.2 percentage points. Ablation studies confirm the orthogonality of contrastive alignment, cross-attention fusion, and meta-learning components. The framework demonstrates that VLMs, when adapted through domain-specific contrastive objectives, serve as effective reasoning engines for semantic-driven industrial diagnostics.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Fault diagnosis, vision-language model, contrastive learning, vibration spectrogram, zero-shot learning, meta-learning, cross-attention.
+\end{IEEEkeywords}
+
+\input{introduction}
+\input{related_work}
+\input{method}
+\input{experiments}
+\input{conclusion}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

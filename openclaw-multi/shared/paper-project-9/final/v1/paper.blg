@@ -1,0 +1,81 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: paper.aux
+The style file: plain.bst
+Database file #1: references.bib
+Warning--I didn't find a database entry for "randall2011vibration"
+Warning--I didn't find a database entry for "lei2018review"
+Warning--I didn't find a database entry for "dragomiretskiy2014emd"
+Warning--I didn't find a database entry for "wen2020domain"
+Warning--I didn't find a database entry for "casewestern"
+Warning--I didn't find a database entry for "paderborn"
+Warning--I didn't find a database entry for "jia2016deep"
+Warning--I didn't find a database entry for "verstraete2020cnn"
+Warning--I didn't find a database entry for "li2022transformer"
+Warning--I didn't find a database entry for "wen2022maml"
+Warning--I didn't find a database entry for "li2023gnn"
+Warning--I didn't find a database entry for "wang2020transfer"
+Warning--I didn't find a database entry for "hoang2023vit"
+Warning--I didn't find a database entry for "radford2021clip"
+Warning--I didn't find a database entry for "li2023align"
+Warning--I didn't find a database entry for "jia2021scaling"
+Warning--I didn't find a database entry for "kim2025llmzs"
+Warning--I didn't find a database entry for "liu2023llava"
+Warning--I didn't find a database entry for "zhang2024mmfault"
+Warning--I didn't find a database entry for "li2024llm4fd"
+Warning--I didn't find a database entry for "zhao2025vlmifd"
+Warning--I didn't find a database entry for "xu2025mmifd"
+Warning--I didn't find a database entry for "liu2024faultgpt"
+Warning--I didn't find a database entry for "qiao2022grl"
+Warning--I didn't find a database entry for "li2021mmd"
+Warning--I didn't find a database entry for "chen2023gzsl"
+Warning--I didn't find a database entry for "casewestern2010"
+Warning--I didn't find a database entry for "paderborn2014"
+Warning--I didn't find a database entry for "wen2019convolutional"
+Warning--I didn't find a database entry for "he2016deep"
+Warning--I didn't find a database entry for "vaswani2017attention"
+Warning--I didn't find a database entry for "ganin2016domain"
+Warning--empty booktitle in cite19
+Warning--empty journal in cite28
+You've used 27 entries,
+            2118 wiz_defined-function locations,
+            691 strings with 9453 characters,
+and the built_in function-call counts, 10838 in all, are:
+= -- 1059
+> -- 630
+< -- 4
++ -- 252
+- -- 220
+* -- 880
+:= -- 1824
+add.period$ -- 81
+call.type$ -- 27
+change.case$ -- 189
+chr.to.int$ -- 0
+cite$ -- 29
+duplicate$ -- 327
+empty$ -- 737
+format.name$ -- 220
+if$ -- 2178
+int.to.chr$ -- 0
+int.to.str$ -- 27
+missing$ -- 26
+newline$ -- 138
+num.names$ -- 54
+pop$ -- 155
+preamble$ -- 1
+purify$ -- 162
+quote$ -- 0
+skip$ -- 240
+stack$ -- 0
+substring$ -- 777
+swap$ -- 59
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 108
+warning$ -- 2
+while$ -- 102
+width$ -- 29
+write$ -- 297
+(There were 34 warnings)

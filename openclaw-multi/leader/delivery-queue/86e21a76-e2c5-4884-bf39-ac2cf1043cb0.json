@@ -1,0 +1,20 @@
+{
+  "id": "86e21a76-e2c5-4884-bf39-ac2cf1043cb0",
+  "enqueuedAt": 1775183835708,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Intro v2 确认达标：953 词 + 32 唯一引用（86%）。还在等 method expand 和 abstract expand 的 Writer 回报。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Intro v2 确认达标：953 词 + 32 唯一引用（86%）。还在等 method expand 和 abstract expand 的 Writer 回报。"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775265301485,
+  "lastError": "Request failed with status code 400"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "345009bc-d45b-4f4e-8c9b-7b36f015fb3f",
+  "enqueuedAt": 1775209774545,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Reviewer 已收到阶段 4.5 R2 审查任务（drafts/v3，总词数 7139）。等待审查结果。\n\n当前 v3 各 section 词数：abstract 190 / intro 1155 / related_work 1029 / method 2205 / experiments 2294 / conclusion 266，总计 7139，距目标 9000 还差约 1400 词。Reviewer 审查完毕后会回报结论。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Reviewer 已收到阶段 4.5 R2 审查任务（drafts/v3，总词数 7139）。等待审查结果。\n\n当前 v3 各 section 词数：abstract 190 / intro 1155 / related_work 1029 / method 2205 / experiments 2294 / conclusion 266，总计 7139，距目标 9000 还差约 1400 词。Reviewer 审查完毕后会回报结论。"
+  },
+  "retryCount": 3,
+  "lastAttemptAt": 1775265313900,
+  "lastError": "Request failed with status code 400"
+}

@@ -7,7 +7,7 @@
         "api": "openai-completions",
         "models": [
           {
-            "id": "google/gemini-3-flash-preview",
+            "id": "x-ai/grok-4.1-fast",
             "name": "Gemini 3 Flash",
             "reasoning": true,
             "input": [
@@ -37,14 +37,14 @@
           "emoji": "✍"
         },
         "model": {
-          "primary": "openrouter/google/gemini-3-flash-preview"
+          "primary": "openrouter/x-ai/grok-4.1-fast"
         },
         "workspace": "/home/liaowenjie/.openclaw-multi/writer/workspace"
       }
     ],
     "defaults": {
       "model": {
-        "primary": "openrouter/google/gemini-3-flash-preview"
+        "primary": "openrouter/x-ai/grok-4.1-fast"
       },
       "workspace": "/home/liaowenjie/.openclaw-multi/writer/workspace",
       "compaction": {

@@ -1,0 +1,9 @@
+{
+  "target": "writer",
+  "port": 18840,
+  "token": "writer-hook-2026",
+  "message": "根据内容对齐审查(v6)结论REVISE，请修改以下内容并写入 drafts/v7/（从 v6 复制后修改）：\n\n当前项目：/home/liaowenjie/.openclaw-multi/shared/paper-project-9\n\n修改要求：\n1. Introduction（读取 drafts/v6/introduction.tex）：缩减至850-900词，删除次要背景描述，保留核心挑战和贡献。同时在末尾添加对 Fig.1 的引用（如 as illustrated in Fig. 1, ...）。\n2. Related Work（读取 drafts/v6/related_work.tex）：缩减至800-900词，合并传统方法小节，精简引用列表，删除冗余引用使总引用降至45-50条。\n3. Method（读取 drafts/v6/method.tex）：在对应位置添加 Fig.2-5 和 Table I-II 的引用（如 as shown in Fig. 2, ...）。\n4. Experiments（读取 drafts/v6/experiments.tex）：在对应位置添加 Fig.6-8 和 Table III-VI 的引用（如 as shown in Table I, ...），确保每张图表有1-2句解释性文字。\n\n输出：将修改后的文件写入 /home/liaowenjie/.openclaw-multi/shared/paper-project-9/drafts/v7/（先 mkdir -p，再从 v6 复制所有文件，然后覆盖修改的文件）。完成后报告每个修改文件的词数。",
+  "sessionKey": "hook:writer-4.5-r2",
+  "created_at": "2026-04-03T18:02:00+08:00",
+  "status": "pending"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "6b930735-8187-4ec5-823b-8b803627bbfb",
+  "enqueuedAt": 1775220515275,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "I need to expand content substantially. Let me add detailed expansions to each file:"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "I need to expand content substantially. Let me add detailed expansions to each file:"
+  },
+  "retryCount": 2,
+  "lastAttemptAt": 1775265320424,
+  "lastError": "Request failed with status code 400"
+}

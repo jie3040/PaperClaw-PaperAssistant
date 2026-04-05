@@ -1,0 +1,15 @@
+\begin{table}[htbp]
+\centering
+\caption{Model Components.}
+\label{tab:III}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Component & Params (M) & Description \\
+\midrule
+CLIP ViT-L/14 & 303 & Frozen backbone \\
+Cross-Attn & 1.2 & 8-head fusion \\
+Linear Probe & 0.4 & C=12 classes \\
+LoRA Adapters & 0.8 & Trainable \\
+\bottomrule
+\end{tabular}
+\end{table}

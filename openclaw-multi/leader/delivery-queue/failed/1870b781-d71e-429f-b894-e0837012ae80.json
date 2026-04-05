@@ -1,0 +1,20 @@
+{
+  "id": "1870b781-d71e-429f-b894-e0837012ae80",
+  "enqueuedAt": 1774764820996,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "阶段 7 任务已派发给 Reviewer ✅\n\n当前进度：Checker PASS → Reviewer 最终对齐审查中。论文各项指标全部在黄金标准范围内（182词 abstract、1316词 intro、39条"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "阶段 7 任务已派发给 Reviewer ✅\n\n当前进度：Checker PASS → Reviewer 最终对齐审查中。论文各项指标全部在黄金标准范围内（182词 abstract、1316词 intro、39条"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775128918671,
+  "lastError": "Request failed with status code 400"
+}

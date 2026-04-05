@@ -1,0 +1,9 @@
+{
+  "target": "reviewer",
+  "port": 18850,
+  "token": "reviewer-hook-2026",
+  "message": "请执行论文框架对齐审查（阶段3.5，第2轮）。\n\n当前项目：/home/liaowenjie/.openclaw-multi/shared/paper-project-9\n读取框架：/home/liaowenjie/.openclaw-multi/shared/paper-project-9/outline/v2/paper_outline.md\n黄金标准：/home/liaowenjie/.openclaw-multi/shared/paper-project-9/references/golden_standard.json\n\n【审查要点】逐项对照黄金标准检查：\n1. 主节数量：必须恰好5节（I-V），不含 Problem Formulation 独立节 ✓/✗\n2. 公式数量：必须≥10条（上轮仅4条，本轮是否补充至10条？） ✓/✗\n3. 总词数目标：9000词，Abstract 200，Intro 850，Related Work 850，Method 3800，Experiments 2000，Conclusion 300 ✓/✗\n4. 图数：目标8张 ✓/✗\n5. 表数：目标6个 ✓/✗\n6. 总引用：目标40条 ✓/✗\n7. Introduction引用：≥20条 ✓/✗\n8. Abstract格式：单段 ✓/✗\n\n请输出：ACCEPT 或 REVISE，列出每项是否通过，不通过项说明修改要求。\n结果写入：/home/liaowenjie/.openclaw-multi/shared/paper-project-9/reviews/outline_review_r2.md",
+  "sessionKey": "hook:p9-reviewer-stage35-r2",
+  "created_at": "2026-04-03T17:05:00+08:00",
+  "status": "pending"
+}

@@ -1,0 +1,9 @@
+{
+  "target": "reviewer",
+  "port": 18850,
+  "token": "reviewer-hook-2026",
+  "message": "阶段4.5内容对齐审查：审查/home/liaowenjie/.openclaw-multi/shared/paper-project-9/drafts/v7/下所有.tex文件。上次R3审查(v4)通过了词数/Intro/Fig引用，但Related Work/Experiments/Conclusion超长。现在v7中Writer已修改：Related Work 1029词(目标~900)✅, Method 2230词(目标~2500)✅, Conclusion 266词(目标~300)✅, 但Experiments 3175词(目标2400, 上限2813)❌仍超。总词数7732(目标8500-9500)可能偏低。请检查：1)总词数是否达标 2)各section词数偏差(<25%) 3)Experiments是否需缩减 4)所有Fig/Table引用完整性 5)子章节覆盖 6)公式完整 7)references.bib是否存在。输出审查报告到/home/liaowenjie/.openclaw-multi/shared/paper-project-9/reviews/review_4.5_v7.md，结论用ACCEPT/REVISE。",
+  "sessionKey": "hook:reviewer-4.5-v7",
+  "created_at": "2026-04-03T18:28",
+  "status": "pending"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "a454ad2b-6d0d-4ce2-939b-e9537976919b",
+  "enqueuedAt": 1774774851294,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Reviewer 缩写检查的4个问题已全部修复，final/v13 编译通过（13页，0错误）：\n- GPT → Generative Pre-trained Transformer (GPT)\n- WDCNN → Wide Deep Convolutional Neural Network (WDCNN)\n- Bi-LSTM-ZSL → Bidirectional LSTM-based ZSL (Bi-LSTM-ZSL)\n- 1D-ResNet → one-dimensional Residual Network (1D-ResNet)\n\n现在所有缩写首次使用时都有全称了。论文已到 final/v13，可以继续下一步检查或提交用户审阅。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Reviewer 缩写检查的4个问题已全部修复，final/v13 编译通过（13页，0错误）：\n- GPT → Generative Pre-trained Transformer (GPT)\n- WDCNN → Wide Deep Convolutional Neural Network (WDCNN)\n- Bi-LSTM-ZSL → Bidirectional LSTM-based ZSL (Bi-LSTM-ZSL)\n- 1D-ResNet → one-dimensional Residual Network (1D-ResNet)\n\n现在所有缩写首次使用时都有全称了。论文已到 final/v13，可以继续下一步检查或提交用户审阅。"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775130248810,
+  "lastError": "Request failed with status code 400"
+}

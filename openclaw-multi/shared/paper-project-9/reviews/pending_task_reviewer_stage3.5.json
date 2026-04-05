@@ -1,0 +1,9 @@
+{
+  "target": "reviewer",
+  "port": 18850,
+  "token": "reviewer-hook-2026",
+  "message": "请执行论文框架对齐审查（阶段3.5）。\n\n当前项目：/home/liaowenjie/.openclaw-multi/shared/paper-project-9\n\n请审查：/home/liaowenjie/.openclaw-multi/shared/paper-project-9/outline/v1/paper_outline.md\n对照黄金标准：/home/liaowenjie/.openclaw-multi/shared/paper-project-9/references/golden_standard.json\n\n审查要点：\n1. 章节结构是否符合IEEE TIM期刊风格（Introduction/Related Work/Method/Experiments/Conclusion）\n2. 各章节目标词数是否合理，总词数是否在8500-9500之间（目标9000）\n3. Introduction词数是否控制在700-900词（不超过1000）\n4. Introduction引用数是否≥总引用50%（目标≥20条/总40条）\n5. 图数量（目标8张）和表数量（目标6个）是否合理\n6. 是否存在独立的Problem Formulation章节（若有，建议合并至Method开篇）\n7. 关键公式是否覆盖核心技术（对比损失、交叉注意力、元学习目标）\n\n审查结论必须为以下之一：\n- ACCEPT：框架符合标准，可进入阶段4\n- REVISE：需要修改，列出具体修改点\n\n审查报告写入：/home/liaowenjie/.openclaw-multi/shared/paper-project-9/reviews/review_outline_v1.md",
+  "sessionKey": "hook:p9-reviewer-stage3.5",
+  "created_at": "2026-04-03T17:04:00+08:00",
+  "status": "pending"
+}

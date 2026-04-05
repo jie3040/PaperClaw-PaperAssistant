@@ -1,0 +1,20 @@
+{
+  "id": "1bfa6d83-c206-473e-a507-4afd75038c95",
+  "enqueuedAt": 1775213442410,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "🚨 **Writer 阶段 4.6 回报异常 — 严重缩减**\n\nWriter 声称完成学术润色（drafts/v9 → v10），但词数变化极度异常：\n\n| Section | v9 | v10 | 变化 |\n|---------|-----|-----|------|\n| abstract | 190 | 200 | +5% ✅ |\n| introduction | 790 | 654 | **-17%** ⚠️ |\n| related_work | 951 | 602 | **-37%** ⚠️ |\n| method | 2538 | 1037 | **-59%** 🚨 |\n| experiments | 2151 | 718 | **-67%** 🚨 |\n| conclusion | 306 | 75 | **-76%** 🚨 |\n\n**这不是润色，是腰斩。** method、experiments、conclusion 被砍掉 60-76%，论文核心内容基本报废。\n\n**我的判断**：v10 不可用，应退回 v9。需要检查 v10 实际文件内容确认损坏程度，然后决定是否让 Writer 重新润色（控制在 ±10% 以内）或跳过 4.6 直接进入下一阶段。\n\n要我立即检查 v10 文件内容吗？"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "🚨 **Writer 阶段 4.6 回报异常 — 严重缩减**\n\nWriter 声称完成学术润色（drafts/v9 → v10），但词数变化极度异常：\n\n| Section | v9 | v10 | 变化 |\n|---------|-----|-----|------|\n| abstract | 190 | 200 | +5% ✅ |\n| introduction | 790 | 654 | **-17%** ⚠️ |\n| related_work | 951 | 602 | **-37%** ⚠️ |\n| method | 2538 | 1037 | **-59%** 🚨 |\n| experiments | 2151 | 718 | **-67%** 🚨 |\n| conclusion | 306 | 75 | **-76%** 🚨 |\n\n**这不是润色，是腰斩。** method、experiments、conclusion 被砍掉 60-76%，论文核心内容基本报废。\n\n**我的判断**：v10 不可用，应退回 v9。需要检查 v10 实际文件内容确认损坏程度，然后决定是否让 Writer 重新润色（控制在 ±10% 以内）或跳过 4.6 直接进入下一阶段。\n\n要我立即检查 v10 文件内容吗？"
+  },
+  "retryCount": 2,
+  "lastAttemptAt": 1775265320258,
+  "lastError": "Request failed with status code 400"
+}

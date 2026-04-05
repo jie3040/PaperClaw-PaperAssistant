@@ -1,0 +1,20 @@
+{
+  "id": "712e34bd-7a6e-46e2-a7cc-b1b883b906f9",
+  "enqueuedAt": 1774762292197,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Let me check the review report and current project state."
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Let me check the review report and current project state."
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775128892139,
+  "lastError": "Request failed with status code 400"
+}

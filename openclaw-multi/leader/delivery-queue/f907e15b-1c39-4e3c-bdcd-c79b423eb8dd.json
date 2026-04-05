@@ -1,0 +1,20 @@
+{
+  "id": "f907e15b-1c39-4e3c-bdcd-c79b423eb8dd",
+  "enqueuedAt": 1775207270644,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Architect 已完成 outline v2 写入。框架内容完整，结构如下：\n\n- **总词数**：9000 词\n- **Abstract**：~200 词（单段）\n- **I. Introduction**：~800 词，引用 ≥20 条，含 Fig.1\n- **II. Related Work**：~850 词，含 Table I（方法对比表）\n- **III. Proposed Method**：~2200 词，10 个公式，Fig.2-5，Table II-III\n- **IV. Experiments**：~2500 词，Fig.6-8，Table IV-VI\n- **V. Conclusion**：~250 词\n\nFramework 质量符合预期，10 个公式、8 张图、6 张表的规划详细具体。\n\n---\n\n**下一步：阶段 3.5 — Reviewer 框架对齐审查**\n\n需要将 outline v2 发给 Reviewer，对照 golden_standard.json 进行框架审查。请确认是否继续？"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Architect 已完成 outline v2 写入。框架内容完整，结构如下：\n\n- **总词数**：9000 词\n- **Abstract**：~200 词（单段）\n- **I. Introduction**：~800 词，引用 ≥20 条，含 Fig.1\n- **II. Related Work**：~850 词，含 Table I（方法对比表）\n- **III. Proposed Method**：~2200 词，10 个公式，Fig.2-5，Table II-III\n- **IV. Experiments**：~2500 词，Fig.6-8，Table IV-VI\n- **V. Conclusion**：~250 词\n\nFramework 质量符合预期，10 个公式、8 张图、6 张表的规划详细具体。\n\n---\n\n**下一步：阶段 3.5 — Reviewer 框架对齐审查**\n\n需要将 outline v2 发给 Reviewer，对照 golden_standard.json 进行框架审查。请确认是否继续？"
+  },
+  "retryCount": 3,
+  "lastAttemptAt": 1775265309467,
+  "lastError": "Request failed with status code 400"
+}

@@ -1,0 +1,61 @@
+\section{Related Work}
+
+Vibration-based fault diagnosis has evolved significantly, from traditional signal processing to advanced deep learning and multimodal approaches. This section reviews key developments, highlighting limitations in domain generalization and zero-shot capabilities that our VibSemAlign addresses.
+
+\subsection{Vibration Fault Diagnosis}
+\subsubsection{Traditional Signal Processing}
+Traditional methods rely on handcrafted features extracted from time, frequency, and time-frequency domains. Fast Fourier Transform (FFT) decomposes signals into frequency components, identifying fault-specific harmonics like ball pass frequencies (BPFO/BPFI) in bearings \cite{randall2011vibration}. Envelope analysis demodulates amplitude-modulated fault impulses, while wavelet transforms (continuous/discrete) capture transient non-stationarities \cite{lei2018review}. These techniques have been foundational since the 1970s, with applications in aerospace and automotive industries where interpretability is paramount. For instance, FFT-based spectrum analysis reveals bearing outer race faults as peaks at BPFO = (N/2) f_r (1 - d/D cos β), where N is the number of balls, f_r rotation frequency, d ball diameter, D pitch diameter, and β contact angle \cite{randall2011vibration}. However, real-world complications like speed variations require order tracking or Vold-Kalman filtering as preprocessors.
+
+Empirical Mode Decomposition (EMD) and its variant Variational Mode Decomposition (VMD) adaptively decompose signals into intrinsic mode functions (IMFs), enabling fault-specific mode isolation \cite{dragomiretskiy2014emd}. VMD optimizes mode bandwidth via variational principles, outperforming EMD in mode mixing issues. These techniques excel in interpretability and low computational cost but falter under heavy noise, variable speeds, and domain shifts. Handcrafted features (RMS, kurtosis, crest factor, skewness) require expert tuning and generalize poorly across machines/sensors \cite{wen2020domain}. For instance, FFT assumes stationarity, degrading on real-world non-stationary vibrations from CWRU or Paderborn datasets \cite{casewestern,paderborn}, where lab conditions (constant load/speed) mismatch industrial variability.
+
+Recent hybrids integrate signal processing with shallow classifiers (SVM, k-NN, random forests), achieving ~90--95\% accuracy on benchmarks but dropping to 70--80\% in cross-domain settings due to covariate shifts \cite{li2021mmd}. Overall, traditional approaches, while reliable in controlled settings, lack scalability for the diverse, noisy industrial scenarios encountered in modern manufacturing and energy sectors.
+
+\subsubsection{Deep Learning Approaches}
+Deep learning revolutionized fault diagnosis by automating feature learning from raw signals or spectrograms. Convolutional Neural Networks (CNNs) process 1D time-series or 2D spectrograms (STFT/CWT), capturing local patterns like fault impulses and harmonics \cite{jia2016deep,verstraete2020cnn}. Recurrent Neural Networks (RNNs/LSTMs) model temporal dependencies in sequential data, while Transformers leverage self-attention mechanisms for long-range interactions, excelling in multi-fault detection \cite{li2022transformer}.
+
+End-to-end models like Deep Convolutional Neural Networks with Wide Kernels (DCNNWK) or Multi-Scale CNNs handle multi-fault scenarios \cite{wen2022maml}. Graph Neural Networks (GNNs) represent signals as graphs for relational reasoning \cite{li2023gnn}. These achieve 95--99\% accuracy on source domains (e.g., CWRU) but suffer severe degradation (20--40\% drop) in cross-domain zero-shot without retraining \cite{wang2020transfer,hoang2023vit}.
+
+Data hunger remains critical: DL demands thousands of labeled samples per fault/domain, infeasible for rare industrial faults. Augmentation (e.g., GANs) helps but introduces artifacts \cite{hoang2023vit}.
+
+Recent advancements in 2024--2025 have focused on Transformer architectures and emerging state-space models like Mamba for vibration fault diagnosis. Transformers with advanced positional encodings effectively capture long-range dependencies in vibration spectrograms or tokenized sequences, enabling precise multi-fault identification even under variable operating conditions \cite{chen2024transformer}. Mamba, utilizing selective state spaces, offers linear-time complexity surpassing Transformers' quadratic scaling, making it suitable for long-sequence processing in continuous monitoring applications \cite{li2024mamba}. Evaluations on benchmarks such as Paderborn, HUST, and MFPT datasets report accuracies exceeding 98\%, with notable improvements in noisy environments and multi-fault scenarios \cite{aziz2025mamba}. Hybrid models integrating Mamba with CNN backbones further bolster feature extraction robustness \cite{guo2025hybrid}. Nevertheless, these methods still necessitate domain-specific pretraining to achieve reliable cross-machine generalization.
+
+\subsection{Multimodal Learning and VLMs}
+\subsubsection{Contrastive Alignment (CLIP-like)}
+Contrastive Language-Image Pretraining (CLIP) aligns image/text embeddings via InfoNCE loss, enabling zero-shot classification via semantic similarity \cite{radford2021clip}. $\mathcal{L}_{contrast} = -\log \frac{\exp(\mathrm{sim}(z_i, z_t)/\tau)}{\sum \exp(\mathrm{sim}(z_i, z_{t'})/\tau)}$, where $z_i, z_t$ are image/text embeddings.
+
+CLIP's success spawned adaptations: ALIGN scales to billions of pairs; OpenCLIP refines architectures \cite{li2023align,jia2021scaling}. In diagnostics, spectrograms treated as ``images'' align with fault descriptions, but vibrations' unique spectral traits (harmonics, modulation) demand modality-specific tuning absent in vanilla CLIP \cite{kim2025llmzs}.
+
+\subsubsection{VLMs for Non-RGB Modalities}
+Vision-Language Models (VLMs) like LLaVA, BLIP-2 extend CLIP with generative decoders for visual question answering (VQA) \cite{liu2023llava}. Non-RGB applications include medical imaging (MRI/CT-text) and remote sensing (SAR-radar descriptions).
+
+In fault diagnosis, MMFault and LLM4FD feed spectrograms to VLMs with prompts like ``Describe this bearing fault'' \cite{zhang2024mmfault,li2024llm4fd}. VLMIFD and MMIFD incorporate industrial priors; FaultGPT generates synthetic labels \cite{zhao2025vlmifd,xu2025mmifd,liu2024faultgpt}. Yet, these overlook dedicated vibration-text alignment, relying on image-biased VLMs suboptimal for 1D signal spectrograms. Zero-shot cross-domain remains limited without contrastive fine-tuning.
+
+In 2024--2025, advanced VLMs such as GPT-4V and LLaVA-1.6 have been increasingly applied to industrial fault diagnosis, particularly for visual and multimodal inspections. GPT-4V excels in analyzing RGB images of machinery components, providing detailed defect descriptions and localizations; however, it struggles with non-RGB inputs like vibration spectrograms, frequently misinterpreting spectral harmonics and sidebands due to its predominant training on natural photographic images \cite{openai2024gpt4v}. LLaVA-1.6, benefiting from improved visual instruction tuning and larger-scale data, offers better handling of diverse visual formats but is prone to hallucinations, such as confusing fault modulation patterns with unrelated visual artifacts \cite{liu2024llava}. Emerging specialized models like IndustrialVLM and VibraVLM fine-tune these backbones on domain-specific spectrogram-instruction datasets, achieving moderate gains; nonetheless, zero-shot cross-domain performance typically ranges from 75\% to 85\%, revealing persistent challenges in abstract signal comprehension and the necessity for targeted multimodal alignment \cite{zhang2025industrialvlm,liu2025vibravlm}.
+
+\subsection{Domain Adaptation and Zero-Shot}
+\subsubsection{Transfer Learning in Diagnostics}
+Domain adaptation aligns source/target distributions via adversarial training (DANN), Maximum Mean Discrepancy (MMD), or CORAL \cite{qiao2022grl,li2021mmd,wen2020domain}. In vibrations, transfer from CWRU to Paderborn yields 10--15\% gains but requires target (unlabeled) data \cite{wang2020transfer}.
+
+Zero-shot variants use auxiliary attributes but underexplored for diagnostics \cite{chen2023gzsl}.
+
+\subsubsection{Few-Shot and Meta-Learning}
+Few-shot learning (prototypical nets, relation nets) adapts with 1--5 target shots \cite{hoang2023vit}. Model-Agnostic Meta-Learning (MAML) optimizes for fast adaptation: $\min_\theta \mathbb{E} [\mathcal{L}_{task}(\theta'(\theta))]$ \cite{wen2022maml}. Vibration applications show promise but falter without semantic guidance.
+
+\begin{table*}[t]
+\centering
+\caption{Comparison of fault diagnosis methods.}
+\label{tab:comparison}
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+Method & Key Features & Data Req. & Interpretability & Domain Adapt. & Zero-Shot & Multimodal & Real-World Robustness \\
+\midrule
+Traditional (FFT, VMD) & Handcrafted freq./time-freq. & Low & High & Poor & No & No & Noise-sensitive \\
+DL (CNN, Transformer) & Auto feature learn. & High & Low & Moderate (w/ TL) & No & No & Domain shift \\
+Transfer Learning & Distribution alignment & Med-High & Low & Good & Partial & No & Target data needed \\
+ZSL w/ Attributes & Semantic attrs. & Med & Med & Good & Yes & Limited & Limited benchmarks \\
+VLM-based (CLIP, LLaVA) & Contrastive align. & Low (pretrain) & Med & Excellent & Yes & Yes & Emerging \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:comparison} summarizes these, underscoring VLM gaps our work fills.

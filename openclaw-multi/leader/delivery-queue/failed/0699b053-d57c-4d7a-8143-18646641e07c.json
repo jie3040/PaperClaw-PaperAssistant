@@ -1,0 +1,27 @@
+{
+  "id": "0699b053-d57c-4d7a-8143-18646641e07c",
+  "enqueuedAt": 1774530418992,
+  "channel": "feishu",
+  "to": "user:ou_6eab9fc7f84debbe25305e3113cb609b",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "40 条引用达标。编译 PDF。",
+      "replyToTag": false,
+      "replyToCurrent": false,
+      "audioAsVoice": false
+    }
+  ],
+  "threadId": null,
+  "replyToId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "40 条引用达标。编译 PDF。",
+    "mediaUrls": [],
+    "isGroup": false
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775112814075,
+  "lastError": "Request failed with status code 400"
+}

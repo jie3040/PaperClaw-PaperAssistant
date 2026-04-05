@@ -1,0 +1,20 @@
+{
+  "id": "0f0fd4b3-e758-4183-8583-2ddaf37d16f4",
+  "enqueuedAt": 1774760847924,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Ideator 已完成，生成了 5 个 idea 候选。请选择一个：\n\n1. LESE-Trans — 用 LLM 自动生成故障语义描述，替代人工属性标注，通过对比学习对齐信号特征与语义空间\n2. MMHF-Trans — 多模态异构融合 Transformer，同时处理振动/声学/电流信号，跨模态零样本诊断\n3. PCUA-Trans — 物理约束 + 贝叶斯不确定性估计，提供可信诊断结果和置信度评分\n4. CMUSS — 跨设备通用语义空间，通过原型学习实现从轴承到齿轮箱的零样本迁移\n5. LKD-Trans — 轻量化知识蒸馏 Transformer，面向边缘部署的零样本诊断\n\n请告诉我你选哪个（回复编号即可），我继续推进到 Architect 阶段。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Ideator 已完成，生成了 5 个 idea 候选。请选择一个：\n\n1. LESE-Trans — 用 LLM 自动生成故障语义描述，替代人工属性标注，通过对比学习对齐信号特征与语义空间\n2. MMHF-Trans — 多模态异构融合 Transformer，同时处理振动/声学/电流信号，跨模态零样本诊断\n3. PCUA-Trans — 物理约束 + 贝叶斯不确定性估计，提供可信诊断结果和置信度评分\n4. CMUSS — 跨设备通用语义空间，通过原型学习实现从轴承到齿轮箱的零样本迁移\n5. LKD-Trans — 轻量化知识蒸馏 Transformer，面向边缘部署的零样本诊断\n\n请告诉我你选哪个（回复编号即可），我继续推进到 Architect 阶段。"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775128884874,
+  "lastError": "Request failed with status code 400"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "c951fefe-c7ac-4201-a205-9ec34cb40cc4",
+  "enqueuedAt": 1775183039510,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "收到 Writer 回报：method_AB.tex（584词，覆盖 III.A Overall Framework + III.B Encoders with Uncertainty）已写入 drafts/v1/。\n\n当前阶段 4 进度：\n- ✅ abstract (168w), introduction (594w), background (710w), method_AB (584w), experiments (1726w), conclusion (202w), references.bib (37条)\n- ⏳ 等待中：method C/D/E（已派发，未回报）、experiments E/F/G（已派发）\n\n总词数约 3984w，目标 ~7200w。等 method C/D/E 和 experiments E/F/G 回来后汇总检查，再进入 4.5 审查。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "收到 Writer 回报：method_AB.tex（584词，覆盖 III.A Overall Framework + III.B Encoders with Uncertainty）已写入 drafts/v1/。\n\n当前阶段 4 进度：\n- ✅ abstract (168w), introduction (594w), background (710w), method_AB (584w), experiments (1726w), conclusion (202w), references.bib (37条)\n- ⏳ 等待中：method C/D/E（已派发，未回报）、experiments E/F/G（已派发）\n\n总词数约 3984w，目标 ~7200w。等 method C/D/E 和 experiments E/F/G 回来后汇总检查，再进入 4.5 审查。"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775265300026,
+  "lastError": "Request failed with status code 400"
+}

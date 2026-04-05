@@ -6,8 +6,8 @@
       "api": "openai-completions",
       "models": [
         {
-          "id": "z-ai/glm-5-turbo",
-          "name": "z-ai/glm-5-turbo",
+          "id": "x-ai/grok-4.1-fast",
+          "name": "x-ai/grok-4.1-fast",
           "reasoning": true,
           "input": [
             "text",

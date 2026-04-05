@@ -1,0 +1,20 @@
+{
+  "id": "0c2f8461-15a3-455a-a47a-52068c60f943",
+  "enqueuedAt": 1774771734883,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "文件都在。现在按流程走阶段 6（Checker LaTeX 审查），然后"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "文件都在。现在按流程走阶段 6（Checker LaTeX 审查），然后"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775130246671,
+  "lastError": "Request failed with status code 400"
+}

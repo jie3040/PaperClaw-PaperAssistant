@@ -1,0 +1,38 @@
+{
+  "journal": "IEEE Transactions on Instrumentation and Measurement",
+  "topic": "Multimodal Large Model-based Intelligent Fault Diagnosis",
+  "mode": "A",
+  "derived_from": ["example1.pdf (17pp, GAN-based fault diagnosis)", "example2.pdf (11pp, GAN+meta learning fault diagnosis)"],
+
+  "structure": {
+    "total_pages": {"min": 11, "max": 17, "target": 14},
+    "total_words": {"min": 8500, "max": 9500, "target": 9000},
+    "total_references": {"min": 30, "max": 50, "target": 40},
+    "total_figures": {"min": 5, "max": 12, "target": 8},
+    "total_tables": {"min": 4, "max": 8, "target": 6},
+    "total_equations": {"min": 6, "max": 15, "target": 10}
+  },
+
+  "sections": [
+    {"name": "Abstract", "words": {"min": 150, "max": 250}, "notes": "单段，不分段，IEEE格式"},
+    {"name": "I. Introduction", "words": {"min": 700, "max": 900}, "notes": "引用数 ≥ 总引用50%，介绍背景、挑战、贡献"},
+    {"name": "II. Related Work / Background", "words": {"min": 500, "max": 900}, "notes": "梳理相关方法，指出局限"},
+    {"name": "III. Proposed Method", "words": {"min": 1500, "max": 2500}, "notes": "核心方法，含公式、架构图"},
+    {"name": "IV. Experiments", "words": {"min": 1500, "max": 2500}, "notes": "数据集、对比实验、消融实验、结果分析"},
+    {"name": "V. Conclusion", "words": {"min": 150, "max": 300}, "notes": "总结贡献，展望未来"}
+  ],
+
+  "style": {
+    "citation_style": "IEEE numbered [1]",
+    "figure_style": "figure* for wide (conceptual) figures, figure for single-column",
+    "abstract_format": "single paragraph, no line breaks",
+    "intro_references_ratio": "≥50% of total references cited in Introduction",
+    "language": "English, formal academic style, avoid AI-generated tone"
+  },
+
+  "latex": {
+    "class": "IEEEtran.cls",
+    "template": "bare_jrnl_new_sample4.tex",
+    "bib_style": "IEEEtran (plain as fallback)"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "c6cc00c7-b307-4444-83bb-657a489b040d",
+  "enqueuedAt": 1775202862074,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Ideator 已完成创意生成！以下是 3 个候选 Idea 的摘要：\n\n---\n\n## 📝 Idea 候选方案（paper-project-9）\n\n**研究方向**：基于多模态大模型（MLLM）的智能故障诊断，IEEE TIM\n\n---\n\n### 💡 Idea 1：VibAlign-MLLM\n**振动语义对齐多模态大模型**\n- 通过对比学习 + 时序分词，将原始振动信号映射到 MLLM 潜在空间\n- CWT 时频表征 → CLIP 风格对比训练 → LLaVA 微调注入振动 token\n- 适用于标注数据稀缺的轴承/齿轮零/少样本诊断\n\n---\n\n### 💡 Idea 2：CrossZS-Transfer\n**跨模态零样本故障迁移**\n- 即插即用的模态适配器 + Prompt Tuning，实现文本/视觉故障知识向振动信号迁移\n- 冻结 MLLM 提取语义 → 低秩适配器桥接 → 工程化 Prompt 零样本推理\n- 适用于无标注的新型故障或跨设备诊断\n\n---\n\n### 💡 Idea 3：UniFault-SemFrame\n**统一多模态故障语义表征框架**\n- 融合振动、声学、热成像、文本的跨模态图注意力网络\n- 并行编码器（TCN/ViT/LLM）→ 异构图融合 → MLLM 解码器分类\n- 适用于风机、压缩机等多传感器工业系统\n\n---\n\n## 🎯 下一步：请您选择 Idea\n\n请告诉我您倾向于哪个方向（1 / 2 / 3），或者您有修改意见，我将继续推进 **阶段 3（Architect 框架设计）**。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Ideator 已完成创意生成！以下是 3 个候选 Idea 的摘要：\n\n---\n\n## 📝 Idea 候选方案（paper-project-9）\n\n**研究方向**：基于多模态大模型（MLLM）的智能故障诊断，IEEE TIM\n\n---\n\n### 💡 Idea 1：VibAlign-MLLM\n**振动语义对齐多模态大模型**\n- 通过对比学习 + 时序分词，将原始振动信号映射到 MLLM 潜在空间\n- CWT 时频表征 → CLIP 风格对比训练 → LLaVA 微调注入振动 token\n- 适用于标注数据稀缺的轴承/齿轮零/少样本诊断\n\n---\n\n### 💡 Idea 2：CrossZS-Transfer\n**跨模态零样本故障迁移**\n- 即插即用的模态适配器 + Prompt Tuning，实现文本/视觉故障知识向振动信号迁移\n- 冻结 MLLM 提取语义 → 低秩适配器桥接 → 工程化 Prompt 零样本推理\n- 适用于无标注的新型故障或跨设备诊断\n\n---\n\n### 💡 Idea 3：UniFault-SemFrame\n**统一多模态故障语义表征框架**\n- 融合振动、声学、热成像、文本的跨模态图注意力网络\n- 并行编码器（TCN/ViT/LLM）→ 异构图融合 → MLLM 解码器分类\n- 适用于风机、压缩机等多传感器工业系统\n\n---\n\n## 🎯 下一步：请您选择 Idea\n\n请告诉我您倾向于哪个方向（1 / 2 / 3），或者您有修改意见，我将继续推进 **阶段 3（Architect 框架设计）**。"
+  },
+  "retryCount": 3,
+  "lastAttemptAt": 1775265306254,
+  "lastError": "Request failed with status code 400"
+}

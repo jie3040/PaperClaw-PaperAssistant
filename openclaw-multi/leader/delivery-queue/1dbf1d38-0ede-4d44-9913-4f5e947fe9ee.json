@@ -1,0 +1,20 @@
+{
+  "id": "1dbf1d38-0ede-4d44-9913-4f5e947fe9ee",
+  "enqueuedAt": 1775207597933,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Writer已完成 Abstract 和 Introduction：\n\n- **abstract.tex**：196 词 ✅\n- **introduction.tex**：772 词（目标 ~850，略低但在范围内）✅\n\n另外检测到 `related_work.tex` 也已存在于 drafts/v1/。\n\n**下一步**：继续派 Writer 撰写后续 section（Method、Experiments 等）。请问当前项目写到哪个阶段了？需要我查看 WORKFLOW.md 或 version_tracker.json 确认进度？"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Writer已完成 Abstract 和 Introduction：\n\n- **abstract.tex**：196 词 ✅\n- **introduction.tex**：772 词（目标 ~850，略低但在范围内）✅\n\n另外检测到 `related_work.tex` 也已存在于 drafts/v1/。\n\n**下一步**：继续派 Writer 撰写后续 section（Method、Experiments 等）。请问当前项目写到哪个阶段了？需要我查看 WORKFLOW.md 或 version_tracker.json 确认进度？"
+  },
+  "retryCount": 3,
+  "lastAttemptAt": 1775265310267,
+  "lastError": "Request failed with status code 400"
+}

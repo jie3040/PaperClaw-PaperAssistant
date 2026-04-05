@@ -6,8 +6,8 @@
       "api": "anthropic-messages",
       "models": [
         {
-          "id": "claude-opus-4-6",
-          "name": "claude-opus-4-6",
+          "id": "claude-sonnet-4-6",
+          "name": "claude-sonnet-4-6",
           "reasoning": true,
           "input": [
             "text",
@@ -24,8 +24,8 @@
           "api": "anthropic-messages"
         },
         {
-          "id": "claude-opus-4-6",
-          "name": "claude-opus-4-6",
+          "id": "claude-sonnet-4-6",
+          "name": "claude-sonnet-4-6",
           "reasoning": true,
           "input": [
             "text",

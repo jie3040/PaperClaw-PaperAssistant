@@ -1,0 +1,20 @@
+{
+  "id": "c63dacc5-ad88-4d98-b444-a57c09d9a7bc",
+  "enqueuedAt": 1775116274790,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Looking at the version_tracker, this has already been handled — outline was fixed v2→v3 (Intro reduced to ~950 words, total words clarified), and stage 4 writing is already in progress. This webhook notification arrived after the fix was applied.\n\nNO_REPLY"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Looking at the version_tracker, this has already been handled — outline was fixed v2→v3 (Intro reduced to ~950 words, total words clarified), and stage 4 writing is already in progress. This webhook notification arrived after the fix was applied.\n\nNO_REPLY"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775130250886,
+  "lastError": "Request failed with status code 400"
+}

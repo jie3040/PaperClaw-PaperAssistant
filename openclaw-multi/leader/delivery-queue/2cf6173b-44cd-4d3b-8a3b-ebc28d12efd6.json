@@ -1,0 +1,20 @@
+{
+  "id": "2cf6173b-44cd-4d3b-8a3b-ebc28d12efd6",
+  "enqueuedAt": 1775212447890,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "3 个 Writer 任务全部已发送，正在处理：\n\n1. **Related Work 精简** → 目标 ≤900 词（删 ~130 词）\n2. **Experiments 精简** → 目标 ≤2500 词（删 ~700 词，删重复的 Cross-Domain 和 Computational Complexity 等）\n3. **Intro/Method/Conclusion 扩写** → +200/+300/+54 词\n\n等待 Writer 完成后检查词数，通过则进入下一轮 Reviewer 审查（v8）。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "3 个 Writer 任务全部已发送，正在处理：\n\n1. **Related Work 精简** → 目标 ≤900 词（删 ~130 词）\n2. **Experiments 精简** → 目标 ≤2500 词（删 ~700 词，删重复的 Cross-Domain 和 Computational Complexity 等）\n3. **Intro/Method/Conclusion 扩写** → +200/+300/+54 词\n\n等待 Writer 完成后检查词数，通过则进入下一轮 Reviewer 审查（v8）。"
+  },
+  "retryCount": 2,
+  "lastAttemptAt": 1775265316620,
+  "lastError": "Request failed with status code 400"
+}

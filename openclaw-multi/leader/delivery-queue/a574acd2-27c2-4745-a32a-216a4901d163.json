@@ -1,0 +1,20 @@
+{
+  "id": "a574acd2-27c2-4745-a32a-216a4901d163",
+  "enqueuedAt": 1775207323081,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "收到 Architect 回报！v2 框架已生成，我来验证内容。\n\n**Architect v2 框架验证结果 ✅**\n\n| 指标 | 目标 | v2 实际 | 状态 |\n|------|------|---------|------|\n| 总词数 | 9000 | 9000 | ✅ |\n| 节数 | 5节 | 5节（I-V） | ✅ |\n| 公式数 | ≥10 | 10条 (F1-F10) | ✅ |\n| 图数 | 8 | 8 (Fig.1-8) | ✅ |\n| 表数 | 6 | 6 (Table I-VI) | ✅ |\n| Introduction词数 | ~1500 | 1500 | ✅ |\n| Method词数 | ~3800 | 3800 | ✅ |\n| Experiments词数 | ~2000 | 2000 | ✅ |\n| Conclusion词数 | ~300 | 300 | ✅ |\n| Introduction引用 | ≥20 | 20条明确列出 | ✅ |\n| Problem节 | 已删除（合并入Method III.A） | ✅ |\n\n**结构变化确认：**\n- ✅ Problem 节已删除，内容合并至 Method § III.A（Problem Formulation，600词）\n- ✅ 节编号重排：I.Intro → II.Related Work → III.Method → IV.Experiments → V.Conclusion\n- ✅ 公式覆盖所有核心模块（STFT、对比损失、Cross-attention、MAML、零样本推理）\n\n**框架质量评估：** 结构清晰，词数分配合理，公式分布均匀，图表规划完整。\n\n---\n\n**下一步：阶段 3.5 框架对齐审查**\n\n将把 v2 框架发给 **Reviewer** 进行黄金标准对齐审查，确认通过后才进入阶段 4（Writer撰写）。\n\n是否现在启动 Reviewer 框架审查？"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "收到 Architect 回报！v2 框架已生成，我来验证内容。\n\n**Architect v2 框架验证结果 ✅**\n\n| 指标 | 目标 | v2 实际 | 状态 |\n|------|------|---------|------|\n| 总词数 | 9000 | 9000 | ✅ |\n| 节数 | 5节 | 5节（I-V） | ✅ |\n| 公式数 | ≥10 | 10条 (F1-F10) | ✅ |\n| 图数 | 8 | 8 (Fig.1-8) | ✅ |\n| 表数 | 6 | 6 (Table I-VI) | ✅ |\n| Introduction词数 | ~1500 | 1500 | ✅ |\n| Method词数 | ~3800 | 3800 | ✅ |\n| Experiments词数 | ~2000 | 2000 | ✅ |\n| Conclusion词数 | ~300 | 300 | ✅ |\n| Introduction引用 | ≥20 | 20条明确列出 | ✅ |\n| Problem节 | 已删除（合并入Method III.A） | ✅ |\n\n**结构变化确认：**\n- ✅ Problem 节已删除，内容合并至 Method § III.A（Problem Formulation，600词）\n- ✅ 节编号重排：I.Intro → II.Related Work → III.Method → IV.Experiments → V.Conclusion\n- ✅ 公式覆盖所有核心模块（STFT、对比损失、Cross-attention、MAML、零样本推理）\n\n**框架质量评估：** 结构清晰，词数分配合理，公式分布均匀，图表规划完整。\n\n---\n\n**下一步：阶段 3.5 框架对齐审查**\n\n将把 v2 框架发给 **Reviewer** 进行黄金标准对齐审查，确认通过后才进入阶段 4（Writer撰写）。\n\n是否现在启动 Reviewer 框架审查？"
+  },
+  "retryCount": 3,
+  "lastAttemptAt": 1775265309623,
+  "lastError": "Request failed with status code 400"
+}

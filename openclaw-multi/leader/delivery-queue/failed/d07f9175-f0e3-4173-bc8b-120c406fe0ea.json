@@ -1,0 +1,20 @@
+{
+  "id": "d07f9175-f0e3-4173-bc8b-120c406fe0ea",
+  "enqueuedAt": 1775116020763,
+  "channel": "feishu",
+  "to": "heartbeat",
+  "payloads": [
+    {
+      "text": "Architect 完成 outline v2，表格补至 7 张、公式 10 个、页数预估 ~15 页，基本对齐黄金标准。但 Intro 规划 1200 词超过上限 1000 词，已派 Reviewer 进行阶段 3.5 Round 2 框架对齐审查，等待回报。"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:main",
+    "agentId": "main",
+    "text": "Architect 完成 outline v2，表格补至 7 张、公式 10 个、页数预估 ~15 页，基本对齐黄金标准。但 Intro 规划 1200 词超过上限 1000 词，已派 Reviewer 进行阶段 3.5 Round 2 框架对齐审查，等待回报。"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1775130250537,
+  "lastError": "Request failed with status code 400"
+}

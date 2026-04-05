@@ -1,0 +1,9 @@
+{
+  "target": "reviewer",
+  "port": 18850,
+  "token": "reviewer-hook-2026",
+  "message": "阶段4.5内容对齐审查 drafts/v3",
+  "sessionKey": "hook:p9-reviewer-4.5-v3",
+  "created_at": "2026-04-03T17:43",
+  "status": "pending"
+}
