@@ -66,6 +66,15 @@
 
 0.1 询问用户 Research Topic + 目标期刊
 0.2 要求提供 LaTeX 模板 → `template/`，2 篇范例 PDF → `examples/`
+
+**★ 0.2.5 输入验证门控（v1.8 新增，必须通过才能继续）**
+```bash
+bash <项目根目录>/validate_inputs.sh "$SHARED" A
+```
+- 脚本返回 exit 0 → 继续下一步
+- 脚本返回 exit 1（❌ 缺失必需文件）→ **暂停 pipeline，通知用户补充缺失文件，禁止继续**
+- 在 version_tracker.json 中记录 `"input_validated": true`
+
 0.3 MinerU 解析范例论文：
 ```bash
 ~/MinerU/.venv/bin/mineru -p SHARED/examples/example_1.pdf -o SHARED/examples/example_1_parsed -b pipeline
@@ -101,14 +110,27 @@ cat > SHARED/version_tracker.json << 'EOF'
 EOF
 ```
 
-### 阶段 1：Surveyor 文献检索
+### 阶段 1：Surveyor 文献检索 + Architect 预并行（v1.8 新增）
+
+**★ 并行策略：Surveyor 和 Architect 预框架同时启动**
+
+**步骤 1a：同时派发 Surveyor 和 Architect-预框架（不等 Surveyor 完成）**
 
 ```bash
+# --- Surveyor 正常发送 ---
 curl -s -X POST http://127.0.0.1:18810/hooks/agent \
   -H 'Authorization: Bearer surveyor-hook-2026' \
   -H 'Content-Type: application/json' \
   -d '{"message":"文献检索任务。主题：<TOPIC>。范例论文：SHARED/examples/。输出到 SHARED/references/","name":"文献检索","sessionKey":"hook:survey-1"}'
+
+# --- 同时：派 Architect 做预框架草图（仅基于 idea + 黄金标准，不依赖调研结果）---
+curl -s -X POST http://127.0.0.1:18830/hooks/agent \
+  -H 'Authorization: Bearer architect-hook-2026' \
+  -H 'Content-Type: application/json' \
+  -d '{"message":"【预框架任务 — 轻量草图，非最终版】\n\n主题：<TOPIC>\n黄金标准：SHARED/golden_standard.json\n范例论文：SHARED/examples/\n\n★ 此时 Surveyor 仍在检索，不要等待调研结果\n★ 基于黄金标准和主题，设计论文骨架（仅章节名称 + 大致字数分配，不需要具体段落规划）\n★ 保存到 SHARED/outline/pre_draft/skeleton.md\n★ 完成后回报，等待 Leader 后续指令","name":"预框架草图","sessionKey":"hook:architect-pre"}'
 ```
+
+**步骤 1b：等待 Surveyor 完成调研**
 
 ### 阶段 1.5：Leader 精简调研报告
 
@@ -124,7 +146,7 @@ curl -s -X POST http://127.0.0.1:18820/hooks/agent \
 ```
 → 用户选定 → `SHARED/ideas/selected_idea.md`
 
-### 阶段 3：Architect 设计框架（写入 outline/v1/）
+### 阶段 3：Architect 最终框架（写入 outline/v1/，基于预框架 + 调研结果）
 
 ```bash
 mkdir -p SHARED/outline/v1
@@ -135,7 +157,7 @@ mkdir -p SHARED/outline/v1
 curl -s -X POST http://127.0.0.1:18830/hooks/agent \
   -H 'Authorization: Bearer architect-hook-2026' \
   -H 'Content-Type: application/json' \
-  -d '{"message":"设计论文框架。\n\n输入：\n- selected_idea: SHARED/ideas/selected_idea.md\n- 调研摘要: SHARED/references/survey_summary.md\n- 范例论文: SHARED/examples/\n- 黄金标准: SHARED/golden_standard.json\n\n★ 所有输出写入 SHARED/outline/v1/：\n- paper_outline.md（含精确段落级字数分配）\n- artist_prompts.md\n- tables_spec.md\n- data_plots_spec.md\n- figures_plan.md","name":"框架设计 v1","sessionKey":"hook:architect-v1"}'
+  -d '{"message":"设计论文最终框架。\n\n输入：\n- selected_idea: SHARED/ideas/selected_idea.md\n- 调研摘要: SHARED/references/survey_summary.md\n- 范例论文: SHARED/examples/\n- 黄金标准: SHARED/golden_standard.json\n- ★ 预框架草图（参考，可在此基础上扩展）: SHARED/outline/pre_draft/skeleton.md\n\n★ 所有输出写入 SHARED/outline/v1/：\n- paper_outline.md（含精确段落级字数分配）\n- artist_prompts.md\n- tables_spec.md\n- data_plots_spec.md\n- figures_plan.md","name":"框架设计 v1","sessionKey":"hook:architect-v1"}'
 ```
 
 ### 阶段 3.5：框架对齐审查（最多3轮）
@@ -205,6 +227,25 @@ curl -s -X POST http://127.0.0.1:18850/hooks/agent \
 ```
 
 REVISE → Writer 修改到 drafts/v2/，再审。最多 3 轮。
+
+**★ v1.8 新增：内容对齐审查同时附加量化评分**
+
+每次内容对齐审查（含返工）都追加派发量化评分任务：
+```bash
+curl -s -X POST http://127.0.0.1:18850/hooks/agent \
+  -H 'Authorization: Bearer reviewer-hook-2026' \
+  -H 'Content-Type: application/json' \
+  -d '{"message":"请执行【量化评分】。\n\n★ 量化评分 skill：<SHARED>/../shared/skills/review_score.md\n★ 请先读取该 skill\n★ 待评分草稿：SHARED/drafts/v{N}/\n\n输出到 SHARED/reviews/review_score_v{N}.json","name":"量化评分 v{N}","sessionKey":"hook:score-v{N}"}'
+```
+
+**Leader 评分管理规则：**
+1. 每轮审查结束后，读取 `review_score_v{N}.json` 中的 `overall` 分
+2. 记录到 version_tracker.json 的 `"scores"` 数组
+3. **终止返工的条件（任一满足即停止，即便 verdict=REVISE）：**
+   - 已达 3 轮
+   - 本轮 overall 低于上一轮（分数下降，说明修改过度）
+   - 连续 2 轮 overall 提升 < 1.0 分（收益递减）
+4. 上述情况下 Leader 采用得分最高的版本推进下一阶段
 
 **★ 字数调整时使用 Skill（v1.7）**
 
@@ -354,7 +395,19 @@ curl -s -X POST http://127.0.0.1:18850/hooks/agent \
 - 最多 2 轮
 
 
-### 阶段 8：Leader 编译 PDF → 通知用户
+### 阶段 8：Leader 编译 PDF + 生成 Provenance → 通知用户
+
+**编译完成后，立即生成 Provenance 审计文件（v1.8 新增）：**
+```bash
+bash <项目根目录>/scripts/generate_provenance.sh "$SHARED"
+```
+生成 `SHARED/provenance.json`，记录：
+- 所有关键输出文件的 SHA256 哈希
+- 版本历史（outline/drafts/final 版本号）
+- 评分轨迹（各轮 overall 分）
+- 统计信息（参考文献数、图表数、PDF 页数）
+
+通知用户时附上 provenance.json 路径，方便溯源。
 
 ### 阶段 9：用户/专家审查
 
@@ -414,6 +467,12 @@ mkdir -p "$SHARED"/{template,examples,references,ideas,outline,drafts,figures,re
 - 实验结果（必须）→ `SHARED/user_materials/results/`
   可接受格式：图片文件/文件夹、CSV、Word 表格、文本描述
 - 简要 plan（可选）
+
+**★ 0B.2.5 输入验证门控（v1.8，必须通过才能继续）**
+```bash
+bash <项目根目录>/validate_inputs.sh "$SHARED" B
+```
+- 验证未通过 → 暂停，通知用户补充缺失文件
 
 **0B.3 MinerU 解析范例论文**
 

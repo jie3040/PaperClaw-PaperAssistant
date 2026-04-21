@@ -37,6 +37,95 @@ PaperClaw 通过 9 个独立 AI Agent 分工协作，自动化学术论文写作
 
 ---
 
+## 🆕 v1.8 更新（2026-04）
+
+### 改进 1：Reviewer 量化评分体系
+
+引入 6 维度标准化评分（0–100 分制），对标 PaperOrchestra 的精炼评分机制。
+
+**新增 Skill 文件：** `shared/skills/review_score.md`
+
+| 评分维度 | 权重 | 描述 |
+|---------|------|------|
+| `scientific_depth` | 20% | 研究深度、方法创新性 |
+| `technical_execution` | 20% | 实验严谨性、基线完整性 |
+| `logical_flow` | 15% | 论证链条、段落衔接 |
+| `writing_clarity` | 15% | 语言清晰度、术语一致性 |
+| `evidence_presentation` | 15% | 图表规范、引用密度 |
+| `academic_style` | 15% | 格式合规、学术语体 |
+
+**Reviewer 模式 F（量化评分）**：每次内容对齐审查（阶段 4.5）和最终审查（阶段 7）附加量化评分，输出 `review_score_v{N}.json`。
+
+**Leader 评分管理规则（智能终止）**：
+- 已达 3 轮 → 停止
+- 本轮 overall 低于上一轮 → 停止（防止过度修改）
+- 连续 2 轮提升 < 1.0 分 → 停止（收益递减）
+- 始终采用得分最高的版本推进
+
+---
+
+### 改进 2：Surveyor + Architect 部分并行
+
+打破完全串行流程，Surveyor（文献检索）和 Architect（预框架草图）同时启动：
+
+```
+原来：Surveyor(1) ──→ 精简(1.5) ──→ Ideator(2) ──→ Architect(3)
+v1.8：Surveyor(1) ──────────────────────────────→ 精简 → Ideator
+               └→ Architect 预框架（同步）────────────→ Architect 正式框架(3)
+```
+
+**Architect 新增「预框架模式」**：仅基于主题 + 黄金标准生成章节骨架，输出到 `outline/pre_draft/skeleton.md`，待 Surveyor/Ideator 完成后做最终扩充。理论上减少等待时间约 20–30%。
+
+---
+
+### 改进 3：输入验证门控（pipeline 启动前必检）
+
+新增 `validate_inputs.sh` 脚本，pipeline 启动前强制验证所有必需文件，防止在流程中途因文件缺失导致 Agent 报错浪费时间。
+
+```bash
+# 验证 Mode A 输入
+paper-validate ~/.openclaw-multi/shared/paper-project-5 A
+
+# 验证 Mode B 输入
+paper-validate ~/.openclaw-multi/shared/paper-project-5 B
+```
+
+**验证内容：**
+- Mode A/B 通用：`template/`、`examples/`
+- Mode B 专项：`user_materials/method_description.md`、`user_materials/results/`（必需）
+
+验证未通过（exit 1）→ pipeline 强制暂停，通知用户补充文件，不得继续。
+
+---
+
+### 改进 4：Provenance 审计追踪
+
+论文 PDF 编译后自动生成 `provenance.json`，建立完整的输出审计链。
+
+```bash
+# 手动生成（Leader 在阶段 8 自动执行）
+paper-provenance ~/.openclaw-multi/shared/paper-project-5
+```
+
+**记录内容：**
+- 所有关键输出的 SHA256 哈希（PDF、TeX、大纲）
+- 版本历史（outline/drafts/final 版本号）
+- 评分轨迹（各轮 overall 分 → 可复盘哪一轮改进最大）
+- 统计信息（参考文献数、图表数、PDF 页数）
+
+---
+
+### 新增文件清单（v1.8）
+
+| 文件 | 类型 | 用途 |
+|------|------|------|
+| `shared/skills/review_score.md` | Skill | Reviewer 量化评分规范 |
+| `validate_inputs.sh` | 脚本 | 输入验证门控 |
+| `scripts/generate_provenance.sh` | 脚本 | Provenance 审计生成 |
+| `bashrc_aliases.sh` | 更新 | 新增 `paper-validate` / `paper-provenance` 指令 |
+
+---
+
 ## 🆕 v1.7 更新（2026-04）
 
 ### 新增 Writer 扩写/缩写 Skill
@@ -132,7 +221,8 @@ Reviewer 新增两种审查模式：
 - **v1.0**：多 Agent 论文辅助写作流水线（Mode A）
 - **v1.5**：新增 Mode B（结果先行）+ SOUL 架构重构
 - **v1.6**：Skill 系统 + 润色/去AI/逻辑检查/缩写检查
-- **v1.7**（当前）：扩写/缩写 Skill + Leader 禁止直接修改铁律
+- **v1.7**：扩写/缩写 Skill + Leader 禁止直接修改铁律
+- **v1.8**（当前）：量化评分体系 + Surveyor/Architect 并行 + 输入验证门控 + Provenance 审计
 - **v2.0**（规划中）：结合项目代码仓库的子 Agent 协作，实现 Agent 编码并运行实验
 
 ---
@@ -393,6 +483,6 @@ MIT License
 
 ---
 
-> 🦞 PaperClaw v1.7 — 让 AI 处理论文的繁琐工作，你专注于科研创新。
+> 🦞 PaperClaw v1.8 — 让 AI 处理论文的繁琐工作，你专注于科研创新。
 >
 > ⚠️ **最终提醒：论文仅供参考。Method 自己修正，Experiments 自己复现。学术诚信第一。**

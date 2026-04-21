@@ -157,6 +157,46 @@
 - 同一术语缩写不一致 → REVISE
 - 全部规范 → ACCEPT
 
+## 模式 F：量化评分（阶段 4.5 / 7 附加输出）🆕 v1.8
+
+### 触发词
+任务 message 中包含「量化评分」或附上 `review_score.md` skill 路径。
+
+### 执行步骤
+1. **读取 skill 文件**：Leader 指定的 `shared/skills/review_score.md`
+2. **对当前草稿/最终稿打分**（6 个维度，各 0–100，见 skill 详细说明）
+3. **计算加权总分**（overall，保留 1 位小数）
+4. **输出 JSON 评分文件**
+
+### 输出路径
+`SHARED/reviews/review_score_v{N}.json`（与对齐审查报告同版本号）
+
+格式：
+```json
+{
+  "version": "drafts/v{N}",
+  "scores": {
+    "scientific_depth": <整数>,
+    "technical_execution": <整数>,
+    "logical_flow": <整数>,
+    "writing_clarity": <整数>,
+    "evidence_presentation": <整数>,
+    "academic_style": <整数>
+  },
+  "overall": <加权总分>,
+  "verdict": "ACCEPT" 或 "REVISE",
+  "key_weaknesses": ["<可操作的具体问题>"],
+  "key_strengths": ["<突出优点>"]
+}
+```
+
+### 判定规则
+- overall ≥ 75 且无单项 < 60 → 可考虑 ACCEPT
+- overall < 75 或任一单项 < 60 → REVISE
+
+---
+
 ## 版本管理规则
 - Leader 会指定审查哪个版本
 - 审查报告文件名带版本标识（如 `_v1.md`、`_v2.md`）
+- 量化评分文件命名：`review_score_v{N}.json`

@@ -11,6 +11,23 @@ alias paper-test="bash ~/paper-agents.sh test"
 alias paper-tui="OPENCLAW_STATE_DIR=~/.openclaw-multi/leader OPENCLAW_CONFIG_PATH=~/.openclaw-multi/leader/openclaw.json openclaw tui"
 alias paper-watch="tail -f ~/.openclaw-multi/*/logs/*.log"
 
+# ---- 输入验证 & Provenance（v1.8 新增）----
+# 用法：paper-validate <SHARED路径> <A|B>
+# 示例：paper-validate ~/.openclaw-multi/shared/paper-project-5 B
+paper-validate() {
+  local REPO_DIR
+  REPO_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
+  bash "$REPO_DIR/validate_inputs.sh" "$@"
+}
+
+# 用法：paper-provenance <SHARED路径>
+# 示例：paper-provenance ~/.openclaw-multi/shared/paper-project-5
+paper-provenance() {
+  local REPO_DIR
+  REPO_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
+  bash "$REPO_DIR/scripts/generate_provenance.sh" "$@"
+}
+
 # ---- 各 Agent TUI ----
 alias tui-leader="OPENCLAW_STATE_DIR=~/.openclaw-multi/leader OPENCLAW_CONFIG_PATH=~/.openclaw-multi/leader/openclaw.json openclaw tui"
 alias tui-surveyor="OPENCLAW_STATE_DIR=~/.openclaw-multi/surveyor OPENCLAW_CONFIG_PATH=~/.openclaw-multi/surveyor/openclaw.json openclaw tui"
